@@ -1,7 +1,10 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "include/player.h"
+
 #include <QMainWindow>
+
 
 namespace Ui {
 class MainWindow;
@@ -16,7 +19,8 @@ public:
     ~MainWindow();
 
 private:
-    Ui::MainWindow *ui;
+    Ui::MainWindow *_ui;
+    Player *_p;
 };
 
 #endif // MAINWINDOW_H
