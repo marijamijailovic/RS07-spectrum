@@ -3,6 +3,7 @@
 
 #include <QGraphicsScene>
 #include <QGraphicsRectItem>
+#include <QKeyEvent>
 
 
 class Player : public QGraphicsEllipseItem
@@ -10,7 +11,7 @@ class Player : public QGraphicsEllipseItem
 public:
     Player(int x, int y);
 
-    void ProcessKeyPress(int step);
+    void keyPressEvent(QKeyEvent *event);
 };
 
 #endif // PLAYER_H
