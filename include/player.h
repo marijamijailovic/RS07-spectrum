@@ -4,15 +4,13 @@
 #include <QGraphicsScene>
 #include <QGraphicsRectItem>
 
-class Player
+
+class Player : public QGraphicsEllipseItem
 {
 public:
-    Player(QGraphicsScene *scene, int x, int y);
-    ~Player();
+    Player(int x, int y);
 
-private:
-    QGraphicsRectItem *_player;
-    QGraphicsScene *_scene;
+    void ProcessKeyPress(int step);
 };
 
 #endif // PLAYER_H

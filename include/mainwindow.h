@@ -1,7 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "include/player.h"
+#include "include/game.h"
 
 #include <QMainWindow>
 
@@ -20,7 +20,7 @@ public:
 
 private:
     Ui::MainWindow *_ui;
-    Player *_p;
+    SpectrumGame *_game;
 };
 
 #endif // MAINWINDOW_H

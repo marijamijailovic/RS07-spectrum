@@ -1,6 +1,5 @@
 #include "ui_mainwindow.h"
 #include "include/mainwindow.h"
-#include "include/player.h"
 
 #include <QGraphicsScene>
 
@@ -14,8 +13,8 @@ MainWindow::MainWindow(QWidget *parent) :
     // Creating a test scene
     QGraphicsScene *scene = new QGraphicsScene();
 
-    // Creating a player
-    _p = new Player(scene, 10, 10);
+    // Creating a new game on test scene
+    _game = new SpectrumGame(scene);
 
     // Add scene to main display widget
     _ui->gwDisplay->setScene(scene);
@@ -23,5 +22,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    delete _game;
     delete _ui;
 }
