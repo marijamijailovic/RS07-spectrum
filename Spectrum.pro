@@ -30,7 +30,8 @@ SOURCES += \
     src/game.cpp \
     src/level.cpp \
     src/entity.cpp \
-    src/dynamicentity.cpp
+    src/dynamicentity.cpp \
+    src/block.cpp
 
 HEADERS  += \
     include/mainwindow.h \
@@ -38,7 +39,8 @@ HEADERS  += \
     include/game.h \
     include/level.h \
     include/entity.h \
-    include/dynamicentity.h
+    include/dynamicentity.h \
+    include/block.h
 
 FORMS    += \
     ui/mainwindow.ui

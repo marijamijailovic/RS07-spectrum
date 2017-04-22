@@ -2,19 +2,26 @@
 
 DynamicEntity::DynamicEntity(qreal x, qreal y, qreal mass) :
     Entity::Entity(x, y),
-    _mass(mass)
+    _mass(mass),
+    _vx(0),
+    _vy(0)
 {
 
 }
 
-void DynamicEntity::setX(qreal x)
+qreal DynamicEntity::getMass() const
 {
-    _x = x;
+    return _mass;
 }
 
-void DynamicEntity::setY(qreal y)
+qreal DynamicEntity::getVelX() const
 {
-    _y = y;
+    return _vx;
+}
+
+qreal DynamicEntity::getVelY() const
+{
+    return _vy;
 }
 
 void DynamicEntity::setMass(qreal m)
@@ -22,10 +29,18 @@ void DynamicEntity::setMass(qreal m)
     _mass = m;
 }
 
+void DynamicEntity::setVelX(qreal v)
+{
+    _vx = v;
+}
+
+void DynamicEntity::setVelY(qreal v)
+{
+    _vy = v;
+}
+
 void DynamicEntity::applyGravity(qreal g)
 {
-    _y -= g;
-
-    // TODO
-    // Add mass to equation
+    _y = _y + _mass + g;
+    drawAt(_x, _y);
 }

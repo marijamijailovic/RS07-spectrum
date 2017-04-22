@@ -8,12 +8,14 @@
 #include "include/dynamicentity.h"
 
 
-class Player : public QGraphicsEllipseItem, public DynamicEntity
+class Player : public DynamicEntity, public QGraphicsEllipseItem
 {
 public:
     Player(qreal x, qreal y);
 
     void keyPressEvent(QKeyEvent *event);
+
+    void drawAt(qreal x, qreal y);
 
 private:
     bool _jumpInProgress;

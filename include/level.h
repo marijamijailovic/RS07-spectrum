@@ -6,6 +6,7 @@
 #include <vector>
 #include "include/entity.h"
 #include "include/dynamicentity.h"
+#include "block.h"
 
 
 class Level {
@@ -16,11 +17,13 @@ public:
     // TODO delete operator= and copy-constructor
 
     void load(QGraphicsScene *scene);
+    std::vector<Block *> getStaticEntities() const;
+    std::vector<DynamicEntity *> getDynamicEntities() const;
 
-private:
     void applyGravity(qreal g);
 
-    std::vector<Entity *> _staticEntities;          // TODO can be const?
+private:
+    std::vector<Block *> _staticEntities;          // TODO can be const T*?
     std::vector<DynamicEntity *> _dynamicEntities;
 };
 
