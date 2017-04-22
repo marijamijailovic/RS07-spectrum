@@ -1,7 +1,9 @@
 #include "include/player.h"
 
-Player::Player(int x, int y) :
-    QGraphicsEllipseItem(x, y, 50, 50)
+Player::Player(qreal x, qreal y) :
+    QGraphicsEllipseItem(x, y, 50, 50),
+    DynamicEntity::DynamicEntity(x, y, 5),
+    _jumpInProgress(false)
 {
     this->setFlag(QGraphicsItem::ItemIsFocusable);
     this->setFocus();
@@ -13,4 +15,6 @@ void Player::keyPressEvent(QKeyEvent *event)
         this->setPos(x() - 10, y());
     else if (event->key() == Qt::Key_Right)
         this->setPos(x() + 10, y());
+    // TODO
+    // Add jump
 }

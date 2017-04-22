@@ -1,9 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "include/game.h"
-
 #include <QMainWindow>
+#include "include/game.h"
 
 
 namespace Ui {
@@ -17,6 +16,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+    // TODO delete operator= and copy-constructor
 
 private:
     Ui::MainWindow *_ui;
