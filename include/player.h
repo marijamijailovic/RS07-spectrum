@@ -24,8 +24,8 @@ public:
     void applyGravity(qreal g);
     void move();
 private:
-    bool jump=false;
-    int canjump=2;
+    bool _jump = false;
+    int _canJump = 2;
 };
 
 #endif // PLAYER_H

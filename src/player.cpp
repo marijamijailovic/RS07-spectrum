@@ -26,8 +26,9 @@ void Player::keyPressEvent(QKeyEvent *event)
     if (event->key() == Qt::Key_Right)
         _vx = 10;
     if (event->key() == Qt::Key_Up) {
-        if(_inAir) jump=true;
-        else{
+        if(_inAir)
+            _jump = true;
+        else {
             _vy = -10;
             _inAir = true;
         }
@@ -66,7 +67,7 @@ void Player::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget 
     painter->drawPolygon(points, 4);
 }
 void Player::applyGravity(qreal g){
-    applyForce(0,g);
+    applyForce(0, g);
 }
 
 void Player::move()
@@ -74,43 +75,42 @@ void Player::move()
     QTextStream out(stdout);
     QList<QGraphicsItem *> collidingObjects = collidingItems();
     foreach (QGraphicsItem *item, collidingObjects) {
-            if (item == this)
-                continue;
             QRectF a = mapToScene(this->boundingRect()).boundingRect();
             QRectF b = item->boundingRect();
-            if(_vy>=0&&a.bottom()>b.top()&&_vy>=a.bottom()-b.top()){
-                _y+=b.top()-a.bottom();
+            if(_vy >= 0 && a.bottom() > b.top() && _vy >= a.bottom() - b.top()){
+                _y += b.top() - a.bottom() + 0.9145;
                 out << "bottom";
             }
-            else if(_vx!=0&&a.right()>b.left()&&a.right()-b.left()<_vx){
-                _x+=b.left()-a.right()-1;
-                _vx=0;
+            else if(_vx != 0 && a.right() > b.left() && a.right() - b.left() < _vx){
+                _x += b.left() - a.right() - 1;
+                _vx = 0;
                 out << "right";
             }
-            else if(_vx!=0&&a.left()<b.right()&&b.right()-a.left()<-_vx){
-                _x+=b.right()-a.left()+1;
-                _vx=0;
+            else if(_vx != 0 && a.left() < b.right() && b.right() - a.left() < -_vx){
+                _x += b.right() - a.left() + 1;
+                _vx = 0;
                 out << "left";
             }
         }
-    //purpose of canjump is wall jumping, currently disabled
+
+    //purpose of canJump is wall jumping, currently disabled
     if (collidingObjects.isEmpty()) {
-        _inAir=true;
-        if(canjump)canjump--;
-    }
-    else if(jump&&canjump){
-        jump=false;
-        _inAir=true;
-        _vy=-10;
-    }
-    else{
-        _inAir=false;
-        jump=false;
-        if(_vy>0) _vy=0;
-        canjump=2;
+        _inAir = true;
+        if(_canJump)
+            _canJump--;
+    } else if(_jump && _canJump) {
+        _jump = false;
+        _inAir = true;
+        _vy = -10;
+    } else {
+        _inAir = false;
+        _jump = false;
+        if (_vy > 0)
+            _vy = 0;
+        _canJump = 2;
     }
     _y += _vy;
     _x += _vx;
-    _vx*=0.9145;
+    _vx *= 0.9145;
     drawAt(_x, _y);
 }
