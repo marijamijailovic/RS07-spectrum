@@ -4,7 +4,7 @@ SpectrumGame::SpectrumGame(QGraphicsScene *scene) :
     _scene(scene)
 {
     // Creating a player and adding to scene
-    _player = new Player(0, 0);
+    _player = new Player(200, 180);
     _scene->addItem(_player);
 
     // Creating new level
@@ -13,8 +13,8 @@ SpectrumGame::SpectrumGame(QGraphicsScene *scene) :
 
     // Creating timer for gravity function
     QTimer *timer = new QTimer();
-    connect(timer, SIGNAL(timeout()), this, SLOT(applyGravity()));
-    timer->start(50);
+    connect(timer, SIGNAL(timeout()), this, SLOT(update()));
+    timer->start(40);
 }
 
 SpectrumGame::~SpectrumGame()
@@ -23,15 +23,10 @@ SpectrumGame::~SpectrumGame()
     delete _level;
 }
 
-void SpectrumGame::applyGravity() const
+void SpectrumGame::update() const
 {
-    bool updatePlayer = true;
-    std::vector<Block *> entities = _level->getStaticEntities();
-    for (unsigned i = 0; i < entities.size(); i++)
-        if (_player->getYPos() + 50 == entities[i]->getYPos())  // FIXME, temp
-            updatePlayer = false;
-
-    if (updatePlayer)
-        _player->applyGravity(_gravCoeff);
+    _player->move();
+    _player->applyGravity(_gravCoeff);
     _level->applyGravity(_gravCoeff);
+
 }

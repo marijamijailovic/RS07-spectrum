@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>700</width>
-    <height>500</height>
+    <width>800</width>
+    <height>650</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,21 +19,19 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>700</width>
-      <height>500</height>
+      <width>800</width>
+      <height>600</height>
      </rect>
     </property>
+    <property name="sceneRect">
+     <rectf>
+      <x>0.000000000000000</x>
+      <y>0.000000000000000</y>
+      <width>800.000000000000000</width>
+      <height>600.000000000000000</height>
+     </rectf>
+    </property>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="mbMainMenu">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>700</width>
-     <height>21</height>
-    </rect>
-   </property>
   </widget>
   <widget class="QToolBar" name="tbMainToolbar">
    <attribute name="toolBarArea">
@@ -44,6 +42,22 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="sbMainStatusBar"/>
+  <widget class="QMenuBar" name="mbMainMenu">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuGame">
+    <property name="title">
+     <string>Game</string>
+    </property>
+   </widget>
+   <addaction name="menuGame"/>
+  </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

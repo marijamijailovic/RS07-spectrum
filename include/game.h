@@ -1,9 +1,9 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <QObject>
 #include <QGraphicsScene>
 #include <QTimer>
-#include <QObject>
 #include "include/player.h"
 #include "include/level.h"
 
@@ -19,10 +19,10 @@ public:
     // TODO delete operator= and copy-constructor
 
 private slots:
-    void applyGravity() const;
+    void update() const;
 
 private:
-    qreal _gravCoeff = 5;
+    qreal _gravCoeff = 1;
     Player *_player;
     QGraphicsScene *_scene;
     Level *_level;

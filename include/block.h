@@ -1,17 +1,22 @@
 #ifndef BLOCK_H
 #define BLOCK_H
 
-#include <QtGlobal>
-#include <QGraphicsRectItem>
 #include "include/entity.h"
 
 
-class Block : public Entity, public QGraphicsRectItem
+class Block : public Entity
 {
 public:
-    Block(qreal x, qreal y, qreal h, qreal w);
+    Block(qreal x, qreal y, qreal w, qreal h);
 
-    void drawAt(qreal x, qreal y);
+    // Overrides from QGraphicsItem
+    QRectF boundingRect() const override;
+    QPainterPath shape() const override;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+
+private:
+    qreal _w;
+    qreal _h;
 };
 
 #endif // BLOCK_H

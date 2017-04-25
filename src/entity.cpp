@@ -8,22 +8,9 @@ Entity::Entity(qreal x, qreal y) :
 
 }
 
-qreal Entity::getXPos() const
-{
-    return _x;
-}
-
-qreal Entity::getYPos() const
-{
-    return _y;
-}
-
-void Entity::setXPos(qreal x)
+void Entity::drawAt(qreal x, qreal y)
 {
     _x = x;
-}
-
-void Entity::setYPos(qreal y)
-{
     _y = y;
+    setPos(x, y);
 }

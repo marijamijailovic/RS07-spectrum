@@ -18,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Add scene to main display widget
     _ui->gwDisplay->setScene(scene);
+    _ui->gwDisplay->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    _ui->gwDisplay->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 }
 
 MainWindow::~MainWindow()

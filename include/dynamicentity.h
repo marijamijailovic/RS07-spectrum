@@ -11,15 +11,12 @@ class DynamicEntity : public Entity
 public:
     DynamicEntity(qreal x, qreal y, qreal mass);
 
-    qreal getMass() const;
-    qreal getVelX() const;
-    qreal getVelY() const;
-    void setMass(qreal m);
-    void setVelX(qreal v);
-    void setVelY(qreal v);
-    void applyGravity(qreal g);
+    void applyForce(qreal ix, qreal iy);
 
-private:
+    virtual void move() =0 ;
+
+protected:
+    bool _inAir;
     qreal _mass;
     qreal _vx;
     qreal _vy;

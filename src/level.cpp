@@ -6,8 +6,15 @@ Level::Level()
     // Static entities:     walls or whatever non-moving
     // Dynamic entities:    everything affected by gravity
     // Add new entities to arrays
+    _staticEntities.push_back(new Block(0, 300, 50, 50));
+    _staticEntities.push_back(new Block(50, 280, 100, 50));
+    _staticEntities.push_back(new Block(150, 250, 100, 100));
+    _staticEntities.push_back(new Block(250, 210, 50, 50));
+    _staticEntities.push_back(new Block(300, 240, 100, 50));
+    _staticEntities.push_back(new Block(400, 280, 100, 50));
+    _staticEntities.push_back(new Block(500, 300, 200, 50));
 
-    _staticEntities.push_back(new Block(-250, 300, 500, 50));   // FIXME temp
+    //_dynamicEntities.push_back(new Cube(20, 20, 50, 50));
 }
 
 Level::~Level()
@@ -16,15 +23,15 @@ Level::~Level()
     // Free entity arrays
 }
 
-void Level::load(QGraphicsScene *scene)
+void Level::load(QGraphicsScene *scene) const
 {
-    // TODO
-    // Add all entities to scene
-
-    scene->addItem(_staticEntities[0]);     // FIXME temp
+    for (unsigned i = 0; i < _staticEntities.size(); i++)
+        scene->addItem(_staticEntities[i]);
+    for (unsigned i = 0; i < _dynamicEntities.size(); i++)
+        scene->addItem(_dynamicEntities[i]);
 }
 
-std::vector<Block *> Level::getStaticEntities() const
+std::vector<Entity *> Level::getStaticEntities() const
 {
     return _staticEntities;
 }
@@ -36,6 +43,11 @@ std::vector<DynamicEntity *> Level::getDynamicEntities() const
 
 void Level::applyGravity(qreal g)
 {
-    // TODO
-    // For each dynamic entity, call it's applyGravity
+    for (unsigned i = 0; i < _dynamicEntities.size(); i++)
+        _dynamicEntities[i]->applyForce(0,g);
 }
+/*void Level::move(qreal g)
+{
+    for (unsigned i = 0; i < _dynamicEntities.size(); i++)
+        _dynamicEntities[i]->move();
+}*/

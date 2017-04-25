@@ -31,7 +31,8 @@ SOURCES += \
     src/level.cpp \
     src/entity.cpp \
     src/dynamicentity.cpp \
-    src/block.cpp
+    src/block.cpp \
+    src/cube.cpp
 
 HEADERS  += \
     include/mainwindow.h \
@@ -40,7 +41,8 @@ HEADERS  += \
     include/level.h \
     include/entity.h \
     include/dynamicentity.h \
-    include/block.h
+    include/block.h \
+    include/cube.h
 
 FORMS    += \
     ui/mainwindow.ui

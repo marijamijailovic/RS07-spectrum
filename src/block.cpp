@@ -1,15 +1,27 @@
 #include "include/block.h"
 
-Block::Block(qreal x, qreal y, qreal h, qreal w) :
+Block::Block(qreal x, qreal y, qreal w, qreal h) :
     Entity(x, y),
-    QGraphicsRectItem(x, y, h, w)
+    _w(w),
+    _h(h)
 {
 
 }
 
-void Block::drawAt(qreal x, qreal y)
+QRectF Block::boundingRect() const
 {
-    _x = x;
-    _y = y;
-    setPos(x, y);
+    return QRectF(_x, _y, _w, _h);
+}
+
+QPainterPath Block::shape() const
+{
+    QPainterPath path;
+    path.addRect(_x, _y, _w, _h);
+    return path;
+}
+
+void Block::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
+{
+    painter->setBrush(Qt::gray);
+    painter->drawRect(_x, _y, _w, _h);
 }

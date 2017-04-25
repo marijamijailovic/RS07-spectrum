@@ -8,17 +8,24 @@
 #include "include/dynamicentity.h"
 
 
-class Player : public DynamicEntity, public QGraphicsEllipseItem
+class Player : public DynamicEntity
 {
 public:
     Player(qreal x, qreal y);
 
-    void keyPressEvent(QKeyEvent *event);
+    void keyPressEvent(QKeyEvent *event) override;
 
-    void drawAt(qreal x, qreal y);
+    // Overrides from Entity
+    QRectF boundingRect() const override;
+    QPainterPath shape() const override;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
+    // Overrides from DynamicEntity
+    void applyGravity(qreal g);
+    void move();
 private:
-    bool _jumpInProgress;
+    bool jump=false;
+    int canjump=2;
 };
 
 #endif // PLAYER_H
