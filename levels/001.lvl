@@ -1,0 +1,14 @@
+# Player spawn coordinates
+p 200 180
+
+# Static entities
+s block 0 300 50 50
+s block 50 280 100 50
+s block 150 250 100 100
+s block 250 210 50 50
+s block 300 240 100 50
+s block 400 280 100 50
+s block 500 300 200 50
+
+# Dynamic entities
+d cube 20 20 50 50

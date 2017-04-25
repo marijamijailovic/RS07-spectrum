@@ -1,20 +1,87 @@
 #include "include/level.h"
+#include <QMessageBox>
+#include <QFile>
+#include <QCoreApplication>
 
-Level::Level()
+
+Level::Level(const QString &fileName, Player *player) :
+    _player(player)
 {
-    // TODO
-    // Static entities:     walls or whatever non-moving
-    // Dynamic entities:    everything affected by gravity
-    // Add new entities to arrays
-    _staticEntities.push_back(new Block(0, 300, 50, 50));
-    _staticEntities.push_back(new Block(50, 280, 100, 50));
-    _staticEntities.push_back(new Block(150, 250, 100, 100));
-    _staticEntities.push_back(new Block(250, 210, 50, 50));
-    _staticEntities.push_back(new Block(300, 240, 100, 50));
-    _staticEntities.push_back(new Block(400, 280, 100, 50));
-    _staticEntities.push_back(new Block(500, 300, 200, 50));
+    // Open level file
+    QFile f(fileName);
+    if (f.open(QIODevice::ReadOnly) == false) {
+        QMessageBox::critical(nullptr, "Error",
+            "Loading level failed\nLoading default level...");
+        QFile fDef(":levels/001.lvl");
+        if (fDef.open(QIODevice::ReadOnly) == false) {
+            QMessageBox::critical(nullptr, "Error",
+                "Loading level failed\nLoading default level...");
+            QCoreApplication::exit(EXIT_FAILURE);
+        }
+    }
 
-    //_dynamicEntities.push_back(new Cube(20, 20, 50, 50));
+    // Parse level file
+    QTextStream fStream(&f);
+    parse(fStream);
+
+    // Close level file
+    f.close();
+}
+
+void Level::parse(QTextStream &fStream)
+{
+    // Read level file line by line
+    while (!fStream.atEnd()) {
+        QString line = fStream.readLine().trimmed();
+
+        // Comments are lines starting with "#"
+        if (line.isEmpty() || line.startsWith("#"))
+            continue;
+
+        // Read data from the current line
+        QTextStream lineStream(&line);
+        char entityType;
+        lineStream >> entityType;
+
+        // Determine which object to create
+        switch (entityType) {
+        case 's':   // Static
+            addStaticEntity(lineStream);
+            break;
+        case 'd':   // Dynamic
+            addDynamicEntity(lineStream);
+            break;
+        case 'p':   // Player
+            int x, y;
+            lineStream >> x >> y;
+            _player->drawAt(x, y);
+            break;
+        default:
+            break;
+        }
+    }
+}
+
+void Level::addStaticEntity(QTextStream &lineStream)
+{
+    int x, y, w, h;
+    QString entityClass;
+    lineStream >> entityClass >> x >> y >> w >> h;
+
+    if (entityClass == "block")
+        _staticEntities.push_back(new Block(x, y, w, h));
+    // TODO Add here other static object types
+}
+
+void Level::addDynamicEntity(QTextStream &lineStream)
+{
+    int x, y, w, h;
+    QString entityClass;
+    lineStream >> entityClass >> x >> y >> w >> h;
+
+    if (entityClass == "cube")
+        _dynamicEntities.push_back(new Cube(x, y, w, h));
+    // TODO Add here other dynamic object types
 }
 
 Level::~Level()
@@ -46,6 +113,7 @@ void Level::applyGravity(qreal g)
     for (unsigned i = 0; i < _dynamicEntities.size(); i++)
         _dynamicEntities[i]->applyForce(0,g);
 }
+
 /*void Level::move(qreal g)
 {
     for (unsigned i = 0; i < _dynamicEntities.size(); i++)
