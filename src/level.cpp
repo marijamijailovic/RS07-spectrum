@@ -1,7 +1,4 @@
 #include "include/level.h"
-#include <QFile>
-#include <QTextStream>
-#include <QRegularExpression>
 
 
 Level::Level(Player *player) :
@@ -11,11 +8,17 @@ Level::Level(Player *player) :
     QFile f(":levels/001.lvl");
     if (f.open(QIODevice::ReadOnly) == false)
         exit(EXIT_FAILURE);
+
+    // Parse level file
     QTextStream fStream(&f);
+    parse(fStream);
 
-    // Spaces are used as separators in level file
-    QRegularExpression whiteSpaceRegex("\\s+");
+    // Close level file
+    f.close();
+}
 
+void Level::parse(QTextStream &fStream)
+{
     // Read level file line by line
     while (!fStream.atEnd()) {
         QString line = fStream.readLine().trimmed();
@@ -24,7 +27,7 @@ Level::Level(Player *player) :
         if (line.isEmpty() || line.startsWith("#"))
             continue;
 
-        // Read data from line
+        // Read data from the current line
         QTextStream lineStream(&line);
         char entityType;
         lineStream >> entityType;
@@ -46,7 +49,6 @@ Level::Level(Player *player) :
             break;
         }
     }
-    f.close();
 }
 
 void Level::addStaticEntity(QTextStream &lineStream)

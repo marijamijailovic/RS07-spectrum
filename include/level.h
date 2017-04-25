@@ -3,6 +3,7 @@
 
 #include <QtGlobal>
 #include <QGraphicsScene>
+#include <QFile>
 #include <QTextStream>
 #include <vector>
 #include "include/dynamicentity.h"
@@ -25,7 +26,7 @@ public:
     void applyGravity(qreal g);
 
 private:
-
+    void parse(QTextStream &fStream);
     void addStaticEntity(QTextStream &lineStream);
     void addDynamicEntity(QTextStream &lineStream);
 
