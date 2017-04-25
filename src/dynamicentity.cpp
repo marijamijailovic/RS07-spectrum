@@ -1,15 +1,15 @@
 #include "include/dynamicentity.h"
 #include <QTextStream>
-DynamicEntity::DynamicEntity(qreal x, qreal y, qreal mass) :
+
+DynamicEntity::DynamicEntity(qreal x, qreal y, qreal mass, QColor color) :
     Entity::Entity(x, y),
     _inAir(true),
     _mass(mass),
     _vx(0),
     _vy(0)
 {
-
+    setColor(color);
 }
-
 
 // TODO
 

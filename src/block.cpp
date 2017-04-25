@@ -1,11 +1,12 @@
 #include "include/block.h"
 
-Block::Block(qreal x, qreal y, qreal w, qreal h) :
+
+Block::Block(qreal x, qreal y, qreal w, qreal h, QColor color) :
     Entity(x, y),
     _w(w),
     _h(h)
 {
-
+    setColor(color);
 }
 
 QRectF Block::boundingRect() const
@@ -22,6 +23,6 @@ QPainterPath Block::shape() const
 
 void Block::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    painter->setBrush(Qt::gray);
+    painter->setBrush(_color);
     painter->drawRect(_x, _y, _w, _h);
 }

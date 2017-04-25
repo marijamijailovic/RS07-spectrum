@@ -7,42 +7,6 @@
 Level::Level(const QString &fileName, Player *player) :
     _player(player)
 {
-    // Open level file
-    QFile f(fileName);
-    if (f.open(QIODevice::ReadOnly) == false) {
-        QMessageBox::critical(nullptr, "Error",
-            "Loading level failed\nLoading default level...");
-        QFile fDef(":levels/001.lvl");
-        if (fDef.open(QIODevice::ReadOnly) == false) {
-            QMessageBox::critical(nullptr, "Error",
-                "Loading level failed\nLoading default level...");
-            QCoreApplication::exit(EXIT_FAILURE);
-        }
-    }
-
-    // Parse level file
-    QTextStream fStream(&f);
-    parse(fStream);
-
-    // Close level file
-    f.close();
-}
-
-void Level::parse(QTextStream &fStream)
-{
-    // Read level file line by line
-    while (!fStream.atEnd()) {
-        QString line = fStream.readLine().trimmed();
-
-        // Comments are lines starting with "#"
-        if (line.isEmpty() || line.startsWith("#"))
-            continue;
-
-        // Read data from the current line
-        QTextStream lineStream(&line);
-        char entityType;
-        lineStream >> entityType;
-
         // Determine which object to create
         switch (entityType) {
         case 's':   // Static

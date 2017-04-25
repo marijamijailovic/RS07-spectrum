@@ -7,6 +7,17 @@ Player::Player(qreal x, qreal y) :
     this->setFocus();
 }
 
+
+QColor Player::activeColor() const
+{
+    return _activeColor;
+}
+
+void Player::setActiveColor(QColor newActiveColor)
+{
+    _activeColor = newActiveColor;
+}
+
 QRectF Player::boundingRect() const
 {
     return QRectF(-30, -50, 60, 100);
@@ -23,9 +34,9 @@ void Player::keyPressEvent(QKeyEvent *event)
 {
     if (event->key() == Qt::Key_Left)
         _vx = -10;
-    if (event->key() == Qt::Key_Right)
+    else if (event->key() == Qt::Key_Right)
         _vx = 10;
-    if (event->key() == Qt::Key_Up) {
+    else if (event->key() == Qt::Key_Up) {
         if(_inAir)
             _jump = true;
         else {
@@ -33,12 +44,40 @@ void Player::keyPressEvent(QKeyEvent *event)
             _inAir = true;
         }
     }
-
+    // TODO remove exit on Esc
+    else if (event->key() == Qt::Key_Escape) {
+        exit(EXIT_SUCCESS);
+    }
+    else {
+        QTextStream out(stdout);
+        // Disable changing active color when there's a collision with entities with activeColor
+        QList<QGraphicsItem *> collidingObjects = collidingItems();
+        foreach (QGraphicsItem* item, collidingObjects) {
+            if (_activeColor == ((Entity*)item)->color()) {
+                out << "Changing active color disabled\n";
+                return;
+            }
+        }
+        if (event->key() == Qt::Key_1) {
+            _activeColor = Qt::blue;
+            out << "Active color: blue\n";
+        } else if (event->key() == Qt::Key_2) {
+            _activeColor = Qt::green;
+            out << "Active color: green\n";
+        } else if (event->key() == Qt::Key_3) {
+            _activeColor = Qt::yellow;
+            out << "Active color: yellow\n";
+        } else if (event->key() == Qt::Key_4) {
+            _activeColor = Qt::red;
+            out << "Active color: red\n";
+        }
+        update();
+    }
 }
 
 void Player::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    painter->setBrush(Qt::yellow);
+    painter->setBrush(_activeColor);
     painter->drawRect(-30, -50, 60, 100);
     painter->setBrush(Qt::black);
     painter->drawEllipse(-5, -32, 10, 10);
@@ -74,27 +113,33 @@ void Player::move()
 {
     QTextStream out(stdout);
     QList<QGraphicsItem *> collidingObjects = collidingItems();
+    int sameColorCollisions = 0;
     foreach (QGraphicsItem *item, collidingObjects) {
-            QRectF a = mapToScene(this->boundingRect()).boundingRect();
-            QRectF b = item->boundingRect();
-            if(_vy >= 0 && a.bottom() > b.top() && _vy >= a.bottom() - b.top()){
-                _y += b.top() - a.bottom() + 0.9145;
-                out << "bottom";
-            }
-            else if(_vx != 0 && a.right() > b.left() && a.right() - b.left() < _vx){
-                _x += b.left() - a.right() - 1;
-                _vx = 0;
-                out << "right";
-            }
-            else if(_vx != 0 && a.left() < b.right() && b.right() - a.left() < -_vx){
-                _x += b.right() - a.left() + 1;
-                _vx = 0;
-                out << "left";
-            }
+        if (_activeColor == ((Entity*)item)->color()) {
+            sameColorCollisions++;
+            //out << "no collision\n";
+            continue;
         }
+        QRectF a = mapToScene(this->boundingRect()).boundingRect();
+        QRectF b = item->boundingRect();
+        if(_vy >= 0 && a.bottom() > b.top() && _vy >= a.bottom() - b.top()){
+            _y += b.top() - a.bottom() + 0.9145;
+            //out << "bottom";
+        }
+        else if(_vx != 0 && a.right() > b.left() && a.right() - b.left() < _vx){
+            _x += b.left() - a.right() - 1;
+            _vx = 0;
+            //out << "right";
+        }
+        else if(_vx != 0 && a.left() < b.right() && b.right() - a.left() < -_vx){
+            _x += b.right() - a.left() + 1;
+            _vx = 0;
+            //out << "left";
+        }
+     }
 
     //purpose of canJump is wall jumping, currently disabled
-    if (collidingObjects.isEmpty()) {
+    if (collidingObjects.size() == sameColorCollisions) {
         _inAir = true;
         if(_canJump)
             _canJump--;
