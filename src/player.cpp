@@ -34,9 +34,9 @@ void Player::keyPressEvent(QKeyEvent *event)
 {
     if (event->key() == Qt::Key_Left)
         _vx = -10;
-    if (event->key() == Qt::Key_Right)
+    else if (event->key() == Qt::Key_Right)
         _vx = 10;
-    if (event->key() == Qt::Key_Up) {
+    else if (event->key() == Qt::Key_Up) {
         if(_inAir)
             _jump = true;
         else {
@@ -45,33 +45,34 @@ void Player::keyPressEvent(QKeyEvent *event)
         }
     }
     // TODO remove exit on Esc
-    if (event->key() == Qt::Key_Escape) {
+    else if (event->key() == Qt::Key_Escape) {
         exit(EXIT_SUCCESS);
     }
-
-    QTextStream out(stdout);
-    // Disable changing active color when there's a collision with entities with activeColor
-    QList<QGraphicsItem *> collidingObjects = collidingItems();
-    foreach (QGraphicsItem* item, collidingObjects) {
-        if (_activeColor == ((Entity*)item)->color()) {
-            out << "Changing active color disabled\n";
-            return;
+    else {
+        QTextStream out(stdout);
+        // Disable changing active color when there's a collision with entities with activeColor
+        QList<QGraphicsItem *> collidingObjects = collidingItems();
+        foreach (QGraphicsItem* item, collidingObjects) {
+            if (_activeColor == ((Entity*)item)->color()) {
+                out << "Changing active color disabled\n";
+                return;
+            }
         }
+        if (event->key() == Qt::Key_1) {
+            _activeColor = Qt::blue;
+            out << "Active color: blue\n";
+        } else if (event->key() == Qt::Key_2) {
+            _activeColor = Qt::green;
+            out << "Active color: green\n";
+        } else if (event->key() == Qt::Key_3) {
+            _activeColor = Qt::yellow;
+            out << "Active color: yellow\n";
+        } else if (event->key() == Qt::Key_4) {
+            _activeColor = Qt::red;
+            out << "Active color: red\n";
+        }
+        update();
     }
-    if (event->key() == Qt::Key_1) {
-        _activeColor = Qt::blue;
-        out << "Active color: blue\n";
-    } else if (event->key() == Qt::Key_2) {
-        _activeColor = Qt::green;
-        out << "Active color: green\n";
-    } else if (event->key() == Qt::Key_3) {
-        _activeColor = Qt::yellow;
-        out << "Active color: yellow\n";
-    } else if (event->key() == Qt::Key_4) {
-        _activeColor = Qt::red;
-        out << "Active color: red\n";
-    }
-    update();
 }
 
 void Player::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
