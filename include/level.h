@@ -7,11 +7,12 @@
 #include "include/dynamicentity.h"
 #include "include/block.h"
 #include "include/cube.h"
+#include "include/player.h"
 
 
 class Level {
 public:
-    Level();
+    Level(Player *player);
     ~Level();
 
     // TODO delete operator= and copy-constructor
@@ -25,6 +26,7 @@ public:
 private:
     std::vector<Entity *> _staticEntities;          // TODO can be const T*?
     std::vector<DynamicEntity *> _dynamicEntities;
+    Player *_player;
 };
 
 #endif // LEVEL_H

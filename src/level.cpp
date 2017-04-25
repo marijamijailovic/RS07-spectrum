@@ -1,20 +1,59 @@
 #include "include/level.h"
+#include <QFile>
+#include <QTextStream>
+#include <QRegularExpression>
 
-Level::Level()
+
+Level::Level(Player *player) :
+    _player(player)
 {
-    // TODO
-    // Static entities:     walls or whatever non-moving
-    // Dynamic entities:    everything affected by gravity
-    // Add new entities to arrays
-    _staticEntities.push_back(new Block(0, 300, 50, 50));
-    _staticEntities.push_back(new Block(50, 280, 100, 50));
-    _staticEntities.push_back(new Block(150, 250, 100, 100));
-    _staticEntities.push_back(new Block(250, 210, 50, 50));
-    _staticEntities.push_back(new Block(300, 240, 100, 50));
-    _staticEntities.push_back(new Block(400, 280, 100, 50));
-    _staticEntities.push_back(new Block(500, 300, 200, 50));
+    // Open level file
+    QFile f(":levels/001.lvl");
+    if (f.open(QIODevice::ReadOnly) == false)
+        exit(EXIT_FAILURE);
+    QTextStream fStream(&f);
 
-    //_dynamicEntities.push_back(new Cube(20, 20, 50, 50));
+    // Spaces are used as separators in level file
+    QRegularExpression whiteSpaceRegex("\\s+");
+
+    // Read level file line by line
+    while (!fStream.atEnd()) {
+        QString line = fStream.readLine().trimmed();
+
+        // Comments are lines starting with "#"
+        if (line.isEmpty() || line.startsWith("#"))
+            continue;
+
+        // Read data from line
+        QTextStream lineStream(&line);
+        char entityType;
+        lineStream >> entityType;
+
+        // Determine which object to create
+        int x, y, w, h;
+        QString entityClass;
+        switch (entityType) {
+        case 's':   // Static
+            lineStream >> entityClass >> x >> y >> w >> h;
+            if (entityClass == "block")
+                _staticEntities.push_back(new Block(x, y, w, h));
+            // TODO Add here other static object types
+            break;
+        case 'd':   // Dynamic
+            lineStream >> entityClass >> x >> y >> w >> h;
+            if (entityClass == "cube")
+                _dynamicEntities.push_back(new Cube(x, y, w, h));
+            // TODO Add here other dynamic object types
+            break;
+        case 'p':   // Player
+            lineStream >> x >> y;
+            _player->drawAt(x, y);
+            break;
+        default:
+            break;
+        }
+    }
+    f.close();
 }
 
 Level::~Level()

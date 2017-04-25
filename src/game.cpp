@@ -8,7 +8,7 @@ SpectrumGame::SpectrumGame(QGraphicsScene *scene) :
     _scene->addItem(_player);
 
     // Creating new level
-    _level = new Level();
+    _level = new Level(_player);
     _level->load(_scene);
 
     // Creating timer for gravity function
