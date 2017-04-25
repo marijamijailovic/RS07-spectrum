@@ -3,6 +3,7 @@
 
 #include <QtGlobal>
 #include <QGraphicsScene>
+#include <QTextStream>
 #include <vector>
 #include "include/dynamicentity.h"
 #include "include/block.h"
@@ -24,6 +25,10 @@ public:
     void applyGravity(qreal g);
 
 private:
+
+    void addStaticEntity(QTextStream &lineStream);
+    void addDynamicEntity(QTextStream &lineStream);
+
     std::vector<Entity *> _staticEntities;          // TODO can be const T*?
     std::vector<DynamicEntity *> _dynamicEntities;
     Player *_player;

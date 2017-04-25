@@ -30,22 +30,15 @@ Level::Level(Player *player) :
         lineStream >> entityType;
 
         // Determine which object to create
-        int x, y, w, h;
-        QString entityClass;
         switch (entityType) {
         case 's':   // Static
-            lineStream >> entityClass >> x >> y >> w >> h;
-            if (entityClass == "block")
-                _staticEntities.push_back(new Block(x, y, w, h));
-            // TODO Add here other static object types
+            addStaticEntity(lineStream);
             break;
         case 'd':   // Dynamic
-            lineStream >> entityClass >> x >> y >> w >> h;
-            if (entityClass == "cube")
-                _dynamicEntities.push_back(new Cube(x, y, w, h));
-            // TODO Add here other dynamic object types
+            addDynamicEntity(lineStream);
             break;
         case 'p':   // Player
+            int x, y;
             lineStream >> x >> y;
             _player->drawAt(x, y);
             break;
@@ -54,6 +47,28 @@ Level::Level(Player *player) :
         }
     }
     f.close();
+}
+
+void Level::addStaticEntity(QTextStream &lineStream)
+{
+    int x, y, w, h;
+    QString entityClass;
+    lineStream >> entityClass >> x >> y >> w >> h;
+
+    if (entityClass == "block")
+        _staticEntities.push_back(new Block(x, y, w, h));
+    // TODO Add here other static object types
+}
+
+void Level::addDynamicEntity(QTextStream &lineStream)
+{
+    int x, y, w, h;
+    QString entityClass;
+    lineStream >> entityClass >> x >> y >> w >> h;
+
+    if (entityClass == "cube")
+        _dynamicEntities.push_back(new Cube(x, y, w, h));
+    // TODO Add here other dynamic object types
 }
 
 Level::~Level()
@@ -85,6 +100,7 @@ void Level::applyGravity(qreal g)
     for (unsigned i = 0; i < _dynamicEntities.size(); i++)
         _dynamicEntities[i]->applyForce(0,g);
 }
+
 /*void Level::move(qreal g)
 {
     for (unsigned i = 0; i < _dynamicEntities.size(); i++)
