@@ -46,3 +46,6 @@ HEADERS  += \
 
 FORMS    += \
     ui/mainwindow.ui
+
+RESOURCES += \
+    levels/levels.qrc
