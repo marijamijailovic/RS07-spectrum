@@ -7,12 +7,13 @@ Level::Level()
     // Dynamic entities:    everything affected by gravity
     // Add new entities to arrays
     _staticEntities.push_back(new Block(0, 300, 50, 50));
-    _staticEntities.push_back(new Block(50, 280, 100, 50));
-    _staticEntities.push_back(new Block(150, 250, 100, 100));
-    _staticEntities.push_back(new Block(250, 210, 50, 50));
-    _staticEntities.push_back(new Block(300, 240, 100, 50));
-    _staticEntities.push_back(new Block(400, 280, 100, 50));
+    _staticEntities.push_back(new Block(50, 280, 100, 50, Qt::blue));
+    _staticEntities.push_back(new Block(150, 250, 100, 100, Qt::red));
+    _staticEntities.push_back(new Block(250, 210, 50, 50, Qt::green));
+    _staticEntities.push_back(new Block(300, 240, 100, 50, Qt::yellow));
+    _staticEntities.push_back(new Block(400, 280, 100, 50, Qt::blue));
     _staticEntities.push_back(new Block(500, 300, 200, 50));
+    _staticEntities.push_back(new Block(0, 360, 700, 50));
 
     //_dynamicEntities.push_back(new Cube(20, 20, 50, 50));
 }

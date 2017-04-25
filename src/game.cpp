@@ -28,5 +28,4 @@ void SpectrumGame::update() const
     _player->move();
     _player->applyGravity(_gravCoeff);
     _level->applyGravity(_gravCoeff);
-
 }

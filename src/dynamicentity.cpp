@@ -10,6 +10,11 @@ DynamicEntity::DynamicEntity(qreal x, qreal y, qreal mass) :
 
 }
 
+DynamicEntity::DynamicEntity(qreal x, qreal y, qreal mass, QColor color) :
+    DynamicEntity(x, y, mass)
+{
+    setColor(color);
+}
 
 // TODO
 

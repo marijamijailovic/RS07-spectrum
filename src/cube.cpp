@@ -8,6 +8,12 @@ Cube::Cube(qreal x, qreal y, qreal w, qreal h) :
 
 }
 
+Cube::Cube(qreal x, qreal y, qreal w, qreal h, QColor color) :
+    Cube(x, y, w, h)
+{
+    setColor(color);
+}
+
 QRectF Cube::boundingRect() const
 {
     return QRectF(_x, _y, _w, _h);

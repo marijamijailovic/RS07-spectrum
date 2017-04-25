@@ -7,6 +7,12 @@ Player::Player(qreal x, qreal y) :
     this->setFocus();
 }
 
+
+QColor Player::activeColor() const
+{
+    return _activeColor;
+}
+
 QRectF Player::boundingRect() const
 {
     return QRectF(-30, -50, 60, 100);
@@ -32,6 +38,15 @@ void Player::keyPressEvent(QKeyEvent *event)
             _vy = -10;
             _inAir = true;
         }
+    }
+    QTextStream out(stdout);
+    if (event->key() == Qt::Key_1) {
+        _activeColor = Qt::blue;
+        out << "Active color: blue\n";
+
+    } else if (event->key() == Qt::Key_2) {
+        _activeColor = Qt::green;
+        out << "Active color: green\n";
     }
 
 }
@@ -75,23 +90,23 @@ void Player::move()
     QTextStream out(stdout);
     QList<QGraphicsItem *> collidingObjects = collidingItems();
     foreach (QGraphicsItem *item, collidingObjects) {
-            QRectF a = mapToScene(this->boundingRect()).boundingRect();
-            QRectF b = item->boundingRect();
-            if(_vy >= 0 && a.bottom() > b.top() && _vy >= a.bottom() - b.top()){
-                _y += b.top() - a.bottom() + 0.9145;
-                out << "bottom";
-            }
-            else if(_vx != 0 && a.right() > b.left() && a.right() - b.left() < _vx){
-                _x += b.left() - a.right() - 1;
-                _vx = 0;
-                out << "right";
-            }
-            else if(_vx != 0 && a.left() < b.right() && b.right() - a.left() < -_vx){
-                _x += b.right() - a.left() + 1;
-                _vx = 0;
-                out << "left";
-            }
+        QRectF a = mapToScene(this->boundingRect()).boundingRect();
+        QRectF b = item->boundingRect();
+        if(_vy >= 0 && a.bottom() > b.top() && _vy >= a.bottom() - b.top()){
+            _y += b.top() - a.bottom() + 0.9145;
+            out << "bottom";
         }
+        else if(_vx != 0 && a.right() > b.left() && a.right() - b.left() < _vx){
+            _x += b.left() - a.right() - 1;
+            _vx = 0;
+            out << "right";
+        }
+        else if(_vx != 0 && a.left() < b.right() && b.right() - a.left() < -_vx){
+            _x += b.right() - a.left() + 1;
+            _vx = 0;
+            out << "left";
+        }
+     }
 
     //purpose of canJump is wall jumping, currently disabled
     if (collidingObjects.isEmpty()) {

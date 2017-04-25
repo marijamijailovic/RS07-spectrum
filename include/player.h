@@ -7,11 +7,12 @@
 #include <QKeyEvent>
 #include "include/dynamicentity.h"
 
-
 class Player : public DynamicEntity
 {
 public:
     Player(qreal x, qreal y);
+
+    QColor activeColor() const;
 
     void keyPressEvent(QKeyEvent *event) override;
 
@@ -26,6 +27,7 @@ public:
 private:
     bool _jump = false;
     int _canJump = 2;
+    QColor _activeColor = Qt::blue;
 };
 
 #endif // PLAYER_H
