@@ -1,6 +1,5 @@
 #include "include/entity.h"
 
-
 Entity::Entity(qreal x, qreal y, QColor color) :
     _x(x),
     _y(y),
@@ -9,11 +8,6 @@ Entity::Entity(qreal x, qreal y, QColor color) :
 
 }
 
-Entity::Entity(qreal x, qreal y) :
-    Entity(x, y, Qt::gray)
-{
-
-}
 QColor Entity::color() const
 {
     return _color;

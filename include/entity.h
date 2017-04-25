@@ -10,8 +10,8 @@
 class Entity : public QGraphicsItem
 {
 public:
-    Entity(qreal x, qreal y);
-    Entity(qreal x, qreal y, QColor color);
+    //Entity(qreal x, qreal y);
+    Entity(qreal x, qreal y, QColor color = Qt::gray);
 
     void drawAt(qreal x, qreal y);
     QColor color() const;

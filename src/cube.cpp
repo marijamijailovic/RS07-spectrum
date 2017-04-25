@@ -1,15 +1,9 @@
 #include "include/cube.h"
 
-Cube::Cube(qreal x, qreal y, qreal w, qreal h) :
+Cube::Cube(qreal x, qreal y, qreal w, qreal h, QColor color) :
     DynamicEntity(x, y, 100),
     _w(w),
     _h(h)
-{
-
-}
-
-Cube::Cube(qreal x, qreal y, qreal w, qreal h, QColor color) :
-    Cube(x, y, w, h)
 {
     setColor(color);
 }

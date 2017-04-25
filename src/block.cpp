@@ -1,16 +1,10 @@
 #include "include/block.h"
 
 
-Block::Block(qreal x, qreal y, qreal w, qreal h) :
+Block::Block(qreal x, qreal y, qreal w, qreal h, QColor color) :
     Entity(x, y),
     _w(w),
     _h(h)
-{
-
-}
-
-Block::Block(qreal x, qreal y, qreal w, qreal h, QColor color) :
-    Block(x, y, w, h)
 {
     setColor(color);
 }

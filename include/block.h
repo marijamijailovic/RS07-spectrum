@@ -7,8 +7,7 @@
 class Block : public Entity
 {
 public:
-    Block(qreal x, qreal y, qreal w, qreal h);
-    Block(qreal x, qreal y, qreal w, qreal h, QColor color);
+    Block(qreal x, qreal y, qreal w, qreal h, QColor color = Qt::gray);
 
     // Overrides from QGraphicsItem
     QRectF boundingRect() const override;
