@@ -13,6 +13,7 @@ public:
     Player(qreal x, qreal y);
 
     QColor activeColor() const;
+    void setActiveColor(QColor newActiveColor);
 
     void keyPressEvent(QKeyEvent *event) override;
 
