@@ -3,7 +3,6 @@
 
 #include <QtGlobal>
 #include <QGraphicsScene>
-#include <QFile>
 #include <QTextStream>
 #include <vector>
 #include "include/dynamicentity.h"
@@ -14,7 +13,7 @@
 
 class Level {
 public:
-    Level(Player *player);
+    Level(const QString &fileName, Player *player);
     ~Level();
 
     // TODO delete operator= and copy-constructor

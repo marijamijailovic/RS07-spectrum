@@ -1,13 +1,24 @@
 #include "include/level.h"
+#include <QMessageBox>
+#include <QFile>
+#include <QCoreApplication>
 
 
-Level::Level(Player *player) :
+Level::Level(const QString &fileName, Player *player) :
     _player(player)
 {
     // Open level file
-    QFile f(":levels/001.lvl");
-    if (f.open(QIODevice::ReadOnly) == false)
-        exit(EXIT_FAILURE);
+    QFile f(fileName);
+    if (f.open(QIODevice::ReadOnly) == false) {
+        QMessageBox::critical(nullptr, "Error",
+            "Loading level failed\nLoading default level...");
+        QFile fDef(":levels/001.lvl");
+        if (fDef.open(QIODevice::ReadOnly) == false) {
+            QMessageBox::critical(nullptr, "Error",
+                "Loading level failed\nLoading default level...");
+            QCoreApplication::exit(EXIT_FAILURE);
+        }
+    }
 
     // Parse level file
     QTextStream fStream(&f);
