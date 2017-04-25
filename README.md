@@ -27,3 +27,4 @@ For now the only way to run the project is to import it in QtCreator and run it 
 
 ## :bug: Known bugs
 * Collision is not perfect (yet), so sometimes you might get inside a block.
+* It was a feature... removed.
