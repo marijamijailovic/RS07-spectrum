@@ -44,7 +44,20 @@ void Player::keyPressEvent(QKeyEvent *event)
             _inAir = true;
         }
     }
+    // TODO remove exit on Esc
+    if (event->key() == Qt::Key_Escape) {
+        exit(EXIT_SUCCESS);
+    }
+
     QTextStream out(stdout);
+    // Disable changing active color when there's a collision with entities with activeColor
+    QList<QGraphicsItem *> collidingObjects = collidingItems();
+    foreach (QGraphicsItem* item, collidingObjects) {
+        if (_activeColor == ((Entity*)item)->color()) {
+            out << "Changing active color disabled\n";
+            return;
+        }
+    }
     if (event->key() == Qt::Key_1) {
         _activeColor = Qt::blue;
         out << "Active color: blue\n";
@@ -57,10 +70,8 @@ void Player::keyPressEvent(QKeyEvent *event)
     } else if (event->key() == Qt::Key_4) {
         _activeColor = Qt::red;
         out << "Active color: red\n";
-    } else if (event->key() == Qt::Key_Escape) { // TODO remove
-        exit(EXIT_SUCCESS);
     }
-
+    update();
 }
 
 void Player::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
@@ -101,7 +112,13 @@ void Player::move()
 {
     QTextStream out(stdout);
     QList<QGraphicsItem *> collidingObjects = collidingItems();
+    int sameColorCollisions = 0;
     foreach (QGraphicsItem *item, collidingObjects) {
+        if (_activeColor == ((Entity*)item)->color()) {
+            sameColorCollisions++;
+            //out << "no collision\n";
+            continue;
+        }
         QRectF a = mapToScene(this->boundingRect()).boundingRect();
         QRectF b = item->boundingRect();
         if(_vy >= 0 && a.bottom() > b.top() && _vy >= a.bottom() - b.top()){
@@ -121,7 +138,7 @@ void Player::move()
      }
 
     //purpose of canJump is wall jumping, currently disabled
-    if (collidingObjects.isEmpty()) {
+    if (collidingObjects.size() == sameColorCollisions) {
         _inAir = true;
         if(_canJump)
             _canJump--;
