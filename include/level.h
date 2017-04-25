@@ -26,8 +26,8 @@ public:
 
 private:
     void parse(QTextStream &fStream);
-    void addStaticEntity(QTextStream &lineStream);
-    void addDynamicEntity(QTextStream &lineStream);
+    void addStaticEntity(QTextStream &lineStream, QColor &entityColor);
+    void addDynamicEntity(QTextStream &lineStream, QColor &entityColor);
 
     std::vector<Entity *> _staticEntities;          // TODO can be const T*?
     std::vector<DynamicEntity *> _dynamicEntities;

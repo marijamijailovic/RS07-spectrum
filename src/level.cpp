@@ -30,6 +30,7 @@ Level::Level(const QString &fileName, Player *player) :
 
 void Level::parse(QTextStream &fStream)
 {
+    QColor entityColor = Qt::gray;
     // Read level file line by line
     while (!fStream.atEnd()) {
         QString line = fStream.readLine().trimmed();
@@ -46,10 +47,15 @@ void Level::parse(QTextStream &fStream)
         // Determine which object to create
         switch (entityType) {
         case 's':   // Static
-            addStaticEntity(lineStream);
+            addStaticEntity(lineStream, entityColor);
             break;
         case 'd':   // Dynamic
-            addDynamicEntity(lineStream);
+            addDynamicEntity(lineStream, entityColor);
+            break;
+        case 'c':   // Color
+            int r, g, b;
+            lineStream >> r >> g >> b;
+            entityColor = QColor(r, g, b);
             break;
         case 'p':   // Player
             int x, y;
@@ -62,25 +68,25 @@ void Level::parse(QTextStream &fStream)
     }
 }
 
-void Level::addStaticEntity(QTextStream &lineStream)
+void Level::addStaticEntity(QTextStream &lineStream, QColor &entityColor)
 {
     int x, y, w, h;
     QString entityClass;
     lineStream >> entityClass >> x >> y >> w >> h;
 
     if (entityClass == "block")
-        _staticEntities.push_back(new Block(x, y, w, h));
+        _staticEntities.push_back(new Block(x, y, w, h, entityColor));
     // TODO Add here other static object types
 }
 
-void Level::addDynamicEntity(QTextStream &lineStream)
+void Level::addDynamicEntity(QTextStream &lineStream, QColor &entityColor)
 {
     int x, y, w, h;
     QString entityClass;
     lineStream >> entityClass >> x >> y >> w >> h;
 
     if (entityClass == "cube")
-        _dynamicEntities.push_back(new Cube(x, y, w, h));
+        _dynamicEntities.push_back(new Cube(x, y, w, h, entityColor));
     // TODO Add here other dynamic object types
 }
 

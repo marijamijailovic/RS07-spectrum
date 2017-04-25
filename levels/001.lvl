@@ -2,13 +2,24 @@
 p 200 180
 
 # Static entities
-s block 0 300 50 50
-s block 50 280 100 50
-s block 150 250 100 100
-s block 250 210 50 50
-s block 300 240 100 50
-s block 400 280 100 50
-s block 500 300 200 50
+s block 10 100 40 450
+# Color
+c 255 255 0
+s block 50 380 100 50
+c 0 255 0
+s block 150 350 100 100
+c 255 0 0
+s block 250 310 50 50
+c 0 0 255
+s block 300 340 100 50
+c 255 255 0
+s block 400 380 100 50
+c 255 0 0
+s block 500 400 200 50
+
+c 160 160 164
+s block 50 450 650 20
+# s block 700 100 40 450
 
 # Dynamic entities
-d cube 20 20 50 50
+d cube 50 20 50 50
