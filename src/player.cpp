@@ -1,5 +1,6 @@
 #include "include/player.h"
 #include <QTextStream>
+
 Player::Player(qreal x, qreal y) :
     DynamicEntity::DynamicEntity(x, y, 50)
 {
@@ -104,9 +105,6 @@ void Player::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget 
     points[2] = QPoint(-18, 0);
     points[3] = QPoint(-3, -14);
     painter->drawPolygon(points, 4);
-}
-void Player::applyGravity(qreal g){
-    applyForce(0, g);
 }
 
 void Player::move()

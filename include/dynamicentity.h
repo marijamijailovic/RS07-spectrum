@@ -12,8 +12,9 @@ public:
     DynamicEntity(qreal x, qreal y, qreal mass, QColor color = Qt::gray);
 
     void applyForce(qreal ix, qreal iy);
+    void applyGravity(qreal g);
 
-    virtual void move() =0 ;
+    virtual void move() = 0;
 
 protected:
     bool _inAir;

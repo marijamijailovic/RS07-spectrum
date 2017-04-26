@@ -20,3 +20,8 @@ void DynamicEntity::applyForce(qreal ix,qreal iy)
     _vx+=ix;
     _vy+=iy;
 }
+
+void DynamicEntity::applyGravity(qreal g)
+{
+    applyForce(0, g);
+}
