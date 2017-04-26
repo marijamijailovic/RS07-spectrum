@@ -48,4 +48,4 @@ FORMS    += \
     ui/mainwindow.ui
 
 RESOURCES += \
-    res/levels.qrc
+    res/levels/levels.qrc
