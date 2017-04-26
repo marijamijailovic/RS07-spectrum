@@ -3,9 +3,11 @@
 SpectrumGame::SpectrumGame(QGraphicsScene *scene) :
     _scene(scene)
 {
+
     // Creating a player and adding to scene
     _player = new Player(200, 180);
     _scene->addItem(_player);
+    _scene->setBackgroundBrush(QBrush(_player->activeColor()));
 
     // Creating new level
     _level = new Level(":levels/001.lvl", _player);

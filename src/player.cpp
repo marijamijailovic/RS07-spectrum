@@ -1,4 +1,5 @@
 #include "include/player.h"
+#include <QBrush>
 #include <QTextStream>
 
 Player::Player(qreal x, qreal y) :
@@ -73,6 +74,7 @@ void Player::keyPressEvent(QKeyEvent *event)
             out << "Active color: red\n";
         }
         update();
+        scene()->setBackgroundBrush(QBrush(_activeColor));
     }
 }
 
