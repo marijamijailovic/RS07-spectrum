@@ -19,8 +19,8 @@ public:
     // TODO delete operator= and copy-constructor
 
     void load(QGraphicsScene *scene) const;
-    std::vector<Entity *> getStaticEntities() const;
-    std::vector<DynamicEntity *> getDynamicEntities() const;
+    std::vector<Entity *> StaticEntities() const;
+    std::vector<DynamicEntity *> DynamicEntities() const;
 
     void applyGravity(qreal g);
 

@@ -104,12 +104,12 @@ void Level::load(QGraphicsScene *scene) const
         scene->addItem(_dynamicEntities[i]);
 }
 
-std::vector<Entity *> Level::getStaticEntities() const
+std::vector<Entity *> Level::StaticEntities() const
 {
     return _staticEntities;
 }
 
-std::vector<DynamicEntity *> Level::getDynamicEntities() const
+std::vector<DynamicEntity *> Level::DynamicEntities() const
 {
     return _dynamicEntities;
 }
