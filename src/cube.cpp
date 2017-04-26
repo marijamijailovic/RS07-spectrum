@@ -22,7 +22,9 @@ QPainterPath Cube::shape() const
 
 void Cube::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    painter->setBrush(Qt::blue);
+    QPen pen(Qt::blue);
+    pen.setWidth(5);
+    painter->setPen(pen);
     painter->drawRect(_x, _y, _w, _h);
 }
 

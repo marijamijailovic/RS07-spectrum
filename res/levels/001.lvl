@@ -36,4 +36,5 @@ s block  50 250 200  10
 
 
 #### Dynamic entities ####
-# TODO
+c 0 0 255
+d cube 50 50 50 50
