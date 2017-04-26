@@ -4,10 +4,10 @@
 Player::Player(qreal x, qreal y) :
     DynamicEntity::DynamicEntity(x, y, 50)
 {
-    this->setFlag(QGraphicsItem::ItemIsFocusable);
-    this->setFocus();
+    setZValue(1);
+    setFlag(QGraphicsItem::ItemIsFocusable);
+    setFocus();
 }
-
 
 QColor Player::activeColor() const
 {
