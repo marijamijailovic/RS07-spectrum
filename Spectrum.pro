@@ -48,4 +48,5 @@ FORMS    += \
     ui/mainwindow.ui
 
 RESOURCES += \
-    res/levels/levels.qrc
+    res/levels/levels.qrc \
+    res/sprites/sprites.qrc

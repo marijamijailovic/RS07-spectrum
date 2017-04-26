@@ -1,5 +1,6 @@
 #include "include/player.h"
 #include <QBrush>
+#include <QPixmap>
 #include <QTextStream>
 
 Player::Player(qreal x, qreal y) :
@@ -80,33 +81,7 @@ void Player::keyPressEvent(QKeyEvent *event)
 
 void Player::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    painter->setBrush(_activeColor);
-    painter->drawRect(-_w/2, -_h/2, _w, _h);
-    painter->setBrush(Qt::black);
-    painter->drawEllipse(-5, -32, 10, 10);
-    painter->drawRect(-1, -22, 2, 34);
-    painter->drawText(-28, -35, "Player");
-    QPoint points[4];
-    points[0] = QPoint(0, 12);
-    points[1] = QPoint(12, 48);
-    points[2] = QPoint(15, 50);
-    points[3] = QPoint(3, 14);
-    painter->drawPolygon(points, 4);
-    points[0] = QPoint(0, 12);
-    points[1] = QPoint(-12, 48);
-    points[2] = QPoint(-15, 50);
-    points[3] = QPoint(-3, 14);
-    painter->drawPolygon(points, 4);
-    points[0] = QPoint(0, -12);
-    points[1] = QPoint(15, 0);
-    points[2] = QPoint(18, 0);
-    points[3] = QPoint(3, -14);
-    painter->drawPolygon(points, 4);
-    points[0] = QPoint(0, -12);
-    points[1] = QPoint(-15, 0);
-    points[2] = QPoint(-18, 0);
-    points[3] = QPoint(-3, -14);
-    painter->drawPolygon(points, 4);
+    painter->drawPixmap(-_w/2, -_h/2, _w, _h, QPixmap(":sprites/player.png"));
 }
 
 void Player::move()
