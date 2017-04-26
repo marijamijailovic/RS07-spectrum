@@ -21,15 +21,18 @@ QPainterPath Cube::shape() const
 
 void Cube::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    QPen pen(Qt::blue);
+    // Draw frame
+    QPen pen(_color);
     pen.setWidth(5);
     painter->setPen(pen);
     painter->drawRect(_x, _y, _size, _size);
+
+    // Draw crosses
     painter->translate(_x + _size/2, _y + _size/2);
     painter->rotate(45);
-    painter->fillRect(-_size/2, -2, _size, 5, Qt::blue);
+    painter->fillRect(-_size/2, -2, _size, 5, _color);
     painter->rotate(-90);
-    painter->fillRect(-_size/2, -2, _size, 5, Qt::blue);
+    painter->fillRect(-_size/2, -2, _size, 5, _color);
 }
 
 void Cube::move()

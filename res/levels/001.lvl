@@ -38,3 +38,7 @@ s block  50 250 200  10
 #### Dynamic entities ####
 c 0 0 255
 d cube 50 50 50 50
+c 0 255 0
+d cube 200 50 70 70
+c 255 0 0
+d cube 300 50 90 90
