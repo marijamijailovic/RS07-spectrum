@@ -126,12 +126,12 @@ void Player::move()
             _y += b.top() - a.bottom() + 0.9145;
             //out << "bottom";
         }
-        else if(_vx != 0 && a.right() > b.left() && a.right() - b.left() < _vx){
+        else if(_vx != 0 && a.right() > b.left() && a.right() - b.left() < _vx+1){
             _x += b.left() - a.right() - 1;
             _vx = 0;
             //out << "right";
         }
-        else if(_vx != 0 && a.left() < b.right() && b.right() - a.left() < -_vx){
+        else if(_vx != 0 && a.left() < b.right() && b.right() - a.left() < -_vx+1){
             _x += b.right() - a.left() + 1;
             _vx = 0;
             //out << "left";
