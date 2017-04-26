@@ -1,6 +1,9 @@
 # Program executable
 Spectrum
 
+# Makefile
+Makefile*
+
 # Compiled Object files
 *.slo
 *.lo
