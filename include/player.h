@@ -27,6 +27,8 @@ public:
     void move();
 
 private:
+    const int _w = 60;
+    const int _h = 100;
     bool _jump = false;
     int _canJump = 2;
     QColor _activeColor = Qt::blue;

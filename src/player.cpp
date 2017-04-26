@@ -22,13 +22,13 @@ void Player::setActiveColor(QColor newActiveColor)
 
 QRectF Player::boundingRect() const
 {
-    return QRectF(-30, -50, 60, 100);
+    return QRectF(-_w/2, -_h/2, _w, _h);
 }
 
 QPainterPath Player::shape() const
 {
     QPainterPath path;
-    path.addRect(-30, -50, 60, 100);
+    path.addRect(-_w/2, -_h/2, _w, _h);
     return path;
 }
 
@@ -81,7 +81,7 @@ void Player::keyPressEvent(QKeyEvent *event)
 void Player::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
     painter->setBrush(_activeColor);
-    painter->drawRect(-30, -50, 60, 100);
+    painter->drawRect(-_w/2, -_h/2, _w, _h);
     painter->setBrush(Qt::black);
     painter->drawEllipse(-5, -32, 10, 10);
     painter->drawRect(-1, -22, 2, 34);
