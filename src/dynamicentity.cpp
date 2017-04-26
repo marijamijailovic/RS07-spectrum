@@ -17,8 +17,10 @@ void DynamicEntity::applyForce(qreal ix,qreal iy)
 {
     //QTextStream out(stdout);
     //out <<_x<< " : "<<_y;
-    _vx+=ix;
-    _vy+=iy;
+    _vx+=(ix/_mass);
+    if(_vx>10)_vx=10;
+    if(_vx<-10)_vx=-10;
+    _vy+=(iy/_mass);
 }
 
 void DynamicEntity::applyGravity(qreal g)
