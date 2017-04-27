@@ -3,5 +3,6 @@
         <file>player.png</file>
         <file>cat.png</file>
         <file>astronaut.png</file>
+        <file>block.jpg</file>
     </qresource>
 </RCC>

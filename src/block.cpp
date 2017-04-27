@@ -23,5 +23,8 @@ QPainterPath Block::shape() const
 
 void Block::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    painter->fillRect(_x, _y, _w, _h, _color);
+    QPen p(Qt::NoPen);
+    painter->setPen(p);
+    painter->setBrush(QBrush(QPixmap(":sprites/block.jpg")));
+    painter->drawRect(_x, _y, _w, _h);
 }
