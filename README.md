@@ -1,7 +1,7 @@
 # :rainbow: RS07-spectrum :rainbow:
 A simple, but hopefully interesting game.
 
-![green_screenshot](https://github.com/MATF-RS17/RS07-spectrum/blob/master/screenshots/02_2017_04_27.png)
+![green_screenshot](https://github.com/MATF-RS17/RS07-spectrum/blob/master/screenshots/04_2017-04-28.png)
 
 ## :page_facing_up: Description
 This is a Software Development course project - 2D-platform-puzzle game.
