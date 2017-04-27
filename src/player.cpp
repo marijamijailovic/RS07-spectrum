@@ -3,7 +3,7 @@
 #include <QTextStream>
 
 Player::Player(qreal x, qreal y) :
-    DynamicEntity::DynamicEntity(x, y, 50)
+    DynamicEntity::DynamicEntity(x, y, 1)
 {
     setZValue(1);
     setFlag(QGraphicsItem::ItemIsFocusable);
@@ -35,16 +35,14 @@ QPainterPath Player::shape() const
 void Player::keyPressEvent(QKeyEvent *event)
 {
     if (event->key() == Qt::Key_Left)
-        _vx = -10;
+        applyForce(-8,0);
     else if (event->key() == Qt::Key_Right)
-        _vx = 10;
+        applyForce(8,0);
     else if (event->key() == Qt::Key_Up) {
-        if(_inAir)
             _jump = true;
-        else {
-            _vy = -10;
-            _inAir = true;
-        }
+    }
+    else if (event->key() == Qt::Key_Down) {
+        _vx=0;
     }
     // TODO remove exit on Esc
     else if (event->key() == Qt::Key_Escape) {
@@ -124,6 +122,14 @@ void Player::move()
         QRectF b = item->boundingRect();
         if(_vy >= 0 && a.bottom() > b.top() && _vy >= a.bottom() - b.top()){
             _y += b.top() - a.bottom() + 0.9145;
+            _canJump=2;
+            //out << "bottom";
+        }
+        else if(_vy <= 0 && a.top() < b.bottom() && 1+-_vy >= b.bottom() - a.top()){
+            _y += b.bottom() - a.top() + 0.9145;
+            _vy = 0;
+            _canJump = -1;
+            _inAir = true;
             //out << "bottom";
         }
         else if(_vx != 0 && a.right() > b.left() && a.right() - b.left() < _vx+1){
@@ -137,25 +143,27 @@ void Player::move()
             //out << "left";
         }
      }
-
     //purpose of canJump is wall jumping, currently disabled
     if (collidingObjects.size() == sameColorCollisions) {
         _inAir = true;
         if(_canJump)
             _canJump--;
-    } else if(_jump && _canJump) {
+    } else if(_jump && _canJump > 0) {
         _jump = false;
         _inAir = true;
         _vy = -10;
+    } else if(_canJump < 0) {
+        if(!_inAir)_canJump = 0;
     } else {
         _inAir = false;
         _jump = false;
         if (_vy > 0)
             _vy = 0;
-        _canJump = 2;
     }
+    if(_canJump == 0) _jump = false;
     _y += _vy;
     _x += _vx;
-    _vx *= 0.9145;
+    applyForce(-_vx*0.03,0);    //air resistance
+    if(_inAir==false) applyForce(-_vx*0.1,0);   //friction force
     drawAt(_x, _y);
 }
