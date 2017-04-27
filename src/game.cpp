@@ -1,4 +1,3 @@
-
 #include "include/game.h"
 
 SpectrumGame::SpectrumGame(QGraphicsScene *scene) :

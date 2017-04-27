@@ -1,14 +1,15 @@
-#ifndef BLOCK_H
-#define BLOCK_H
+#ifndef WALL_H
+#define WALL_H
 
 #include <QColor>
 #include "include/entity.h"
+#include "include/colors.h"
 
 
-class Block : public Entity
+class Wall : public Entity
 {
 public:
-    Block(qreal x, qreal y, qreal w, qreal h, QColor color = Qt::gray);
+    Wall(qreal x, qreal y, qreal w, qreal h, QColor color = SpectrumColors::gray);
 
     // Overrides from QGraphicsItem
     QRectF boundingRect() const override;
@@ -22,4 +23,4 @@ private:
     qreal _h;
 };
 
-#endif // BLOCK_H
+#endif // WALL_H
