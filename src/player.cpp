@@ -50,27 +50,27 @@ void Player::keyPressEvent(QKeyEvent *event)
         exit(EXIT_SUCCESS);
     }
     else {
-        QTextStream out(stdout);
         // Disable changing active color when there's a collision with entities with activeColor
         QList<QGraphicsItem *> collidingObjects = collidingItems();
         foreach (QGraphicsItem* item, collidingObjects) {
             if (_activeColor == ((Entity*)item)->color()) {
-                out << "Changing active color disabled\n";
                 return;
             }
         }
         if (event->key() == Qt::Key_1) {
             _activeColor = SpectrumColors::blue;
-            out << "Active color: blue\n";
         } else if (event->key() == Qt::Key_2) {
             _activeColor = SpectrumColors::green;
-            out << "Active color: green\n";
         } else if (event->key() == Qt::Key_3) {
             _activeColor = SpectrumColors::yellow;
-            out << "Active color: yellow\n";
         } else if (event->key() == Qt::Key_4) {
             _activeColor = SpectrumColors::red;
-            out << "Active color: red\n";
+        } else if (event->key() == Qt::Key_5) {
+            _activeColor = SpectrumColors::orange;
+        } else if (event->key() == Qt::Key_6) {
+            _activeColor = SpectrumColors::purple;
+        } else if (event->key() == Qt::Key_7) {
+            _activeColor = SpectrumColors::pink;
         }
         update();
         scene()->setBackgroundBrush(QBrush(_activeColor));
