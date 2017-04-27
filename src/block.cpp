@@ -1,12 +1,12 @@
 #include "include/block.h"
 
 
-Block::Block(qreal x, qreal y, qreal w, qreal h, QColor color) :
+Block::Block(qreal x, qreal y, qreal w, qreal h) :
     Entity(x, y),
     _w(w),
     _h(h)
 {
-    setColor(color);
+    setColor(SpectrumColors::gray);
 }
 
 QRectF Block::boundingRect() const
@@ -23,21 +23,8 @@ QPainterPath Block::shape() const
 
 void Block::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    // Disable border drawing
-    QPen pen(Qt::NoPen);
-    painter->setPen(pen);
-
-    // Drawing bricks
-    painter->setBrush(_color);
-    for (int i = 0, row = 0; i < _h; i += _brick_h, row++) {
-        int j = 0;
-        if (row % 2 == 1) {
-            painter->drawRect(_x + 1, _y + i + 1, _brick_w / 2 - 1, _brick_h - 1);
-            j = _brick_w / 2;
-        }
-        for (; j <= _w - _brick_w; j += _brick_w)
-            painter->drawRect(_x + j + 1, _y + i + 1, _brick_w - 1, _brick_h - 1);
-        if (j < _w)
-            painter->drawRect(_x + j + 1, _y + i + 1, _brick_w / 2 - 1, _brick_h - 1);
-    }
+    QPen p(Qt::NoPen);
+    painter->setPen(p);
+    painter->setBrush(QBrush(QPixmap(":sprites/block.jpg")));
+    painter->drawRect(_x, _y, _w, _h);
 }

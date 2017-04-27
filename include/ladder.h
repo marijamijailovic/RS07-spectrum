@@ -1,15 +1,15 @@
-#ifndef BLOCK_H
-#define BLOCK_H
+#ifndef LADDER_H
+#define LADDER_H
 
 #include <QColor>
 #include "include/colors.h"
 #include "include/entity.h"
 
 
-class Block : public Entity
+class Ladder : public Entity
 {
 public:
-    Block(qreal x, qreal y, qreal w, qreal h);
+    Ladder(qreal x, qreal y, qreal w, qreal h, QColor color = SpectrumColors::gray);
 
     // Overrides from QGraphicsItem
     QRectF boundingRect() const override;
@@ -17,8 +17,9 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
 private:
+    static constexpr qreal _step = 5;
     qreal _w;
     qreal _h;
 };
 
-#endif // BLOCK_H
+#endif // LADDER_H
