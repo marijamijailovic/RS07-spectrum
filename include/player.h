@@ -6,6 +6,7 @@
 #include <QGraphicsRectItem>
 #include <QKeyEvent>
 #include "include/dynamicentity.h"
+#include "include/colors.h"
 
 
 class Player : public DynamicEntity
@@ -31,7 +32,7 @@ private:
     const int _h = 60;
     bool _jump = false;
     int _canJump = 2;
-    QColor _activeColor = Qt::blue;
+    QColor _activeColor = SpectrumColors::blue;
 };
 
 #endif // PLAYER_H

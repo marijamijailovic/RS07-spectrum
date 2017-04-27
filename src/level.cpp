@@ -53,9 +53,7 @@ void Level::parse(QTextStream &fStream)
             addDynamicEntity(lineStream, entityColor);
             break;
         case 'c':   // Color
-            int r, g, b;
-            lineStream >> r >> g >> b;
-            entityColor = QColor(r, g, b);
+            entityColor = readColor(lineStream);
             break;
         case 'p':   // Player
             int x, y;
@@ -66,6 +64,25 @@ void Level::parse(QTextStream &fStream)
             break;
         }
     }
+}
+
+QColor Level::readColor(QTextStream &lineStream) const
+{
+    QString colorName;
+    lineStream >> colorName;
+
+    if (colorName == "red") {
+        return SpectrumColors::red;
+    } else if (colorName == "green") {
+        return SpectrumColors::green;
+    } else if (colorName == "blue") {
+        return SpectrumColors::blue;
+    } else if (colorName == "yellow") {
+        return SpectrumColors::yellow;
+    } else if (colorName == "gray") {
+        return SpectrumColors::gray;
+    } else
+        return SpectrumColors::pink;
 }
 
 void Level::addStaticEntity(QTextStream &lineStream, QColor &entityColor)

@@ -9,6 +9,7 @@
 #include "include/block.h"
 #include "include/cube.h"
 #include "include/player.h"
+#include "include/colors.h"
 
 
 class Level {
@@ -28,6 +29,7 @@ private:
     void parse(QTextStream &fStream);
     void addStaticEntity(QTextStream &lineStream, QColor &entityColor);
     void addDynamicEntity(QTextStream &lineStream, QColor &entityColor);
+    QColor readColor(QTextStream &lineStream) const;
 
     std::vector<Entity *> _staticEntities;          // TODO can be const T*?
     std::vector<DynamicEntity *> _dynamicEntities;

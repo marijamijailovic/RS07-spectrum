@@ -5,40 +5,40 @@ p 50 500
 #### Static entities ####
 
 #   Walls
-c 50 50 50
+c gray
 s block   0   0  20 600
 s block   0 580 800  20
 s block 780   0  20 600
 
 #   Blocks
-c 255 0 0
+c red
 s block 150 530  50  50
-c 0 0 255
+c blue
 s block 280 500  50  80
 
-c 255 255 0
+c yellow
 s block 280 300  50  50
 
-c 0 0 255
+c blue
 s block 400 480 150  50
-c 0 255 0
+c green
 s block 650 450 100  20
-c 255 0 0
+c red
 s block 650 420 100  20
-c 50 50 50
+c gray
 s block 450 350  50  20
 
-c 0 255 0
+c green
 s block 400 390 150  50
 
-c 255 0 0
+c red
 s block  50 250 200  10
 
 
 #### Dynamic entities ####
-c 0 0 255
+c blue
 d cube 50 50 50
-c 0 255 0
+c green
 d cube 200 50 70
-c 255 0 0
+c red
 d cube 300 50 90

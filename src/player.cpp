@@ -35,14 +35,14 @@ QPainterPath Player::shape() const
 
 void Player::keyPressEvent(QKeyEvent *event)
 {
-    if (event->key() == Qt::Key_Left)
+    if (event->key() == Qt::Key_Left || event->key() == Qt::Key_A)
         applyForce(-8,0);
-    else if (event->key() == Qt::Key_Right)
+    else if (event->key() == Qt::Key_Right || event->key() == Qt::Key_D)
         applyForce(8,0);
-    else if (event->key() == Qt::Key_Up) {
+    else if (event->key() == Qt::Key_Up || event->key() == Qt::Key_W) {
             _jump = true;
     }
-    else if (event->key() == Qt::Key_Down) {
+    else if (event->key() == Qt::Key_Down || event->key() == Qt::Key_S) {
         _vx=0;
     }
     // TODO remove exit on Esc
@@ -60,16 +60,16 @@ void Player::keyPressEvent(QKeyEvent *event)
             }
         }
         if (event->key() == Qt::Key_1) {
-            _activeColor = Qt::blue;
+            _activeColor = SpectrumColors::blue;
             out << "Active color: blue\n";
         } else if (event->key() == Qt::Key_2) {
-            _activeColor = Qt::green;
+            _activeColor = SpectrumColors::green;
             out << "Active color: green\n";
         } else if (event->key() == Qt::Key_3) {
-            _activeColor = Qt::yellow;
+            _activeColor = SpectrumColors::yellow;
             out << "Active color: yellow\n";
         } else if (event->key() == Qt::Key_4) {
-            _activeColor = Qt::red;
+            _activeColor = SpectrumColors::red;
             out << "Active color: red\n";
         }
         update();
