@@ -28,11 +28,8 @@ void Cube::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
     painter->drawRect(_x, _y, _size, _size);
 
     // Draw crosses
-    painter->translate(_x + _size/2, _y + _size/2);
-    painter->rotate(45);
-    painter->fillRect(-_size/2, -2, _size, 5, _color);
-    painter->rotate(-90);
-    painter->fillRect(-_size/2, -2, _size, 5, _color);
+    painter->drawLine(QPointF(_x + 2, _y + 2), QPointF(_x + _size - 2, _y + _size - 2));
+    painter->drawLine(QPointF(_x + 2, _y + _size - 2), QPointF(_x + _size - 2, _y + 2));
 }
 
 void Cube::move()
