@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/sprites">
         <file>player.png</file>
+        <file>cat.png</file>
+        <file>astronaut.png</file>
     </qresource>
 </RCC>

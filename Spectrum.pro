@@ -52,3 +52,7 @@ FORMS    += \
 RESOURCES += \
     res/levels/levels.qrc \
     res/sprites/sprites.qrc
+
+DISTFILES += \
+    ../astronaut.png \
+    ../cat.png

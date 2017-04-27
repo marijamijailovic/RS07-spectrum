@@ -79,7 +79,7 @@ void Player::keyPressEvent(QKeyEvent *event)
 
 void Player::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    painter->drawPixmap(-_w/2, -_h/2, _w, _h, QPixmap(":sprites/player.png"));
+    painter->drawPixmap(-_w/2, -_h/2, _w, _h, QPixmap(":sprites/astronaut.png"));
 }
 
 void Player::move()
