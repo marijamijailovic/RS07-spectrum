@@ -79,6 +79,10 @@ QColor Level::readColor(QTextStream &lineStream) const
         return SpectrumColors::blue;
     } else if (colorName == "yellow") {
         return SpectrumColors::yellow;
+    } else if (colorName == "purple") {
+        return SpectrumColors::purple;
+    } else if (colorName == "orange") {
+        return SpectrumColors::orange;
     } else if (colorName == "gray") {
         return SpectrumColors::gray;
     } else

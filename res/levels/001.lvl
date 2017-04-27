@@ -10,6 +10,14 @@ s block   0   0  20 600
 s block   0 580 800  20
 s block 780   0  20 600
 
+# Testing colors
+c orange
+s block 500 20 50 50
+c pink
+s block 560 20 50 50
+c purple
+s block 620 20 50 50
+
 #   Blocks
 c red
 s block 150 530  50  50

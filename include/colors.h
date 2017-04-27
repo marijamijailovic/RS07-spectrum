@@ -11,9 +11,10 @@ public:
     static QColor red;
     static QColor green;
     static QColor blue;
+    static QColor purple;
+    static QColor pink;
     static QColor yellow;
     static QColor orange;
-    static QColor pink;
     static QColor gray;
     static QColor black;
 };
