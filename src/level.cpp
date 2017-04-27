@@ -102,6 +102,9 @@ void Level::addStaticEntity(QTextStream &lineStream, QColor &entityColor)
     } else if (entityClass == "key") {
         lineStream >> x >> y;
         _staticEntities.push_back(new Key(x, y, entityColor));
+    } else if (entityClass == "door") {
+        lineStream >> x >> y;
+        _staticEntities.push_back(new Door(x, y, entityColor));
     }
     // TODO Add here other static object types
 }

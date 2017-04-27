@@ -11,6 +11,7 @@
 #include "include/player.h"
 #include "include/colors.h"
 #include "include/key.h"
+#include "include/door.h"
 
 
 class Level {

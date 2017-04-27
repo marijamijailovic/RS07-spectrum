@@ -34,7 +34,8 @@ SOURCES += \
     src/block.cpp \
     src/cube.cpp \
     src/colors.cpp \
-    src/key.cpp
+    src/key.cpp \
+    src/door.cpp
 
 HEADERS  += \
     include/mainwindow.h \
@@ -46,7 +47,8 @@ HEADERS  += \
     include/block.h \
     include/cube.h \
     include/colors.h \
-    include/key.h
+    include/key.h \
+    include/door.h
 
 FORMS    += \
     ui/mainwindow.ui

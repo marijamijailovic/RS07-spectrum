@@ -22,6 +22,10 @@ s block 620 20 50 50
 c gray
 s key 130 200
 
+# Door
+c pink
+s door 670 350
+
 #   Blocks
 c red
 s block 150 530  50  50
