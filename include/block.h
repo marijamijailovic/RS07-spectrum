@@ -15,8 +15,8 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
 private:
-    const qreal _brick_w = 20;
-    const qreal _brick_h = 10;
+    static constexpr qreal _brick_w = 20;
+    static constexpr qreal _brick_h = 10;
     qreal _w;
     qreal _h;
 };
