@@ -85,6 +85,8 @@ QColor Level::readColor(QTextStream &lineStream) const
         return SpectrumColors::orange;
     } else if (colorName == "gray") {
         return SpectrumColors::gray;
+    } else if (colorName == "black") {
+        return SpectrumColors::black;
     } else
         return SpectrumColors::pink;
 }
@@ -93,10 +95,14 @@ void Level::addStaticEntity(QTextStream &lineStream, QColor &entityColor)
 {
     int x, y, w, h;
     QString entityClass;
-    lineStream >> entityClass >> x >> y >> w >> h;
-
-    if (entityClass == "block")
+    lineStream >> entityClass;
+    if (entityClass == "block") {
+        lineStream >> x >> y >> w >> h;
         _staticEntities.push_back(new Block(x, y, w, h, entityColor));
+    } else if (entityClass == "key") {
+        lineStream >> x >> y;
+        _staticEntities.push_back(new Key(x, y, entityColor));
+    }
     // TODO Add here other static object types
 }
 

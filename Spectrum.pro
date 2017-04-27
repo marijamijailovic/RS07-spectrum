@@ -33,7 +33,8 @@ SOURCES += \
     src/dynamicentity.cpp \
     src/block.cpp \
     src/cube.cpp \
-    src/colors.cpp
+    src/colors.cpp \
+    src/key.cpp
 
 HEADERS  += \
     include/mainwindow.h \
@@ -44,7 +45,8 @@ HEADERS  += \
     include/dynamicentity.h \
     include/block.h \
     include/cube.h \
-    include/colors.h
+    include/colors.h \
+    include/key.h
 
 FORMS    += \
     ui/mainwindow.ui

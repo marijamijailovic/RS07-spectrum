@@ -10,6 +10,7 @@
 #include "include/cube.h"
 #include "include/player.h"
 #include "include/colors.h"
+#include "include/key.h"
 
 
 class Level {
