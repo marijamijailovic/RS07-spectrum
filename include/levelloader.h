@@ -8,6 +8,7 @@
 #include "include/dynamicentity.h"
 #include "include/block.h"
 #include "include/wall.h"
+#include "include/ladder.h"
 #include "include/cube.h"
 #include "include/player.h"
 #include "include/colors.h"

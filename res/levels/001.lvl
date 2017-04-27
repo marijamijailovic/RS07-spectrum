@@ -12,13 +12,13 @@ s block 780   0  20 600
 
 # Testing colors
 c orange
-s wall 500 20 50 50
+s wall 500 70 50 50
 c pink
-s wall 560 20 50 50
+s wall 560 70 50 50
 c purple
-s wall 620 20 50 50
+s wall 650 70 50 50
 
-#   Blocks
+#   Blocks and Walls
 c red
 s wall 150 530  50  50
 c blue
@@ -33,6 +33,8 @@ c green
 s wall 650 450 100  20
 c red
 s wall 650 420 100  20
+c purple
+s wall  650 390 100  20
 c gray
 s block 450 350  50  20
 
@@ -42,6 +44,11 @@ s wall 400 390 150  50
 c red
 s wall  50 250 200  10
 
+
+# Ladders
+
+c yellow
+s ladder 650 70 30 320
 
 #### Dynamic entities ####
 c blue

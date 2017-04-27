@@ -101,6 +101,8 @@ void LevelLoader::addStaticEntity(std::vector<Entity *> &staticEntities, QTextSt
         staticEntities.push_back(new Block(x, y, w, h));
     else if (entityClass == "wall")
         staticEntities.push_back(new Wall(x, y, w, h, entityColor));
+    else if (entityClass == "ladder")
+        staticEntities.push_back(new Ladder(x, y, w, h, entityColor));
     // TODO Add here other static object types
 }
 
