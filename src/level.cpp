@@ -83,11 +83,15 @@ void Level::addDynamicEntity(QTextStream &lineStream, QColor &entityColor)
 {
     int x, y, w, h;
     QString entityClass;
-    lineStream >> entityClass >> x >> y >> w >> h;
+    lineStream >> entityClass;
 
-    if (entityClass == "cube")
-        _dynamicEntities.push_back(new Cube(x, y, w, h, entityColor));
-    // TODO Add here other dynamic object types
+    if (entityClass == "cube") {
+        lineStream >> x >> y >> w;
+        _dynamicEntities.push_back(new Cube(x, y, w, entityColor));
+    } else {
+        lineStream >> x >> y >> w >> h;
+        // TODO Add here other dynamic object types
+    }
 }
 
 Level::~Level()

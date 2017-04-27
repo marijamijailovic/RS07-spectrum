@@ -1,29 +1,35 @@
 #include "include/cube.h"
 
-Cube::Cube(qreal x, qreal y, qreal w, qreal h, QColor color) :
+Cube::Cube(qreal x, qreal y, qreal size, QColor color) :
     DynamicEntity(x, y, 100),
-    _w(w),
-    _h(h)
+    _size(size)
 {
     setColor(color);
 }
 
 QRectF Cube::boundingRect() const
 {
-    return QRectF(_x, _y, _w, _h);
+    return QRectF(_x, _y, _size, _size);
 }
 
 QPainterPath Cube::shape() const
 {
     QPainterPath path;
-    path.addRect(_x, _y, _w, _h);
+    path.addRect(_x, _y, _size, _size);
     return path;
 }
 
 void Cube::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    painter->setBrush(Qt::blue);
-    painter->drawRect(_x, _y, _w, _h);
+    // Draw frame
+    QPen pen(_color);
+    pen.setWidth(5);
+    painter->setPen(pen);
+    painter->drawRect(_x, _y, _size, _size);
+
+    // Draw crosses
+    painter->drawLine(QPointF(_x + 2, _y + 2), QPointF(_x + _size - 2, _y + _size - 2));
+    painter->drawLine(QPointF(_x + 2, _y + _size - 2), QPointF(_x + _size - 2, _y + 2));
 }
 
 void Cube::move()
