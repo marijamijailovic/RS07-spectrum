@@ -2,13 +2,14 @@
 #define BLOCK_H
 
 #include <QColor>
+#include "include/colors.h"
 #include "include/entity.h"
 
 
 class Block : public Entity
 {
 public:
-    Block(qreal x, qreal y, qreal w, qreal h, QColor color = Qt::gray);
+    Block(qreal x, qreal y, qreal w, qreal h);
 
     // Overrides from QGraphicsItem
     QRectF boundingRect() const override;

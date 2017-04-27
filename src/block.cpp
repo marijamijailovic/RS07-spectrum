@@ -1,12 +1,12 @@
 #include "include/block.h"
 
 
-Block::Block(qreal x, qreal y, qreal w, qreal h, QColor color) :
+Block::Block(qreal x, qreal y, qreal w, qreal h) :
     Entity(x, y),
     _w(w),
     _h(h)
 {
-    setColor(color);
+    setColor(SpectrumColors::gray);
 }
 
 QRectF Block::boundingRect() const
