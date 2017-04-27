@@ -4,6 +4,8 @@
 Level::Level(const QString &fileName, Player *player) :
     _player(player)
 {
+    LevelLoader l(fileName);
+    l.parse(_player, _staticEntities, _dynamicEntities);
 }
 
 Level::~Level()
