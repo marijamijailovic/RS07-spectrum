@@ -35,7 +35,10 @@ SOURCES += \
     src/cube.cpp \
     src/colors.cpp \
     src/key.cpp \
-    src/door.cpp
+    src/door.cpp \
+    src/levelloader.cpp \
+    src/wall.cpp \
+    src/ladder.cpp
 
 HEADERS  += \
     include/mainwindow.h \
@@ -48,7 +51,10 @@ HEADERS  += \
     include/cube.h \
     include/colors.h \
     include/key.h \
-    include/door.h
+    include/door.h \
+    include/levelloader.h \
+    include/wall.h \
+    include/ladder.h
 
 FORMS    += \
     ui/mainwindow.ui
