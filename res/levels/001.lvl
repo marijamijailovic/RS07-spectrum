@@ -18,6 +18,14 @@ s wall 560 70 50 50
 c purple
 s wall 650 70 50 50
 
+# Key
+c gray
+s key 130 200
+
+# Door
+c pink
+s door 670 350
+
 #   Blocks and Walls
 c red
 s wall 150 530  50  50
