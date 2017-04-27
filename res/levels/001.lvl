@@ -20,11 +20,11 @@ s wall 650 70 50 50
 
 # Key
 c gray
-s key 130 200
+s key 670 20
 
 # Door
 c pink
-s door 670 350
+s door 130 175
 
 #   Blocks and Walls
 c red
@@ -41,8 +41,6 @@ c green
 s wall 650 450 100  20
 c red
 s wall 650 420 100  20
-c purple
-s wall  650 390 100  20
 c gray
 s block 450 350  50  20
 
@@ -56,7 +54,7 @@ s wall  50 250 200  10
 # Ladders
 
 c yellow
-s ladder 650 70 30 320
+s ladder 650 70 30 350
 
 #### Dynamic entities ####
 c blue
