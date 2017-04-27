@@ -23,6 +23,7 @@ QPainterPath Block::shape() const
 
 void Block::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    painter->setBrush(_color);
-    painter->drawRect(_x, _y, _w, _h);
+    // Draw brick layers
+    for (int i = 0; i < _h; i += 10)
+        painter->fillRect(_x, _y + i + 1, _w, 9, _color);
 }
