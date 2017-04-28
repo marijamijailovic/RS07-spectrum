@@ -16,7 +16,8 @@ public:
     SpectrumGame(QGraphicsScene *scene);
     ~SpectrumGame();
 
-    // TODO delete operator= and copy-constructor
+    SpectrumGame(const SpectrumGame&) = delete;
+    SpectrumGame& operator=(const SpectrumGame&) = delete;
 
 private slots:
     void update() const;
@@ -26,6 +27,7 @@ private:
     Player *_player;
     QGraphicsScene *_scene;
     Level *_level;
+    QTimer *_gameTicker;
 };
 
 #endif // GAME_H

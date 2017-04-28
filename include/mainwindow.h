@@ -17,7 +17,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    // TODO delete operator= and copy-constructor
+    MainWindow(const MainWindow&) = delete;
+    MainWindow& operator=(const MainWindow&) = delete;
 
 private:
     Ui::MainWindow *_ui;

@@ -14,6 +14,9 @@ class Player : public DynamicEntity
 public:
     Player(qreal x, qreal y);
 
+    Player(const Player&) = delete;
+    Player& operator=(const Player&) = delete;
+
     QColor activeColor() const;
     void setActiveColor(QColor newActiveColor);
 

@@ -14,13 +14,15 @@ SpectrumGame::SpectrumGame(QGraphicsScene *scene) :
     _level->load(_scene);
 
     // Creating timer for gravity function
-    QTimer *timer = new QTimer();
-    connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-    timer->start(40);
+    _gameTicker = new QTimer();
+    connect(_gameTicker, SIGNAL(timeout()), this, SLOT(update()));
+    _gameTicker->start(40);
 }
 
 SpectrumGame::~SpectrumGame()
 {
+    _gameTicker->stop();
+    delete _gameTicker;
     delete _player;
     delete _level;
 }

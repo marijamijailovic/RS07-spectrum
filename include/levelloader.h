@@ -22,7 +22,8 @@ public:
     LevelLoader(const QString &fileName);
     ~LevelLoader();
 
-    // TODO delete operator= and copy-constructor
+    LevelLoader(const LevelLoader&) = delete;
+    LevelLoader& operator=(const LevelLoader&) = delete;
 
     void parse(Player *player, std::vector<Entity *> &staticEntities, std::vector<DynamicEntity *> &dynamicEntities) const;
 

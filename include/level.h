@@ -14,7 +14,8 @@ public:
     Level(const QString &fileName, Player *player);
     ~Level();
 
-    // TODO delete operator= and copy-constructor
+    Level(const Level&) = delete;
+    Level& operator=(const Level&) = delete;
 
     void load(QGraphicsScene *scene) const;
     std::vector<Entity *> StaticEntities() const;
