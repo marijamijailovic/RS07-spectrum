@@ -11,7 +11,7 @@
 class Entity : public QGraphicsItem
 {
 public:
-    Entity(qreal x, qreal y, QColor color = SpectrumColors::gray);
+    Entity(qreal x, qreal y, const QColor color = SpectrumColors::gray);
 
     void drawAt(qreal x, qreal y);
     QColor color() const;

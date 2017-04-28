@@ -7,7 +7,7 @@
 class Cube : public DynamicEntity
 {
 public:
-    Cube(qreal x, qreal y, qreal size, QColor color = Qt::gray);
+    Cube(qreal x, qreal y, qreal size, const QColor color = Qt::gray);
 
     // Overrides from QGraphicsItem
     QRectF boundingRect() const override;

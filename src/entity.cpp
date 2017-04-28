@@ -1,6 +1,6 @@
 #include "include/entity.h"
 
-Entity::Entity(qreal x, qreal y, QColor color) :
+Entity::Entity(qreal x, qreal y, const QColor color) :
     _x(x),
     _y(y),
     _color(color)

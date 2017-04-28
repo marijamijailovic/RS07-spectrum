@@ -1,11 +1,11 @@
 #include "include/ladder.h"
 
 Ladder::Ladder(qreal x, qreal y, qreal w, qreal h, QColor color) :
-    Entity(x, y),
+    Entity(x, y, color),
     _w(w),
     _h(h)
 {
-    setColor(color);
+
 }
 
 QRectF Ladder::boundingRect() const

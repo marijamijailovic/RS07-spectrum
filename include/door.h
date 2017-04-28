@@ -7,7 +7,7 @@
 class Door : public Entity
 {
 public:
-    Door(qreal x, qreal y, QColor color = SpectrumColors::gray);
+    Door(qreal x, qreal y, const QColor color = SpectrumColors::gray);
 
     // Overrides from QGraphicsItem
     QRectF boundingRect() const override;

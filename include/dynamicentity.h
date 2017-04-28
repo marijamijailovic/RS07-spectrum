@@ -9,7 +9,7 @@
 class DynamicEntity : public Entity
 {
 public:
-    DynamicEntity(qreal x, qreal y, qreal mass, QColor color = Qt::gray);
+    DynamicEntity(qreal x, qreal y, qreal mass, const QColor color = Qt::gray);
 
     void applyForce(qreal ix, qreal iy);
     void applyGravity(qreal g);

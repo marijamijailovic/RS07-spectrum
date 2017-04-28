@@ -2,11 +2,11 @@
 #include <QPen>
 
 Wall::Wall(qreal x, qreal y, qreal w, qreal h, QColor color) :
-    Entity(x, y),
+    Entity(x, y, color),
     _w(w),
     _h(h)
 {
-    setColor(color);
+
 }
 
 QRectF Wall::boundingRect() const

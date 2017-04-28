@@ -2,11 +2,11 @@
 
 
 Block::Block(qreal x, qreal y, qreal w, qreal h) :
-    Entity(x, y),
+    Entity(x, y, SpectrumColors::gray),
     _w(w),
     _h(h)
 {
-    setColor(SpectrumColors::gray);
+
 }
 
 QRectF Block::boundingRect() const

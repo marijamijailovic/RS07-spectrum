@@ -1,10 +1,10 @@
 #include "include/cube.h"
 
-Cube::Cube(qreal x, qreal y, qreal size, QColor color) :
-    DynamicEntity(x, y, 100),
+Cube::Cube(qreal x, qreal y, qreal size, const QColor color) :
+    DynamicEntity(x, y, 100, color),
     _size(size)
 {
-    setColor(color);
+
 }
 
 QRectF Cube::boundingRect() const

@@ -1,6 +1,6 @@
 #include "include/door.h"
 
-Door::Door(qreal x, qreal y, QColor color) :
+Door::Door(qreal x, qreal y, const QColor color) :
     Entity(x, y, color)
 {
 
