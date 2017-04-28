@@ -19,12 +19,17 @@ For now the only way to run the project is to import it in QtCreator and run it 
 ## :video_game: Usage
 | **Key** | **Description** |
 | :---  | :--- |
-| ```Left``` | Move left |
-| ```Right``` | Move right |
+| ```Left``` , ```A``` | Move left |
+| ```Right``` , ```D``` | Move right |
+| ```Up``` , ```W``` | Jump |
+| ```Down``` , ```S``` | Stop |
 | ```1``` | Select blue color as active |
 | ```2``` | Select green color as active |
 | ```3``` | Select yellow color as active |
 | ```4``` | Select red color as active |
+| ```5``` | Select orange color as active |
+| ```6``` | Select purple color as active |
+| ```7``` | Select pink color as active |
 
 ## :bug: Known bugs
 * ~~Collision is not perfect (yet), so sometimes you might get inside a block.~~ It was a feature... removed.
