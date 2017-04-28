@@ -24,8 +24,7 @@ public:
     void applyGravity(qreal g);
 
 private:
-
-    std::vector<Entity *> _staticEntities;          // TODO can be const T*?
+    std::vector<Entity *> _staticEntities;
     std::vector<DynamicEntity *> _dynamicEntities;
     Player *_player;
 };

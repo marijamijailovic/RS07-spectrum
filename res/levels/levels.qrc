@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/levels">
+        <file>test.lvl</file>
         <file>001.lvl</file>
+        <file>002.lvl</file>
     </qresource>
 </RCC>

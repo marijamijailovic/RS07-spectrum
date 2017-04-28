@@ -10,8 +10,10 @@ Level::Level(const QString &fileName, Player *player) :
 
 Level::~Level()
 {
-    // TODO
-    // Free entity arrays
+    for (unsigned i = 0; i < _staticEntities.size(); i++)
+        delete _staticEntities[i];
+    for (unsigned i = 0; i < _dynamicEntities.size(); i++)
+        delete _dynamicEntities[i];
 }
 
 void Level::load(QGraphicsScene *scene) const
@@ -37,9 +39,3 @@ void Level::applyGravity(qreal g)
     for (unsigned i = 0; i < _dynamicEntities.size(); i++)
         _dynamicEntities[i]->applyForce(0,g);
 }
-
-/*void Level::move(qreal g)
-{
-    for (unsigned i = 0; i < _dynamicEntities.size(); i++)
-        _dynamicEntities[i]->move();
-}*/
