@@ -9,7 +9,7 @@
 class Wall : public Entity
 {
 public:
-    Wall(qreal x, qreal y, qreal w, qreal h, QColor color = SpectrumColors::gray);
+    Wall(qreal x, qreal y, qreal w, qreal h, const QColor color = SpectrumColors::gray);
 
     // Overrides from QGraphicsItem
     QRectF boundingRect() const override;

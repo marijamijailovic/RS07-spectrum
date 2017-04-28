@@ -1,6 +1,6 @@
 #include "include/key.h"
 
-Key::Key(qreal x, qreal y, QColor color) :
+Key::Key(qreal x, qreal y, const QColor color) :
     Entity(x, y, color)
 {
 

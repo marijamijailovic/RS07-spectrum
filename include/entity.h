@@ -15,7 +15,7 @@ public:
 
     void drawAt(qreal x, qreal y);
     QColor color() const;
-    void setColor(QColor newColor);
+    void setColor(const QColor newColor);
 
 protected:
     qreal _x;

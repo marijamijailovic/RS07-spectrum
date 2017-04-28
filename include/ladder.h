@@ -9,7 +9,7 @@
 class Ladder : public Entity
 {
 public:
-    Ladder(qreal x, qreal y, qreal w, qreal h, QColor color = SpectrumColors::gray);
+    Ladder(qreal x, qreal y, qreal w, qreal h, const QColor color = SpectrumColors::gray);
 
     // Overrides from QGraphicsItem
     QRectF boundingRect() const override;

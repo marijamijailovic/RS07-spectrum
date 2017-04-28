@@ -7,7 +7,7 @@
 class Key : public Entity
 {
 public:
-    Key(qreal x, qreal y, QColor color = SpectrumColors::gray);
+    Key(qreal x, qreal y, const QColor color = SpectrumColors::gray);
 
     // Overrides from QGraphicsItem
     QRectF boundingRect() const override;

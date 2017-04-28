@@ -28,5 +28,4 @@ void Door::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
     painter->setBrush(_color);
     painter->drawRect(_x, _y, _w, 3*_h/4);
     painter->drawEllipse(QPoint(_x + _w/2, _y - _h/2 + _w - 3), _w/2, _w/2);
-
 }

@@ -1,7 +1,7 @@
 #include "include/wall.h"
 #include <QPen>
 
-Wall::Wall(qreal x, qreal y, qreal w, qreal h, QColor color) :
+Wall::Wall(qreal x, qreal y, qreal w, qreal h, const QColor color) :
     Entity(x, y, color),
     _w(w),
     _h(h)

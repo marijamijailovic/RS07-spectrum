@@ -13,7 +13,7 @@ QColor Entity::color() const
     return _color;
 }
 
-void Entity::setColor(QColor newColor)
+void Entity::setColor(const QColor newColor)
 {
     _color = newColor;
 }
