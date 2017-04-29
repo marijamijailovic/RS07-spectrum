@@ -31,6 +31,8 @@ public:
     void move();
 
 private:
+    void changeActiveColor(QKeyEvent *e);
+
     const int _w = 60;
     const int _h = 77;
     bool _jump = false;
