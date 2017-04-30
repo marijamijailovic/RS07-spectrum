@@ -1,7 +1,7 @@
 #include "include/ladder.h"
 
 Ladder::Ladder(qreal x, qreal y, qreal w, qreal h, const QColor color) :
-    Entity(x, y, color),
+    Entity(x, y, color, false),
     _w(w),
     _h(h)
 {

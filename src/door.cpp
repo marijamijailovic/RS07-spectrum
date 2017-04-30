@@ -1,7 +1,7 @@
 #include "include/door.h"
 
 Door::Door(qreal x, qreal y, const QColor color) :
-    Entity(x, y, color)
+    Entity(x, y, color, false)
 {
 
 }

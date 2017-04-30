@@ -1,9 +1,10 @@
 #include "include/entity.h"
 
-Entity::Entity(qreal x, qreal y, const QColor color) :
+Entity::Entity(qreal x, qreal y, const QColor color, bool collidable) :
     _x(x),
     _y(y),
-    _color(color)
+    _color(color),
+    _collidable(collidable)
 {
 
 }
@@ -23,4 +24,9 @@ void Entity::drawAt(qreal x, qreal y)
     _x = x;
     _y = y;
     setPos(x, y);
+}
+
+bool Entity::collidable() const
+{
+    return _collidable;
 }

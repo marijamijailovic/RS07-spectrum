@@ -54,7 +54,7 @@ void Player::changeActiveColor(QKeyEvent *event)
     // Disable changing active color when there's a collision with entities with activeColor
     QList<QGraphicsItem *> collidingObjects = collidingItems();
     foreach (QGraphicsItem* item, collidingObjects)
-        if (_activeColor == ((Entity*)item)->color())
+        if (((Entity*)item)->collidable() && _activeColor == ((Entity*)item)->color())
             return;
 
     if (event->key() == Qt::Key_1)
@@ -85,11 +85,11 @@ void Player::move()
 {
     QTextStream out(stdout);
     QList<QGraphicsItem *> collidingObjects = collidingItems();
-    int sameColorCollisions = 0;
+    int ignoredCollisions = 0;
     foreach (QGraphicsItem *item, collidingObjects) {
-        if (_activeColor == ((Entity*)item)->color()) {
-            sameColorCollisions++;
-            //out << "no collision\n";
+        if ( !((Entity*)item)->collidable() || _activeColor == ((Entity*)item)->color()) {
+            ignoredCollisions++;
+            out << "no collision\n";
             continue;
         }
         QRectF a = mapToScene(boundingRect()).boundingRect();
@@ -116,7 +116,7 @@ void Player::move()
     }
 
     //purpose of canJump is wall jumping, currently disabled
-    if (collidingObjects.size() == sameColorCollisions) {
+    if (collidingObjects.size() == ignoredCollisions) {
         _inAir = true;
         if(_canJump)
             _canJump--;
