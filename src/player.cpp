@@ -89,7 +89,18 @@ void Player::move()
     foreach (QGraphicsItem *item, collidingObjects) {
         if ( !((Entity*)item)->collidable() || _activeColor == ((Entity*)item)->color()) {
             ignoredCollisions++;
-            out << "no collision\n";
+            //out << "no collision\n";
+            continue;
+        }
+        // If the item is a key, collect it and unlock the binded door
+        if (typeid(*item) == typeid(Key)) {
+            ((Key*)item)->unlockDoor();
+            // Redraw the door
+            ((Key*)item)->door()->update();
+            // Hide key from the scene
+            // TODO: delete Key item from the scene (maybe ?)
+            item->hide();
+            ignoredCollisions++;
             continue;
         }
         QRectF a = mapToScene(boundingRect()).boundingRect();

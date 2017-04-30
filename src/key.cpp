@@ -1,7 +1,8 @@
 #include "include/key.h"
 
-Key::Key(qreal x, qreal y, const QColor color) :
-    Entity(x, y, color, false)
+Key::Key(qreal x, qreal y, Door *door, const QColor color) :
+    Entity(x, y, color),
+    _door(door)
 {
 
 }
@@ -31,4 +32,19 @@ void Key::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
     painter->drawRect(_x + _w/2 - 5, _y + 5*_h/12, _w/5, _h/6);
     painter->drawRect(_x - _w/8 - 1, _y + 5*_h/6 + 1, 6*_w/8, _h/6);
 
+}
+
+void Key::unlockDoor()
+{
+    _door->unlock();
+}
+
+void Key::lockDoor()
+{
+    _door->lock();
+}
+
+Door* Key::door() const
+{
+    return _door;
 }

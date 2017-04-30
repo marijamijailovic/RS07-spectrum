@@ -1,7 +1,8 @@
 #include "include/door.h"
 
-Door::Door(qreal x, qreal y, const QColor color) :
-    Entity(x, y, color, false)
+Door::Door(qreal x, qreal y, const QColor color, bool locked) :
+    Entity(x, y, color, false),
+    _locked(locked)
 {
 
 }
@@ -24,8 +25,24 @@ void Door::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
     QPen pen(Qt::NoPen);
     painter->setPen(pen);
 
-    // Drawing key
+    // Drawing door
     painter->setBrush(_color);
     painter->drawRect(_x, _y, _w, 3*_h/4);
     painter->drawEllipse(QPoint(_x + _w/2, _y - _h/2 + _w - 3), _w/2, _w/2);
+    // If the door is locked then draw a lock as well
+    if (_locked) {
+        painter->setBrush(SpectrumColors::gray);
+        // TODO draw a nice lock
+        painter->drawRect(_x, _y + _h/3, _w, _h/10);
+    }
+}
+
+void Door::unlock()
+{
+    _locked = false;
+}
+
+void Door::lock()
+{
+    _locked = true;
 }

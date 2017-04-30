@@ -7,16 +7,20 @@
 class Door : public Entity
 {
 public:
-    Door(qreal x, qreal y, const QColor color = SpectrumColors::gray);
+    Door(qreal x, qreal y, const QColor color = SpectrumColors::gray, bool locked = false);
 
     // Overrides from QGraphicsItem
     QRectF boundingRect() const override;
     QPainterPath shape() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
+    void lock();
+    void unlock();
+
 private:
     const int _w = 60;
     const int _h = 100;
+    bool _locked;
 };
 
 #endif // DOOR_H

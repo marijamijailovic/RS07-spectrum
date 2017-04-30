@@ -18,13 +18,11 @@ s wall 560 70 50 50
 c purple
 s wall 650 70 50 50
 
-# Key
-c gray
-s key 670 20
-
-# Door
+# Door and its key
 c pink
-s door 130 175
+#s door 130 175 key 670 20 ideal location of the key
+s door 130 175 key 700 370
+# Door without key
 c green
 s door 60 505
 

@@ -5,8 +5,10 @@
 #include <QGraphicsScene>
 #include <QGraphicsRectItem>
 #include <QKeyEvent>
+#include <typeinfo>
 #include "include/dynamicentity.h"
 #include "include/colors.h"
+#include "include/key.h"
 
 
 class Player : public DynamicEntity
