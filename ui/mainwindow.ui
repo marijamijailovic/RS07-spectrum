@@ -61,7 +61,7 @@
     </property>
     <property name="styleSheet">
      <string notr="true">color: white;
-border: 1pt solid white;</string>
+border: 1px solid white;</string>
     </property>
     <property name="text">
      <string>Resume Game</string>
@@ -71,7 +71,7 @@ border: 1pt solid white;</string>
     <property name="geometry">
      <rect>
       <x>300</x>
-      <y>250</y>
+      <y>255</y>
       <width>200</width>
       <height>50</height>
      </rect>
@@ -84,7 +84,7 @@ border: 1pt solid white;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">color: white;
-border: 1pt solid white;</string>
+border: 1px solid white;</string>
     </property>
     <property name="text">
      <string>Exit</string>
