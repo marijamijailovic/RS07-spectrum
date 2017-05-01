@@ -16,8 +16,6 @@ MainWindow::MainWindow(QWidget *parent) :
     _ui->gwDisplay->raise();
     _ui->gwDisplay->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     _ui->gwDisplay->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-    _ui->centralWidget->setStyleSheet("background-image: url(:/gui/menu-bg.jpg);");
 }
 
 MainWindow::~MainWindow()

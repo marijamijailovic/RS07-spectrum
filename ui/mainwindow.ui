@@ -20,6 +20,9 @@
    <string>Spectrum</string>
   </property>
   <widget class="QWidget" name="centralWidget">
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/gui/menu.png);</string>
+   </property>
    <widget class="QGraphicsView" name="gwDisplay">
     <property name="geometry">
      <rect>
@@ -47,8 +50,8 @@
    <widget class="QPushButton" name="btnResumeGame">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>200</y>
+      <x>390</x>
+      <y>225</y>
       <width>200</width>
       <height>50</height>
      </rect>
@@ -70,8 +73,8 @@ border: 1px solid white;</string>
    <widget class="QPushButton" name="btnExit">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>255</y>
+      <x>390</x>
+      <y>280</y>
       <width>200</width>
       <height>50</height>
      </rect>
