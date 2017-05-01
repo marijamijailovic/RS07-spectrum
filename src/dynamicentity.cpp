@@ -11,6 +11,16 @@ DynamicEntity::DynamicEntity(qreal x, qreal y, qreal mass, const QColor color, b
 
 }
 
+void DynamicEntity::setVx(qreal vx)
+{
+    _vx = vx;
+}
+
+void DynamicEntity::setVy(qreal vy)
+{
+    _vy = vy;
+}
+
 void DynamicEntity::applyForce(qreal ix,qreal iy)
 {
     _vx += (ix / _mass);

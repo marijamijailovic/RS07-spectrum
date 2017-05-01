@@ -11,6 +11,9 @@ class DynamicEntity : public Entity
 public:
     DynamicEntity(qreal x, qreal y, qreal mass, const QColor color = Qt::gray, bool collidable = true);
 
+    void setVx(qreal vx);
+    void setVy(qreal vy);
+
     void applyForce(qreal ix, qreal iy);
     void applyGravity(qreal g);
 

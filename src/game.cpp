@@ -34,7 +34,7 @@ void SpectrumGame::keyPressEvent(QKeyEvent *event)
     else if (event->key() == Qt::Key_Up || event->key() == Qt::Key_W)
         _player->setJump(true);
     else if (event->key() == Qt::Key_Down || event->key() == Qt::Key_S)
-        ;//_player->_vx = 0;
+        _player->setVx(0);
     else if (event->key() == Qt::Key_Escape)    // TODO remove exit on ESC
         exit(EXIT_SUCCESS);
     else
