@@ -54,7 +54,6 @@ void SpectrumGame::keyPressEvent(QKeyEvent *event)
         _player->setVx(0);
     else if (event->key() == Qt::Key_Escape)    // TODO remove exit on ESC
         pause();
-        //exit(EXIT_SUCCESS);
     else
         changeActiveColor(event);
 }
