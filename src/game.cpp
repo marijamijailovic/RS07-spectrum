@@ -1,6 +1,7 @@
 #include "include/game.h"
 
-SpectrumGame::SpectrumGame()
+SpectrumGame::SpectrumGame(QGraphicsView *parent) :
+    _parent(parent)
 {
     // Creating a player and adding to scene
     _player = new Player(200, 180);
@@ -15,6 +16,8 @@ SpectrumGame::SpectrumGame()
     _gameTicker = new QTimer();
     connect(_gameTicker, SIGNAL(timeout()), this, SLOT(update()));
     _gameTicker->start(40);
+
+    setFocus();
 }
 
 SpectrumGame::~SpectrumGame()
@@ -23,6 +26,20 @@ SpectrumGame::~SpectrumGame()
     delete _gameTicker;
     delete _player;
     delete _level;
+}
+
+void SpectrumGame::pause()
+{
+    _gameTicker->stop();
+    clearFocus();
+    _parent->hide();
+}
+
+void SpectrumGame::resume()
+{
+    _gameTicker->start();
+    setFocus();
+    _parent->show();
 }
 
 void SpectrumGame::keyPressEvent(QKeyEvent *event)
@@ -36,7 +53,8 @@ void SpectrumGame::keyPressEvent(QKeyEvent *event)
     else if (event->key() == Qt::Key_Down || event->key() == Qt::Key_S)
         _player->setVx(0);
     else if (event->key() == Qt::Key_Escape)    // TODO remove exit on ESC
-        exit(EXIT_SUCCESS);
+        pause();
+        //exit(EXIT_SUCCESS);
     else
         changeActiveColor(event);
 }
