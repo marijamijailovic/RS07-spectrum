@@ -10,14 +10,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     _ui->setupUi(this);
 
-    // Creating a test scene
-    QGraphicsScene *scene = new QGraphicsScene();
+    _game = new SpectrumGame();
 
-    // Creating a new game on test scene
-    _game = new SpectrumGame(scene);
-
-    // Add scene to main display widget
-    _ui->gwDisplay->setScene(scene);
+    _ui->gwDisplay->setScene(_game);
     _ui->gwDisplay->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     _ui->gwDisplay->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 }

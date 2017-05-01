@@ -15,7 +15,7 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
     // Overrides from DynamicEntity
-    void move();
+    void move(const QColor activeColor);
 
 private:
     qreal _size;

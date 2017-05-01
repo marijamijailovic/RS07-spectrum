@@ -11,14 +11,9 @@ Player::Player(qreal x, qreal y) :
     setFocus();
 }
 
-QColor Player::activeColor() const
+void Player::setJump(bool b)
 {
-    return _activeColor;
-}
-
-void Player::setActiveColor(QColor newActiveColor)
-{
-    _activeColor = newActiveColor;
+    _jump = b;
 }
 
 QRectF Player::boundingRect() const
@@ -33,61 +28,18 @@ QPainterPath Player::shape() const
     return path;
 }
 
-void Player::keyPressEvent(QKeyEvent *event)
-{
-    if (event->key() == Qt::Key_Left || event->key() == Qt::Key_A)
-        applyForce(-8,0);
-    else if (event->key() == Qt::Key_Right || event->key() == Qt::Key_D)
-        applyForce(8,0);
-    else if (event->key() == Qt::Key_Up || event->key() == Qt::Key_W)
-        _jump = true;
-    else if (event->key() == Qt::Key_Down || event->key() == Qt::Key_S)
-        _vx = 0;
-    else if (event->key() == Qt::Key_Escape)    // TODO remove exit on ESC
-        exit(EXIT_SUCCESS);
-    else
-        changeActiveColor(event);
-}
-
-void Player::changeActiveColor(QKeyEvent *event)
-{
-    // Disable changing active color when there's a collision with entities with activeColor
-    QList<QGraphicsItem *> collidingObjects = collidingItems();
-    foreach (QGraphicsItem* item, collidingObjects)
-        if (((Entity*)item)->collidable() && _activeColor == ((Entity*)item)->color())
-            return;
-
-    if (event->key() == Qt::Key_1)
-        _activeColor = SpectrumColors::blue;
-    else if (event->key() == Qt::Key_2)
-        _activeColor = SpectrumColors::green;
-    else if (event->key() == Qt::Key_3)
-        _activeColor = SpectrumColors::yellow;
-    else if (event->key() == Qt::Key_4)
-        _activeColor = SpectrumColors::red;
-    else if (event->key() == Qt::Key_5)
-        _activeColor = SpectrumColors::orange;
-    else if (event->key() == Qt::Key_6)
-        _activeColor = SpectrumColors::purple;
-    else if (event->key() == Qt::Key_7)
-        _activeColor = SpectrumColors::pink;
-
-    update();
-    scene()->setBackgroundBrush(QBrush(_activeColor));
-}
-
 void Player::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
     painter->drawPixmap(-_w/2, -_h/2, _w, _h, QPixmap(":sprites/astronaut.png"));
 }
 
-void Player::move()
+void Player::move(const QColor activeColor)
 {
     QTextStream out(stdout);
     QList<QGraphicsItem *> collidingObjects = collidingItems();
     int ignoredCollisions = 0;
     foreach (QGraphicsItem *item, collidingObjects) {
-        if ( !((Entity*)item)->collidable() || _activeColor == ((Entity*)item)->color()) {
+        if ( !((Entity*)item)->collidable() || activeColor == ((Entity*)item)->color()) {
             ignoredCollisions++;
             //out << "no collision\n";
             continue;

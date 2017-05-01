@@ -7,7 +7,6 @@
 #include <QKeyEvent>
 #include <typeinfo>
 #include "include/dynamicentity.h"
-#include "include/colors.h"
 #include "include/key.h"
 
 
@@ -19,10 +18,7 @@ public:
     Player(const Player&) = delete;
     Player& operator=(const Player&) = delete;
 
-    QColor activeColor() const;
-    void setActiveColor(QColor newActiveColor);
-
-    void keyPressEvent(QKeyEvent *event) override;
+    void setJump(bool b);
 
     // Overrides from Entity
     QRectF boundingRect() const override;
@@ -30,16 +26,15 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
     // Overrides from DynamicEntity
-    void move();
+    void move(const QColor activeColor);
 
 private:
-    void changeActiveColor(QKeyEvent *e);
-
     const int _w = 60;
     const int _h = 77;
     bool _jump = false;
     int _canJump = 2;
-    QColor _activeColor = SpectrumColors::blue;
+
+    friend class Game;
 };
 
 #endif // PLAYER_H
