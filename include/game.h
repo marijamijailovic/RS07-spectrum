@@ -2,11 +2,12 @@
 #define GAME_H
 
 #include <QObject>
+#include <QGraphicsView>
 #include <QGraphicsScene>
 #include <QTimer>
 #include "include/player.h"
 #include "include/level.h"
-#include "colors.h"
+#include "include/colors.h"
 
 
 class SpectrumGame : public QGraphicsScene
@@ -14,11 +15,14 @@ class SpectrumGame : public QGraphicsScene
     Q_OBJECT
 
 public:
-    SpectrumGame();
+    SpectrumGame(QGraphicsView *parent);
     ~SpectrumGame();
 
     SpectrumGame(const SpectrumGame&) = delete;
     SpectrumGame& operator=(const SpectrumGame&) = delete;
+
+    void pause();
+    void resume();
 
     QColor activeColor() const;
     void setActiveColor(QColor newActiveColor);
@@ -31,6 +35,7 @@ private slots:
 private:
     void changeActiveColor(QKeyEvent *event);
 
+    QGraphicsView *_parent;
     qreal _gravCoeff = 1;
     Player *_player;
     Level *_level;

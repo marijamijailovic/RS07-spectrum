@@ -20,6 +20,11 @@ public:
     MainWindow(const MainWindow&) = delete;
     MainWindow& operator=(const MainWindow&) = delete;
 
+private slots:
+    void on_btnResumeGame_clicked();
+
+    void on_btnExit_clicked();
+
 private:
     Ui::MainWindow *_ui;
     SpectrumGame *_game;

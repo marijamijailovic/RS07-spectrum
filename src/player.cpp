@@ -7,8 +7,6 @@ Player::Player(qreal x, qreal y) :
     DynamicEntity::DynamicEntity(x, y, 1)
 {
     setZValue(1);
-    setFlag(QGraphicsItem::ItemIsFocusable);
-    setFocus();
 }
 
 void Player::setJump(bool b)

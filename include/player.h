@@ -33,8 +33,6 @@ private:
     const int _h = 77;
     bool _jump = false;
     int _canJump = 2;
-
-    friend class Game;
 };
 
 #endif // PLAYER_H
