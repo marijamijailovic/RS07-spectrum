@@ -4,6 +4,5 @@
         <file>cat.png</file>
         <file>astronaut.png</file>
         <file>block.jpg</file>
-        <file>menu-bg.jpg</file>
     </qresource>
 </RCC>
