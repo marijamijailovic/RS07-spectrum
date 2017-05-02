@@ -10,3 +10,6 @@ QColor SpectrumColors::yellow = QColor(253, 231, 43);
 QColor SpectrumColors::orange = QColor(250, 121, 33);
 QColor SpectrumColors::gray = QColor(50, 50, 50);
 QColor SpectrumColors::black = QColor(0, 0, 0);
+
+
+QColor SpectrumColors::defaultActiveColor = SpectrumColors::blue;

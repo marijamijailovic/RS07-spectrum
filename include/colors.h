@@ -17,6 +17,7 @@ public:
     static QColor orange;
     static QColor gray;
     static QColor black;
+    static QColor defaultActiveColor;
 };
 
 #endif // COLORS_H

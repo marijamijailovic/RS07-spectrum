@@ -113,6 +113,8 @@ void LevelLoader::addStaticEntity(std::vector<Entity *> &staticEntities, QTextSt
             newDoor->lock();
         }
     }
+    if (SpectrumColors::defaultActiveColor == entityColor)
+        staticEntities.back()->hide();
     // TODO Add here other static object types
 }
 
@@ -129,4 +131,6 @@ void LevelLoader::addDynamicEntity(std::vector<DynamicEntity *> &dynamicEntities
         lineStream >> x >> y >> w >> h;
         // TODO Add here other dynamic object types
     }
+    if (SpectrumColors::defaultActiveColor == entityColor)
+        dynamicEntities.back()->hide();
 }
