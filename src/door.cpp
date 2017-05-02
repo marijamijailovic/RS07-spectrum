@@ -9,7 +9,7 @@ Door::Door(qreal x, qreal y, const QColor color, bool locked) :
 
 QRectF Door::boundingRect() const
 {
-    return QRectF(_x, _y, _w, _h);
+    return QRectF(_x, _y - _h/2 + _w/2 -3, _w, 3*_h/2-_w/2 + 3);
 }
 
 QPainterPath Door::shape() const

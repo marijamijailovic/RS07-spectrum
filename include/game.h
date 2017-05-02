@@ -40,7 +40,7 @@ private:
     Player *_player;
     Level *_level;
     QTimer *_gameTicker;
-    QColor _activeColor = SpectrumColors::blue;
+    QColor _activeColor = SpectrumColors::defaultActiveColor;
 };
 
 #endif // GAME_H
