@@ -52,45 +52,68 @@ void SpectrumGame::keyPressEvent(QKeyEvent *event)
         _player->setJump(true);
     else if (event->key() == Qt::Key_Down || event->key() == Qt::Key_S)
         _player->setVx(0);
-    else if (event->key() == Qt::Key_Escape)    // TODO remove exit on ESC
+    else if (event->key() == Qt::Key_P)
         pause();
+    else if (event->key() == Qt::Key_Escape)    // TODO remove exit on ESC
+        exit(EXIT_SUCCESS);
     else
         changeActiveColor(event);
 }
 
 void SpectrumGame::changeActiveColor(QKeyEvent *event)
 {
+    /*
+     * This is temporary solution with showing/hiding entities from the scene.
+     * TODO
+     * Make circle around the player and on mouse hover over one of them change the active color
+     * In the meantime make gray (?) active color which will enable to check collisions with all items
+     * on the scene
+     */
+    // Show all entities on the scene to be able to check collisions
+    foreach (QGraphicsItem* item, items())
+        if (((Entity*)item)->color() == _activeColor)
+            item->show();
+
     // Disable changing active color when there's a collision with entities with activeColor
     QList<QGraphicsItem *> collidingObjects = _player->collidingItems();
+    bool shouldChangeActiveColor = true;
     foreach (QGraphicsItem* item, collidingObjects)
-        if (((Entity*)item)->collidable() && _activeColor == ((Entity*)item)->color())
-            return;
+        if (((Entity*)item)->collidable() && _activeColor == ((Entity*)item)->color()) {
+            shouldChangeActiveColor = false;
+            break;
+        }
 
-    if (event->key() == Qt::Key_1)
-        _activeColor = SpectrumColors::blue;
-    else if (event->key() == Qt::Key_2)
-        _activeColor = SpectrumColors::green;
-    else if (event->key() == Qt::Key_3)
-        _activeColor = SpectrumColors::yellow;
-    else if (event->key() == Qt::Key_4)
-        _activeColor = SpectrumColors::red;
-    else if (event->key() == Qt::Key_5)
-        _activeColor = SpectrumColors::orange;
-    else if (event->key() == Qt::Key_6)
-        _activeColor = SpectrumColors::purple;
-    else if (event->key() == Qt::Key_7)
-        _activeColor = SpectrumColors::pink;
+    if (shouldChangeActiveColor) {
+        if (event->key() == Qt::Key_1)
+            _activeColor = SpectrumColors::blue;
+        else if (event->key() == Qt::Key_2)
+            _activeColor = SpectrumColors::green;
+        else if (event->key() == Qt::Key_3)
+            _activeColor = SpectrumColors::yellow;
+        else if (event->key() == Qt::Key_4)
+            _activeColor = SpectrumColors::red;
+        else if (event->key() == Qt::Key_5)
+            _activeColor = SpectrumColors::orange;
+        else if (event->key() == Qt::Key_6)
+            _activeColor = SpectrumColors::purple;
+        else if (event->key() == Qt::Key_7)
+            _activeColor = SpectrumColors::pink;
 
-    update();
-    setBackgroundBrush(QBrush(_activeColor));
+        update();
+        setBackgroundBrush(QBrush(_activeColor));
+    }
+    // Hide object from the scene that have the same color as activeColor
+    foreach (QGraphicsItem* item, items())
+        if (((Entity*)item)->color() == _activeColor)
+            item->hide();
 }
 
 void SpectrumGame::update() const
 {
-    _player->move(_activeColor);
+    _player->move();
     std::vector<DynamicEntity *> dynamicEntities = _level->DynamicEntities();
     foreach (DynamicEntity *ent, dynamicEntities) {
-        ent->move(_activeColor);
+        ent->move();
         ent->applyGravity(_gravCoeff);
     }
     _player->applyGravity(_gravCoeff);

@@ -32,7 +32,7 @@ void Cube::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
     painter->drawLine(QPointF(_x + 2, _y + _size - 2), QPointF(_x + _size - 2, _y + 2));
 }
 
-void Cube::move(const QColor activeColor)
+void Cube::move()
 {
 
 }

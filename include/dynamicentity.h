@@ -17,7 +17,7 @@ public:
     void applyForce(qreal ix, qreal iy);
     void applyGravity(qreal g);
 
-    virtual void move(const QColor activeColor) = 0;
+    virtual void move() = 0;
 
 protected:
     bool _inAir;

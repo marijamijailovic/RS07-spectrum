@@ -31,13 +31,13 @@ void Player::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget 
     painter->drawPixmap(-_w/2, -_h/2, _w, _h, QPixmap(":sprites/astronaut.png"));
 }
 
-void Player::move(const QColor activeColor)
+void Player::move()
 {
     QTextStream out(stdout);
     QList<QGraphicsItem *> collidingObjects = collidingItems();
     int ignoredCollisions = 0;
     foreach (QGraphicsItem *item, collidingObjects) {
-        if ( !((Entity*)item)->collidable() || activeColor == ((Entity*)item)->color()) {
+        if ( !((Entity*)item)->collidable()) {
             ignoredCollisions++;
             //out << "no collision\n";
             continue;
