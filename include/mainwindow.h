@@ -22,10 +22,12 @@ public:
 
 private slots:
     void on_btnResumeGame_clicked();
-
     void on_btnExit_clicked();
+    void on_btnNewGame_clicked();
 
 private:
+    void initializeGameWindow();
+
     Ui::MainWindow *_ui;
     SpectrumGame *_game;
 };
