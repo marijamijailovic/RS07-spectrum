@@ -2,15 +2,14 @@
 
 SpectrumGame::SpectrumGame(QGraphicsView *parent) :
     _parent(parent),
-    _player(new Player(200, 180))
+    _player(new Player(200, 180)),
+    _level(new Level(":levels/test.lvl", *_player))
 {
     // Creating a player and adding to scene
-    //_player.reset(new Player(200, 180));
     addItem(&(*_player));
     setBackgroundBrush(QBrush(_activeColor));
 
-    // Creating new level
-    _level = new Level(":levels/test.lvl", *_player);
+    // Loading new level
     _level->load(this);
 
     // Creating timer for gravity function
@@ -25,8 +24,6 @@ SpectrumGame::~SpectrumGame()
 {
     _gameTicker->stop();
     delete _gameTicker;
-    //delete _player;
-    delete _level;
 }
 
 void SpectrumGame::pause()

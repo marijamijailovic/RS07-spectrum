@@ -39,7 +39,7 @@ private:
     QGraphicsView *_parent;
     qreal _gravCoeff = 1;
     QScopedPointer<Player> _player;
-    Level *_level;
+    QScopedPointer<Level> _level;
     QTimer *_gameTicker;
     QColor _activeColor = SpectrumColors::defaultActiveColor;
 };
