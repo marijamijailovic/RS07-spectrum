@@ -36,8 +36,6 @@ void SpectrumGame::pause()
 void SpectrumGame::resume()
 {
     _gameTicker->start();
-    setFocus();
-    _parent->show();
 }
 
 void SpectrumGame::keyPressEvent(QKeyEvent *event)
