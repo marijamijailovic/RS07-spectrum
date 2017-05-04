@@ -11,7 +11,7 @@
 
 class Level {
 public:
-    Level(const QString &fileName, Player *player);
+    Level(const QString &fileName, Player &player);
     ~Level();
 
     Level(const Level&) = delete;
@@ -26,7 +26,7 @@ public:
 private:
     std::vector<Entity *> _staticEntities;
     std::vector<DynamicEntity *> _dynamicEntities;
-    Player *_player;
+    Player &_player;
 };
 
 #endif // LEVEL_H

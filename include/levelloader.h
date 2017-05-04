@@ -25,7 +25,7 @@ public:
     LevelLoader(const LevelLoader&) = delete;
     LevelLoader& operator=(const LevelLoader&) = delete;
 
-    void parse(Player *player, std::vector<Entity *> &staticEntities, std::vector<DynamicEntity *> &dynamicEntities) const;
+    void parse(Player &player, std::vector<Entity *> &staticEntities, std::vector<DynamicEntity *> &dynamicEntities) const;
 
 private:
     void addStaticEntity(std::vector<Entity *> &staticEntities, QTextStream &lineStream, QColor &entityColor) const;
