@@ -1,7 +1,7 @@
 #include "include/level.h"
 
 
-Level::Level(const QString &fileName, Player *player) :
+Level::Level(const QString &fileName, Player &player) :
     _player(player)
 {
     LevelLoader l(fileName);

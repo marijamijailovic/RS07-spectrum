@@ -1,31 +1,29 @@
 #include "include/game.h"
 
 SpectrumGame::SpectrumGame(QGraphicsView *parent) :
-    _parent(parent)
+    _parent(parent),
+    _player(new Player(200, 180)),
+    _level(new Level(":levels/test.lvl", *_player)),
+    _gameTicker(new QTimer())
 {
-    // Creating a player and adding to scene
-    _player = new Player(200, 180);
-    addItem(_player);
+    // Adding player to the scene
+    addItem(&(*_player));
     setBackgroundBrush(QBrush(_activeColor));
 
-    // Creating new level
-    _level = new Level(":levels/test.lvl", _player);
+    // Loading new level
     _level->load(this);
 
-    // Creating timer for gravity function
-    _gameTicker = new QTimer();
-    connect(_gameTicker, SIGNAL(timeout()), this, SLOT(update()));
+    // Connecting timer to game-tick function
+    connect(&(*_gameTicker), SIGNAL(timeout()), this, SLOT(update()));
     _gameTicker->start(40);
 
+    // Setting focus to scene
     setFocus();
 }
 
 SpectrumGame::~SpectrumGame()
 {
     _gameTicker->stop();
-    delete _gameTicker;
-    delete _player;
-    delete _level;
 }
 
 void SpectrumGame::pause()
@@ -38,8 +36,6 @@ void SpectrumGame::pause()
 void SpectrumGame::resume()
 {
     _gameTicker->start();
-    setFocus();
-    _parent->show();
 }
 
 void SpectrumGame::keyPressEvent(QKeyEvent *event)

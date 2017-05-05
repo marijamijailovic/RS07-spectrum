@@ -9,20 +9,21 @@ MainWindow::MainWindow(QWidget *parent) :
     _ui(new Ui::MainWindow)
 {
     _ui->setupUi(this);
+    _game.reset(new SpectrumGame(_ui->gwDisplay));
 
-    _game = new SpectrumGame(_ui->gwDisplay);
     initializeGameWindow();
 }
 
 MainWindow::~MainWindow()
 {
-    delete _game;
     delete _ui;
 }
 
 void MainWindow::on_btnResumeGame_clicked()
 {
     _game->resume();
+    _ui->gwDisplay->show();
+    _ui->gwDisplay->setFocus();
 }
 
 void MainWindow::on_btnExit_clicked()
@@ -32,8 +33,7 @@ void MainWindow::on_btnExit_clicked()
 
 void MainWindow::on_btnNewGame_clicked()
 {
-    delete _game;
-    _game = new SpectrumGame(_ui->gwDisplay);
+    _game.reset(new SpectrumGame(_ui->gwDisplay));
     initializeGameWindow();
 
     _ui->gwDisplay->show();
@@ -42,7 +42,7 @@ void MainWindow::on_btnNewGame_clicked()
 
 void MainWindow::initializeGameWindow()
 {
-    _ui->gwDisplay->setScene(_game);
+    _ui->gwDisplay->setScene(&(*_game));
     _ui->gwDisplay->raise();
     _ui->gwDisplay->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     _ui->gwDisplay->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);

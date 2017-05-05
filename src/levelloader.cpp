@@ -30,7 +30,7 @@ LevelLoader::~LevelLoader()
     delete _fStream;
 }
 
-void LevelLoader::parse(Player *player, std::vector<Entity *> &staticEntities, std::vector<DynamicEntity *> &dynamicEntities) const
+void LevelLoader::parse(Player &player, std::vector<Entity *> &staticEntities, std::vector<DynamicEntity *> &dynamicEntities) const
 {
     QColor entityColor = SpectrumColors::gray;
     // Read level file line by line
@@ -60,7 +60,7 @@ void LevelLoader::parse(Player *player, std::vector<Entity *> &staticEntities, s
         case 'p':   // Player
             int x, y;
             lineStream >> x >> y;
-            player->drawAt(x, y);
+            player.drawAt(x, y);
             break;
         default:
             break;
