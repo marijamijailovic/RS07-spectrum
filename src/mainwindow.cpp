@@ -75,6 +75,12 @@ void MainWindow::on_pbLevel2_clicked()
     _ui->btnResumeGame->click();
 }
 
+void MainWindow::on_pbLevel3_clicked()
+{
+    _game->loadLevel("003");
+    _ui->btnResumeGame->click();
+}
+
 void MainWindow::on_pbHideLevelPanel_clicked()
 {
     _ui->frLevelTree->hide();

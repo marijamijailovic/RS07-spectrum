@@ -226,12 +226,30 @@ border: 1px solid white;</string>
       <string>Hide Level Tree</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="pbLevel3">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>30</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white;
+border: 1px solid white;</string>
+     </property>
+     <property name="text">
+      <string>3</string>
+     </property>
+    </widget>
     <zorder>pbLevel1</zorder>
     <zorder>pbLevel2</zorder>
     <zorder>gwDisplay</zorder>
     <zorder>pbLevel2</zorder>
     <zorder>pbLevelDemo</zorder>
     <zorder>pbHideLevelPanel</zorder>
+    <zorder>pbLevel3</zorder>
    </widget>
   </widget>
   <widget class="QToolBar" name="tbMainToolbar">
