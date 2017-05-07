@@ -23,6 +23,7 @@ For now the only way to run the project is to import it in QtCreator and run it 
 | ```Right``` , ```D``` | Move right |
 | ```Up``` , ```W``` | Jump |
 | ```Down``` , ```S``` | Stop |
+| ```P``` | Pause / Game Menu |
 | ```1``` | Select blue color as active |
 | ```2``` | Select green color as active |
 | ```3``` | Select yellow color as active |
