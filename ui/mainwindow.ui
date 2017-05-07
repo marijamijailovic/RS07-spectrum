@@ -51,7 +51,7 @@
     <property name="geometry">
      <rect>
       <x>390</x>
-      <y>160</y>
+      <y>100</y>
       <width>200</width>
       <height>50</height>
      </rect>
@@ -97,7 +97,7 @@ border: 1px solid white;</string>
     <property name="geometry">
      <rect>
       <x>390</x>
-      <y>220</y>
+      <y>160</y>
       <width>200</width>
       <height>50</height>
      </rect>
@@ -115,6 +115,141 @@ border: 1px solid white;</string>
     <property name="text">
      <string>New Game</string>
     </property>
+   </widget>
+   <widget class="QPushButton" name="btnChooseLevel">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>220</y>
+      <width>200</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: white;
+border: 1px solid white;</string>
+    </property>
+    <property name="text">
+     <string>Choose Level</string>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frLevelTree">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>30</y>
+      <width>541</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: rgba(30, 30, 30, 0.99);
+background-image: url(:/gui/lvltree.png); </string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="pbLevel1">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>30</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white;
+border: 1px solid white;</string>
+     </property>
+     <property name="text">
+      <string>1</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pbLevel2">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>30</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white;
+border: 1px solid white;</string>
+     </property>
+     <property name="text">
+      <string>2</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pbLevelDemo">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>102</y>
+       <width>51</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white;
+border: 1px solid white;</string>
+     </property>
+     <property name="text">
+      <string>demo</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pbHideLevelPanel">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>160</y>
+       <width>131</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white;
+border: 1px solid white;</string>
+     </property>
+     <property name="text">
+      <string>Hide Level Tree</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pbLevel3">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>30</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white;
+border: 1px solid white;</string>
+     </property>
+     <property name="text">
+      <string>3</string>
+     </property>
+    </widget>
+    <zorder>pbLevel1</zorder>
+    <zorder>pbLevel2</zorder>
+    <zorder>gwDisplay</zorder>
+    <zorder>pbLevel2</zorder>
+    <zorder>pbLevelDemo</zorder>
+    <zorder>pbHideLevelPanel</zorder>
+    <zorder>pbLevel3</zorder>
    </widget>
   </widget>
   <widget class="QToolBar" name="tbMainToolbar">

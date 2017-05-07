@@ -25,6 +25,12 @@ private slots:
     void on_btnResumeGame_clicked();
     void on_btnNewGame_clicked();
     void on_btnExit_clicked();
+    void on_btnChooseLevel_clicked();
+    void on_pbLevelDemo_clicked();
+    void on_pbLevel1_clicked();
+    void on_pbLevel2_clicked();
+    void on_pbLevel3_clicked();
+    void on_pbHideLevelPanel_clicked();
 
 private:
     void initializeGameWindow();

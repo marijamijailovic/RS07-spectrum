@@ -9,8 +9,11 @@ MainWindow::MainWindow(QWidget *parent) :
     _ui(new Ui::MainWindow)
 {
     _ui->setupUi(this);
-    _game.reset(new SpectrumGame(_ui->gwDisplay));
 
+    _ui->frLevelTree->hide();
+
+    // TODO show menu on start (hide resume game)
+    _game.reset(new SpectrumGame(_ui->gwDisplay));
     initializeGameWindow();
 }
 
@@ -24,6 +27,7 @@ void MainWindow::on_btnResumeGame_clicked()
     _game->resume();
     _ui->gwDisplay->show();
     _ui->gwDisplay->setFocus();
+    _ui->frLevelTree->hide();
 }
 
 void MainWindow::on_btnExit_clicked()
@@ -46,4 +50,38 @@ void MainWindow::initializeGameWindow()
     _ui->gwDisplay->raise();
     _ui->gwDisplay->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     _ui->gwDisplay->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+}
+
+void MainWindow::on_btnChooseLevel_clicked()
+{
+    _ui->frLevelTree->show();
+}
+
+void MainWindow::on_pbLevelDemo_clicked()
+{
+    _game->loadLevel("test");
+    _ui->btnResumeGame->click();
+}
+
+void MainWindow::on_pbLevel1_clicked()
+{
+    _game->loadLevel("001");
+    _ui->btnResumeGame->click();
+}
+
+void MainWindow::on_pbLevel2_clicked()
+{
+    _game->loadLevel("002");
+    _ui->btnResumeGame->click();
+}
+
+void MainWindow::on_pbLevel3_clicked()
+{
+    _game->loadLevel("003");
+    _ui->btnResumeGame->click();
+}
+
+void MainWindow::on_pbHideLevelPanel_clicked()
+{
+    _ui->frLevelTree->hide();
 }
