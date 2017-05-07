@@ -22,6 +22,8 @@ public:
     SpectrumGame(const SpectrumGame&) = delete;
     SpectrumGame& operator=(const SpectrumGame&) = delete;
 
+    void loadLevel(const QString id);
+
     void pause();
     void resume();
 

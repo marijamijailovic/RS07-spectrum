@@ -139,7 +139,7 @@ border: 1px solid white;</string>
      <string>Choose Level</string>
     </property>
    </widget>
-   <widget class="QWidget" name="verticalLayoutWidget">
+   <widget class="QWidget" name="vwLevelPanel" native="true">
     <property name="geometry">
      <rect>
       <x>600</x>

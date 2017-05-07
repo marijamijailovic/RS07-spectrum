@@ -26,6 +26,12 @@ SpectrumGame::~SpectrumGame()
     _gameTicker->stop();
 }
 
+void SpectrumGame::loadLevel(const QString id)
+{
+    _level.reset(new Level(":levels/" + id + ".lvl", *_player));
+    _level->load(this);
+}
+
 void SpectrumGame::pause()
 {
     _gameTicker->stop();
