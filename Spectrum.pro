@@ -38,7 +38,8 @@ SOURCES += \
     src/door.cpp \
     src/levelloader.cpp \
     src/wall.cpp \
-    src/ladder.cpp
+    src/ladder.cpp \
+    src/background.cpp
 
 HEADERS  += \
     include/mainwindow.h \
@@ -54,7 +55,8 @@ HEADERS  += \
     include/door.h \
     include/levelloader.h \
     include/wall.h \
-    include/ladder.h
+    include/ladder.h \
+    include/background.h
 
 FORMS    += \
     ui/mainwindow.ui
@@ -64,6 +66,3 @@ RESOURCES += \
     res/sprites/sprites.qrc \
     res/gui/gui.qrc
 
-DISTFILES += \
-    ../astronaut.png \
-    ../cat.png

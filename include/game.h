@@ -7,6 +7,7 @@
 #include <QScopedPointer>
 #include <QTimer>
 #include "include/player.h"
+#include "include/background.h"
 #include "include/level.h"
 #include "include/colors.h"
 
@@ -39,6 +40,7 @@ private:
     QGraphicsView *_parent;
     qreal _gravCoeff = 1;
     QScopedPointer<Player> _player;
+    QScopedPointer<Background> _background;
     QScopedPointer<Level> _level;
     QScopedPointer<QTimer> _gameTicker;
     QColor _activeColor = SpectrumColors::defaultActiveColor;
