@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     _ui->setupUi(this);
 
-    _ui->vwLevelPanel->hide();
+    _ui->frLevelTree->hide();
 
     // TODO show menu on start (hide resume game)
     _game.reset(new SpectrumGame(_ui->gwDisplay));
@@ -27,7 +27,7 @@ void MainWindow::on_btnResumeGame_clicked()
     _game->resume();
     _ui->gwDisplay->show();
     _ui->gwDisplay->setFocus();
-    _ui->vwLevelPanel->hide();
+    _ui->frLevelTree->hide();
 }
 
 void MainWindow::on_btnExit_clicked()
@@ -54,7 +54,7 @@ void MainWindow::initializeGameWindow()
 
 void MainWindow::on_btnChooseLevel_clicked()
 {
-    _ui->vwLevelPanel->show();
+    _ui->frLevelTree->show();
 }
 
 void MainWindow::on_pbLevelDemo_clicked()
@@ -73,4 +73,9 @@ void MainWindow::on_pbLevel2_clicked()
 {
     _game->loadLevel("002");
     _ui->btnResumeGame->click();
+}
+
+void MainWindow::on_pbHideLevelPanel_clicked()
+{
+    _ui->frLevelTree->hide();
 }

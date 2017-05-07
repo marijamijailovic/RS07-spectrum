@@ -139,63 +139,99 @@ border: 1px solid white;</string>
      <string>Choose Level</string>
     </property>
    </widget>
-   <widget class="QWidget" name="vwLevelPanel" native="true">
+   <widget class="QFrame" name="frLevelTree">
     <property name="geometry">
      <rect>
-      <x>600</x>
-      <y>220</y>
-      <width>181</width>
-      <height>111</height>
+      <x>230</x>
+      <y>30</y>
+      <width>541</width>
+      <height>181</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="vlLevelsPanel">
-     <item>
-      <widget class="QPushButton" name="pbLevelDemo">
-       <property name="styleSheet">
-        <string notr="true">color: white;
+    <property name="styleSheet">
+     <string notr="true">background: rgba(30, 30, 30, 0.99);
+background-image: url(:/gui/lvltree.png); </string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="pbLevel1">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>30</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white;
 border: 1px solid white;</string>
-       </property>
-       <property name="text">
-        <string>demo</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pbLevel1">
-       <property name="styleSheet">
-        <string notr="true">color: white;
+     </property>
+     <property name="text">
+      <string>1</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pbLevel2">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>30</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white;
 border: 1px solid white;</string>
-       </property>
-       <property name="text">
-        <string>1</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pbLevel2">
-       <property name="styleSheet">
-        <string notr="true">color: white;
+     </property>
+     <property name="text">
+      <string>2</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pbLevelDemo">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>102</y>
+       <width>51</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white;
 border: 1px solid white;</string>
-       </property>
-       <property name="text">
-        <string>2</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="vsLevelSpacer">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>40</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
+     </property>
+     <property name="text">
+      <string>demo</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pbHideLevelPanel">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>160</y>
+       <width>131</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white;
+border: 1px solid white;</string>
+     </property>
+     <property name="text">
+      <string>Hide Level Tree</string>
+     </property>
+    </widget>
+    <zorder>pbLevel1</zorder>
+    <zorder>pbLevel2</zorder>
+    <zorder>gwDisplay</zorder>
+    <zorder>pbLevel2</zorder>
+    <zorder>pbLevelDemo</zorder>
+    <zorder>pbHideLevelPanel</zorder>
    </widget>
   </widget>
   <widget class="QToolBar" name="tbMainToolbar">
