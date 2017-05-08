@@ -103,6 +103,8 @@ void SpectrumGame::changeActiveColor(QKeyEvent *event)
         else if (event->key() == Qt::Key_7)
             _activeColor = SpectrumColors::pink;
 
+        // TODO add
+
         update();
         setBackgroundBrush(QBrush(_activeColor));
     }
