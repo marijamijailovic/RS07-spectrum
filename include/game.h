@@ -41,7 +41,9 @@ private:
     void changeActiveColor(QKeyEvent *event);
     void animateColorChange();
     void stopColorChangeAnimation();
+    void hideObjectsWithActiveColor();
 
+    bool _paused;
     QGraphicsView *_parent;
     qreal _gravCoeff = 1;
     QScopedPointer<Player> _player;
