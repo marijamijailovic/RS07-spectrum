@@ -1,11 +1,11 @@
 #include "include/level.h"
 
 
-Level::Level(const QString &fileName, Player &player) :
+Level::Level(const QString &fileName, Player &player, QColor *activeColor) :
     _player(player)
 {
     LevelLoader l(fileName);
-    l.parse(_player, _staticEntities, _dynamicEntities);
+    l.parse(_player, activeColor, _staticEntities, _dynamicEntities);
 }
 
 Level::~Level()

@@ -30,8 +30,13 @@ LevelLoader::~LevelLoader()
     delete _fStream;
 }
 
-void LevelLoader::parse(Player &player, std::vector<Entity *> &staticEntities, std::vector<DynamicEntity *> &dynamicEntities) const
+void LevelLoader::parse(Player &player,
+                        QColor *activeColor,
+                        std::vector<Entity *> &staticEntities,
+                        std::vector<DynamicEntity *> &dynamicEntities) const
 {
+    // TODO Read level default color
+
     QColor entityColor = SpectrumColors::gray;
     // Read level file line by line
     while (!_fStream->atEnd()) {
@@ -91,7 +96,9 @@ QColor LevelLoader::readColor(QTextStream &lineStream) const
         return SpectrumColors::pink;
 }
 
-void LevelLoader::addStaticEntity(std::vector<Entity *> &staticEntities, QTextStream &lineStream, QColor &entityColor) const
+void LevelLoader::addStaticEntity(std::vector<Entity *> &staticEntities,
+                                  QTextStream &lineStream,
+                                  QColor &entityColor) const
 {
     int x, y, w, h;
     QString entityClass;
@@ -115,10 +122,11 @@ void LevelLoader::addStaticEntity(std::vector<Entity *> &staticEntities, QTextSt
     }
     if (SpectrumColors::defaultActiveColor == entityColor)
         staticEntities.back()->hide();
-    // TODO Add here other static object types
 }
 
-void LevelLoader::addDynamicEntity(std::vector<DynamicEntity *> &dynamicEntities, QTextStream &lineStream, QColor &entityColor) const
+void LevelLoader::addDynamicEntity(std::vector<DynamicEntity *> &dynamicEntities,
+                                   QTextStream &lineStream,
+                                   QColor &entityColor) const
 {
     int x, y, w, h;
     QString entityClass;

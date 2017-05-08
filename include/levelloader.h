@@ -25,11 +25,18 @@ public:
     LevelLoader(const LevelLoader&) = delete;
     LevelLoader& operator=(const LevelLoader&) = delete;
 
-    void parse(Player &player, std::vector<Entity *> &staticEntities, std::vector<DynamicEntity *> &dynamicEntities) const;
+    void parse(Player &player,
+               QColor *activeColor,
+               std::vector<Entity *> &staticEntities,
+               std::vector<DynamicEntity *> &dynamicEntities) const;
 
 private:
-    void addStaticEntity(std::vector<Entity *> &staticEntities, QTextStream &lineStream, QColor &entityColor) const;
-    void addDynamicEntity(std::vector<DynamicEntity *> &dynamicEntities, QTextStream &lineStream, QColor &entityColor) const;
+    void addStaticEntity(std::vector<Entity *> &staticEntities,
+                         QTextStream &lineStream,
+                         QColor &entityColor) const;
+    void addDynamicEntity(std::vector<DynamicEntity *> &dynamicEntities,
+                          QTextStream &lineStream,
+                          QColor &entityColor) const;
     QColor readColor(QTextStream &lineStream) const;
 
     QFile *_levelFile;

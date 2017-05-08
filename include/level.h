@@ -11,7 +11,7 @@
 
 class Level {
 public:
-    Level(const QString &fileName, Player &player);
+    Level(const QString &fileName, Player &player, QColor *activeColor);
     ~Level();
 
     Level(const Level&) = delete;

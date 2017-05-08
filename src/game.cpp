@@ -4,7 +4,7 @@ SpectrumGame::SpectrumGame(QGraphicsView *parent) :
     _parent(parent),
     _player(new Player(200, 180)),
     _background(new Background()),
-    _level(new Level(":levels/test.lvl", *_player)),
+    _level(new Level(":levels/test.lvl", *_player, &_activeColor)),
     _gameTicker(new QTimer())
 {
     // Adding player to the scene
@@ -30,7 +30,7 @@ SpectrumGame::~SpectrumGame()
 
 void SpectrumGame::loadLevel(const QString id)
 {
-    _level.reset(new Level(":levels/" + id + ".lvl", *_player));
+    _level.reset(new Level(":levels/" + id + ".lvl", *_player, &_activeColor));
     _level->load(this);
 }
 
