@@ -121,7 +121,7 @@ void SpectrumGame::animateColorChange()
     _colorCircle.reset(new ColorChanger(_parent, _player->x(), _player->y(), _activeColor));
     addItem(&(*_colorCircle));
     _parent->update();
-    QTimer::singleShot(1000, this, stopColorChangeAnimation);
+    QTimer::singleShot(1000, this, SLOT(stopColorChangeAnimation()));
 }
 
 void SpectrumGame::stopColorChangeAnimation()

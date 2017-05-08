@@ -36,11 +36,11 @@ public:
 
 private slots:
     void update() const;
+    void stopColorChangeAnimation();
 
 private:
     void changeActiveColor(QKeyEvent *event);
     void animateColorChange();
-    void stopColorChangeAnimation();
     void hideObjectsWithActiveColor();
 
     bool _paused;
