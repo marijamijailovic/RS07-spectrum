@@ -172,7 +172,7 @@ background-image: url(:/gui/lvltree.png); </string>
 border: 1px solid white;</string>
      </property>
      <property name="text">
-      <string>1</string>
+      <string>001</string>
      </property>
     </widget>
     <widget class="QPushButton" name="pbLevel2">
@@ -189,7 +189,7 @@ border: 1px solid white;</string>
 border: 1px solid white;</string>
      </property>
      <property name="text">
-      <string>2</string>
+      <string>002</string>
      </property>
     </widget>
     <widget class="QPushButton" name="pbLevelDemo">
@@ -206,7 +206,7 @@ border: 1px solid white;</string>
 border: 1px solid white;</string>
      </property>
      <property name="text">
-      <string>demo</string>
+      <string>test</string>
      </property>
     </widget>
     <widget class="QPushButton" name="pbHideLevelPanel">
@@ -240,16 +240,9 @@ border: 1px solid white;</string>
 border: 1px solid white;</string>
      </property>
      <property name="text">
-      <string>3</string>
+      <string>003</string>
      </property>
     </widget>
-    <zorder>pbLevel1</zorder>
-    <zorder>pbLevel2</zorder>
-    <zorder>gwDisplay</zorder>
-    <zorder>pbLevel2</zorder>
-    <zorder>pbLevelDemo</zorder>
-    <zorder>pbHideLevelPanel</zorder>
-    <zorder>pbLevel3</zorder>
    </widget>
   </widget>
   <widget class="QToolBar" name="tbMainToolbar">
@@ -280,5 +273,73 @@ border: 1px solid white;</string>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pbLevel1</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_pbLevel_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>310</x>
+     <y>117</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pbLevel2</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_pbLevel_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>480</x>
+     <y>117</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pbLevel3</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_pbLevel_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>650</x>
+     <y>117</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pbLevelDemo</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_pbLevel_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>315</x>
+     <y>189</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>on_pbLevel_clicked()</slot>
+ </slots>
 </ui>

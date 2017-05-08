@@ -57,31 +57,14 @@ void MainWindow::on_btnChooseLevel_clicked()
     _ui->frLevelTree->show();
 }
 
-void MainWindow::on_pbLevelDemo_clicked()
-{
-    _game->loadLevel("test");
-    _ui->btnResumeGame->click();
-}
-
-void MainWindow::on_pbLevel1_clicked()
-{
-    _game->loadLevel("001");
-    _ui->btnResumeGame->click();
-}
-
-void MainWindow::on_pbLevel2_clicked()
-{
-    _game->loadLevel("002");
-    _ui->btnResumeGame->click();
-}
-
-void MainWindow::on_pbLevel3_clicked()
-{
-    _game->loadLevel("003");
-    _ui->btnResumeGame->click();
-}
-
 void MainWindow::on_pbHideLevelPanel_clicked()
 {
     _ui->frLevelTree->hide();
+}
+
+void MainWindow::on_pbLevel_clicked()
+{
+    QPushButton* btn = qobject_cast<QPushButton*>(sender());
+    _game->loadLevel(btn->text());
+    _ui->btnResumeGame->click();
 }
