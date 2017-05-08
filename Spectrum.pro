@@ -39,7 +39,8 @@ SOURCES += \
     src/levelloader.cpp \
     src/wall.cpp \
     src/ladder.cpp \
-    src/background.cpp
+    src/background.cpp \
+    src/colorchanger.cpp
 
 HEADERS  += \
     include/mainwindow.h \
@@ -56,7 +57,8 @@ HEADERS  += \
     include/levelloader.h \
     include/wall.h \
     include/ladder.h \
-    include/background.h
+    include/background.h \
+    include/colorchanger.h
 
 FORMS    += \
     ui/mainwindow.ui

@@ -3,7 +3,7 @@
 Background::Background()
     : Entity(0, 0, Qt::gray, false)
 {
-    setZValue(-1);
+    setZValue(-0.9);
 }
 
 QRectF Background::boundingRect() const

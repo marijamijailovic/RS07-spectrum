@@ -103,15 +103,30 @@ void SpectrumGame::changeActiveColor(QKeyEvent *event)
         else if (event->key() == Qt::Key_7)
             _activeColor = SpectrumColors::pink;
 
-        // TODO add
-
+        animateColorChange();
         update();
-        setBackgroundBrush(QBrush(_activeColor));
     }
-    // Hide object from the scene that have the same color as activeColor
+
+    // Hide objects from the scene that have the same color as activeColor
     foreach (QGraphicsItem* item, items())
         if (((Entity*)item)->color() == _activeColor)
             item->hide();
+}
+
+void SpectrumGame::animateColorChange()
+{
+    _gameTicker->stop();
+    _colorCircle.reset(new ColorChanger(_parent, _player->x(), _player->y(), _activeColor));
+    addItem(&(*_colorCircle));
+    _parent->update();
+    QTimer::singleShot(1000, this, stopColorChangeAnimation);
+}
+
+void SpectrumGame::stopColorChangeAnimation()
+{
+    removeItem(&(*_colorCircle));
+    _gameTicker->start();
+    setBackgroundBrush(QBrush(_activeColor));
 }
 
 void SpectrumGame::update() const
