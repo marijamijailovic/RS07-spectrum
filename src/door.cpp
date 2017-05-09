@@ -2,9 +2,12 @@
 
 Door::Door(qreal x, qreal y, const QColor color, bool locked) :
     Entity(x, y, color, false),
-    _locked(locked)
+    _barH(_h),
+    _locked(locked),
+    _drawBars(locked),
+    _barShrinkTicker(new QTimer())
 {
-
+    connect(&(*_barShrinkTicker), SIGNAL(timeout()), this, SLOT(shrinkBars()));
 }
 
 QRectF Door::boundingRect() const
@@ -29,20 +32,39 @@ void Door::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
     painter->setBrush(_color);
     painter->drawRect(_x, _y + _w/2, _w, _h - _w/2);
     painter->drawChord(_x, _y, _w, _w, 0, 180 * 16);
-    // If the door is locked then draw a lock as well
-    /*if (_locked) {
-        painter->setBrush(SpectrumColors::gray);
-        // TODO draw a nice lock
-        painter->drawRect(_x, _y + _h/3, _w, _h/10);
-    }*/
-}
 
-void Door::unlock()
-{
-    _locked = false;
+    if (_drawBars) {
+        painter->setBrush(SpectrumColors::gray);
+        painter->drawRect(_x + _w/4 - 2, _y + _w/12, 4, _barH - _w/12);
+        painter->drawRect(_x + _w/2 - 2, _y, 4, _barH);
+        painter->drawRect(_x + 3*_w/4 - 2, _y + _w/12, 4, _barH - _w/12);
+    }
+
+    if (_locked) {
+
+    }
 }
 
 void Door::lock()
 {
     _locked = true;
+    _drawBars = true;
+    _barH = _h;
 }
+
+void Door::unlock()
+{
+    _locked = false;
+    _barShrinkTicker->start(20);
+}
+
+void Door::shrinkBars()
+{
+    if (_barH > 0)
+        _barH -= 5;
+    else {
+        _drawBars = false;
+        _barShrinkTicker->stop();
+    }
+}
+
