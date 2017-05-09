@@ -91,16 +91,24 @@ void LevelLoader::addStaticEntity(std::vector<Entity *> &staticEntities,
 {
     int x, y, w, h;
     QString entityClass;
-    lineStream >> entityClass >> x >> y >> w >> h;
+    lineStream >> entityClass >> x >> y;
 
-    if (entityClass == "block")
+    if (entityClass == "block") {
+        lineStream >> w >> h;
         staticEntities.push_back(new Block(x, y, w, h));
-    else if (entityClass == "wall")
+    }
+    else if (entityClass == "wall") {
+        lineStream >> w >> h;
         staticEntities.push_back(new Wall(x, y, w, h, entityColor));
-    else if (entityClass == "ladder")
+    }
+    else if (entityClass == "ladder") {
+        lineStream >> w >> h;
         staticEntities.push_back(new Ladder(x, y, w, h, entityColor));
+    }
     else if (entityClass == "door") {
-        Door *newDoor = new Door(x, y, entityColor);
+        QString nextLevel;
+        lineStream >> nextLevel;
+        Door *newDoor = new Door(x, y, nextLevel + ".lvl", entityColor);
         staticEntities.push_back(newDoor);
         // If there is a key next, bind the door and the key
         if (! lineStream.atEnd() ) {

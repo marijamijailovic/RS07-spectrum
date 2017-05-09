@@ -34,7 +34,7 @@ private:
     void addStaticEntity(std::vector<Entity *> &staticEntities,
                          QTextStream &lineStream,
                          const QColor &entityColor,
-                         const QColor& activeColor) const;
+                         const QColor &activeColor) const;
     void addDynamicEntity(std::vector<DynamicEntity *> &dynamicEntities,
                           QTextStream &lineStream,
                           const QColor &entityColor,

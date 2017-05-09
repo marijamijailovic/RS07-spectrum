@@ -68,6 +68,9 @@ void SpectrumGame::keyPressEvent(QKeyEvent *event)
         pause();
     else if (event->key() == Qt::Key_Escape)    // TODO remove exit on ESC
         exit(EXIT_SUCCESS);
+    else if (event->key() == Qt::Key_E) {
+        // TODO add going through the door if it's unlocked
+    }
     else // TODO add check for numbers
         changeActiveColor(event);
 }
