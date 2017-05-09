@@ -8,9 +8,10 @@ SpectrumGame::SpectrumGame(QGraphicsView *parent) :
     _level(new Level(":levels/test.lvl", *_player, &_activeColor)),
     _gameTicker(new QTimer())
 {
+    //addItem(&(*_background)); // TODO Find a nice background picture
+
     // Adding player to the scene
     addItem(&(*_player));
-    //addItem(&(*_background));
     setBackgroundBrush(QBrush(_activeColor));
 
     // Loading new level
@@ -120,8 +121,6 @@ void SpectrumGame::changeActiveColor(QKeyEvent *event)
 
 void SpectrumGame::animateColorChange()
 {
-    //_gameTicker->stop();
-    //_paused = true;
     _colorCircle.reset(new ColorChanger(_parent, _player->x(), _player->y(), _activeColor));
     addItem(&(*_colorCircle));
     _parent->update();
@@ -132,8 +131,6 @@ void SpectrumGame::stopColorChangeAnimation()
 {
     removeItem(&(*_colorCircle));
     setBackgroundBrush(QBrush(_activeColor));
-    //_gameTicker->start();
-    //_paused = false;
     hideObjectsWithActiveColor();
 }
 
