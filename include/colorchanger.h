@@ -11,9 +11,11 @@
 class ColorChanger : public QObject, public QGraphicsItem
 {
     Q_OBJECT
+    Q_INTERFACES(QGraphicsItem)
 
 public:
     ColorChanger(QGraphicsView *view, qreal x, qreal y, QColor color);
+
     QRectF boundingRect() const override;
     QPainterPath shape() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
