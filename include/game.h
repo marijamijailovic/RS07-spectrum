@@ -10,6 +10,7 @@
 #include "include/background.h"
 #include "include/level.h"
 #include "include/colors.h"
+#include "include/colorchanger.h"
 
 
 class SpectrumGame : public QGraphicsScene
@@ -35,10 +36,14 @@ public:
 
 private slots:
     void update() const;
+    void stopColorChangeAnimation();
 
 private:
     void changeActiveColor(QKeyEvent *event);
+    void animateColorChange();
+    void hideObjectsWithActiveColor();
 
+    bool _paused;
     QGraphicsView *_parent;
     qreal _gravCoeff = 1;
     QScopedPointer<Player> _player;
@@ -46,6 +51,8 @@ private:
     QScopedPointer<Level> _level;
     QScopedPointer<QTimer> _gameTicker;
     QColor _activeColor = SpectrumColors::defaultActiveColor;
+    QScopedPointer<ColorChanger> _colorCircle;
+    QScopedPointer<QTimer> _colorCircleTicker;
 };
 
 #endif // GAME_H

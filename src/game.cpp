@@ -1,15 +1,17 @@
 #include "include/game.h"
 
 SpectrumGame::SpectrumGame(QGraphicsView *parent) :
+    _paused(false),
     _parent(parent),
     _player(new Player(200, 180)),
     _background(new Background()),
     _level(new Level(":levels/test.lvl", *_player, &_activeColor)),
     _gameTicker(new QTimer())
 {
+    //addItem(&(*_background)); // TODO Find a nice background picture
+
     // Adding player to the scene
     addItem(&(*_player));
-    addItem(&(*_background));
     setBackgroundBrush(QBrush(_activeColor));
 
     // Loading new level
@@ -37,6 +39,7 @@ void SpectrumGame::loadLevel(const QString id)
 void SpectrumGame::pause()
 {
     _gameTicker->stop();
+    _paused = true;
     clearFocus();
     _parent->hide();
 }
@@ -44,10 +47,14 @@ void SpectrumGame::pause()
 void SpectrumGame::resume()
 {
     _gameTicker->start();
+    _paused = false;
 }
 
 void SpectrumGame::keyPressEvent(QKeyEvent *event)
 {
+    if (_paused)
+        return;
+
     if (event->key() == Qt::Key_Left || event->key() == Qt::Key_A)
         _player->applyForce(-8,0);
     else if (event->key() == Qt::Key_Right || event->key() == Qt::Key_D)
@@ -60,7 +67,7 @@ void SpectrumGame::keyPressEvent(QKeyEvent *event)
         pause();
     else if (event->key() == Qt::Key_Escape)    // TODO remove exit on ESC
         exit(EXIT_SUCCESS);
-    else
+    else // TODO add check for numbers
         changeActiveColor(event);
 }
 
@@ -88,27 +95,48 @@ void SpectrumGame::changeActiveColor(QKeyEvent *event)
         }
 
     if (shouldChangeActiveColor) {
-        if (event->key() == Qt::Key_1)
+        if (event->key() == Qt::Key_1 && _activeColor != SpectrumColors::blue)
             _activeColor = SpectrumColors::blue;
-        else if (event->key() == Qt::Key_2)
+        else if (event->key() == Qt::Key_2 && _activeColor != SpectrumColors::green)
             _activeColor = SpectrumColors::green;
-        else if (event->key() == Qt::Key_3)
+        else if (event->key() == Qt::Key_3 && _activeColor != SpectrumColors::yellow)
             _activeColor = SpectrumColors::yellow;
-        else if (event->key() == Qt::Key_4)
+        else if (event->key() == Qt::Key_4 && _activeColor != SpectrumColors::red)
             _activeColor = SpectrumColors::red;
-        else if (event->key() == Qt::Key_5)
+        else if (event->key() == Qt::Key_5 && _activeColor != SpectrumColors::orange)
             _activeColor = SpectrumColors::orange;
-        else if (event->key() == Qt::Key_6)
+        else if (event->key() == Qt::Key_6 && _activeColor != SpectrumColors::purple)
             _activeColor = SpectrumColors::purple;
-        else if (event->key() == Qt::Key_7)
+        else if (event->key() == Qt::Key_7 && _activeColor != SpectrumColors::pink)
             _activeColor = SpectrumColors::pink;
+        else
+            hideObjectsWithActiveColor();
 
-        // TODO add
-
+        animateColorChange();
         update();
-        setBackgroundBrush(QBrush(_activeColor));
+    } else {
+        hideObjectsWithActiveColor();
     }
-    // Hide object from the scene that have the same color as activeColor
+}
+
+void SpectrumGame::animateColorChange()
+{
+    _colorCircle.reset(new ColorChanger(_parent, _player->x(), _player->y(), _activeColor));
+    addItem(&(*_colorCircle));
+    _parent->update();
+    QTimer::singleShot(300, this, SLOT(stopColorChangeAnimation()));
+}
+
+void SpectrumGame::stopColorChangeAnimation()
+{
+    removeItem(&(*_colorCircle));
+    setBackgroundBrush(QBrush(_activeColor));
+    hideObjectsWithActiveColor();
+}
+
+void SpectrumGame::hideObjectsWithActiveColor()
+{
+    // Hide objects from the scene that have the same color as activeColor
     foreach (QGraphicsItem* item, items())
         if (((Entity*)item)->color() == _activeColor)
             item->hide();
@@ -124,4 +152,5 @@ void SpectrumGame::update() const
     }
     _player->applyGravity(_gravCoeff);
     _level->applyGravity(_gravCoeff);
+    _parent->update();
 }
