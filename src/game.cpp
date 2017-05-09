@@ -111,6 +111,8 @@ void SpectrumGame::changeActiveColor(QKeyEvent *event)
 
         animateColorChange();
         update();
+    } else {
+        hideObjectsWithActiveColor();
     }
 }
 
