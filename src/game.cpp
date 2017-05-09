@@ -66,7 +66,7 @@ void SpectrumGame::keyPressEvent(QKeyEvent *event)
         pause();
     else if (event->key() == Qt::Key_Escape)    // TODO remove exit on ESC
         exit(EXIT_SUCCESS);
-    else
+    else // TODO add check for numbers
         changeActiveColor(event);
 }
 
@@ -94,20 +94,22 @@ void SpectrumGame::changeActiveColor(QKeyEvent *event)
         }
 
     if (shouldChangeActiveColor) {
-        if (event->key() == Qt::Key_1)
+        if (event->key() == Qt::Key_1 && _activeColor != SpectrumColors::blue)
             _activeColor = SpectrumColors::blue;
-        else if (event->key() == Qt::Key_2)
+        else if (event->key() == Qt::Key_2 && _activeColor != SpectrumColors::green)
             _activeColor = SpectrumColors::green;
-        else if (event->key() == Qt::Key_3)
+        else if (event->key() == Qt::Key_3 && _activeColor != SpectrumColors::yellow)
             _activeColor = SpectrumColors::yellow;
-        else if (event->key() == Qt::Key_4)
+        else if (event->key() == Qt::Key_4 && _activeColor != SpectrumColors::red)
             _activeColor = SpectrumColors::red;
-        else if (event->key() == Qt::Key_5)
+        else if (event->key() == Qt::Key_5 && _activeColor != SpectrumColors::orange)
             _activeColor = SpectrumColors::orange;
-        else if (event->key() == Qt::Key_6)
+        else if (event->key() == Qt::Key_6 && _activeColor != SpectrumColors::purple)
             _activeColor = SpectrumColors::purple;
-        else if (event->key() == Qt::Key_7)
+        else if (event->key() == Qt::Key_7 && _activeColor != SpectrumColors::pink)
             _activeColor = SpectrumColors::pink;
+        else
+            hideObjectsWithActiveColor();
 
         animateColorChange();
         update();
