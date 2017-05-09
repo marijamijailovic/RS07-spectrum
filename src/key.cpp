@@ -21,17 +21,18 @@ QPainterPath Key::shape() const
 
 void Key::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    // Disable border drawing
-    QPen pen(Qt::NoPen);
+
+    painter->drawRect(_x, _y, _w, _h);
+
+    QPen pen(_color);
+    pen.setWidth(3);
     painter->setPen(pen);
 
     // Drawing key
-    painter->setBrush(_color);
-    painter->drawRect(_x, _y, _w/3, _h);
-    painter->drawRect(_x + _w/2 - 5, _y + _h/7, _w/2, _h/6);
-    painter->drawRect(_x + _w/2 - 5, _y + 5*_h/12, _w/5, _h/6);
-    painter->drawRect(_x - _w/8 - 1, _y + 5*_h/6 + 1, 6*_w/8, _h/6);
-
+    painter->drawArc(_x, _y + _h/3, _h/2, _h/2, 0, 360 * 16);
+    painter->fillRect(_x + _h/2, _y + _h/2, _w - _h/2, 3, _color);
+    painter->fillRect(_x + 3*_w/4, _y + _h/2, 3, 7, _color);
+    painter->fillRect(_x + _w - 3, _y + _h/2, 3, 10, _color);
 }
 
 void Key::unlockDoor()

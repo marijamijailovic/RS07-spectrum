@@ -20,8 +20,8 @@ public:
     Door* door() const;
 
 private:
-    const int _w = 25;
-    const int _h = 45;
+    const int _w = 50;
+    const int _h = 30;
     Door *_door;
 };
 
