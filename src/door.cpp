@@ -9,7 +9,7 @@ Door::Door(qreal x, qreal y, const QColor color, bool locked) :
 
 QRectF Door::boundingRect() const
 {
-    return QRectF(_x, _y - _h/2 + _w/2 -3, _w, 3*_h/2-_w/2 + 3);
+    return QRectF(_x, _y, _w, _h);
 }
 
 QPainterPath Door::shape() const
@@ -27,14 +27,14 @@ void Door::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 
     // Drawing door
     painter->setBrush(_color);
-    painter->drawRect(_x, _y, _w, 3*_h/4);
-    painter->drawEllipse(QPoint(_x + _w/2, _y - _h/2 + _w - 3), _w/2, _w/2);
+    painter->drawRect(_x, _y + _w/2, _w, _h - _w/2);
+    painter->drawChord(_x, _y, _w, _w, 0, 180 * 16);
     // If the door is locked then draw a lock as well
-    if (_locked) {
+    /*if (_locked) {
         painter->setBrush(SpectrumColors::gray);
         // TODO draw a nice lock
         painter->drawRect(_x, _y + _h/3, _w, _h/10);
-    }
+    }*/
 }
 
 void Door::unlock()

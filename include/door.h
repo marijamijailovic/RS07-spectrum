@@ -4,6 +4,7 @@
 #include "include/colors.h"
 #include "include/entity.h"
 
+
 class Door : public Entity
 {
 public:
