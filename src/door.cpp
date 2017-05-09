@@ -5,8 +5,8 @@ Door::Door(qreal x, qreal y, const QString &nextLevel, const QColor color, bool 
     _barH(_h - _w/12),
     _locked(locked),
     _drawBars(locked),
-    _nextLevel(nextLevel),
-    _barShrinkTicker(new QTimer())
+    _barShrinkTicker(new QTimer()),
+    _nextLevel(nextLevel)
 {
     connect(&(*_barShrinkTicker), SIGNAL(timeout()), this, SLOT(shrinkBars()));
 }
