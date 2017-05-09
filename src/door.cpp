@@ -2,7 +2,7 @@
 
 Door::Door(qreal x, qreal y, const QColor color, bool locked) :
     Entity(x, y, color, false),
-    _barH(_h),
+    _barH(_h - _w/12),
     _locked(locked),
     _drawBars(locked),
     _barShrinkTicker(new QTimer())
@@ -38,11 +38,11 @@ void Door::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
     // Drawing bars
     if (_drawBars) {
         // Left
-        painter->drawRect(_x + _w/4 - 2, _y + _w/12, 4, _barH - _w/12);
+        painter->drawRect(_x + _w/4 - 2, _y + _w/12, 4, _barH);
         // Right
-        painter->drawRect(_x + _w/2 - 2, _y, 4, _barH);
+        painter->drawRect(_x + _w/2 - 2, _y, 4, _barH + _w/12);
         // Middle
-        painter->drawRect(_x + 3*_w/4 - 2, _y + _w/12, 4, _barH - _w/12);
+        painter->drawRect(_x + 3*_w/4 - 2, _y + _w/12, 4, _barH);
     }
 
     // Drawing door lock
@@ -59,13 +59,13 @@ void Door::lock()
 {
     _locked = true;
     _drawBars = true;
-    _barH = _h;
+    _barH = _h - _w/12;
 }
 
 void Door::unlock()
 {
     _locked = false;
-    _barShrinkTicker->start(20);
+    _barShrinkTicker->start(30);
 }
 
 void Door::shrinkBars()
@@ -75,6 +75,7 @@ void Door::shrinkBars()
     else {
         _drawBars = false;
         _barShrinkTicker->stop();
+        _barH = 0;
     }
 }
 
