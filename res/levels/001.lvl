@@ -1,3 +1,5 @@
+default
+
 # Player spawn coordinates
 p 80 430
 
@@ -17,4 +19,4 @@ s block 780 350 20 150
 
 #   Door
 c blue
-s door 600 425 130 175
+s door 600 425

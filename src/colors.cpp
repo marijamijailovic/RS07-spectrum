@@ -13,3 +13,29 @@ QColor SpectrumColors::black = QColor(0, 0, 0);
 
 
 QColor SpectrumColors::defaultActiveColor = SpectrumColors::blue;
+
+
+
+QColor SpectrumColors::getColorFromName(const QString &colorName)
+{
+    if (colorName == "red") {
+        return red;
+    } else if (colorName == "green") {
+        return green;
+    } else if (colorName == "blue") {
+        return blue;
+    } else if (colorName == "yellow") {
+        return yellow;
+    } else if (colorName == "purple") {
+        return purple;
+    } else if (colorName == "orange") {
+        return orange;
+    } else if (colorName == "gray") {
+        return gray;
+    } else if (colorName == "pink") {
+        return pink;
+    } else if (colorName == "default") {
+        return defaultActiveColor;
+    } else
+        return defaultActiveColor;
+}

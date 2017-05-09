@@ -34,6 +34,7 @@ void SpectrumGame::loadLevel(const QString id)
 {
     _level.reset(new Level(":levels/" + id + ".lvl", *_player, &_activeColor));
     _level->load(this);
+    setBackgroundBrush(QBrush(_activeColor));
 }
 
 void SpectrumGame::pause()

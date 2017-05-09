@@ -33,10 +33,12 @@ public:
 private:
     void addStaticEntity(std::vector<Entity *> &staticEntities,
                          QTextStream &lineStream,
-                         QColor &entityColor) const;
+                         const QColor &entityColor,
+                         const QColor& activeColor) const;
     void addDynamicEntity(std::vector<DynamicEntity *> &dynamicEntities,
                           QTextStream &lineStream,
-                          QColor &entityColor) const;
+                          const QColor &entityColor,
+                          const QColor &activeColor) const;
     QColor readColor(QTextStream &lineStream) const;
 
     QFile *_levelFile;
