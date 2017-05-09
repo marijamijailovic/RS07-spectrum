@@ -2,9 +2,11 @@
 
 Key::Key(qreal x, qreal y, Door *door, const QColor color) :
     Entity(x, y, color),
-    _door(door)
+    _door(door),
+    _sparkTicker(new QTimer())
 {
-
+    connect(&(*_sparkTicker), SIGNAL(timeout()), this, SLOT(updateSparklesPos()));
+    _sparkTicker->start(250);
 }
 
 QRectF Key::boundingRect() const
@@ -32,8 +34,10 @@ void Key::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
     painter->fillRect(_x + _w - 3, _y + _h/2, 3, 10, _color);
 
     // Sparkles
-    painter->drawEllipse(_x + qrand() % _w, _y + qrand() % _h, 1, 1);
-    painter->drawEllipse(_x + qrand() % _w, _y + qrand() % _h, 1, 1);
+    pen.setWidth(1);
+    painter->setPen(pen);
+    for (unsigned i = 0; i < _sparkNum; i++)
+        painter->drawEllipse(_sx[i], _sy[i], 1, 1);
 }
 
 void Key::unlockDoor()
@@ -49,4 +53,12 @@ void Key::lockDoor()
 Door* Key::door() const
 {
     return _door;
+}
+
+void Key::updateSparklesPos()
+{
+    for (unsigned i = 0; i < _sparkNum; i++)
+        _sx[i] = _x + qrand() % _w;
+    for (unsigned i = 0; i < _sparkNum; i++)
+        _sy[i] = _y + qrand() % _h;
 }
