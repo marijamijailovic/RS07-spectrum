@@ -21,9 +21,6 @@ QPainterPath Key::shape() const
 
 void Key::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-
-    painter->drawRect(_x, _y, _w, _h);
-
     QPen pen(_color);
     pen.setWidth(3);
     painter->setPen(pen);
@@ -33,6 +30,10 @@ void Key::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
     painter->fillRect(_x + _h/2, _y + _h/2, _w - _h/2, 3, _color);
     painter->fillRect(_x + 3*_w/4, _y + _h/2, 3, 7, _color);
     painter->fillRect(_x + _w - 3, _y + _h/2, 3, 10, _color);
+
+    // Sparkles
+    painter->drawEllipse(_x + qrand() % _w, _y + qrand() % _h, 1, 1);
+    painter->drawEllipse(_x + qrand() % _w, _y + qrand() % _h, 1, 1);
 }
 
 void Key::unlockDoor()
