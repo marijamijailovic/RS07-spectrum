@@ -25,6 +25,6 @@ void Block::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *
 {
     QPen p(Qt::NoPen);
     painter->setPen(p);
-    painter->setBrush(QBrush(QPixmap(":sprites/block.jpg")));
+    painter->setBrush(QBrush(QPixmap(":sprites/block.png")));
     painter->drawRect(_x, _y, _w, _h);
 }
