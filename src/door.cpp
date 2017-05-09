@@ -33,21 +33,25 @@ void Door::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
     painter->drawRect(_x, _y + _w/2, _w, _h - _w/2);
     painter->drawChord(_x, _y, _w, _w, 0, 180 * 16);
 
-
     painter->setBrush(SpectrumColors::gray);
 
+    // Drawing bars
     if (_drawBars) {
+        // Left
         painter->drawRect(_x + _w/4 - 2, _y + _w/12, 4, _barH - _w/12);
+        // Right
         painter->drawRect(_x + _w/2 - 2, _y, 4, _barH);
+        // Middle
         painter->drawRect(_x + 3*_w/4 - 2, _y + _w/12, 4, _barH - _w/12);
     }
 
+    // Drawing door lock
     if (_locked) {
         QPen p(SpectrumColors::gray);
         p.setWidth(2);
         painter->setPen(p);
         painter->drawArc(_x + _w - 10, _y + _h/2, 10, 10, 0, 180 * 16);
-        painter->drawRect(_x + _w - 10, _y + _h/2 + 5, 10, 10, SpectrumColors::gray);
+        painter->drawRect(_x + _w - 10, _y + _h/2 + 5, 10, 10);
     }
 }
 
