@@ -1,3 +1,5 @@
+red
+
 # Player spawn coordinates
 p 80 430
 
@@ -21,4 +23,4 @@ s wall 400 350 20 150
 
 #   Door
 c red
-s door 600 425 130 175
+s door 600 425 003

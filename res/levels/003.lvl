@@ -1,3 +1,5 @@
+N/A
+
 # Player spawn coordinates
 p 80 500
 
@@ -25,4 +27,4 @@ s wall 500 500 50 50
 
 #   Door
 c red
-s door 75 275 130 175
+s door 75 275 test

@@ -1,10 +1,11 @@
 #include "include/door.h"
 
-Door::Door(qreal x, qreal y, const QColor color, bool locked) :
+Door::Door(qreal x, qreal y, const QString &nextLevel, const QColor color, bool locked) :
     Entity(x, y, color, false),
     _barH(_h - _w/12),
     _locked(locked),
     _drawBars(locked),
+    _nextLevel(nextLevel),
     _barShrinkTicker(new QTimer())
 {
     connect(&(*_barShrinkTicker), SIGNAL(timeout()), this, SLOT(shrinkBars()));
@@ -66,6 +67,11 @@ void Door::unlock()
 {
     _locked = false;
     _barShrinkTicker->start(30);
+}
+
+QString Door::nextLevel() const
+{
+    return _nextLevel;
 }
 
 void Door::shrinkBars()

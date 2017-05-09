@@ -35,7 +35,11 @@ void LevelLoader::parse(Player &player,
                         std::vector<Entity *> &staticEntities,
                         std::vector<DynamicEntity *> &dynamicEntities) const
 {
-    // TODO Read level default color
+    QString colorLine = _fStream->readLine().trimmed();
+    // If colorLine is not specified, then it shouldn't be changed
+    if (colorLine != "N/A") {
+        *activeColor = SpectrumColors::getColorFromName(colorLine);
+    }
 
     QColor entityColor = SpectrumColors::gray;
     // Read level file line by line
@@ -54,10 +58,10 @@ void LevelLoader::parse(Player &player,
         // Determine which object to create
         switch (entityType) {
         case 's':   // Static
-            addStaticEntity(staticEntities, lineStream, entityColor);
+            addStaticEntity(staticEntities, lineStream, entityColor, *activeColor);
             break;
         case 'd':   // Dynamic
-            addDynamicEntity(dynamicEntities, lineStream, entityColor);
+            addDynamicEntity(dynamicEntities, lineStream, entityColor, *activeColor);
             break;
         case 'c':   // Color
             entityColor = readColor(lineStream);
@@ -77,41 +81,34 @@ QColor LevelLoader::readColor(QTextStream &lineStream) const
 {
     QString colorName;
     lineStream >> colorName;
-
-    if (colorName == "red") {
-        return SpectrumColors::red;
-    } else if (colorName == "green") {
-        return SpectrumColors::green;
-    } else if (colorName == "blue") {
-        return SpectrumColors::blue;
-    } else if (colorName == "yellow") {
-        return SpectrumColors::yellow;
-    } else if (colorName == "purple") {
-        return SpectrumColors::purple;
-    } else if (colorName == "orange") {
-        return SpectrumColors::orange;
-    } else if (colorName == "gray") {
-        return SpectrumColors::gray;
-    } else
-        return SpectrumColors::pink;
+    return SpectrumColors::getColorFromName(colorName);
 }
 
 void LevelLoader::addStaticEntity(std::vector<Entity *> &staticEntities,
                                   QTextStream &lineStream,
-                                  QColor &entityColor) const
+                                  const QColor &entityColor,
+                                  const QColor &activeColor) const
 {
     int x, y, w, h;
     QString entityClass;
-    lineStream >> entityClass >> x >> y >> w >> h;
+    lineStream >> entityClass >> x >> y;
 
-    if (entityClass == "block")
+    if (entityClass == "block") {
+        lineStream >> w >> h;
         staticEntities.push_back(new Block(x, y, w, h));
-    else if (entityClass == "wall")
+    }
+    else if (entityClass == "wall") {
+        lineStream >> w >> h;
         staticEntities.push_back(new Wall(x, y, w, h, entityColor));
-    else if (entityClass == "ladder")
+    }
+    else if (entityClass == "ladder") {
+        lineStream >> w >> h;
         staticEntities.push_back(new Ladder(x, y, w, h, entityColor));
+    }
     else if (entityClass == "door") {
-        Door *newDoor = new Door(x, y, entityColor);
+        QString nextLevel;
+        lineStream >> nextLevel;
+        Door *newDoor = new Door(x, y, nextLevel + ".lvl", entityColor);
         staticEntities.push_back(newDoor);
         // If there is a key next, bind the door and the key
         if (! lineStream.atEnd() ) {
@@ -120,13 +117,14 @@ void LevelLoader::addStaticEntity(std::vector<Entity *> &staticEntities,
             newDoor->lock();
         }
     }
-    if (SpectrumColors::defaultActiveColor == entityColor)
+    if (activeColor == entityColor)
         staticEntities.back()->hide();
 }
 
 void LevelLoader::addDynamicEntity(std::vector<DynamicEntity *> &dynamicEntities,
                                    QTextStream &lineStream,
-                                   QColor &entityColor) const
+                                   const QColor &entityColor,
+                                   const QColor &activeColor) const
 {
     int x, y, w, h;
     QString entityClass;
@@ -139,6 +137,6 @@ void LevelLoader::addDynamicEntity(std::vector<DynamicEntity *> &dynamicEntities
         lineStream >> x >> y >> w >> h;
         // TODO Add here other dynamic object types
     }
-    if (SpectrumColors::defaultActiveColor == entityColor)
+    if (activeColor == entityColor)
         dynamicEntities.back()->hide();
 }

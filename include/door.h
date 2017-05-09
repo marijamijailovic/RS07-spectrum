@@ -12,7 +12,7 @@ class Door : public QObject, public Entity
     Q_OBJECT
 
 public:
-    Door(qreal x, qreal y, const QColor color = SpectrumColors::gray, bool locked = false);
+    Door(qreal x, qreal y, const QString& nextLevel, const QColor color = SpectrumColors::gray, bool locked = false);
 
     // Overrides from QGraphicsItem
     QRectF boundingRect() const override;
@@ -21,6 +21,7 @@ public:
 
     void lock();
     void unlock();
+    QString nextLevel() const;
 
 private slots:
     void shrinkBars();
@@ -32,6 +33,7 @@ private:
     bool _locked;
     bool _drawBars;
     QScopedPointer<QTimer> _barShrinkTicker;
+    QString _nextLevel;
 };
 
 #endif // DOOR_H

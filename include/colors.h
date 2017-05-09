@@ -18,6 +18,8 @@ public:
     static QColor gray;
     static QColor black;
     static QColor defaultActiveColor;
+
+    static QColor getColorFromName(const QString& colorName);
 };
 
 #endif // COLORS_H
