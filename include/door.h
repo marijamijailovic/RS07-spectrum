@@ -1,11 +1,16 @@
 #ifndef DOOR_H
 #define DOOR_H
 
+#include <QObject>
+#include <QTimer>
 #include "include/colors.h"
 #include "include/entity.h"
 
-class Door : public Entity
+
+class Door : public QObject, public Entity
 {
+    Q_OBJECT
+
 public:
     Door(qreal x, qreal y, const QString& nextLevel, const QColor color = SpectrumColors::gray, bool locked = false);
 
@@ -18,11 +23,17 @@ public:
     void unlock();
     QString nextLevel() const;
 
+private slots:
+    void shrinkBars();
+
 private:
     const int _w = 60;
     const int _h = 100;
+    qreal _barH;
     bool _locked;
-    QString _nextLevel = "laalala";
+    bool _drawBars;
+    QScopedPointer<QTimer> _barShrinkTicker;
+    QString _nextLevel;
 };
 
 #endif // DOOR_H

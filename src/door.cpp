@@ -2,14 +2,18 @@
 
 Door::Door(qreal x, qreal y, const QString &nextLevel, const QColor color, bool locked) :
     Entity(x, y, color, false),
-    _locked(locked)
+    _barH(_h - _w/12),
+    _locked(locked),
+    _drawBars(locked),
+    _nextLevel(nextLevel),
+    _barShrinkTicker(new QTimer())
 {
-    _nextLevel = nextLevel;
+    connect(&(*_barShrinkTicker), SIGNAL(timeout()), this, SLOT(shrinkBars()));
 }
 
 QRectF Door::boundingRect() const
 {
-    return QRectF(_x, _y - _h/2 + _w/2 -3, _w, 3*_h/2-_w/2 + 3);
+    return QRectF(_x, _y, _w, _h);
 }
 
 QPainterPath Door::shape() const
@@ -26,15 +30,43 @@ void Door::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
     painter->setPen(pen);
 
     // Drawing door
-    painter->setBrush(_color);`
-    painter->drawRect(_x, _y, _w, 3*_h/4);
-    painter->drawEllipse(QPoint(_x + _w/2, _y - _h/2 + _w - 3), _w/2, _w/2);
-    // If the door is locked then draw a lock as well
-    if (_locked) {
-        painter->setBrush(SpectrumColors::gray);
-        // TODO draw a nice lock
-        painter->drawRect(_x, _y + _h/3, _w, _h/10);
+    painter->setBrush(_color);
+    painter->drawRect(_x, _y + _w/2, _w, _h - _w/2);
+    painter->drawChord(_x, _y, _w, _w, 0, 180 * 16);
+
+    painter->setBrush(SpectrumColors::gray);
+
+    // Drawing bars
+    if (_drawBars) {
+        // Left
+        painter->drawRect(_x + _w/4 - 2, _y + _w/12, 4, _barH);
+        // Right
+        painter->drawRect(_x + _w/2 - 2, _y, 4, _barH + _w/12);
+        // Middle
+        painter->drawRect(_x + 3*_w/4 - 2, _y + _w/12, 4, _barH);
     }
+
+    // Drawing door lock
+    if (_locked) {
+        QPen p(SpectrumColors::gray);
+        p.setWidth(2);
+        painter->setPen(p);
+        painter->drawArc(_x + _w - 10, _y + _h/2, 10, 10, 0, 180 * 16);
+        painter->drawRect(_x + _w - 10, _y + _h/2 + 5, 10, 10);
+    }
+}
+
+void Door::lock()
+{
+    _locked = true;
+    _drawBars = true;
+    _barH = _h - _w/12;
+}
+
+void Door::unlock()
+{
+    _locked = false;
+    _barShrinkTicker->start(30);
 }
 
 QString Door::nextLevel() const
@@ -42,12 +74,14 @@ QString Door::nextLevel() const
     return _nextLevel;
 }
 
-void Door::unlock()
+void Door::shrinkBars()
 {
-    _locked = false;
+    if (_barH > 0)
+        _barH -= 5;
+    else {
+        _drawBars = false;
+        _barShrinkTicker->stop();
+        _barH = 0;
+    }
 }
 
-void Door::lock()
-{
-    _locked = true;
-}
