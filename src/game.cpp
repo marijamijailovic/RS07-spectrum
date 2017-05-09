@@ -34,7 +34,6 @@ void SpectrumGame::loadLevel(const QString id)
 {
     _level.reset(new Level(":levels/" + id + ".lvl", *_player, &_activeColor));
     _level->load(this);
-    setBackgroundBrush(QBrush(_activeColor));
 }
 
 void SpectrumGame::pause()
@@ -68,9 +67,6 @@ void SpectrumGame::keyPressEvent(QKeyEvent *event)
         pause();
     else if (event->key() == Qt::Key_Escape)    // TODO remove exit on ESC
         exit(EXIT_SUCCESS);
-    else if (event->key() == Qt::Key_E) {
-        // TODO add going through the door if it's unlocked
-    }
     else // TODO add check for numbers
         changeActiveColor(event);
 }
@@ -128,7 +124,7 @@ void SpectrumGame::animateColorChange()
     _colorCircle.reset(new ColorChanger(_parent, _player->x(), _player->y(), _activeColor));
     addItem(&(*_colorCircle));
     _parent->update();
-    QTimer::singleShot(300, this, SLOT(stopColorChangeAnimation()));
+    QTimer::singleShot(400, this, SLOT(stopColorChangeAnimation()));
 }
 
 void SpectrumGame::stopColorChangeAnimation()

@@ -10,7 +10,7 @@ ColorChanger::ColorChanger(QGraphicsView *view, qreal x, qreal y, QColor color) 
 {
     setZValue(-1);
     connect(_expandTicker.data(), SIGNAL(timeout()), this, SLOT(expand()));
-    _expandTicker->start(10);
+    _expandTicker->start(15);
 }
 
 QRectF ColorChanger::boundingRect() const
@@ -33,16 +33,11 @@ void ColorChanger::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QW
 
 void ColorChanger::expand()
 {
-    if (_r <= 2000) {
-        _r += 100;
+    if (_r <= 1500) {
+        _r += 50;
         update(_x, _y, _r, _r);
         _view->update();
     } else
         _expandTicker->stop();
-}
-
-void ColorChanger::run()
-{
-    _expandTicker->start(20);
 }
 

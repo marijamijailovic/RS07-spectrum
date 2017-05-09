@@ -24,8 +24,6 @@ private slots:
     void expand();
 
 private:
-    void run();
-
     qreal _x;
     qreal _y;
     qreal _r;
