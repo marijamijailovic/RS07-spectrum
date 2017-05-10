@@ -66,7 +66,7 @@ void Door::lock()
 void Door::unlock()
 {
     _locked = false;
-    _barShrinkTicker->start(30);
+    _barShrinkTicker->start(40);
 }
 
 QString Door::nextLevel() const

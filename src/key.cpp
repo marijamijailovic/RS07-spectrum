@@ -6,7 +6,7 @@ Key::Key(qreal x, qreal y, Door *door, const QColor color) :
     _sparkTicker(new QTimer())
 {
     connect(&(*_sparkTicker), SIGNAL(timeout()), this, SLOT(updateSparklesPos()));
-    _sparkTicker->start(250);
+    _sparkTicker->start(150);
 }
 
 QRectF Key::boundingRect() const
@@ -34,7 +34,7 @@ void Key::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
     painter->fillRect(_x + _w - 3, _y + _h/2, 4, 10, _color);
 
     // Sparkles
-    pen.setWidth(1);
+    pen.setWidth(2);
     painter->setPen(pen);
     for (unsigned i = 0; i < _sparkNum; i++)
         painter->drawEllipse(_sx[i], _sy[i], 1, 1);

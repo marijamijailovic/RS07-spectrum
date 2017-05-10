@@ -29,13 +29,13 @@ private slots:
     void updateSparklesPos();
 
 private:
-    const int _w = 50;
+    const int _w = 40;
     const int _h = 30;
     Door *_door;
     QScopedPointer<QTimer> _sparkTicker;
-    const unsigned _sparkNum = 3;
-    std::vector<int> _sx {0, 0, 0};
-    std::vector<int> _sy {0, 0, 0};
+    const unsigned _sparkNum = 5;
+    std::vector<int> _sx {0, 0, 0, 0, 0};
+    std::vector<int> _sy {0, 0, 0, 0, 0};
 };
 
 #endif // KEY_H
