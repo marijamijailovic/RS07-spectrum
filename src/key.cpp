@@ -24,14 +24,14 @@ QPainterPath Key::shape() const
 void Key::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
     QPen pen(_color);
-    pen.setWidth(3);
+    pen.setWidth(4);
     painter->setPen(pen);
 
     // Drawing key
     painter->drawArc(_x, _y + _h/3, _h/2, _h/2, 0, 360 * 16);
-    painter->fillRect(_x + _h/2, _y + _h/2, _w - _h/2, 3, _color);
-    painter->fillRect(_x + 3*_w/4, _y + _h/2, 3, 7, _color);
-    painter->fillRect(_x + _w - 3, _y + _h/2, 3, 10, _color);
+    painter->fillRect(_x + _h/2, _y + _h/2, _w - _h/2, 4, _color);
+    painter->fillRect(_x + 3*_w/4, _y + _h/2, 4, 7, _color);
+    painter->fillRect(_x + _w - 3, _y + _h/2, 4, 10, _color);
 
     // Sparkles
     pen.setWidth(1);

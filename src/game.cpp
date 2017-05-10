@@ -2,6 +2,7 @@
 
 SpectrumGame::SpectrumGame(QGraphicsView *parent) :
     _paused(false),
+    _expandInProgress(false),
     _parent(parent),
     _player(new Player(200, 180)),
     _background(new Background()),
@@ -34,6 +35,7 @@ void SpectrumGame::loadLevel(const QString id)
 {
     _level.reset(new Level(":levels/" + id + ".lvl", *_player, &_activeColor));
     _level->load(this);
+    setBackgroundBrush(QBrush(_activeColor));
 }
 
 void SpectrumGame::pause()
@@ -112,15 +114,17 @@ void SpectrumGame::changeActiveColor(QKeyEvent *event)
         else
             hideObjectsWithActiveColor();
 
-        animateColorChange();
+        if (!_expandInProgress)
+            animateColorChange();
         update();
-    } else {
-        hideObjectsWithActiveColor();
     }
+
+    hideObjectsWithActiveColor();
 }
 
 void SpectrumGame::animateColorChange()
 {
+    _expandInProgress = true;
     _colorCircle.reset(new ColorChanger(_parent, _player->x(), _player->y(), _activeColor));
     addItem(&(*_colorCircle));
     _parent->update();
@@ -129,9 +133,10 @@ void SpectrumGame::animateColorChange()
 
 void SpectrumGame::stopColorChangeAnimation()
 {
-    removeItem(&(*_colorCircle));
+    if (_expandInProgress)
+        removeItem(&(*_colorCircle));
     setBackgroundBrush(QBrush(_activeColor));
-    hideObjectsWithActiveColor();
+    _expandInProgress = false;
 }
 
 void SpectrumGame::hideObjectsWithActiveColor()

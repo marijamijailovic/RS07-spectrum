@@ -44,6 +44,7 @@ private:
     void hideObjectsWithActiveColor();
 
     bool _paused;
+    bool _expandInProgress;
     QGraphicsView *_parent;
     qreal _gravCoeff = 1;
     QScopedPointer<Player> _player;
