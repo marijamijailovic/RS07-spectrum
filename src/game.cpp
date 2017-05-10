@@ -75,6 +75,26 @@ void SpectrumGame::keyPressEvent(QKeyEvent *event)
 
 void SpectrumGame::changeActiveColor(QKeyEvent *event)
 {
+    QColor newActiveColor = _activeColor;
+    if (event->key() == Qt::Key_1)
+        newActiveColor = SpectrumColors::blue;
+    else if (event->key() == Qt::Key_2)
+        newActiveColor = SpectrumColors::green;
+    else if (event->key() == Qt::Key_3)
+        newActiveColor = SpectrumColors::yellow;
+    else if (event->key() == Qt::Key_4)
+        newActiveColor = SpectrumColors::red;
+    else if (event->key() == Qt::Key_5)
+        newActiveColor = SpectrumColors::orange;
+    else if (event->key() == Qt::Key_6)
+        newActiveColor = SpectrumColors::purple;
+    else if (event->key() == Qt::Key_7)
+        newActiveColor = SpectrumColors::pink;
+
+    // If the chosen new active color is the same as the one before, do nothing
+    if (newActiveColor == _activeColor)
+        return;
+
     /*
      * This is temporary solution with showing/hiding entities from the scene.
      * TODO
@@ -97,29 +117,13 @@ void SpectrumGame::changeActiveColor(QKeyEvent *event)
         }
 
     if (shouldChangeActiveColor) {
-        if (event->key() == Qt::Key_1 && _activeColor != SpectrumColors::blue)
-            _activeColor = SpectrumColors::blue;
-        else if (event->key() == Qt::Key_2 && _activeColor != SpectrumColors::green)
-            _activeColor = SpectrumColors::green;
-        else if (event->key() == Qt::Key_3 && _activeColor != SpectrumColors::yellow)
-            _activeColor = SpectrumColors::yellow;
-        else if (event->key() == Qt::Key_4 && _activeColor != SpectrumColors::red)
-            _activeColor = SpectrumColors::red;
-        else if (event->key() == Qt::Key_5 && _activeColor != SpectrumColors::orange)
-            _activeColor = SpectrumColors::orange;
-        else if (event->key() == Qt::Key_6 && _activeColor != SpectrumColors::purple)
-            _activeColor = SpectrumColors::purple;
-        else if (event->key() == Qt::Key_7 && _activeColor != SpectrumColors::pink)
-            _activeColor = SpectrumColors::pink;
-        else
-            hideObjectsWithActiveColor();
-
+        _activeColor = newActiveColor;
+        hideObjectsWithActiveColor();
         if (!_expandInProgress)
             animateColorChange();
         update();
     }
 
-    hideObjectsWithActiveColor();
 }
 
 void SpectrumGame::animateColorChange()
