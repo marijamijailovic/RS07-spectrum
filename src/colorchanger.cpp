@@ -1,6 +1,7 @@
 #include "include/colorchanger.h"
 
 ColorChanger::ColorChanger(QGraphicsView *view, qreal x, qreal y, QColor color) :
+    Entity(x, y, SpectrumColors::gray),
     _x(x),
     _y(y),
     _r(50),

@@ -36,7 +36,14 @@ void Cube::move()
     int vy = (int)_vy;
     for(int i = 1; i <= vy; i++) {
         moveBy(0, 1);
-        if (collidingItems().size() !=0 ) {
+
+        int ignoredCollisions = 0;
+        auto collidingObjects = collidingItems();
+        foreach (QGraphicsItem *item, collidingObjects)
+            if (!((Entity*)item)->collidable())
+                ignoredCollisions++;
+
+        if (collidingObjects.size() > ignoredCollisions) {
             moveBy(0, -i);
             _vy = 0;
             //_y += i;

@@ -5,13 +5,13 @@
 #include <QTimer>
 #include <QGraphicsView>
 #include <QGraphicsEllipseItem>
+#include "include/entity.h"
 #include "include/colors.h"
 
 
-class ColorChanger : public QObject, public QGraphicsItem
+class ColorChanger : public QObject, public Entity
 {
     Q_OBJECT
-    Q_INTERFACES(QGraphicsItem)
 
 public:
     ColorChanger(QGraphicsView *view, qreal x, qreal y, QColor color);
