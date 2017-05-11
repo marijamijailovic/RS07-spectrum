@@ -70,7 +70,8 @@ void SpectrumGame::keyPressEvent(QKeyEvent *event)
     else if (event->key() == Qt::Key_Escape)    // TODO remove exit on ESC
         exit(EXIT_SUCCESS);
     else // TODO add check for numbers
-        changeActiveColor(event);
+        if (!_expandInProgress)
+            changeActiveColor(event);
 }
 
 void SpectrumGame::changeActiveColor(QKeyEvent *event)
