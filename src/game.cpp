@@ -157,7 +157,6 @@ void SpectrumGame::update() const
     std::vector<DynamicEntity *> dynamicEntities = _level->DynamicEntities();
     foreach (DynamicEntity *ent, dynamicEntities) {
         ent->move();
-        ent->applyGravity(_gravCoeff);
     }
     _player->applyGravity(_gravCoeff);
     _level->applyGravity(_gravCoeff);

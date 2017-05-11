@@ -37,5 +37,5 @@ std::vector<DynamicEntity *> Level::DynamicEntities() const
 void Level::applyGravity(qreal g)
 {
     for (unsigned i = 0; i < _dynamicEntities.size(); i++)
-        _dynamicEntities[i]->applyForce(0,g);
+        _dynamicEntities[i]->applyGravity(g);
 }

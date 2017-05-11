@@ -6,7 +6,8 @@ DynamicEntity::DynamicEntity(qreal x, qreal y, qreal mass, const QColor color, b
     _inAir(true),
     _mass(mass),
     _vx(0),
-    _vy(0)
+    _vy(0),
+    ch(0)
 {
 
 }
@@ -19,6 +20,16 @@ void DynamicEntity::setVx(qreal vx)
 void DynamicEntity::setVy(qreal vy)
 {
     _vy = vy;
+}
+
+void DynamicEntity::setCh(int c)
+{
+    ch = c;
+}
+
+int DynamicEntity::getCh()
+{
+    return ch;
 }
 
 void DynamicEntity::applyForce(qreal ix,qreal iy)
