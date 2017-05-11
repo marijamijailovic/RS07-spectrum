@@ -14,7 +14,7 @@ public:
     void setVx(qreal vx);
     void setVy(qreal vy);
     void setCh(int c);
-    int getCh();
+    int getCh() const;
 
     void applyForce(qreal ix, qreal iy);
     void applyGravity(qreal g);
@@ -26,7 +26,7 @@ protected:
     qreal _mass;
     qreal _vx;
     qreal _vy;
-    int ch;
+    int _ch;
 };
 
 #endif // DYNAMICENTITY_H

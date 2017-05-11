@@ -91,7 +91,7 @@ void Player::move()
     } else {
         _inAir = false;
         _jump = false;
-        if (_vy > 0&&_canJump)
+        if (_vy > 0 && _canJump)
             _vy = 0;
     }
 

@@ -20,7 +20,6 @@ QPainterPath Cube::shape() const
 
 void Cube::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-
     // Draw frame
     QPen pen(_color);
     pen.setWidth(5);
@@ -34,16 +33,14 @@ void Cube::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 
 void Cube::move()
 {
-    int vy=(int)_vy;
-    int i=0;
-    for(i=1;i<=vy;i++){
-        moveBy(0,1);
-        if(this->collidingItems().size()!=0){
-            moveBy(0,-i);
-            _vy=0;
-            //_y+=i;
+    int vy = (int)_vy;
+    for(int i = 1; i <= vy; i++) {
+        moveBy(0, 1);
+        if (collidingItems().size() !=0 ) {
+            moveBy(0, -i);
+            _vy = 0;
+            //_y += i;
             break;
-
         }
     }
 }
