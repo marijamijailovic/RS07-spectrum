@@ -14,6 +14,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // TODO show menu on start (hide resume game)
     _game.reset(new SpectrumGame(_ui->gwDisplay));
+
+    // Set Antialiasing
+    _ui->gwDisplay->setRenderHint(QPainter::Antialiasing);
+
     initializeGameWindow();
 }
 
