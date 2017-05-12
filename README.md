@@ -1,12 +1,11 @@
 # :rainbow: RS07-spectrum :rainbow:
-A simple, but hopefully interesting game.
 
-![green_screenshot](https://github.com/MATF-RS17/RS07-spectrum/blob/master/screenshots/04_2017-04-28.png)
+![green_screenshot](https://github.com/MATF-RS17/RS07-spectrum/blob/master/screenshots/05_2017-05-12.gif)
 
 ## :page_facing_up: Description
 This is a Software Development course project - 2D-platform-puzzle game.
 
-Written in C++ using Qt 5.7
+Written in C++ using Qt 5.8
 
 Created by:
 - [Milana Kovacevic](https://github.com/milana-kovacevic)
