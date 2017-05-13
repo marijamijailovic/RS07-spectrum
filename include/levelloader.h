@@ -14,6 +14,7 @@
 #include "include/cube.h"
 #include "include/player.h"
 #include "include/colors.h"
+#include "include/colorunlocker.h"
 
 
 class LevelLoader
