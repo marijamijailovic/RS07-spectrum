@@ -53,6 +53,14 @@ void Player::move()
             ignoredCollisions++;
             continue;
         }
+
+        /*** TEST, REMOVE ***/
+        if (typeid(*item) == typeid(ColorUnlocker)) {
+            ((ColorUnlocker*)item)->collect();
+            ignoredCollisions++;
+            continue;
+        } /*** TEST, REMOVE ***/
+
         QRectF a = mapToScene(boundingRect()).boundingRect();
         QRectF b = item->boundingRect();
         if (_vy >= 0 && a.bottom() > b.top() && _vy >= a.bottom() - b.top()) {

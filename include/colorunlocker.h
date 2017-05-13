@@ -17,15 +17,20 @@ public:
     QPainterPath shape() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
+    void collect();
+
 private slots:
     void incrementOpacity();
+    void raise();
 
 private:
     const qreal _w = 60;
     const qreal _h = 30;
     int _opacity;
     int _step;
+    qreal _raiseH;
     QScopedPointer<QTimer> _opacityTicker;
+    QScopedPointer<QTimer> _raiseTicker;
 };
 
 #endif // COLORUNLOCKER_H

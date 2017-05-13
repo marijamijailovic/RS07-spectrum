@@ -8,6 +8,7 @@
 #include <typeinfo>
 #include "include/dynamicentity.h"
 #include "include/key.h"
+#include "include/colorunlocker.h"
 
 
 class Player : public DynamicEntity

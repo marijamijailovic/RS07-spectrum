@@ -39,11 +39,11 @@ void Door::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
     // Drawing bars
     if (_drawBars) {
         // Left
-        painter->drawRect(_x + _w/4 - 2, _y + _w/12, 4, _barH);
+        painter->drawRoundedRect(_x + _w/4 - 2, _y + _w/12, 4, _barH, 3, 3);
         // Right
-        painter->drawRect(_x + _w/2 - 2, _y, 4, _barH + _w/12);
+        painter->drawRoundedRect(_x + _w/2 - 2, _y, 4, _barH + _w/12, 3, 3);
         // Middle
-        painter->drawRect(_x + 3*_w/4 - 2, _y + _w/12, 4, _barH);
+        painter->drawRoundedRect(_x + 3*_w/4 - 2, _y + _w/12, 4, _barH, 3, 3);
     }
 
     // Drawing door lock
@@ -52,7 +52,7 @@ void Door::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
         p.setWidth(2);
         painter->setPen(p);
         painter->drawArc(_x + _w - 10, _y + _h/2, 10, 10, 0, 180 * 16);
-        painter->drawRect(_x + _w - 10, _y + _h/2 + 5, 10, 10);
+        painter->drawRoundedRect(_x + _w - 10, _y + _h/2 + 5, 10, 10, 3, 3);
     }
 }
 
