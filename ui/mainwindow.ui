@@ -272,72 +272,7 @@ border: 1px solid white;</string>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
- <connections>
-  <connection>
-   <sender>pbLevel1</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>on_pbLevel_clicked()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>310</x>
-     <y>117</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>399</x>
-     <y>324</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pbLevel2</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>on_pbLevel_clicked()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>480</x>
-     <y>117</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>399</x>
-     <y>324</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pbLevel3</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>on_pbLevel_clicked()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>650</x>
-     <y>117</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>399</x>
-     <y>324</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pbLevelDemo</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>on_pbLevel_clicked()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>315</x>
-     <y>189</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>399</x>
-     <y>324</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
  <slots>
   <slot>on_pbLevel_clicked()</slot>
  </slots>

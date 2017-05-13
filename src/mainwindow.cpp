@@ -18,34 +18,23 @@ MainWindow::MainWindow(QWidget *parent) :
     // Set Antialiasing
     _ui->gwDisplay->setRenderHint(QPainter::Antialiasing);
 
+    // Connecting singals to slots
+    connect(_ui->btnResumeGame, SIGNAL(clicked()), this, SLOT(resumeGame()));
+    connect(_ui->btnNewGame, SIGNAL(clicked()), this, SLOT(newGame()));
+    connect(_ui->btnExit, SIGNAL(clicked()), this, SLOT(closeApp()));
+    connect(_ui->btnChooseLevel, SIGNAL(clicked()), this, SLOT(showLevelTree()));
+    connect(_ui->pbHideLevelPanel, SIGNAL(clicked()), this, SLOT(hideLevelTree()));
+    connect(_ui->pbLevel1, SIGNAL(clicked()), this, SLOT(levelLoad()));
+    connect(_ui->pbLevel2, SIGNAL(clicked()), this, SLOT(levelLoad()));
+    connect(_ui->pbLevel3, SIGNAL(clicked()), this, SLOT(levelLoad()));
+    connect(_ui->pbLevelDemo, SIGNAL(clicked()), this, SLOT(levelLoad()));
+
     initializeGameWindow();
 }
 
 MainWindow::~MainWindow()
 {
     delete _ui;
-}
-
-void MainWindow::on_btnResumeGame_clicked()
-{
-    _game->resume();
-    _ui->gwDisplay->show();
-    _ui->gwDisplay->setFocus();
-    _ui->frLevelTree->hide();
-}
-
-void MainWindow::on_btnExit_clicked()
-{
-    exit(EXIT_SUCCESS);
-}
-
-void MainWindow::on_btnNewGame_clicked()
-{
-    _game.reset(new SpectrumGame(_ui->gwDisplay));
-    initializeGameWindow();
-
-    _ui->gwDisplay->show();
-    _ui->gwDisplay->setFocus();
 }
 
 void MainWindow::initializeGameWindow()
@@ -56,17 +45,40 @@ void MainWindow::initializeGameWindow()
     _ui->gwDisplay->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 }
 
-void MainWindow::on_btnChooseLevel_clicked()
+void MainWindow::resumeGame()
+{
+    _game->resume();
+    _ui->gwDisplay->show();
+    _ui->gwDisplay->setFocus();
+    _ui->frLevelTree->hide();
+}
+
+void MainWindow::closeApp()
+{
+    // TODO :D
+    exit(EXIT_SUCCESS);
+}
+
+void MainWindow::newGame()
+{
+    _game.reset(new SpectrumGame(_ui->gwDisplay));
+    initializeGameWindow();
+
+    _ui->gwDisplay->show();
+    _ui->gwDisplay->setFocus();
+}
+
+void MainWindow::showLevelTree()
 {
     _ui->frLevelTree->show();
 }
 
-void MainWindow::on_pbHideLevelPanel_clicked()
+void MainWindow::hideLevelTree()
 {
     _ui->frLevelTree->hide();
 }
 
-void MainWindow::on_pbLevel_clicked()
+void MainWindow::levelLoad()
 {
     QPushButton* btn = qobject_cast<QPushButton*>(sender());
     _game->loadLevel(btn->text());

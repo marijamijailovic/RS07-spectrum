@@ -22,12 +22,12 @@ public:
     MainWindow& operator=(const MainWindow&) = delete;
 
 private slots:
-    void on_btnResumeGame_clicked();
-    void on_btnNewGame_clicked();
-    void on_btnExit_clicked();
-    void on_btnChooseLevel_clicked();
-    void on_pbHideLevelPanel_clicked();
-    void on_pbLevel_clicked();
+    void resumeGame();
+    void newGame();
+    void closeApp();
+    void showLevelTree();
+    void hideLevelTree();
+    void levelLoad();
 
 private:
     void initializeGameWindow();
