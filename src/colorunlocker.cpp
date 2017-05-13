@@ -41,11 +41,9 @@ void ColorUnlocker::paint(QPainter *painter, const QStyleOptionGraphicsItem *, Q
     painter->drawPolygon(points, 5);
 }
 
-#include <QDebug>
 void ColorUnlocker::collect()
 {
     _raiseTicker->start(40);
-    qDebug() << "entered";
 }
 
 void ColorUnlocker::incrementOpacity()
@@ -61,6 +59,7 @@ void ColorUnlocker::raise()
         _raiseH += 5;
     else {
         _raiseTicker->stop();
+        hide();
         _raiseH = 0;
     }
 }
