@@ -21,8 +21,8 @@ private slots:
     void incrementAngle();
 
 private:
-    const qreal _w = 50;
-    const qreal _h = 50;
+    const qreal _w = 60;
+    const qreal _h = 30;
     qreal _angle;
     QScopedPointer<QTimer> _rotateTicker;
 };

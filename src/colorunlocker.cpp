@@ -27,7 +27,14 @@ void ColorUnlocker::paint(QPainter *painter, const QStyleOptionGraphicsItem *, Q
     QPen pen(Qt::NoPen);
     painter->setPen(pen);
     painter->setBrush(QBrush(_color));
-    // TODO
+    QPoint points[] = {
+        QPoint(_x, _y),
+        QPoint(_x + _w/4, _y + _h),
+        QPoint(_x + 3*_w/4, _y + _h),
+        QPoint(_x + _w, _y),
+        QPoint(_x, _y)
+    };
+    painter->drawPolygon(points, 5);
 }
 
 void ColorUnlocker::incrementAngle()
