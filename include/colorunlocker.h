@@ -18,13 +18,14 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
 private slots:
-    void incrementAngle();
+    void incrementOpacity();
 
 private:
     const qreal _w = 60;
     const qreal _h = 30;
-    qreal _angle;
-    QScopedPointer<QTimer> _rotateTicker;
+    int _opacity;
+    int _step;
+    QScopedPointer<QTimer> _opacityTicker;
 };
 
 #endif // COLORUNLOCKER_H

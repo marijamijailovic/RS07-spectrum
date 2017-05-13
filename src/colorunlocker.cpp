@@ -2,11 +2,12 @@
 
 ColorUnlocker::ColorUnlocker(qreal x, qreal y, const QColor color) :
     Entity(x, y, color),
-    _angle(0),
-    _rotateTicker(new QTimer())
+    _opacity(225),
+    _step(5),
+    _opacityTicker(new QTimer())
 {
-    connect(&(*_rotateTicker), SIGNAL(timeout()), this, SLOT(incrementAngle()));
-    _rotateTicker->start(20);
+    connect(&(*_opacityTicker), SIGNAL(timeout()), this, SLOT(incrementOpacity()));
+    _opacityTicker->start(25);
 }
 
 QRectF ColorUnlocker::boundingRect() const
@@ -26,6 +27,7 @@ void ColorUnlocker::paint(QPainter *painter, const QStyleOptionGraphicsItem *, Q
     painter->drawRect(_x, _y, _w, _h);
     QPen pen(Qt::NoPen);
     painter->setPen(pen);
+    _color.setAlpha(_opacity);
     painter->setBrush(QBrush(_color));
     QPoint points[] = {
         QPoint(_x, _y),
@@ -37,7 +39,9 @@ void ColorUnlocker::paint(QPainter *painter, const QStyleOptionGraphicsItem *, Q
     painter->drawPolygon(points, 5);
 }
 
-void ColorUnlocker::incrementAngle()
+void ColorUnlocker::incrementOpacity()
 {
-    _angle += 5;
+    _opacity += _step;
+    if (_opacity > 255 || _opacity < 200)
+        _step = -_step;
 }
