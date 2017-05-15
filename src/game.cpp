@@ -6,17 +6,16 @@ SpectrumGame::SpectrumGame(QGraphicsView *parent) :
     _parent(parent),
     _player(new Player(200, 180)),
     _background(new Background()),
-    _level(new Level(":levels/test.lvl", *_player, &_activeColor)),
-    _gameTicker(new QTimer())
+    _gameTicker(new QTimer()),
+    _activeColor(SpectrumColors::defaultActiveColor)
 {
     //addItem(&(*_background)); // TODO Find a nice background picture
 
     // Adding player to the scene
     addItem(&(*_player));
-    setBackgroundBrush(QBrush(_activeColor));
 
     // Loading new level
-    _level->load(this);
+    loadLevel("004");
 
     // Connecting timer to game-tick function
     connect(&(*_gameTicker), SIGNAL(timeout()), this, SLOT(update()));

@@ -1,26 +1,22 @@
-red
+N/A
 
 # Player spawn coordinates
-p 80 430
+p 230 500
 
 
 #### Static entities ####
 
-#   Walls
+#   Border
 
-# Top
-s block 0 0 800 350
 # Bottom
-s block 0 500 800 100
+s block 0 550 800 50
 # Left side
-s block 0 350 20 150
+s block 0 450 20 100
 # Right side
-s block 780 350 20 150
+s block 780 450 20 100
 
-#   Barrier
-c red
-s wall 400 350 20 150
 
 #   Door
 c red
-s door 600 400 003
+s door 200 450 001
+s door 500 450 003
