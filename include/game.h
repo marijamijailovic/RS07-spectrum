@@ -32,6 +32,7 @@ public:
 
     QColor activeColor() const;
     void setActiveColor(QColor newActiveColor);
+    void unlockColor(int id);
 
     void keyPressEvent(QKeyEvent *event) override;
 

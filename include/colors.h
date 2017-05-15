@@ -25,8 +25,11 @@ public:
     static const int GREEN = 3;
     static const int ORANGE = 4;
     static const int PURPLE = 5;
+    static const int GRAY = 6;
+    static const int DEFAULT = BLUE;
 
-    static QColor getColorFromName(const QString& colorName);
+    static QColor getColorFromName(const QString &colorName);
+    static int toEnum(const QColor &color);
 };
 
 #endif // COLORS_H

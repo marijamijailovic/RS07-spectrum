@@ -1,7 +1,9 @@
 #include "ui_mainwindow.h"
 #include "include/mainwindow.h"
-
 #include <QGraphicsScene>
+
+
+QScopedPointer<SpectrumGame> _game;
 
 
 MainWindow::MainWindow(QWidget *parent) :

@@ -5,7 +5,7 @@ p 100 500
 
 # Color unlocker test
 c purple
-s unlocker 50 150
+s unlocker 500 500
 
 #### Static entities ####
 

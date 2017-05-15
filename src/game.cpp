@@ -141,6 +141,11 @@ void SpectrumGame::interact()
     }
 }
 
+void SpectrumGame::unlockColor(int id)
+{
+    _unlockedColors[id] = true;
+}
+
 void SpectrumGame::animateColorChange()
 {
     _expandInProgress = true;

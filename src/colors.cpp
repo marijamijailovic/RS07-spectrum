@@ -36,3 +36,23 @@ QColor SpectrumColors::getColorFromName(const QString &colorName)
     } else
         return defaultActiveColor;
 }
+
+int SpectrumColors::toEnum(const QColor &color)
+{
+    if (color == red) {
+        return RED;
+    } else if (color == green) {
+        return GREEN;
+    } else if (color == blue) {
+        return BLUE;
+    } else if (color == yellow) {
+        return YELLOW;
+    } else if (color == purple) {
+        return PURPLE;
+    } else if (color == orange) {
+        return ORANGE;
+    } else if (color == gray) {
+        return GRAY;
+    } else
+        return DEFAULT;
+}

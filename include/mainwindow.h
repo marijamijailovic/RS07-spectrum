@@ -6,6 +6,9 @@
 #include "include/game.h"
 
 
+extern QScopedPointer<SpectrumGame> _game;
+
+
 namespace Ui {
 class MainWindow;
 }
@@ -33,7 +36,6 @@ private:
     void initializeGameWindow();
 
     Ui::MainWindow *_ui;
-    QScopedPointer<SpectrumGame> _game;
 };
 
 #endif // MAINWINDOW_H
