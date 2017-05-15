@@ -4,7 +4,7 @@ default
 p 100 500
 
 # Color unlocker test
-c pink
+c purple
 s unlocker 50 150
 
 #### Static entities ####
@@ -18,13 +18,13 @@ s block 780   0  20 600
 # Testing colors
 c orange
 s wall 500 70 50 50
-c pink
+c purple
 s wall 560 70 50 50
 c purple
 s wall 650 70 50 50
 
 # Door and its key
-c pink
+c purple
 #s door 130 150 key 670 20 ideal location of the key
 s door 130 150 001 key 700 370
 # Door without key

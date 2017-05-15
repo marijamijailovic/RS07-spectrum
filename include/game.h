@@ -55,6 +55,7 @@ private:
     QColor _activeColor;
     QScopedPointer<ColorChanger> _colorCircle;
     QScopedPointer<QTimer> _colorCircleTicker;
+    bool _unlockedColors[SpectrumColors::COLOR_NUM];
 };
 
 #endif // GAME_H

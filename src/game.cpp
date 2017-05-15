@@ -7,7 +7,8 @@ SpectrumGame::SpectrumGame(QGraphicsView *parent) :
     _player(new Player(200, 180)),
     _background(new Background()),
     _gameTicker(new QTimer()),
-    _activeColor(SpectrumColors::defaultActiveColor)
+    _activeColor(SpectrumColors::defaultActiveColor),
+    _unlockedColors {true, false, false, false, false, false}
 {
     //addItem(&(*_background)); // TODO Find a nice background picture
 
@@ -78,20 +79,18 @@ void SpectrumGame::keyPressEvent(QKeyEvent *event)
 void SpectrumGame::changeActiveColor(QKeyEvent *event)
 {
     QColor newActiveColor = _activeColor;
-    if (event->key() == Qt::Key_1)
+    if (event->key() == Qt::Key_1 && _unlockedColors[SpectrumColors::BLUE])
         newActiveColor = SpectrumColors::blue;
-    else if (event->key() == Qt::Key_2)
+    else if (event->key() == Qt::Key_2 && _unlockedColors[SpectrumColors::GREEN])
         newActiveColor = SpectrumColors::green;
-    else if (event->key() == Qt::Key_3)
+    else if (event->key() == Qt::Key_3 && _unlockedColors[SpectrumColors::YELLOW])
         newActiveColor = SpectrumColors::yellow;
-    else if (event->key() == Qt::Key_4)
+    else if (event->key() == Qt::Key_4 && _unlockedColors[SpectrumColors::RED])
         newActiveColor = SpectrumColors::red;
-    else if (event->key() == Qt::Key_5)
+    else if (event->key() == Qt::Key_5 && _unlockedColors[SpectrumColors::ORANGE])
         newActiveColor = SpectrumColors::orange;
-    else if (event->key() == Qt::Key_6)
+    else if (event->key() == Qt::Key_6 && _unlockedColors[SpectrumColors::PURPLE])
         newActiveColor = SpectrumColors::purple;
-    else if (event->key() == Qt::Key_7)
-        newActiveColor = SpectrumColors::pink;
 
     // If the chosen new active color is the same as the one before, do nothing
     if (newActiveColor == _activeColor)

@@ -12,12 +12,19 @@ public:
     static QColor green;
     static QColor blue;
     static QColor purple;
-    static QColor pink;
     static QColor yellow;
     static QColor orange;
     static QColor gray;
     static QColor black;
     static QColor defaultActiveColor;
+
+    static const int COLOR_NUM = 6;
+    static const int BLUE = 0;
+    static const int RED = 1;
+    static const int YELLOW = 2;
+    static const int GREEN = 3;
+    static const int ORANGE = 4;
+    static const int PURPLE = 5;
 
     static QColor getColorFromName(const QString& colorName);
 };
