@@ -74,6 +74,11 @@ QString Door::nextLevel() const
     return _nextLevel;
 }
 
+bool Door::isLocked() const
+{
+    return _locked;
+}
+
 void Door::shrinkBars()
 {
     if (_barH > 0)

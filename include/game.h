@@ -28,6 +28,7 @@ public:
 
     void pause();
     void resume();
+    void interact();
 
     QColor activeColor() const;
     void setActiveColor(QColor newActiveColor);

@@ -22,6 +22,7 @@ public:
     void lock();
     void unlock();
     QString nextLevel() const;
+    bool isLocked() const;
 
 private slots:
     void shrinkBars();

@@ -105,7 +105,7 @@ void LevelLoader::addStaticEntity(std::vector<Entity *> &staticEntities,
     } else if (entityClass == "door") {
         QString nextLevel;
         lineStream >> nextLevel;
-        Door *newDoor = new Door(x, y, nextLevel + ".lvl", entityColor);
+        Door *newDoor = new Door(x, y, nextLevel, entityColor);
         staticEntities.push_back(newDoor);
         // If there is a key next, bind the door and the key
         if (! lineStream.atEnd() ) {

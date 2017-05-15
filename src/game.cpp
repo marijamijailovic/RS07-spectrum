@@ -68,6 +68,8 @@ void SpectrumGame::keyPressEvent(QKeyEvent *event)
         pause();
     else if (event->key() == Qt::Key_Escape)    // TODO remove exit on ESC
         exit(EXIT_SUCCESS);
+    else if (event->key() == Qt:: Key_E)
+        interact();
     else // TODO add check for numbers
         if (!_expandInProgress)
             changeActiveColor(event);
@@ -124,6 +126,20 @@ void SpectrumGame::changeActiveColor(QKeyEvent *event)
     }
 
     hideObjectsWithActiveColor();
+}
+
+void SpectrumGame::interact()
+{
+    foreach (QGraphicsItem *item, _player->collidingItems()) {
+        // Try to cast the colliding object to class Door
+        // If the result is not nullptr, then go through the door if it's unlocked
+        Door *door = qobject_cast<Door *>((Entity *)item);
+        if (door != nullptr) {
+            if (!door->isLocked())
+                loadLevel(door->nextLevel());
+            break;
+        }
+    }
 }
 
 void SpectrumGame::animateColorChange()
