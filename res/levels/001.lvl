@@ -1,22 +1,30 @@
 default
 
 # Player spawn coordinates
-p 80 430
+p 150 150
 
 
 #### Static entities ####
 
-#   Walls
 
+#   Boundary
 # Top
-s block 0 0 800 350
+s block 0 0 800 100
 # Bottom
-s block 0 500 800 100
+s block 0 550 800 50
 # Left side
-s block 0 350 20 150
+s block 0 100 100 450
 # Right side
-s block 780 350 20 150
+s block 700 100 100 450
+
+# Platform
+s block 100 200 600 20
+
+# Ladder
+s ladder 400 200 30 350
 
 #   Door
+c red
+s door 500 450 002
 c blue
-s door 600 400 002
+s door 150 450 004
