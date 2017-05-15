@@ -96,16 +96,13 @@ void LevelLoader::addStaticEntity(std::vector<Entity *> &staticEntities,
     if (entityClass == "block") {
         lineStream >> w >> h;
         staticEntities.push_back(new Block(x, y, w, h));
-    }
-    else if (entityClass == "wall") {
+    } else if (entityClass == "wall") {
         lineStream >> w >> h;
         staticEntities.push_back(new Wall(x, y, w, h, entityColor));
-    }
-    else if (entityClass == "ladder") {
+    } else if (entityClass == "ladder") {
         lineStream >> w >> h;
         staticEntities.push_back(new Ladder(x, y, w, h, entityColor));
-    }
-    else if (entityClass == "door") {
+    } else if (entityClass == "door") {
         QString nextLevel;
         lineStream >> nextLevel;
         Door *newDoor = new Door(x, y, nextLevel + ".lvl", entityColor);
@@ -116,7 +113,10 @@ void LevelLoader::addStaticEntity(std::vector<Entity *> &staticEntities,
             staticEntities.push_back(new Key(x, y, newDoor, entityColor));
             newDoor->lock();
         }
+    } else if (entityClass == "unlocker") {
+        staticEntities.push_back(new ColorUnlocker(x, y, entityColor));
     }
+
     if (activeColor == entityColor)
         staticEntities.back()->hide();
 }

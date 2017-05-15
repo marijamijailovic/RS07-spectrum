@@ -3,6 +3,9 @@ default
 # Player spawn coordinates
 p 100 500
 
+# Color unlocker test
+c pink
+s unlocker 50 150
 
 #### Static entities ####
 

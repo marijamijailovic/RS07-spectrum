@@ -9,7 +9,7 @@
 #include "include/colors.h"
 
 
-class Key : public QObject, public Entity
+class Key : public Entity
 {
     Q_OBJECT
 

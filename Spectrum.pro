@@ -40,7 +40,8 @@ SOURCES += \
     src/wall.cpp \
     src/ladder.cpp \
     src/background.cpp \
-    src/colorchanger.cpp
+    src/colorchanger.cpp \
+    src/colorunlocker.cpp
 
 HEADERS  += \
     include/mainwindow.h \
@@ -58,7 +59,8 @@ HEADERS  += \
     include/wall.h \
     include/ladder.h \
     include/background.h \
-    include/colorchanger.h
+    include/colorchanger.h \
+    include/colorunlocker.h
 
 FORMS    += \
     ui/mainwindow.ui
