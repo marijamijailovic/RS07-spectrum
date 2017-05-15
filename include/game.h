@@ -51,7 +51,7 @@ private:
     QScopedPointer<Background> _background;
     QScopedPointer<Level> _level;
     QScopedPointer<QTimer> _gameTicker;
-    QColor _activeColor = SpectrumColors::defaultActiveColor;
+    QColor _activeColor;
     QScopedPointer<ColorChanger> _colorCircle;
     QScopedPointer<QTimer> _colorCircleTicker;
 };
