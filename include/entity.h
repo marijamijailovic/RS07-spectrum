@@ -8,8 +8,10 @@
 #include "include/colors.h"
 
 
-class Entity : public QGraphicsItem
+class Entity : public QGraphicsObject
 {
+    Q_OBJECT
+
 public:
     Entity(qreal x, qreal y, const QColor color = SpectrumColors::gray, bool collidable = true);
 

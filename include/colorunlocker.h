@@ -6,7 +6,7 @@
 #include "include/entity.h"
 
 
-class ColorUnlocker : public QObject, public Entity
+class ColorUnlocker : public Entity
 {
     Q_OBJECT
 

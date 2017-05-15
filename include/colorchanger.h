@@ -9,7 +9,7 @@
 #include "include/colors.h"
 
 
-class ColorChanger : public QObject, public Entity
+class ColorChanger : public Entity
 {
     Q_OBJECT
 

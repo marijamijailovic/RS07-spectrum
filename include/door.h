@@ -7,7 +7,7 @@
 #include "include/entity.h"
 
 
-class Door : public QObject, public Entity
+class Door : public Entity
 {
     Q_OBJECT
 
