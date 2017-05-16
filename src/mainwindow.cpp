@@ -3,9 +3,6 @@
 #include <QGraphicsScene>
 
 
-QScopedPointer<SpectrumGame> _game;
-
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     _ui(new Ui::MainWindow)

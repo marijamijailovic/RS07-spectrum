@@ -1,5 +1,4 @@
 #include "include/colorunlocker.h"
-#include "include/mainwindow.h" // TODO remove...
 
 
 ColorUnlocker::ColorUnlocker(qreal x, qreal y, const QColor color) :
@@ -47,7 +46,7 @@ void ColorUnlocker::collect()
 {
     _raiseTicker->start(40);
     _collidable = false;
-    _game->unlockColor(SpectrumColors::toEnum(_color));  // TODO remove
+    emit colorUnlocked(SpectrumColors::toEnum(_color));
 }
 
 void ColorUnlocker::incrementOpacity()

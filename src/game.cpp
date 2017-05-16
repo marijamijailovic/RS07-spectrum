@@ -41,6 +41,9 @@ void SpectrumGame::loadLevel(const QString id)
     _level.reset(new Level(":levels/" + id + ".lvl", *_player, &_activeColor));
     _level->load(this);
     setBackgroundBrush(QBrush(_activeColor));
+
+    // Connecting slots
+    connectSlots(_level->staticEntities());
 }
 
 void SpectrumGame::pause()
@@ -183,6 +186,18 @@ void SpectrumGame::stopColorChangeAnimation()
     _expandInProgress = false;
 }
 
+void SpectrumGame::connectSlots(std::vector<Entity *> entities)
+{
+    foreach (QGraphicsItem *item, entities) {\
+        if (typeid(*item) == typeid(ColorUnlocker)) {
+            if (isUnlocked(((ColorUnlocker*)item)->color())) {
+                removeItem(item);
+            } else
+                connect((ColorUnlocker*)item, SIGNAL(colorUnlocked(int)), this, SLOT(unlockColor(int)));
+        }
+    }
+}
+
 void SpectrumGame::hideObjectsWithActiveColor()
 {
     // Hide objects from the scene that have the same color as activeColor
@@ -194,7 +209,7 @@ void SpectrumGame::hideObjectsWithActiveColor()
 void SpectrumGame::update() const
 {
     _player->move();
-    std::vector<DynamicEntity *> dynamicEntities = _level->DynamicEntities();
+    std::vector<DynamicEntity *> dynamicEntities = _level->dynamicEntities();
     foreach (DynamicEntity *ent, dynamicEntities) {
         ent->move();
     }

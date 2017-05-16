@@ -113,8 +113,7 @@ void LevelLoader::addStaticEntity(std::vector<Entity *> &staticEntities,
             staticEntities.push_back(new Key(x, y, newDoor, entityColor));
             newDoor->lock();
         }
-    } else if (entityClass == "unlocker" && (!_game || !_game->isUnlocked(entityColor))) {
-        // Must check if game is null
+    } else if (entityClass == "unlocker") {
         staticEntities.push_back(new ColorUnlocker(x, y, entityColor));
     }
 

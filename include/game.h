@@ -33,7 +33,6 @@ public:
 
     QColor activeColor() const;
     void setActiveColor(QColor newActiveColor);
-    void unlockColor(int id);
     bool isUnlocked(const QColor &color) const;
 
     void keyPressEvent(QKeyEvent *event) override;
@@ -42,9 +41,11 @@ public:
 
 private slots:
     void update() const;
+    void unlockColor(int id);
     void stopColorChangeAnimation();
 
 private:
+    void connectSlots(std::vector<Entity*> entities);
     void changeActiveColor(QKeyEvent *event);
     void animateColorChange();
     void hideObjectsWithActiveColor();

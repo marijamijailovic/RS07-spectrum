@@ -18,8 +18,8 @@ public:
     Level& operator=(const Level&) = delete;
 
     void load(QGraphicsScene *scene) const;
-    std::vector<Entity *> StaticEntities() const;
-    std::vector<DynamicEntity *> DynamicEntities() const;
+    std::vector<Entity *> staticEntities() const;
+    std::vector<DynamicEntity *> dynamicEntities() const;
 
     void applyGravity(qreal g);
 
