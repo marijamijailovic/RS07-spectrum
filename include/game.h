@@ -11,6 +11,7 @@
 #include "include/level.h"
 #include "include/colors.h"
 #include "include/colorchanger.h"
+#include "include/colorchooser.h"
 
 
 class SpectrumGame : public QGraphicsScene
@@ -34,7 +35,10 @@ public:
     void setActiveColor(QColor newActiveColor);
     void unlockColor(int id);
     bool isUnlocked(const QColor &color) const;
+
     void keyPressEvent(QKeyEvent *event) override;
+    void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
 
 private slots:
     void update() const;
@@ -44,17 +48,21 @@ private:
     void changeActiveColor(QKeyEvent *event);
     void animateColorChange();
     void hideObjectsWithActiveColor();
+    void openSpectrum();
+    void closeSpectrum();
 
     bool _paused;
     bool _expandInProgress;
+    bool _choosingInProgress;
     QGraphicsView *_parent;
     qreal _gravCoeff = 1;
+    QColor _activeColor;
     QScopedPointer<Player> _player;
     QScopedPointer<Background> _background;
     QScopedPointer<Level> _level;
-    QScopedPointer<QTimer> _gameTicker;
-    QColor _activeColor;
     QScopedPointer<ColorChanger> _colorCircle;
+    QScopedPointer<ColorChooser> _spectrum;
+    QScopedPointer<QTimer> _gameTicker;
     QScopedPointer<QTimer> _colorCircleTicker;
     bool _unlockedColors[SpectrumColors::COLOR_NUM];
 };

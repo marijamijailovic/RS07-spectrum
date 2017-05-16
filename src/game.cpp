@@ -3,11 +3,13 @@
 SpectrumGame::SpectrumGame(QGraphicsView *parent) :
     _paused(false),
     _expandInProgress(false),
+    _choosingInProgress(false),
     _parent(parent),
+    _activeColor(SpectrumColors::defaultActiveColor),
     _player(new Player(200, 180)),
     _background(new Background()),
+    _spectrum(new ColorChooser(0, 0)),
     _gameTicker(new QTimer()),
-    _activeColor(SpectrumColors::defaultActiveColor),
     _unlockedColors {true, false, false, false, false, false}
 {
     //addItem(&(*_background)); // TODO Find a nice background picture
@@ -74,6 +76,27 @@ void SpectrumGame::keyPressEvent(QKeyEvent *event)
     else // TODO add check for numbers
         if (!_expandInProgress)
             changeActiveColor(event);
+}
+
+#include <QDebug>
+void SpectrumGame::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+    qDebug() << "pressed";
+    _choosingInProgress= true;
+    _spectrum->relocate(_player->x(), _player->y());
+    addItem(&(*_spectrum));
+    _spectrum->expand();
+    _parent->update();
+}
+
+void SpectrumGame::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+{
+    qDebug() << "released";
+    if (_choosingInProgress)
+        _spectrum->shrink();
+        //removeItem(&(*_spectrum));
+    _choosingInProgress = false;
+    _parent->update();
 }
 
 void SpectrumGame::changeActiveColor(QKeyEvent *event)

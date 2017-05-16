@@ -11,7 +11,7 @@ ColorChanger::ColorChanger(QGraphicsView *view, qreal x, qreal y, QColor color) 
     _expandTicker(new QTimer())
 {
     setZValue(-1);
-    connect(_expandTicker.data(), SIGNAL(timeout()), this, SLOT(expand()));
+    connect(_expandTicker.data(), SIGNAL(timeout()), this, SLOT(resize()));
     _expandTicker->start(15);
 }
 
