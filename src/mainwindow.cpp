@@ -19,15 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     _ui->gwDisplay->setRenderHint(QPainter::Antialiasing);
 
     // Connecting singals to slots
-    connect(_ui->btnResumeGame, SIGNAL(clicked()), this, SLOT(resumeGame()));
-    connect(_ui->btnNewGame, SIGNAL(clicked()), this, SLOT(newGame()));
-    connect(_ui->btnExit, SIGNAL(clicked()), this, SLOT(closeApp()));
-    connect(_ui->btnChooseLevel, SIGNAL(clicked()), this, SLOT(showLevelTree()));
-    connect(_ui->pbHideLevelPanel, SIGNAL(clicked()), this, SLOT(hideLevelTree()));
-    connect(_ui->pbLevel1, SIGNAL(clicked()), this, SLOT(levelLoad()));
-    connect(_ui->pbLevel2, SIGNAL(clicked()), this, SLOT(levelLoad()));
-    connect(_ui->pbLevel3, SIGNAL(clicked()), this, SLOT(levelLoad()));
-    connect(_ui->pbLevelDemo, SIGNAL(clicked()), this, SLOT(levelLoad()));
+    connectSignalsToSlots();
 
     initializeGameWindow();
 }
@@ -43,6 +35,22 @@ void MainWindow::initializeGameWindow()
     _ui->gwDisplay->raise();
     _ui->gwDisplay->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     _ui->gwDisplay->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+}
+
+void MainWindow::connectSignalsToSlots()
+{
+    connect(_ui->btnResumeGame, SIGNAL(clicked()), this, SLOT(resumeGame()));
+    connect(_ui->btnNewGame, SIGNAL(clicked()), this, SLOT(newGame()));
+    connect(_ui->btnExit, SIGNAL(clicked()), this, SLOT(closeApp()));
+    connect(_ui->btnChooseLevel, SIGNAL(clicked()), this, SLOT(showLevelTree()));
+    connect(_ui->pbHideLevelPanel, SIGNAL(clicked()), this, SLOT(hideLevelTree()));
+    connect(_ui->pbLevel1, SIGNAL(clicked()), this, SLOT(levelLoad()));
+    connect(_ui->pbLevel2, SIGNAL(clicked()), this, SLOT(levelLoad()));
+    connect(_ui->pbLevel3, SIGNAL(clicked()), this, SLOT(levelLoad()));
+    connect(_ui->pbLevel4, SIGNAL(clicked()), this, SLOT(levelLoad()));
+    connect(_ui->pbLevel5, SIGNAL(clicked()), this, SLOT(levelLoad()));
+    connect(_ui->pbLevel6, SIGNAL(clicked()), this, SLOT(levelLoad()));
+    connect(_ui->pbLevelDemo, SIGNAL(clicked()), this, SLOT(levelLoad()));
 }
 
 void MainWindow::resumeGame()

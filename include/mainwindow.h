@@ -31,6 +31,7 @@ private slots:
 
 private:
     void initializeGameWindow();
+    void connectSignalsToSlots();
 
     Ui::MainWindow *_ui;
     QScopedPointer<SpectrumGame> _game;

@@ -1,0 +1,13 @@
+N/A
+
+# Player spawn coordinates
+p 350 0
+
+s block 100 300 50 200
+s block 150 450 100 50
+s block 300 300 150 50
+s block 300 350 50 100
+s block 400 350 50 100
+s block 300 450 150 50
+s block 500 300 50 200
+s block 550 450 100 50

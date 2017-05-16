@@ -166,10 +166,10 @@ border: 1px solid white;</string>
    <widget class="QFrame" name="frLevelTree">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>30</y>
-      <width>541</width>
-      <height>181</height>
+      <x>40</x>
+      <y>40</y>
+      <width>701</width>
+      <height>511</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -185,10 +185,10 @@ background-image: url(:/gui/lvltree.png); </string>
     <widget class="QPushButton" name="pbLevel1">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>30</y>
-       <width>41</width>
-       <height>41</height>
+       <x>135</x>
+       <y>100</y>
+       <width>40</width>
+       <height>40</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -202,10 +202,10 @@ border: 1px solid white;</string>
     <widget class="QPushButton" name="pbLevel2">
      <property name="geometry">
       <rect>
-       <x>230</x>
-       <y>30</y>
-       <width>41</width>
-       <height>41</height>
+       <x>280</x>
+       <y>100</y>
+       <width>40</width>
+       <height>40</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -219,8 +219,8 @@ border: 1px solid white;</string>
     <widget class="QPushButton" name="pbLevelDemo">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>102</y>
+       <x>580</x>
+       <y>100</y>
        <width>51</width>
        <height>41</height>
       </rect>
@@ -236,8 +236,8 @@ border: 1px solid white;</string>
     <widget class="QPushButton" name="pbHideLevelPanel">
      <property name="geometry">
       <rect>
-       <x>200</x>
-       <y>160</y>
+       <x>290</x>
+       <y>10</y>
        <width>131</width>
        <height>16</height>
       </rect>
@@ -253,8 +253,59 @@ border: 1px solid white;</string>
     <widget class="QPushButton" name="pbLevel3">
      <property name="geometry">
       <rect>
-       <x>400</x>
-       <y>30</y>
+       <x>423</x>
+       <y>100</y>
+       <width>40</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white;
+border: 1px solid white;</string>
+     </property>
+     <property name="text">
+      <string>003</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pbLevel4">
+     <property name="geometry">
+      <rect>
+       <x>207</x>
+       <y>207</y>
+       <width>40</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white;
+border: 1px solid white;</string>
+     </property>
+     <property name="text">
+      <string>004</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pbLevel5">
+     <property name="geometry">
+      <rect>
+       <x>350</x>
+       <y>207</y>
+       <width>40</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white;
+border: 1px solid white;</string>
+     </property>
+     <property name="text">
+      <string>005</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pbLevel6">
+     <property name="geometry">
+      <rect>
+       <x>493</x>
+       <y>207</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -264,7 +315,7 @@ border: 1px solid white;</string>
 border: 1px solid white;</string>
      </property>
      <property name="text">
-      <string>003</string>
+      <string>006</string>
      </property>
     </widget>
    </widget>
