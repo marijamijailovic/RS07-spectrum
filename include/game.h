@@ -53,7 +53,6 @@ private:
 
     bool _paused;
     bool _expandInProgress;
-    bool _choosingInProgress;
     QGraphicsView *_parent;
     qreal _gravCoeff = 1;
     QColor _activeColor;

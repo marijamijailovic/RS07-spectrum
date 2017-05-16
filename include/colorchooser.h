@@ -19,18 +19,9 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
     void relocate(qreal x, qreal y);
-    void expand();
-    void shrink();
-
-private slots:
-    void increment();
-    void decrement();
 
 private:
     qreal _r;
-    int _step;
-    QScopedPointer<QTimer> _expandTicker;
-    QScopedPointer<QTimer> _shrinkTicker;
 };
 
 #endif // COLORCHOOSER_H

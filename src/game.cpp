@@ -3,7 +3,6 @@
 SpectrumGame::SpectrumGame(QGraphicsView *parent) :
     _paused(false),
     _expandInProgress(false),
-    _choosingInProgress(false),
     _parent(parent),
     _activeColor(SpectrumColors::defaultActiveColor),
     _player(new Player(200, 180)),
@@ -17,8 +16,12 @@ SpectrumGame::SpectrumGame(QGraphicsView *parent) :
     // Adding player to the scene
     addItem(&(*_player));
 
+    // Adding color chooser to the scene
+    addItem(&(*_spectrum));
+    _spectrum->hide();
+
     // Loading new level
-    loadLevel("004");
+    loadLevel("test");
 
     // Connecting timer to game-tick function
     connect(&(*_gameTicker), SIGNAL(timeout()), this, SLOT(update()));
@@ -82,20 +85,15 @@ void SpectrumGame::keyPressEvent(QKeyEvent *event)
 void SpectrumGame::mousePressEvent(QGraphicsSceneMouseEvent *)
 {
     qDebug() << "pressed";
-    _choosingInProgress= true;
     _spectrum->relocate(_player->x(), _player->y());
-    addItem(&(*_spectrum));
-    _spectrum->expand();
+    _spectrum->show();
     _parent->update();
 }
 
 void SpectrumGame::mouseReleaseEvent(QGraphicsSceneMouseEvent *)
 {
     qDebug() << "released";
-    if (_choosingInProgress)
-        _spectrum->shrink();
-        //removeItem(&(*_spectrum));
-    _choosingInProgress = false;
+    _spectrum->hide();
     _parent->update();
 }
 

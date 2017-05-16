@@ -3,13 +3,9 @@
 
 ColorChooser::ColorChooser(qreal x, qreal y) :
     Entity(x, y, SpectrumColors::gray, false),
-    _r(0),
-    _step(5),
-    _expandTicker(new QTimer()),
-    _shrinkTicker(new QTimer())
+    _r(200)
 {
-    connect(&(*_expandTicker), SIGNAL(timeout()), this, SLOT(increment()));
-    connect(&(*_shrinkTicker), SIGNAL(timeout()), this, SLOT(decrement()));
+    setZValue(1);
 }
 
 QRectF ColorChooser::boundingRect() const
@@ -26,37 +22,11 @@ QPainterPath ColorChooser::shape() const
 
 void ColorChooser::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    painter->drawRect(_x, _y, _r, _r);
+    painter->drawRect(_x - _r/2, _y - _r/2, _r, _r);
 }
 
 void ColorChooser::relocate(qreal x, qreal y)
 {
     _x = x;
     _y = y;
-}
-
-void ColorChooser::expand()
-{
-    _shrinkTicker->stop();
-    _expandTicker->start(50);
-}
-
-void ColorChooser::shrink()
-{
-    _expandTicker->stop();
-    _shrinkTicker->start(50);
-}
-
-void ColorChooser::increment()
-{
-    _r += _step;
-    if (_r > 195)
-        _expandTicker->stop();
-}
-
-void ColorChooser::decrement()
-{
-    _r -= _step;
-    if (_r < 5)
-        _shrinkTicker->stop();
 }

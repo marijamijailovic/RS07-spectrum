@@ -39,6 +39,7 @@ QColor SpectrumColors::getColorFromName(const QString &colorName)
 
 int SpectrumColors::toEnum(const QColor &c)
 {
+    // Because opacity is part of color object
     QColor color(c.red(), c.green(), c.blue());
     if (color == red) {
         return RED;
