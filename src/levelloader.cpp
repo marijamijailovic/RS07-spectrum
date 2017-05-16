@@ -1,5 +1,5 @@
 #include "include/levelloader.h"
-
+#include "include/mainwindow.h"
 #include <QMessageBox>
 #include <QFile>
 #include <QCoreApplication>

@@ -1,5 +1,6 @@
 #include "include/colorchanger.h"
 
+
 ColorChanger::ColorChanger(QGraphicsView *view, qreal x, qreal y, QColor color) :
     Entity(x, y, SpectrumColors::gray, false),
     _x(x),
@@ -38,7 +39,9 @@ void ColorChanger::expand()
         _r += 50;
         update(_x, _y, _r, _r);
         _view->update();
-    } else
+    } else {
         _expandTicker->stop();
+        emit expandingDone();
+    }
 }
 

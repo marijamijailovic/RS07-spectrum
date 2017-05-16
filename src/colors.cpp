@@ -5,7 +5,6 @@ QColor SpectrumColors::red = QColor(238, 52, 55);
 QColor SpectrumColors::green = QColor(108, 210, 77);
 QColor SpectrumColors::blue = QColor(40, 123, 219);
 QColor SpectrumColors::purple = QColor(158, 24, 166);
-QColor SpectrumColors::pink = QColor(245, 105, 145);
 QColor SpectrumColors::yellow = QColor(253, 231, 43);
 QColor SpectrumColors::orange = QColor(250, 121, 33);
 QColor SpectrumColors::gray = QColor(50, 50, 50);
@@ -32,10 +31,30 @@ QColor SpectrumColors::getColorFromName(const QString &colorName)
         return orange;
     } else if (colorName == "gray") {
         return gray;
-    } else if (colorName == "pink") {
-        return pink;
     } else if (colorName == "default") {
         return defaultActiveColor;
     } else
         return defaultActiveColor;
+}
+
+int SpectrumColors::toEnum(const QColor &c)
+{
+    // Because opacity is part of color object
+    QColor color(c.red(), c.green(), c.blue());
+    if (color == red) {
+        return RED;
+    } else if (color == green) {
+        return GREEN;
+    } else if (color == blue) {
+        return BLUE;
+    } else if (color == yellow) {
+        return YELLOW;
+    } else if (color == purple) {
+        return PURPLE;
+    } else if (color == orange) {
+        return ORANGE;
+    } else if (color == gray) {
+        return GRAY;
+    } else
+        return DEFAULT;
 }

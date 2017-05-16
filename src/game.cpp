@@ -4,18 +4,24 @@ SpectrumGame::SpectrumGame(QGraphicsView *parent) :
     _paused(false),
     _expandInProgress(false),
     _parent(parent),
+    _activeColor(SpectrumColors::defaultActiveColor),
     _player(new Player(200, 180)),
     _background(new Background()),
+    _spectrum(new ColorChooser(0, 0)),
     _gameTicker(new QTimer()),
-    _activeColor(SpectrumColors::defaultActiveColor)
+    _unlockedColors {true, false, false, false, false, false}
 {
     //addItem(&(*_background)); // TODO Find a nice background picture
 
     // Adding player to the scene
     addItem(&(*_player));
 
+    // Adding color chooser to the scene
+    addItem(&(*_spectrum));
+    _spectrum->hide();
+
     // Loading new level
-    loadLevel("004");
+    loadLevel("test");
 
     // Connecting timer to game-tick function
     connect(&(*_gameTicker), SIGNAL(timeout()), this, SLOT(update()));
@@ -35,6 +41,9 @@ void SpectrumGame::loadLevel(const QString id)
     _level.reset(new Level(":levels/" + id + ".lvl", *_player, &_activeColor));
     _level->load(this);
     setBackgroundBrush(QBrush(_activeColor));
+
+    // Connecting slots
+    connectSlots(_level->staticEntities());
 }
 
 void SpectrumGame::pause()
@@ -75,23 +84,31 @@ void SpectrumGame::keyPressEvent(QKeyEvent *event)
             changeActiveColor(event);
 }
 
+void SpectrumGame::mousePressEvent(QGraphicsSceneMouseEvent *)
+{
+    _spectrum->show();
+}
+
+void SpectrumGame::mouseReleaseEvent(QGraphicsSceneMouseEvent *)
+{
+    _spectrum->hide();
+}
+
 void SpectrumGame::changeActiveColor(QKeyEvent *event)
 {
     QColor newActiveColor = _activeColor;
-    if (event->key() == Qt::Key_1)
+    if (event->key() == Qt::Key_1 && _unlockedColors[SpectrumColors::BLUE])
         newActiveColor = SpectrumColors::blue;
-    else if (event->key() == Qt::Key_2)
+    else if (event->key() == Qt::Key_2 && _unlockedColors[SpectrumColors::GREEN])
         newActiveColor = SpectrumColors::green;
-    else if (event->key() == Qt::Key_3)
+    else if (event->key() == Qt::Key_3 && _unlockedColors[SpectrumColors::YELLOW])
         newActiveColor = SpectrumColors::yellow;
-    else if (event->key() == Qt::Key_4)
+    else if (event->key() == Qt::Key_4 && _unlockedColors[SpectrumColors::RED])
         newActiveColor = SpectrumColors::red;
-    else if (event->key() == Qt::Key_5)
+    else if (event->key() == Qt::Key_5 && _unlockedColors[SpectrumColors::ORANGE])
         newActiveColor = SpectrumColors::orange;
-    else if (event->key() == Qt::Key_6)
+    else if (event->key() == Qt::Key_6 && _unlockedColors[SpectrumColors::PURPLE])
         newActiveColor = SpectrumColors::purple;
-    else if (event->key() == Qt::Key_7)
-        newActiveColor = SpectrumColors::pink;
 
     // If the chosen new active color is the same as the one before, do nothing
     if (newActiveColor == _activeColor)
@@ -142,13 +159,23 @@ void SpectrumGame::interact()
     }
 }
 
+void SpectrumGame::unlockColor(int id)
+{
+    _unlockedColors[id] = true;
+}
+
+bool SpectrumGame::isUnlocked(const QColor &color) const
+{
+    return _unlockedColors[SpectrumColors::toEnum(color)];
+}
+
 void SpectrumGame::animateColorChange()
 {
     _expandInProgress = true;
     _colorCircle.reset(new ColorChanger(_parent, _player->x(), _player->y(), _activeColor));
+    connect(&(*_colorCircle), SIGNAL(expandingDone()), this, SLOT(stopColorChangeAnimation()));
     addItem(&(*_colorCircle));
     _parent->update();
-    QTimer::singleShot(400, this, SLOT(stopColorChangeAnimation()));
 }
 
 void SpectrumGame::stopColorChangeAnimation()
@@ -157,6 +184,18 @@ void SpectrumGame::stopColorChangeAnimation()
         removeItem(&(*_colorCircle));
     setBackgroundBrush(QBrush(_activeColor));
     _expandInProgress = false;
+}
+
+void SpectrumGame::connectSlots(std::vector<Entity *> entities)
+{
+    foreach (QGraphicsItem *item, entities) {
+        if (typeid(*item) == typeid(ColorUnlocker)) {
+            if (isUnlocked(((ColorUnlocker*)item)->color())) {
+                removeItem(item);
+            } else
+                connect((ColorUnlocker*)item, SIGNAL(colorUnlocked(int)), this, SLOT(unlockColor(int)));
+        }
+    }
 }
 
 void SpectrumGame::hideObjectsWithActiveColor()
@@ -170,11 +209,12 @@ void SpectrumGame::hideObjectsWithActiveColor()
 void SpectrumGame::update() const
 {
     _player->move();
-    std::vector<DynamicEntity *> dynamicEntities = _level->DynamicEntities();
+    std::vector<DynamicEntity *> dynamicEntities = _level->dynamicEntities();
     foreach (DynamicEntity *ent, dynamicEntities) {
         ent->move();
     }
     _player->applyGravity(_gravCoeff);
     _level->applyGravity(_gravCoeff);
+    _spectrum->relocate(_player->x(), _player->y());
     _parent->update();
 }

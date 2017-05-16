@@ -1,5 +1,6 @@
 #include "include/colorunlocker.h"
 
+
 ColorUnlocker::ColorUnlocker(qreal x, qreal y, const QColor color) :
     Entity(x, y, color),
     _opacity(225),
@@ -44,6 +45,8 @@ void ColorUnlocker::paint(QPainter *painter, const QStyleOptionGraphicsItem *, Q
 void ColorUnlocker::collect()
 {
     _raiseTicker->start(40);
+    _collidable = false;
+    emit colorUnlocked(SpectrumColors::toEnum(_color));
 }
 
 void ColorUnlocker::incrementOpacity()

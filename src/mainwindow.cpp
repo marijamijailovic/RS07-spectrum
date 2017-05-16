@@ -1,6 +1,5 @@
 #include "ui_mainwindow.h"
 #include "include/mainwindow.h"
-
 #include <QGraphicsScene>
 
 

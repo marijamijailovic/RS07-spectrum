@@ -19,6 +19,9 @@ public:
 
     void collect();
 
+signals:
+    void colorUnlocked(int id);
+
 private slots:
     void incrementOpacity();
     void raise();
