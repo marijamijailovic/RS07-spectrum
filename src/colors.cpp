@@ -37,8 +37,9 @@ QColor SpectrumColors::getColorFromName(const QString &colorName)
         return defaultActiveColor;
 }
 
-int SpectrumColors::toEnum(const QColor &color)
+int SpectrumColors::toEnum(const QColor &c)
 {
+    QColor color(c.red(), c.green(), c.blue());
     if (color == red) {
         return RED;
     } else if (color == green) {

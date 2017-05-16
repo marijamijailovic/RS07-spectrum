@@ -46,6 +46,7 @@ void ColorUnlocker::paint(QPainter *painter, const QStyleOptionGraphicsItem *, Q
 void ColorUnlocker::collect()
 {
     _raiseTicker->start(40);
+    _collidable = false;
     _game->unlockColor(SpectrumColors::toEnum(_color));  // TODO remove
 }
 

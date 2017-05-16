@@ -79,7 +79,7 @@ void SpectrumGame::keyPressEvent(QKeyEvent *event)
 }
 
 #include <QDebug>
-void SpectrumGame::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void SpectrumGame::mousePressEvent(QGraphicsSceneMouseEvent *)
 {
     qDebug() << "pressed";
     _choosingInProgress= true;
@@ -89,7 +89,7 @@ void SpectrumGame::mousePressEvent(QGraphicsSceneMouseEvent *event)
     _parent->update();
 }
 
-void SpectrumGame::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+void SpectrumGame::mouseReleaseEvent(QGraphicsSceneMouseEvent *)
 {
     qDebug() << "released";
     if (_choosingInProgress)
