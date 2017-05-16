@@ -81,20 +81,14 @@ void SpectrumGame::keyPressEvent(QKeyEvent *event)
             changeActiveColor(event);
 }
 
-#include <QDebug>
 void SpectrumGame::mousePressEvent(QGraphicsSceneMouseEvent *)
 {
-    qDebug() << "pressed";
-    _spectrum->relocate(_player->x(), _player->y());
     _spectrum->show();
-    _parent->update();
 }
 
 void SpectrumGame::mouseReleaseEvent(QGraphicsSceneMouseEvent *)
 {
-    qDebug() << "released";
     _spectrum->hide();
-    _parent->update();
 }
 
 void SpectrumGame::changeActiveColor(QKeyEvent *event)
@@ -206,5 +200,6 @@ void SpectrumGame::update() const
     }
     _player->applyGravity(_gravCoeff);
     _level->applyGravity(_gravCoeff);
+    _spectrum->relocate(_player->x(), _player->y());
     _parent->update();
 }
