@@ -39,7 +39,9 @@ void ColorChanger::expand()
         _r += 50;
         update(_x, _y, _r, _r);
         _view->update();
-    } else
+    } else {
         _expandTicker->stop();
+        emit expandingDone();
+    }
 }
 

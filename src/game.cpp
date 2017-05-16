@@ -173,9 +173,9 @@ void SpectrumGame::animateColorChange()
 {
     _expandInProgress = true;
     _colorCircle.reset(new ColorChanger(_parent, _player->x(), _player->y(), _activeColor));
+    connect(&(*_colorCircle), SIGNAL(expandingDone()), this, SLOT(stopColorChangeAnimation()));
     addItem(&(*_colorCircle));
     _parent->update();
-    QTimer::singleShot(400, this, SLOT(stopColorChangeAnimation()));
 }
 
 void SpectrumGame::stopColorChangeAnimation()
@@ -188,7 +188,7 @@ void SpectrumGame::stopColorChangeAnimation()
 
 void SpectrumGame::connectSlots(std::vector<Entity *> entities)
 {
-    foreach (QGraphicsItem *item, entities) {\
+    foreach (QGraphicsItem *item, entities) {
         if (typeid(*item) == typeid(ColorUnlocker)) {
             if (isUnlocked(((ColorUnlocker*)item)->color())) {
                 removeItem(item);
