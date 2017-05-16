@@ -146,6 +146,11 @@ void SpectrumGame::unlockColor(int id)
     _unlockedColors[id] = true;
 }
 
+bool SpectrumGame::isUnlocked(const QColor &color) const
+{
+    return _unlockedColors[SpectrumColors::toEnum(color)];
+}
+
 void SpectrumGame::animateColorChange()
 {
     _expandInProgress = true;

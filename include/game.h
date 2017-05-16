@@ -33,7 +33,7 @@ public:
     QColor activeColor() const;
     void setActiveColor(QColor newActiveColor);
     void unlockColor(int id);
-
+    bool isUnlocked(const QColor &color) const;
     void keyPressEvent(QKeyEvent *event) override;
 
 private slots:

@@ -1,5 +1,5 @@
 #include "include/levelloader.h"
-
+#include "include/mainwindow.h"
 #include <QMessageBox>
 #include <QFile>
 #include <QCoreApplication>
@@ -113,7 +113,7 @@ void LevelLoader::addStaticEntity(std::vector<Entity *> &staticEntities,
             staticEntities.push_back(new Key(x, y, newDoor, entityColor));
             newDoor->lock();
         }
-    } else if (entityClass == "unlocker") {
+    } else if (entityClass == "unlocker" && !_game->isUnlocked(entityColor)) {
         staticEntities.push_back(new ColorUnlocker(x, y, entityColor));
     }
 
