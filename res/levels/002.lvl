@@ -16,6 +16,11 @@ s block 0 450 20 100
 s block 780 450 20 100
 
 
+#   Obstacle
+c green
+s wall 370 520 20 30
+
+
 #   Door
 c red
 s door 200 450 001

@@ -38,9 +38,14 @@ SpectrumGame::~SpectrumGame()
 
 void SpectrumGame::loadLevel(const QString id)
 {
+    // Load next level
     _level.reset(new Level(":levels/" + id + ".lvl", *_player, &_activeColor));
     _level->load(this);
     setBackgroundBrush(QBrush(_activeColor));
+
+    // Stop player
+    _player->setVx(0);
+    _player->setVy(0);
 
     // Connecting slots
     connectSlots(_level->staticEntities());
