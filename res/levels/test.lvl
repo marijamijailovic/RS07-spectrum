@@ -1,7 +1,7 @@
 default
 
 # Player spawn coordinates
-p 100 500
+p 60 500
 
 # Color unlocker test
 c purple
