@@ -19,11 +19,30 @@ void Entity::setColor(const QColor newColor)
     _color = newColor;
 }
 
-void Entity::drawAt(qreal x, qreal y)
+void Entity::setPosition(qreal x, qreal y)
 {
     _x = x;
     _y = y;
-    setPos(x, y);
+}
+
+qreal Entity::x() const
+{
+    return _x;
+}
+
+qreal Entity::y() const
+{
+    return _y;
+}
+
+qreal Entity::centerX() const
+{
+    return _x;
+}
+
+qreal Entity::centerY() const
+{
+    return _y;
 }
 
 bool Entity::collidable() const

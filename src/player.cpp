@@ -16,19 +16,29 @@ void Player::setJump(bool b)
 
 QRectF Player::boundingRect() const
 {
-    return QRectF(-_w/2, -_h/2, _w, _h);
+    return QRectF(_x, _y, _w, _h);
 }
 
 QPainterPath Player::shape() const
 {
     QPainterPath path;
-    path.addRect(-_w/2, -_h/2, _w, _h);
+    path.addRect(_x, _y, _w, _h);
     return path;
 }
 
 void Player::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    painter->drawPixmap(-_w/2, -_h/2, _w, _h, QPixmap(":sprites/player.png"));
+    painter->drawPixmap(_x, _y, _w, _h, QPixmap(":sprites/player.png"));
+}
+
+qreal Player::centerX() const
+{
+    return _x + _w/2;
+}
+
+qreal Player::centerY() const
+{
+    return _y + _h/2;
 }
 
 void Player::move()
@@ -54,12 +64,13 @@ void Player::move()
             continue;
         }
 
-        /*** TEST, REMOVE ***/
+        // TEST, REMOVE
         if (typeid(*item) == typeid(ColorUnlocker)) {
             ((ColorUnlocker*)item)->collect();
             ignoredCollisions++;
             continue;
-        } /*** TEST, REMOVE ***/
+        }
+        // TEST, REMOVE
 
         QRectF a = mapToScene(boundingRect()).boundingRect();
         QRectF b = item->boundingRect();
@@ -112,5 +123,5 @@ void Player::move()
     if (_inAir == false)
         applyForce(-_vx*0.1,0); // Friction
 
-    drawAt(_x, _y);
+    setPosition(_x, _y);
 }

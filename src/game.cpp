@@ -5,7 +5,7 @@ SpectrumGame::SpectrumGame(QGraphicsView *parent) :
     _expandInProgress(false),
     _parent(parent),
     _activeColor(SpectrumColors::defaultActiveColor),
-    _player(new Player(200, 180)),
+    _player(new Player(0, 0)),
     _background(new Background()),
     _spectrum(new ColorChooser(0, 0)),
     _gameTicker(new QTimer()),
@@ -13,15 +13,15 @@ SpectrumGame::SpectrumGame(QGraphicsView *parent) :
 {
     //addItem(&(*_background)); // TODO Find a nice background picture
 
-    // Adding player to the scene
-    addItem(&(*_player));
-
     // Adding color chooser to the scene
     addItem(&(*_spectrum));
     _spectrum->hide();
 
     // Loading new level
     loadLevel("test");
+
+    // Adding player to the scene
+    addItem(&(*_player));
 
     // Connecting timer to game-tick function
     connect(&(*_gameTicker), SIGNAL(timeout()), this, SLOT(update()));
@@ -172,7 +172,7 @@ bool SpectrumGame::isUnlocked(const QColor &color) const
 void SpectrumGame::animateColorChange()
 {
     _expandInProgress = true;
-    _colorCircle.reset(new ColorChanger(_parent, _player->x(), _player->y(), _activeColor));
+    _colorCircle.reset(new ColorChanger(_parent, _player->centerX(), _player->centerY(), _activeColor));
     connect(&(*_colorCircle), SIGNAL(expandingDone()), this, SLOT(stopColorChangeAnimation()));
     addItem(&(*_colorCircle));
     _parent->update();

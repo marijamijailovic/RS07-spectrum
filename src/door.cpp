@@ -1,5 +1,6 @@
 #include "include/door.h"
 
+
 Door::Door(qreal x, qreal y, const QString &nextLevel, const QColor color, bool locked) :
     Entity(x, y, color, false),
     _barH(_h - _w/12),

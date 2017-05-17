@@ -15,11 +15,15 @@ class Entity : public QGraphicsObject
 public:
     Entity(qreal x, qreal y, const QColor color = SpectrumColors::gray, bool collidable = true);
 
-    void drawAt(qreal x, qreal y);
+    void setPosition(qreal x, qreal y);
+    qreal x() const;
+    qreal y() const;
     QColor color() const;
     void setColor(const QColor newColor);
-
     bool collidable() const;
+
+    virtual qreal centerX() const;
+    virtual qreal centerY() const;
 
 protected:
     qreal _x;

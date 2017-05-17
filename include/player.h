@@ -25,6 +25,8 @@ public:
     QRectF boundingRect() const override;
     QPainterPath shape() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+    qreal centerX() const override;
+    qreal centerY() const override;
 
     // Overrides from DynamicEntity
     void move();
