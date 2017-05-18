@@ -66,6 +66,7 @@ void Player::move()
     QTextStream out(stdout);
     QList<QGraphicsItem *> collidingObjects = collidingItems();
     int ignoredCollisions = 0;
+    bool onLadder = false;
     foreach (QGraphicsItem *item, collidingObjects) {
         if ( !((Entity*)item)->collidable()) {
             ignoredCollisions++;
@@ -92,17 +93,22 @@ void Player::move()
         }
         // TEST, REMOVE
 
+        QRectF a = mapToScene(boundingRect()).boundingRect();
+        QRectF b = item->boundingRect();
+
         if (typeid(*item) == typeid(Ladder)) {
-            out << "ladder\n";
+            //out << "ladder\n";
+            // Player is not on the ladder if it's just on the top of it
+            if (a.bottom() >= b.top() + 1)
+                onLadder = true;
             if (_up)
                 _y -= 4;
-            if (_down)
+            if (_down && a.bottom() <= b.bottom())
                 _y += 4;
             continue;
         }
 
-        QRectF a = mapToScene(boundingRect()).boundingRect();
-        QRectF b = item->boundingRect();
+        // Collisions
         if (_vy >= 0 && a.bottom() > b.top() && _vy >= a.bottom() - b.top()) {
             _y += b.top() - a.bottom() + 0.9145;
             _canJump = 2;
@@ -124,6 +130,7 @@ void Player::move()
         }
     }
 
+    // TODO II disable top collision if the player is onLadder
     //purpose of canJump is wall jumping, currently disabled
     if (collidingObjects.size() == ignoredCollisions) {
         _inAir = true;
@@ -149,7 +156,6 @@ void Player::move()
     //applyForce(-_vx*0.03,0);    // Air resistance
 
     // If left/right key is pressed, move the player
-    // TODO for up/down keys (for ladders)
     if (_left)
         _vx -= 1;
     if (_right)
@@ -165,7 +171,8 @@ void Player::move()
     //out << "vx: " << _vx << " , vy: " << _vy << "\n";
 
     _y += _vy;
-    _x += _vx;
+    if (!(onLadder && collidingObjects.size() > 1))
+        _x += _vx;
 
     setPosition(_x, _y);
 }
