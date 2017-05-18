@@ -22,15 +22,13 @@ QPainterPath ColorChooser::shape() const
 
 void ColorChooser::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    qreal cx = _x;
-    qreal cy = _y;
     QPoint outer[7];
     QPoint inner[7];
     for (int i = 0, angle = 0; i < 7; i++, angle += 60) {
-        outer[i] = QPoint(cx + _r/2 * cos(angle * M_PI/180),
-                          cy + _r/2 * sin(angle * M_PI/180));
-        inner[i] = QPoint(cx + _r/3 * cos(angle * M_PI/180),
-                          cy + _r/3 * sin(angle * M_PI/180));
+        outer[i] = QPoint(_x + _r/2 * cos(angle * M_PI/180),
+                          _y + _r/2 * sin(angle * M_PI/180));
+        inner[i] = QPoint(_x + _r/3 * cos(angle * M_PI/180),
+                          _y + _r/3 * sin(angle * M_PI/180));
     }
     QColor colors[] = {
         SpectrumColors::purple,

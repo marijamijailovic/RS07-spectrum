@@ -116,7 +116,7 @@ void SpectrumGame::mousePressEvent(QGraphicsSceneMouseEvent *)
 
 void SpectrumGame::mouseReleaseEvent(QGraphicsSceneMouseEvent *)
 {
-    animateColorChange(_activeColor);   // TODO
+    animateColorChange(SpectrumColors::blue);   // TODO
     _spectrum->hide();
 }
 
