@@ -48,7 +48,7 @@ private slots:
 private:
     void connectSlots(std::vector<Entity*> entities);
     void changeActiveColor(QKeyEvent *event);
-    void animateColorChange();
+    void animateColorChange(QColor color);
     void hideObjectsWithActiveColor();
     void openSpectrum();
     void closeSpectrum();

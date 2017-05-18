@@ -107,13 +107,17 @@ void SpectrumGame::keyReleaseEvent(QKeyEvent *event)
 
 void SpectrumGame::mousePressEvent(QGraphicsSceneMouseEvent *)
 {
+    foreach (QGraphicsItem* item, items())
+        if (((Entity*)item)->color() == _activeColor)
+            item->show();
+    animateColorChange(SpectrumColors::gray);
     _spectrum->show();
 }
 
 void SpectrumGame::mouseReleaseEvent(QGraphicsSceneMouseEvent *)
 {
+    animateColorChange(_activeColor);   // TODO
     _spectrum->hide();
-
 }
 
 void SpectrumGame::changeActiveColor(QKeyEvent *event)
@@ -158,9 +162,8 @@ void SpectrumGame::changeActiveColor(QKeyEvent *event)
         }
 
     if (shouldChangeActiveColor) {
-        _activeColor = newActiveColor;
         if (!_expandInProgress)
-            animateColorChange();
+            animateColorChange(newActiveColor);
         update();
     }
 
@@ -191,10 +194,11 @@ bool SpectrumGame::isUnlocked(const QColor &color) const
     return _unlockedColors[SpectrumColors::toEnum(color)];
 }
 
-void SpectrumGame::animateColorChange()
+void SpectrumGame::animateColorChange(QColor color)
 {
+    _activeColor = color;
     _expandInProgress = true;
-    _colorCircle.reset(new ColorChanger(_parent, _player->centerX(), _player->centerY(), _activeColor));
+    _colorCircle.reset(new ColorChanger(_parent, _player->centerX(), _player->centerY(), color));
     connect(&(*_colorCircle), SIGNAL(expandingDone()), this, SLOT(stopColorChangeAnimation()));
     addItem(&(*_colorCircle));
     _parent->update();
@@ -204,7 +208,7 @@ void SpectrumGame::stopColorChangeAnimation()
 {
     if (_expandInProgress)
         removeItem(&(*_colorCircle));
-    setBackgroundBrush(QBrush(_activeColor));
+    setBackgroundBrush(_activeColor);
     _expandInProgress = false;
 }
 
