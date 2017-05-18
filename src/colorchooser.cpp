@@ -22,7 +22,36 @@ QPainterPath ColorChooser::shape() const
 
 void ColorChooser::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    painter->drawRect(_x - _r/2, _y - _r/2, _r, _r);
+    qreal cx = _x;
+    qreal cy = _y;
+    QPoint outer[7];
+    QPoint inner[7];
+    for (int i = 0, angle = 0; i < 7; i++, angle += 60) {
+        outer[i] = QPoint(cx + _r/2 * cos(angle * M_PI/180),
+                          cy + _r/2 * sin(angle * M_PI/180));
+        inner[i] = QPoint(cx + _r/3 * cos(angle * M_PI/180),
+                          cy + _r/3 * sin(angle * M_PI/180));
+    }
+    QColor colors[] = {
+        SpectrumColors::purple,
+        SpectrumColors::red,
+        SpectrumColors::yellow,
+        SpectrumColors::orange,
+        SpectrumColors::green,
+        SpectrumColors::blue
+    };
+
+    //QPen p(Qt::NoPen);    // Border or no border, that is the question
+    //painter->setPen(p);
+    for (int i = 0; i < 6; i++) {
+        painter->setBrush(QBrush(colors[i]));
+        QPainterPath p(outer[i]);
+        p.lineTo(outer[i+1]);
+        p.lineTo(inner[i+1]);
+        p.lineTo(inner[i]);
+        p.lineTo(outer[i]);
+        painter->drawPath(p);
+    }
 }
 
 void ColorChooser::relocate(qreal x, qreal y)
