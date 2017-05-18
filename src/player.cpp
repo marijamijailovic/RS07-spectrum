@@ -97,14 +97,15 @@ void Player::move()
         QRectF b = item->boundingRect();
 
         if (typeid(*item) == typeid(Ladder)) {
+            int step = 4;
             //out << "ladder\n";
             // Player is not on the ladder if it's just on the top of it
-            if (a.bottom() >= b.top() + 1)
+            if (a.bottom() >= b.top() + 1 && a.bottom() < b.bottom())
                 onLadder = true;
-            if (_up)
-                _y -= 4;
+            if (_up && a.bottom() >= b.top() + step - 1)
+                _y -= step;
             if (_down && a.bottom() <= b.bottom())
-                _y += 4;
+                _y += step;
             continue;
         }
 
