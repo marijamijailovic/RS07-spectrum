@@ -8,6 +8,7 @@
 #include <typeinfo>
 #include "include/dynamicentity.h"
 #include "include/key.h"
+#include "include/ladder.h"
 #include "include/colorunlocker.h"
 
 
@@ -22,6 +23,8 @@ public:
     void setJump(bool b);
     void setLeft(bool b);
     void setRight(bool b);
+    void setUp(bool b);
+    void setDown(bool b);
 
     // Overrides from Entity
     QRectF boundingRect() const override;

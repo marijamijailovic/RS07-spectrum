@@ -24,6 +24,16 @@ void Player::setRight(bool b)
     _right = b;
 }
 
+void Player::setUp(bool b)
+{
+    _up = b;
+}
+
+void Player::setDown(bool b)
+{
+    _down = b;
+}
+
 QRectF Player::boundingRect() const
 {
     return QRectF(_x, _y, _w, _h);
@@ -81,6 +91,15 @@ void Player::move()
             continue;
         }
         // TEST, REMOVE
+
+        if (typeid(*item) == typeid(Ladder)) {
+            out << "ladder\n";
+            if (_up)
+                _y -= 4;
+            if (_down)
+                _y += 4;
+            continue;
+        }
 
         QRectF a = mapToScene(boundingRect()).boundingRect();
         QRectF b = item->boundingRect();
@@ -143,7 +162,7 @@ void Player::move()
 
     //TODO reset _vx = 0 when it becomes insignificant
 
-    out << "vx: " << _vx << " , vy: " << _vy << "\n";
+    //out << "vx: " << _vx << " , vy: " << _vy << "\n";
 
     _y += _vy;
     _x += _vx;
