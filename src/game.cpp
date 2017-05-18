@@ -25,7 +25,7 @@ SpectrumGame::SpectrumGame(QGraphicsView *parent) :
 
     // Connecting timer to game-tick function
     connect(&(*_gameTicker), SIGNAL(timeout()), this, SLOT(update()));
-    _gameTicker->start(40);
+    _gameTicker->start(25);
 
     // Setting focus to scene
     setFocus();
@@ -71,9 +71,9 @@ void SpectrumGame::keyPressEvent(QKeyEvent *event)
         return;
 
     if (event->key() == Qt::Key_Left || event->key() == Qt::Key_A)
-        _player->applyForce(-8,0);
+        _player->setLeft(true);
     else if (event->key() == Qt::Key_Right || event->key() == Qt::Key_D)
-        _player->applyForce(8,0);
+        _player->setRight(true);
     else if (event->key() == Qt::Key_Up || event->key() == Qt::Key_W)
         _player->setJump(true);
     else if (event->key() == Qt::Key_Down || event->key() == Qt::Key_S)
@@ -89,6 +89,14 @@ void SpectrumGame::keyPressEvent(QKeyEvent *event)
             changeActiveColor(event);
 }
 
+void SpectrumGame::keyReleaseEvent(QKeyEvent *event)
+{
+    if (event->key() == Qt::Key_Left || event->key() == Qt::Key_A)
+        _player->setLeft(false);
+    else if (event->key() == Qt::Key_Right || event->key() == Qt::Key_D)
+        _player->setRight(false);
+}
+
 void SpectrumGame::mousePressEvent(QGraphicsSceneMouseEvent *)
 {
     _spectrum->show();
@@ -97,6 +105,7 @@ void SpectrumGame::mousePressEvent(QGraphicsSceneMouseEvent *)
 void SpectrumGame::mouseReleaseEvent(QGraphicsSceneMouseEvent *)
 {
     _spectrum->hide();
+
 }
 
 void SpectrumGame::changeActiveColor(QKeyEvent *event)

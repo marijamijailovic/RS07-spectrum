@@ -36,6 +36,7 @@ public:
     bool isUnlocked(const QColor &color) const;
 
     void keyPressEvent(QKeyEvent *event) override;
+    void keyReleaseEvent(QKeyEvent *event) override;
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
 
@@ -55,7 +56,7 @@ private:
     bool _paused;
     bool _expandInProgress;
     QGraphicsView *_parent;
-    qreal _gravCoeff = 1;
+    const qreal _gravCoeff = 0.978033;
     QColor _activeColor;
     QScopedPointer<Player> _player;
     QScopedPointer<Background> _background;

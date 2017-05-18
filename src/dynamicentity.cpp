@@ -35,10 +35,10 @@ int DynamicEntity::getCh() const
 void DynamicEntity::applyForce(qreal ix,qreal iy)
 {
     _vx += (ix / _mass);
-    if (_vx > 10)
-        _vx = 10;
-    if (_vx < -10)
-        _vx =- 10;
+    if (_vx > 5)
+        _vx = 5;
+    if (_vx < -5)
+        _vx =- 5;
     _vy += (iy / _mass);
 }
 

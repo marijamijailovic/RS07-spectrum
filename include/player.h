@@ -20,6 +20,8 @@ public:
     Player& operator=(const Player&) = delete;
 
     void setJump(bool b);
+    void setLeft(bool b);
+    void setRight(bool b);
 
     // Overrides from Entity
     QRectF boundingRect() const override;
@@ -36,6 +38,11 @@ private:
     const int _h = 77;
     bool _jump = false;
     int _canJump = 2;
+    // Key press detection for moving
+    bool _up = false;
+    bool _down = false;
+    bool _right = false;
+    bool _left = false;
 };
 
 #endif // PLAYER_H

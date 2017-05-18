@@ -14,6 +14,16 @@ void Player::setJump(bool b)
     _jump = b;
 }
 
+void Player::setLeft(bool b)
+{
+    _left = b;
+}
+
+void Player::setRight(bool b)
+{
+    _right = b;
+}
+
 QRectF Player::boundingRect() const
 {
     return QRectF(_x, _y, _w, _h);
@@ -116,12 +126,27 @@ void Player::move()
 
     if (_canJump == 0)
         _jump = false;
+
+    //applyForce(-_vx*0.03,0);    // Air resistance
+
+    // If left/right key is pressed, move the player
+    // TODO for up/down keys (for ladders)
+    if (_left)
+        _vx -= 1;
+    if (_right)
+        _vx += 1;
+
+    // TODO get frictionCoef from an entity that is under the player (advanced and not necessary)
+    qreal frictionCoef = 0.1;
+    if (_inAir == false)
+        applyForce(-_vx * frictionCoef, 0);
+
+    //TODO reset _vx = 0 when it becomes insignificant
+
+    out << "vx: " << _vx << " , vy: " << _vy << "\n";
+
     _y += _vy;
     _x += _vx;
-    applyForce(-_vx*0.03,0);    // Air resistance
-
-    if (_inAir == false)
-        applyForce(-_vx*0.1,0); // Friction
 
     setPosition(_x, _y);
 }
