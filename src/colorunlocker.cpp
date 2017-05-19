@@ -16,13 +16,13 @@ ColorUnlocker::ColorUnlocker(qreal x, qreal y, const QColor color) :
 
 QRectF ColorUnlocker::boundingRect() const
 {
-    return QRectF(_x, _y, _w, _h);
+    return QRectF(0, 0, _w, _h);
 }
 
 QPainterPath ColorUnlocker::shape() const
 {
     QPainterPath path;
-    path.addRect(_x, _y, _w, _h);
+    path.addRect(0, 0, _w, _h);
     return path;
 }
 
@@ -32,14 +32,16 @@ void ColorUnlocker::paint(QPainter *painter, const QStyleOptionGraphicsItem *, Q
     painter->setPen(pen);
     _color.setAlpha(_opacity);
     painter->setBrush(QBrush(_color));
+    painter->drawRect(0, 0, _w, _h);
+    /*
     QPoint points[] = {
-        QPoint(_x, _y - _raiseH),
-        QPoint(_x + _w/4, _y + _h - _raiseH),
+        QPoint(-_w/2, -_h/2 - _raiseH),
+        QPoint(-_w/2 + _w/4, _y + _h - _raiseH),
         QPoint(_x + 3*_w/4, _y + _h - _raiseH),
         QPoint(_x + _w, _y - _raiseH),
         QPoint(_x, _y - _raiseH)
     };
-    painter->drawPolygon(points, 5);
+    painter->drawPolygon(points, 5);*/
 }
 
 void ColorUnlocker::collect()

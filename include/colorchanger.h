@@ -27,8 +27,6 @@ private slots:
     void expand();
 
 private:
-    qreal _x;
-    qreal _y;
     qreal _r;
     QGraphicsView *_view;
     QColor _color;

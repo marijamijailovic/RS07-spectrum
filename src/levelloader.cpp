@@ -69,7 +69,7 @@ void LevelLoader::parse(Player &player,
         case 'p':   // Player
             int x, y;
             lineStream >> x >> y;
-            player.setPosition(x, y);
+            player.setPos(x, y);
             break;
         default:
             break;

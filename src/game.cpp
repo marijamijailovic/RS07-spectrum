@@ -237,6 +237,6 @@ void SpectrumGame::update() const
     }
     _player->applyGravity(_gravCoeff);
     _level->applyGravity(_gravCoeff);
-    _spectrum->relocate(_player->centerX(), _player->centerY());
+    _spectrum->setPos(_player->centerX(), _player->centerY());
     _parent->update();
 }

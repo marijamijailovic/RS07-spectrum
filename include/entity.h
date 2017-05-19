@@ -15,9 +15,6 @@ class Entity : public QGraphicsObject
 public:
     Entity(qreal x, qreal y, const QColor color = SpectrumColors::gray, bool collidable = true);
 
-    void setPosition(qreal x, qreal y);
-    qreal x() const;
-    qreal y() const;
     QColor color() const;
     void setColor(const QColor newColor);
     bool collidable() const;
@@ -26,8 +23,6 @@ public:
     virtual qreal centerY() const;
 
 protected:
-    qreal _x;
-    qreal _y;
     QColor _color;
     bool _collidable;
 };

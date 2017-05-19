@@ -10,23 +10,17 @@ ColorChooser::ColorChooser(qreal x, qreal y) :
 
 QRectF ColorChooser::boundingRect() const
 {
-    return QRectF(_x, _y, _r, _r);
+    return QRectF(0, 0, _r, _r);
 }
 
 QPainterPath ColorChooser::shape() const
 {
     QPainterPath path;
-    path.addRect(_x, _y, _r, _r);
+    path.addRect(0, 0, _r, _r);
     return path;
 }
 
 void ColorChooser::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    painter->drawRect(_x - _r/2, _y - _r/2, _r, _r);
-}
-
-void ColorChooser::relocate(qreal x, qreal y)
-{
-    _x = x;
-    _y = y;
+    painter->drawRect(0, 0, _r, _r);
 }
