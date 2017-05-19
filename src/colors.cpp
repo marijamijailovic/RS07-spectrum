@@ -37,6 +37,26 @@ QColor SpectrumColors::getColorFromName(const QString &colorName)
         return defaultActiveColor;
 }
 
+QColor SpectrumColors::getColorId(int id)
+{
+    if (id == RED) {
+        return red;
+    } else if (id == GREEN) {
+        return green;
+    } else if (id == BLUE) {
+        return blue;
+    } else if (id == YELLOW) {
+        return yellow;
+    } else if (id == PURPLE) {
+        return purple;
+    } else if (id == ORANGE) {
+        return orange;
+    } else if (id == GRAY) {
+        return gray;
+    } else
+        return defaultActiveColor;
+}
+
 int SpectrumColors::toEnum(const QColor &c)
 {
     // Because opacity is part of color object

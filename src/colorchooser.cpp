@@ -31,25 +31,18 @@ void ColorChooser::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QW
         inner[i] = QPoint(_x + _r/3 * cos(angle * M_PI/180),
                           _y + _r/3 * sin(angle * M_PI/180));
     }
-    QColor colors[] = {
-        SpectrumColors::blue,
-        SpectrumColors::purple,
-        SpectrumColors::red,
-        SpectrumColors::yellow,
-        SpectrumColors::orange,
-        SpectrumColors::green
-    };
 
     for (int i = 0; i < 6; i++) {
+        if (_unlockedColors[i])
+            painter->setBrush(QBrush(SpectrumColors::getColorId(i)));
+        else
+            painter->setBrush(QBrush(SpectrumColors::gray));
         QPainterPath path(outer[i]);
         path.lineTo(outer[i+1]);
         path.lineTo(inner[i+1]);
         path.lineTo(inner[i]);
         path.lineTo(outer[i]);
-        if (_unlockedColors[i])
-            painter->fillPath(path, QBrush(colors[i]));
-        else
-            painter->fillPath(path, QBrush(SpectrumColors::gray));
+        painter->drawPath(path);
     }
 }
 

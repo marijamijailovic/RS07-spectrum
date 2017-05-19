@@ -29,6 +29,7 @@ public:
     static const int DEFAULT = BLUE;
 
     static QColor getColorFromName(const QString &colorName);
+    static QColor getColorId(int id);
     static int toEnum(const QColor &color);
 };
 
