@@ -11,7 +11,7 @@ class ColorChooser : public Entity
     Q_OBJECT
 
 public:
-    ColorChooser(qreal x, qreal y);
+    ColorChooser(qreal x, qreal y, const bool *unlockedColors);
 
     // Overrides from QGraphicsItem
     QRectF boundingRect() const override;
@@ -22,6 +22,7 @@ public:
 
 private:
     qreal _r;
+    const bool *_unlockedColors;
 };
 
 #endif // COLORCHOOSER_H

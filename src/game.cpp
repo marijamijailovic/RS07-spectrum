@@ -7,7 +7,7 @@ SpectrumGame::SpectrumGame(QGraphicsView *parent) :
     _activeColor(SpectrumColors::defaultActiveColor),
     _player(new Player(0, 0)),
     _background(new Background()),
-    _spectrum(new ColorChooser(0, 0)),
+    _spectrum(new ColorChooser(0, 0, _unlockedColors)),
     _gameTicker(new QTimer()),
     _unlockedColors {true, false, false, false, false, false}
 {
@@ -107,7 +107,6 @@ void SpectrumGame::keyReleaseEvent(QKeyEvent *event)
 
 void SpectrumGame::mousePressEvent(QGraphicsSceneMouseEvent *)
 {
-    _spectrum->relocate(_player->centerX(), _player->centerY());
     foreach (QGraphicsItem* item, items())
         if (((Entity*)item)->color() == _activeColor)
             item->show();
@@ -242,5 +241,6 @@ void SpectrumGame::update() const
     }
     _player->applyGravity(_gravCoeff);
     _level->applyGravity(_gravCoeff);
+    _spectrum->relocate(_player->centerX(), _player->centerY());
     _parent->update();
 }

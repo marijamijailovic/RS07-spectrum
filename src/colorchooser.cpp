@@ -1,9 +1,10 @@
 #include "include/colorchooser.h"
 #include "include/colors.h"
 
-ColorChooser::ColorChooser(qreal x, qreal y) :
+ColorChooser::ColorChooser(qreal x, qreal y, const bool *unlockedColors) :
     Entity(x, y, SpectrumColors::gray, false),
-    _r(200)
+    _r(200),
+    _unlockedColors(unlockedColors)
 {
     setZValue(1);
 }
@@ -31,22 +32,24 @@ void ColorChooser::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QW
                           _y + _r/3 * sin(angle * M_PI/180));
     }
     QColor colors[] = {
+        SpectrumColors::blue,
         SpectrumColors::purple,
         SpectrumColors::red,
         SpectrumColors::yellow,
         SpectrumColors::orange,
-        SpectrumColors::green,
-        SpectrumColors::blue
+        SpectrumColors::green
     };
 
     for (int i = 0; i < 6; i++) {
-        painter->setBrush(QBrush(colors[i]));
-        QPainterPath p(outer[i]);
-        p.lineTo(outer[i+1]);
-        p.lineTo(inner[i+1]);
-        p.lineTo(inner[i]);
-        p.lineTo(outer[i]);
-        painter->drawPath(p);
+        QPainterPath path(outer[i]);
+        path.lineTo(outer[i+1]);
+        path.lineTo(inner[i+1]);
+        path.lineTo(inner[i]);
+        path.lineTo(outer[i]);
+        if (_unlockedColors[i])
+            painter->fillPath(path, QBrush(colors[i]));
+        else
+            painter->fillPath(path, QBrush(SpectrumColors::gray));
     }
 }
 
