@@ -32,13 +32,13 @@ int DynamicEntity::getCh() const
     return _ch;
 }
 
-void DynamicEntity::applyForce(qreal ix,qreal iy)
+void DynamicEntity::applyForce(qreal ix, qreal iy)
 {
     _vx += (ix / _mass);
-    if (_vx > 5)
-        _vx = 5;
-    if (_vx < -5)
-        _vx =- 5;
+    if (_vx > 3)
+        _vx = 3;
+    if (_vx < -3)
+        _vx =- 3;
     _vy += (iy / _mass);
 }
 

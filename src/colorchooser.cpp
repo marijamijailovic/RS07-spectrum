@@ -39,8 +39,6 @@ void ColorChooser::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QW
         SpectrumColors::blue
     };
 
-    //QPen p(Qt::NoPen);    // Border or no border, that is the question
-    //painter->setPen(p);
     for (int i = 0; i < 6; i++) {
         painter->setBrush(QBrush(colors[i]));
         QPainterPath p(outer[i]);

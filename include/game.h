@@ -56,7 +56,7 @@ private:
     bool _paused;
     bool _expandInProgress;
     QGraphicsView *_parent;
-    const qreal _gravCoeff = 0.978033;
+    const qreal _gravCoeff = 0.25;
     QColor _activeColor;
     QScopedPointer<Player> _player;
     QScopedPointer<Background> _background;

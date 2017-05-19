@@ -25,7 +25,7 @@ SpectrumGame::SpectrumGame(QGraphicsView *parent) :
 
     // Connecting timer to game-tick function
     connect(&(*_gameTicker), SIGNAL(timeout()), this, SLOT(update()));
-    _gameTicker->start(25);
+    _gameTicker->start(15);
 
     // Setting focus to scene
     setFocus();
@@ -107,6 +107,7 @@ void SpectrumGame::keyReleaseEvent(QKeyEvent *event)
 
 void SpectrumGame::mousePressEvent(QGraphicsSceneMouseEvent *)
 {
+    _spectrum->relocate(_player->centerX(), _player->centerY());
     foreach (QGraphicsItem* item, items())
         if (((Entity*)item)->color() == _activeColor)
             item->show();
@@ -241,6 +242,5 @@ void SpectrumGame::update() const
     }
     _player->applyGravity(_gravCoeff);
     _level->applyGravity(_gravCoeff);
-    _spectrum->relocate(_player->centerX(), _player->centerY());
     _parent->update();
 }

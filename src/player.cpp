@@ -140,7 +140,7 @@ void Player::move()
     } else if (_jump && _canJump > 0) {
         _jump = false;
         _inAir = true;
-        _vy = -10;
+        _vy = -6;
     } else if (_canJump < 0) {
         if (!_inAir)
             _canJump = 0;
