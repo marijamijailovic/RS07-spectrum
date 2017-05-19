@@ -2,23 +2,9 @@
 #include <QPen>
 
 Wall::Wall(qreal x, qreal y, qreal w, qreal h, const QColor color) :
-    Entity(x, y, color),
-    _w(w),
-    _h(h)
+    Entity(x, y, w, h, color)
 {
 
-}
-
-QRectF Wall::boundingRect() const
-{
-    return QRectF(0, 0, _w, _h);
-}
-
-QPainterPath Wall::shape() const
-{
-    QPainterPath path;
-    path.addRect(0, 0, _w, _h);
-    return path;
 }
 
 void Wall::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)

@@ -2,7 +2,7 @@
 
 
 ColorUnlocker::ColorUnlocker(qreal x, qreal y, const QColor color) :
-    Entity(x, y, color),
+    Entity(x, y, 60, 30, color, true),
     _opacity(225),
     _step(5),
     _raiseH(0),
@@ -12,18 +12,6 @@ ColorUnlocker::ColorUnlocker(qreal x, qreal y, const QColor color) :
     connect(&(*_opacityTicker), SIGNAL(timeout()), this, SLOT(incrementOpacity()));
     connect(&(*_raiseTicker), SIGNAL(timeout()), this, SLOT(raise()));
     _opacityTicker->start(25);
-}
-
-QRectF ColorUnlocker::boundingRect() const
-{
-    return QRectF(0, 0, _w, _h);
-}
-
-QPainterPath ColorUnlocker::shape() const
-{
-    QPainterPath path;
-    path.addRect(0, 0, _w, _h);
-    return path;
 }
 
 void ColorUnlocker::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)

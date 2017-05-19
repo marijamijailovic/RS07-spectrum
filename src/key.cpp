@@ -1,24 +1,12 @@
 #include "include/key.h"
 
 Key::Key(qreal x, qreal y, Door *door, const QColor color) :
-    Entity(x, y, color),
+    Entity(x, y, 40, 30, color, true),
     _door(door),
     _sparkTicker(new QTimer())
 {
     connect(&(*_sparkTicker), SIGNAL(timeout()), this, SLOT(updateSparklesPos()));
     _sparkTicker->start(150);
-}
-
-QRectF Key::boundingRect() const
-{
-    return QRectF(0, 0, _w, _h);
-}
-
-QPainterPath Key::shape() const
-{
-    QPainterPath path;
-    path.addRect(0, 0, _w, _h);
-    return path;
 }
 
 void Key::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
@@ -58,7 +46,7 @@ Door* Key::door() const
 void Key::updateSparklesPos()
 {
     for (unsigned i = 0; i < _sparkNum; i++)
-        _sx[i] = qrand() % _w;
+        _sx[i] = qrand() % (int)_w;
     for (unsigned i = 0; i < _sparkNum; i++)
-        _sy[i] = qrand() % _h;
+        _sy[i] = qrand() % (int)_h;
 }

@@ -6,7 +6,6 @@ SpectrumGame::SpectrumGame(QGraphicsView *parent) :
     _parent(parent),
     _activeColor(SpectrumColors::defaultActiveColor),
     _player(new Player(0, 0)),
-    _background(new Background()),
     _spectrum(new ColorChooser(0, 0)),
     _gameTicker(new QTimer()),
     _unlockedColors {true, false, false, false, false, false}

@@ -9,17 +9,16 @@
 class Ladder : public Entity
 {
 public:
-    Ladder(qreal x, qreal y, qreal w, qreal h, const QColor color = SpectrumColors::gray);
+    Ladder(qreal x, qreal y, qreal w, qreal h,
+           const QColor color = SpectrumColors::gray);
 
-    // Overrides from QGraphicsItem
-    QRectF boundingRect() const override;
-    QPainterPath shape() const override;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+    // Overrides from Entity
+    void paint(QPainter *painter,
+               const QStyleOptionGraphicsItem *option,
+               QWidget *widget) override;
 
 private:
-    static constexpr qreal _step = 5;
-    qreal _w;
-    qreal _h;
+    const qreal _step = 5;
 };
 
 #endif // LADDER_H

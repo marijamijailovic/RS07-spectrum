@@ -1,10 +1,30 @@
 #include "include/entity.h"
 
-Entity::Entity(qreal x, qreal y, const QColor color, bool collidable) :
+Entity::Entity(qreal x, qreal y, qreal w, qreal h,
+               const QColor color, bool collidable) :
+    _w(w),
+    _h(h),
     _color(color),
     _collidable(collidable)
 {
     setPos(x, y);
+}
+
+QRectF Entity::boundingRect() const
+{
+    return QRectF(0, 0, _w, _h);
+}
+
+QPainterPath Entity::shape() const
+{
+    QPainterPath path;
+    path.addRect(0, 0, _w, _h);
+    return path;
+}
+
+void Entity::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
+{
+    painter->drawRect(0, 0, _w, _h);
 }
 
 QColor Entity::color() const

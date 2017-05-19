@@ -16,9 +16,10 @@ class ColorChanger : public Entity
 public:
     ColorChanger(QGraphicsView *view, qreal x, qreal y, QColor color);
 
-    QRectF boundingRect() const override;
-    QPainterPath shape() const override;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+    // Overrides from Entity
+    void paint(QPainter *painter,
+               const QStyleOptionGraphicsItem *option,
+               QWidget *widget) override;
 
 signals:
     void expandingDone();
@@ -27,9 +28,7 @@ private slots:
     void expand();
 
 private:
-    qreal _r;
     QGraphicsView *_view;
-    QColor _color;
     QScopedPointer<QTimer> _expandTicker;
 };
 

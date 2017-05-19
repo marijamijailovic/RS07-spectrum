@@ -4,7 +4,7 @@
 #include <QTextStream>
 
 Player::Player(qreal x, qreal y) :
-    DynamicEntity::DynamicEntity(x, y, 1)
+    DynamicEntity::DynamicEntity(x, y, 60, 77, 1)
 {
     setZValue(1);
 }
@@ -34,18 +34,6 @@ void Player::setDown(bool b)
     _down = b;
 }
 
-QRectF Player::boundingRect() const
-{
-    return QRectF(0, 0, _w, _h);
-}
-
-QPainterPath Player::shape() const
-{
-    QPainterPath path;
-    path.addRect(0, 0, _w, _h);
-    return path;
-}
-
 void Player::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
     painter->drawPixmap(0, 0, _w, _h, QPixmap(":sprites/player.png"));
@@ -53,12 +41,12 @@ void Player::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget 
 
 qreal Player::centerX() const
 {
-    return _w/2;
+    return x() + _w/2;
 }
 
 qreal Player::centerY() const
 {
-    return _h/2;
+    return y() + _h/2;
 }
 
 void Player::move()

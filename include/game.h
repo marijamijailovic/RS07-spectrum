@@ -7,7 +7,6 @@
 #include <QScopedPointer>
 #include <QTimer>
 #include "include/player.h"
-#include "include/background.h"
 #include "include/level.h"
 #include "include/colors.h"
 #include "include/colorchanger.h"
@@ -59,7 +58,6 @@ private:
     const qreal _gravCoeff = 0.978033;
     QColor _activeColor;
     QScopedPointer<Player> _player;
-    QScopedPointer<Background> _background;
     QScopedPointer<Level> _level;
     QScopedPointer<ColorChanger> _colorCircle;
     QScopedPointer<ColorChooser> _spectrum;

@@ -13,13 +13,10 @@ class ColorChooser : public Entity
 public:
     ColorChooser(qreal x, qreal y);
 
-    // Overrides from QGraphicsItem
-    QRectF boundingRect() const override;
-    QPainterPath shape() const override;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
-
-private:
-    qreal _r;
+    // Overrides from Entity
+    void paint(QPainter *painter,
+               const QStyleOptionGraphicsItem *option,
+               QWidget *widget) override;
 };
 
 #endif // COLORCHOOSER_H

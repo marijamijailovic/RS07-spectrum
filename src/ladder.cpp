@@ -1,23 +1,9 @@
 #include "include/ladder.h"
 
 Ladder::Ladder(qreal x, qreal y, qreal w, qreal h, const QColor color) :
-    Entity(x, y, color, true),
-    _w(w),
-    _h(h)
+    Entity(x, y, w, h, color, true)
 {
 
-}
-
-QRectF Ladder::boundingRect() const
-{
-    return QRectF(0, 0, _w, _h);
-}
-
-QPainterPath Ladder::shape() const
-{
-    QPainterPath path;
-    path.addRect(0, 0, _w, _h);
-    return path;
 }
 
 void Ladder::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)

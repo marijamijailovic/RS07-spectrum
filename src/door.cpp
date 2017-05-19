@@ -2,7 +2,7 @@
 
 
 Door::Door(qreal x, qreal y, const QString &nextLevel, const QColor color, bool locked) :
-    Entity(x, y, color, false),
+    Entity(x, y, 60, 100, color, false),
     _barH(_h - _w/12),
     _locked(locked),
     _drawBars(locked),
@@ -11,18 +11,6 @@ Door::Door(qreal x, qreal y, const QString &nextLevel, const QColor color, bool 
 {
     setZValue(-0.5);
     connect(&(*_barShrinkTicker), SIGNAL(timeout()), this, SLOT(shrinkBars()));
-}
-
-QRectF Door::boundingRect() const
-{
-    return QRectF(0, 0, _w, _h);
-}
-
-QPainterPath Door::shape() const
-{
-    QPainterPath path;
-    path.addRect(0, 0, _w, _h);
-    return path;
 }
 
 void Door::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
