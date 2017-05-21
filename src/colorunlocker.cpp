@@ -2,7 +2,7 @@
 
 
 ColorUnlocker::ColorUnlocker(qreal x, qreal y, const QColor color) :
-    Entity(x, y, color),
+    Entity(x, y, 60, 30, color, true),
     _opacity(225),
     _step(5),
     _raiseH(0),
@@ -14,18 +14,6 @@ ColorUnlocker::ColorUnlocker(qreal x, qreal y, const QColor color) :
     _opacityTicker->start(25);
 }
 
-QRectF ColorUnlocker::boundingRect() const
-{
-    return QRectF(_x, _y, _w, _h);
-}
-
-QPainterPath ColorUnlocker::shape() const
-{
-    QPainterPath path;
-    path.addRect(_x, _y, _w, _h);
-    return path;
-}
-
 void ColorUnlocker::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
     QPen pen(Qt::NoPen);
@@ -33,18 +21,18 @@ void ColorUnlocker::paint(QPainter *painter, const QStyleOptionGraphicsItem *, Q
     _color.setAlpha(_opacity);
     painter->setBrush(QBrush(_color));
     QPoint points[] = {
-        QPoint(_x, _y - _raiseH),
-        QPoint(_x + _w/4, _y + _h - _raiseH),
-        QPoint(_x + 3*_w/4, _y + _h - _raiseH),
-        QPoint(_x + _w, _y - _raiseH),
-        QPoint(_x, _y - _raiseH)
+        QPoint(0, 0),
+        QPoint(_w, 0),
+        QPoint(3*_w/4, _h),
+        QPoint(_w/4, _h),
+        QPoint(0, 0)
     };
     painter->drawPolygon(points, 5);
 }
 
 void ColorUnlocker::collect()
 {
-    _raiseTicker->start(40);
+    _raiseTicker->start(50);
     _collidable = false;
     emit colorUnlocked(SpectrumColors::toEnum(_color));
 }
@@ -58,9 +46,10 @@ void ColorUnlocker::incrementOpacity()
 
 void ColorUnlocker::raise()
 {
-    if (_raiseH < 50)
+    if (_raiseH < 50) {
         _raiseH += 5;
-    else {
+        moveBy(0, -5);
+    } else {
         _raiseTicker->stop();
         hide();
         _raiseH = 0;

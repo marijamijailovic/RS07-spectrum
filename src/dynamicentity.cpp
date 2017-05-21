@@ -1,8 +1,10 @@
 #include "include/dynamicentity.h"
 #include <QTextStream>
 
-DynamicEntity::DynamicEntity(qreal x, qreal y, qreal mass, const QColor color, bool collidable) :
-    Entity::Entity(x, y, color, collidable),
+DynamicEntity::DynamicEntity(qreal x, qreal y, qreal w, qreal h,
+                             qreal mass,
+                             const QColor color, bool collidable) :
+    Entity::Entity(x, y, w, h, color, collidable),
     _inAir(true),
     _mass(mass),
     _vx(0),

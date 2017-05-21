@@ -6,13 +6,10 @@ SpectrumGame::SpectrumGame(QGraphicsView *parent) :
     _parent(parent),
     _activeColor(SpectrumColors::defaultActiveColor),
     _player(new Player(0, 0)),
-    _background(new Background()),
     _spectrum(new ColorChooser(0, 0, _unlockedColors)),
     _gameTicker(new QTimer()),
     _unlockedColors {true, false, false, false, false, false}
 {
-    //addItem(&(*_background)); // TODO Find a nice background picture
-
     // Adding color chooser to the scene
     addItem(&(*_spectrum));
     _spectrum->hide();
@@ -78,15 +75,14 @@ void SpectrumGame::keyPressEvent(QKeyEvent *event)
         _player->setJump(true);
     else if (event->key() == Qt::Key_Down || event->key() == Qt::Key_S) {
         _player->setDown(true);
-        //_player->setVx(0);
-    }
-    else if (event->key() == Qt::Key_P)
+        _player->setVx(0);
+    } else if (event->key() == Qt::Key_P)
         pause();
     else if (event->key() == Qt::Key_Escape)    // TODO remove exit on ESC
         exit(EXIT_SUCCESS);
     else if (event->key() == Qt::Key_Up || event->key() == Qt::Key_W)
         _player->setUp(true); // ladders
-    else if (event->key() == Qt:: Key_E)
+    else if (event->key() == Qt::Key_E)
         interact();
     else // TODO add check for numbers
         if (!_expandInProgress)
@@ -242,6 +238,6 @@ void SpectrumGame::update() const
     }
     _player->applyGravity(_gravCoeff);
     _level->applyGravity(_gravCoeff);
-    _spectrum->relocate(_player->centerX(), _player->centerY());
+    _spectrum->setPos(_player->centerX(), _player->centerY());
     _parent->update();
 }

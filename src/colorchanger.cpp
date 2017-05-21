@@ -2,12 +2,8 @@
 
 
 ColorChanger::ColorChanger(QGraphicsView *view, qreal x, qreal y, QColor color) :
-    Entity(x, y, SpectrumColors::gray, false),
-    _x(x),
-    _y(y),
-    _r(50),
+    Entity(x, y, 50, 50, color, false),
     _view(view),
-    _color(color),
     _expandTicker(new QTimer())
 {
     setZValue(-1);
@@ -17,27 +13,28 @@ ColorChanger::ColorChanger(QGraphicsView *view, qreal x, qreal y, QColor color) 
 
 QRectF ColorChanger::boundingRect() const
 {
-    return QRectF(_x, _y, _r, _r);
+    return QRectF(-_w/2, -_h/2, _w, _h);
 }
 
 QPainterPath ColorChanger::shape() const
 {
     QPainterPath path;
-    path.addRect(_x, _y, _r, _r);
+    path.addRect(-_w/2, -_h/2, _w, _h);
     return path;
 }
 
 void ColorChanger::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
     painter->setBrush(QBrush(_color));
-    painter->drawEllipse(_x - _r/2, _y - _r/2, _r, _r);
+    painter->drawEllipse(-_w/2, -_h/2, _w, _h);
 }
 
 void ColorChanger::expand()
 {
-    if (_r <= 1500) {
-        _r += 50;
-        update(_x, _y, _r, _r);
+    if (_w <= 1500) {
+        _w += 50;
+        _h += 50;
+        update(0, 0, _w, _h);
         _view->update();
     } else {
         _expandTicker->stop();

@@ -4,7 +4,7 @@
 #include <QTextStream>
 
 Player::Player(qreal x, qreal y) :
-    DynamicEntity::DynamicEntity(x, y, 1)
+    DynamicEntity::DynamicEntity(x, y, 60, 77, 1)
 {
     setZValue(1);
 }
@@ -34,35 +34,26 @@ void Player::setDown(bool b)
     _down = b;
 }
 
-QRectF Player::boundingRect() const
-{
-    return QRectF(_x, _y, _w, _h);
-}
-
-QPainterPath Player::shape() const
-{
-    QPainterPath path;
-    path.addRect(_x, _y, _w, _h);
-    return path;
-}
-
 void Player::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    painter->drawPixmap(_x, _y, _w, _h, QPixmap(":sprites/player.png"));
+    painter->drawPixmap(0, 0, _w, _h, QPixmap(":sprites/player.png"));
 }
 
 qreal Player::centerX() const
 {
-    return _x + _w/2;
+    return x() + _w/2;
 }
 
 qreal Player::centerY() const
 {
-    return _y + _h/2;
+    return y() + _h/2;
 }
 
 void Player::move()
-{
+{/*
+    qreal _x = x();
+    qreal _y = y();
+
     QTextStream out(stdout);
     QList<QGraphicsItem *> collidingObjects = collidingItems();
     int ignoredCollisions = 0;
@@ -175,5 +166,5 @@ void Player::move()
     if (!(onLadder && collidingObjects.size() > 1))
         _x += _vx;
 
-    setPosition(_x, _y);
+    setPos(_vx, _vy);*/
 }

@@ -2,8 +2,7 @@
 #include "include/colors.h"
 
 ColorChooser::ColorChooser(qreal x, qreal y, const bool *unlockedColors) :
-    Entity(x, y, SpectrumColors::gray, false),
-    _r(200),
+    Entity(x, y, 200, 200, SpectrumColors::gray, false),
     _unlockedColors(unlockedColors)
 {
     setZValue(1);
@@ -11,13 +10,13 @@ ColorChooser::ColorChooser(qreal x, qreal y, const bool *unlockedColors) :
 
 QRectF ColorChooser::boundingRect() const
 {
-    return QRectF(_x, _y, _r, _r);
+    return QRectF(-_w/2, -_h/2, _w, _h);
 }
 
 QPainterPath ColorChooser::shape() const
 {
     QPainterPath path;
-    path.addRect(_x, _y, _r, _r);
+    path.addRect(-_w/2, -_h/2, _w, _h);
     return path;
 }
 
@@ -26,10 +25,10 @@ void ColorChooser::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QW
     QPoint outer[7];
     QPoint inner[7];
     for (int i = 0, angle = 0; i < 7; i++, angle += 60) {
-        outer[i] = QPoint(_x + _r/2 * cos(angle * M_PI/180),
-                          _y + _r/2 * sin(angle * M_PI/180));
-        inner[i] = QPoint(_x + _r/3 * cos(angle * M_PI/180),
-                          _y + _r/3 * sin(angle * M_PI/180));
+        outer[i] = QPoint(_w/2 * cos(angle * M_PI/180),
+                          _h/2 * sin(angle * M_PI/180));
+        inner[i] = QPoint(_w/3 * cos(angle * M_PI/180),
+                          _h/3 * sin(angle * M_PI/180));
     }
 
     for (int i = 0; i < 6; i++) {
@@ -44,10 +43,4 @@ void ColorChooser::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QW
         path.lineTo(outer[i]);
         painter->drawPath(path);
     }
-}
-
-void ColorChooser::relocate(qreal x, qreal y)
-{
-    _x = x;
-    _y = y;
 }

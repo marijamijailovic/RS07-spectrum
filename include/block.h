@@ -11,14 +11,10 @@ class Block : public Entity
 public:
     Block(qreal x, qreal y, qreal w, qreal h);
 
-    // Overrides from QGraphicsItem
-    QRectF boundingRect() const override;
-    QPainterPath shape() const override;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
-
-private:
-    qreal _w;
-    qreal _h;
+    // Overrides from Entity
+    void paint(QPainter *painter,
+               const QStyleOptionGraphicsItem *option,
+               QWidget *widget) override;
 };
 
 #endif // BLOCK_H
