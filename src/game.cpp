@@ -209,7 +209,7 @@ void SpectrumGame::stopColorChangeAnimation()
     setBackgroundBrush(_activeColor);
     _expandInProgress = false;
     if (_activeColor != SpectrumColors::gray)
-          hideObjectsWithActiveColor();
+        hideObjectsWithActiveColor();
 }
 
 void SpectrumGame::connectSlots(std::vector<Entity *> entities)
