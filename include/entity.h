@@ -5,6 +5,7 @@
 #include <QGraphicsItem>
 #include <QPainter>
 #include <QColor>
+#include <QTextStream>
 #include "include/colors.h"
 
 

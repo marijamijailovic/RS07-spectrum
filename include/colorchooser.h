@@ -3,6 +3,7 @@
 
 #include <QTimer>
 #include <QScopedPointer>
+#include <cmath>
 #include "include/entity.h"
 
 

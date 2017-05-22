@@ -1,6 +1,5 @@
 #include "../include/colors.h"
 
-
 QColor SpectrumColors::red = QColor(238, 52, 55);
 QColor SpectrumColors::green = QColor(108, 210, 77);
 QColor SpectrumColors::blue = QColor(40, 123, 219);

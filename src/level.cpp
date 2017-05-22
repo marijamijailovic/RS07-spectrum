@@ -12,7 +12,8 @@ Level::~Level()
 {
     for (unsigned i = 0; i < _staticEntities.size(); i++)
         delete _staticEntities[i];
-    for (unsigned i = 0; i < _dynamicEntities.size(); i++)
+    // Player shouldn't be deleted twice
+    for (unsigned i = 1; i < _dynamicEntities.size(); i++)
         delete _dynamicEntities[i];
 }
 
@@ -20,7 +21,8 @@ void Level::load(QGraphicsScene *scene) const
 {
     for (unsigned i = 0; i < _staticEntities.size(); i++)
         scene->addItem(_staticEntities[i]);
-    for (unsigned i = 0; i < _dynamicEntities.size(); i++)
+    // Player is already added to the scene
+    for (unsigned i = 1; i < _dynamicEntities.size(); i++)
         scene->addItem(_dynamicEntities[i]);
 }
 

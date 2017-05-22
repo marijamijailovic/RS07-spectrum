@@ -33,6 +33,14 @@ void Player::setDown(bool b)
 {
     _down = b;
 }
+void Player::setPull(bool b)
+{
+    pull=b;
+}
+bool Player::getPull()
+{
+    return pull;
+}
 
 void Player::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
@@ -48,13 +56,41 @@ qreal Player::centerY() const
 {
     return y() + _h/2;
 }
+bool Player::go(){
+    movement();
+    int ignoredCollisions = 0;
+    QList<QGraphicsItem *> collidingObjects = collidingItems();
+    foreach (QGraphicsItem *item, collidingObjects) {
+        if ( !((Entity*)item)->collidable()) {
+            ignoredCollisions++;
+            //out << "no collision\n";
+            continue;
+        }
+    }
+    if (collidingObjects.size() == ignoredCollisions){
+        return true;
+    }
 
-void Player::move()
-{/*
-    qreal _x = x();
-    qreal _y = y();
+    return false;
+}
+void Player::jump(){
 
     QTextStream out(stdout);
+    if(_jump&&!_inAir) {
+        _vy=-10;
+        _jump=false;
+    }
+}
+
+void Player::movement()
+{
+        QTextStream out(stdout);
+    if (_left)
+        applyForce(-1200,0);
+    if (_right)
+        applyForce(1200,0);
+    double _x=0;
+    double _y=0;
     QList<QGraphicsItem *> collidingObjects = collidingItems();
     int ignoredCollisions = 0;
     bool onLadder = false;
@@ -88,7 +124,9 @@ void Player::move()
         QRectF b = item->boundingRect();
 
         if (typeid(*item) == typeid(Ladder)) {
-            int step = 4;
+            out<<"ladder";
+            ignoredCollisions++;
+            /*int step = 4;
             //out << "ladder\n";
             // Player is not on the ladder if it's just on the top of it
             if (a.bottom() >= b.top() + 1 && a.bottom() < b.bottom())
@@ -97,67 +135,26 @@ void Player::move()
                 _y -= step;
             if (_down && a.bottom() <= b.bottom())
                 _y += step;
-            continue;
+            continue;*/
         }
 
-        // Collisions
-        if (_vy >= 0 && a.bottom() > b.top() && _vy >= a.bottom() - b.top()) {
-            _y += b.top() - a.bottom() + 0.9145;
-            _canJump = 2;
-            //out << "bottom";
-        } else if(_vy <= 0 && a.top() < b.bottom() && 1 - _vy >= b.bottom() - a.top()) {
-            _y += b.bottom() - a.top() + 0.9145;
-            _vy = 0;
-            _canJump = -1;
-            _inAir = true;
-            //out << "bottom";
-        } else if(_vx != 0 && a.right() > b.left() && a.right() - b.left() < _vx + 1) {
-            _x += b.left() - a.right() - 1;
-            _vx = 0;
-            //out << "right";
-        } else if(_vx != 0 && a.left() < b.right() && b.right() - a.left() < -_vx + 1) {
-            _x += b.right() - a.left() + 1;
-            _vx = 0;
-            //out << "left";
-        }
     }
-
     // TODO II disable top collision if the player is onLadder
     //purpose of canJump is wall jumping, currently disabled
-    if (collidingObjects.size() == ignoredCollisions) {
-        _inAir = true;
-        if(_canJump)
-            _canJump--;
-    } else if (_jump && _canJump > 0) {
-        _jump = false;
-        _inAir = true;
-        _vy = -6;
-    } else if (_canJump < 0) {
-        if (!_inAir)
-            _canJump = 0;
-    } else {
-        _inAir = false;
-        _jump = false;
-        if (_vy > 0 && _canJump)
-            _vy = 0;
-    }
-
-    if (_canJump == 0)
-        _jump = false;
 
     //applyForce(-_vx*0.03,0);    // Air resistance
 
     // If left/right key is pressed, move the player
-    if (_left)
+    /*if (_left)
         _vx -= 1;
     if (_right)
         _vx += 1;
-
+*/
     // TODO get frictionCoef from an entity that is under the player (advanced and not necessary)
     qreal frictionCoef = 0.1;
-    if (_inAir == false)
+    /*if (_inAir == false)
         applyForce(-_vx * frictionCoef, 0);
-
+*/
     //TODO reset _vx = 0 when it becomes insignificant
 
     //out << "vx: " << _vx << " , vy: " << _vy << "\n";
@@ -166,5 +163,5 @@ void Player::move()
     if (!(onLadder && collidingObjects.size() > 1))
         _x += _vx;
 
-    setPos(_vx, _vy);*/
+    //setPos(_x, _y);
 }

@@ -8,7 +8,7 @@ SpectrumGame::SpectrumGame(QGraphicsView *parent) :
     _player(new Player(0, 0)),
     _spectrum(new ColorChooser(0, 0, _unlockedColors)),
     _gameTicker(new QTimer()),
-    _unlockedColors {true, false, false, false, false, false}
+    _unlockedColors {true, true, true, true, true, true} // TODO change before release
 {
     // Adding color chooser to the scene
     addItem(&(*_spectrum));
@@ -73,6 +73,8 @@ void SpectrumGame::keyPressEvent(QKeyEvent *event)
         _player->setRight(true);
     else if (event->key() == Qt::Key_Space)
         _player->setJump(true);
+    else if (event->key() == Qt::Key_Z)
+        _player->setPull(true);
     else if (event->key() == Qt::Key_Down || event->key() == Qt::Key_S) {
         _player->setDown(true);
         _player->setVx(0);
@@ -99,6 +101,8 @@ void SpectrumGame::keyReleaseEvent(QKeyEvent *event)
         _player->setUp(false);
     else if (event->key() == Qt::Key_Down || event->key() == Qt::Key_S)
         _player->setDown(false);
+    else if (event->key() == Qt::Key_Z)
+        _player->setPull(false);
 }
 
 void SpectrumGame::mousePressEvent(QGraphicsSceneMouseEvent *)
@@ -112,9 +116,8 @@ void SpectrumGame::mousePressEvent(QGraphicsSceneMouseEvent *)
 
 void SpectrumGame::mouseReleaseEvent(QGraphicsSceneMouseEvent *)
 {
-    animateColorChange(SpectrumColors::blue);   // TODO
+    animateColorChange(SpectrumColors::yellow);   // TODO
     _spectrum->hide();
-    hideObjectsWithActiveColor();
 }
 
 void SpectrumGame::changeActiveColor(QKeyEvent *event)
@@ -164,7 +167,6 @@ void SpectrumGame::changeActiveColor(QKeyEvent *event)
         update();
     }
 
-    hideObjectsWithActiveColor();
 }
 
 void SpectrumGame::interact()
@@ -190,7 +192,6 @@ bool SpectrumGame::isUnlocked(const QColor &color) const
 {
     return _unlockedColors[SpectrumColors::toEnum(color)];
 }
-
 void SpectrumGame::animateColorChange(QColor color)
 {
     _activeColor = color;
@@ -207,6 +208,8 @@ void SpectrumGame::stopColorChangeAnimation()
         removeItem(&(*_colorCircle));
     setBackgroundBrush(_activeColor);
     _expandInProgress = false;
+    if (_activeColor != SpectrumColors::gray)
+          hideObjectsWithActiveColor();
 }
 
 void SpectrumGame::connectSlots(std::vector<Entity *> entities)
@@ -228,13 +231,33 @@ void SpectrumGame::hideObjectsWithActiveColor()
         if (((Entity*)item)->color() == _activeColor)
             item->hide();
 }
-
 void SpectrumGame::update() const
 {
-    _player->move();
+
+    QTextStream out(stdout);
+    //out<<_level->dynamicEntities().size();
+        _player->jump();
+    _player->movement();
+
     std::vector<DynamicEntity *> dynamicEntities = _level->dynamicEntities();
+    foreach (DynamicEntity *ent, dynamicEntities){
+        ent->setCh(0);
+    }
+
+    while(true){
+        int i=0;
+    int min=0;
+    double minch=2;
     foreach (DynamicEntity *ent, dynamicEntities) {
-        ent->move();
+        if(ent->getCh()<minch){
+            min=i;
+            minch=ent->getCh();
+        }
+        i++;
+    }
+    if(minch>=1) break;
+    DynamicEntity *ent = dynamicEntities.at(min);
+    ent->move(min);
     }
     _player->applyGravity(_gravCoeff);
     _level->applyGravity(_gravCoeff);

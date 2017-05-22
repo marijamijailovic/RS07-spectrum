@@ -22,7 +22,8 @@ public:
     void setRight(bool b);
     void setUp(bool b);
     void setDown(bool b);
-
+    bool getPull();
+    void setPull(bool b);
     // Overrides from Entity
     void paint(QPainter *painter,
                const QStyleOptionGraphicsItem *option,
@@ -31,7 +32,9 @@ public:
     qreal centerY() const override;
 
     // Overrides from DynamicEntity
-    void move();
+    void movement();
+    bool go();
+    void jump();
 
 private:
     bool _jump = false;
@@ -42,6 +45,7 @@ private:
     bool _down = false;
     bool _right = false;
     bool _left = false;
+    bool pull=false;
 };
 
 #endif // PLAYER_H

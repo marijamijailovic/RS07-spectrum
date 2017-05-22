@@ -21,23 +21,3 @@ void Cube::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
     painter->drawLine(QPointF(3, _h - 3), QPointF(_w - 3, 3));
 }
 
-void Cube::move()
-{
-    int vy = (int)_vy;
-    for(int i = 1; i <= vy; i++) {
-        moveBy(0, 1);
-
-        int ignoredCollisions = 0;
-        auto collidingObjects = collidingItems();
-        foreach (QGraphicsItem *item, collidingObjects)
-            if (!((Entity*)item)->collidable())
-                ignoredCollisions++;
-
-        if (collidingObjects.size() > ignoredCollisions) {
-            moveBy(0, -i);
-            _vy = 0;
-            //_y += i;
-            break;
-        }
-    }
-}

@@ -12,6 +12,8 @@
 #include "include/colorchanger.h"
 #include "include/colorchooser.h"
 
+#include <QTextStream>
+
 
 class SpectrumGame : public QGraphicsScene
 {
@@ -38,7 +40,6 @@ public:
     void keyReleaseEvent(QKeyEvent *event) override;
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
-
 private slots:
     void update() const;
     void unlockColor(int id);
