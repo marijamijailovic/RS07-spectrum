@@ -31,7 +31,7 @@ void ColorChanger::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QW
 
 void ColorChanger::expand()
 {
-    if (_w <= 1500) {
+    if (_w <= 1700) {
         _w += 50;
         _h += 50;
         update(0, 0, _w, _h);
