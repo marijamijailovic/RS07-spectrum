@@ -5,10 +5,11 @@ SpectrumGame::SpectrumGame(QGraphicsView *parent) :
     _expandInProgress(false),
     _parent(parent),
     _activeColor(SpectrumColors::defaultActiveColor),
+    _oldActiveColor(SpectrumColors::defaultActiveColor),
     _player(new Player(0, 0)),
     _spectrum(new ColorChooser(0, 0, _unlockedColors)),
     _gameTicker(new QTimer()),
-    _unlockedColors {true, false, false, false, false, false}
+    _unlockedColors {true, false, true, false, false, true}
     //_unlockedColors {true, true, true, true, true, true} // TODO remove before release
 {
     // Adding color chooser to the scene
@@ -40,6 +41,7 @@ void SpectrumGame::loadLevel(const QString id)
     _level.reset(new Level(":levels/" + id + ".lvl", *_player, &_activeColor));
     _level->load(this);
     setBackgroundBrush(QBrush(_activeColor));
+    _oldActiveColor = _activeColor;
 
     // Stop player
     _player->setVx(0);
@@ -111,19 +113,37 @@ void SpectrumGame::mousePressEvent(QGraphicsSceneMouseEvent *)
     foreach (QGraphicsItem* item, items())
         if (((Entity*)item)->color() == _activeColor)
             item->show();
-    animateColorChange(SpectrumColors::gray);
+    _activeColor = SpectrumColors::gray;
+    animateColorChange(_activeColor);
     _spectrum->show();
+    // Slow down the game while choosing the color
+    _gameTicker->setInterval(50);
 }
 
 void SpectrumGame::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
 {
+    // If the player is inside of a collidable object, don't allow the change
+    QList<QGraphicsItem *> collidingObjects = _player->collidingItems();
+    bool shouldChangeActiveColor = true;
+    foreach (QGraphicsItem* item, collidingObjects)
+        if (((Entity*)item)->collidable() && _oldActiveColor == ((Entity*)item)->color()) {
+            shouldChangeActiveColor = false;
+            break;
+        }
+
     QPointF mouseReleasePos = e->lastScenePos();
     int colorID = _spectrum->determineColorID(mouseReleasePos);
-    if (isUnlocked(colorID))
-        animateColorChange(SpectrumColors::getColorFromID(colorID));
-    else
-        animateColorChange(SpectrumColors::blue);
+
+    if (shouldChangeActiveColor && isUnlocked(colorID)) {
+        _activeColor = SpectrumColors::getColorFromID(colorID);
+        _oldActiveColor = _activeColor;
+    } else {
+        _activeColor = _oldActiveColor;
+    }
+    animateColorChange(_activeColor);
     _spectrum->hide();
+    // Reset game speed back to normal when the color is chosen
+    _gameTicker->setInterval(15);
 }
 
 void SpectrumGame::changeActiveColor(QKeyEvent *event)
@@ -206,7 +226,6 @@ bool SpectrumGame::isUnlocked(int colorID) const
 
 void SpectrumGame::animateColorChange(QColor color)
 {
-    _activeColor = color;
     _expandInProgress = true;
     _colorCircle.reset(new ColorChanger(_parent, _player->centerX(), _player->centerY(), color));
     connect(&(*_colorCircle), SIGNAL(expandingDone()), this, SLOT(stopColorChangeAnimation()));

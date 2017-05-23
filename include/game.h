@@ -60,6 +60,7 @@ private:
     QGraphicsView *_parent;
     const qreal _gravCoeff = 0.25;
     QColor _activeColor;
+    QColor _oldActiveColor;
     QScopedPointer<Player> _player;
     QScopedPointer<Level> _level;
     QScopedPointer<ColorChanger> _colorCircle;
