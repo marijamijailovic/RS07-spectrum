@@ -1,6 +1,7 @@
 #ifndef LEVELLOADER_H
 #define LEVELLOADER_H
 
+#include <QScopedPointer>
 #include <QTextStream>
 #include <QColor>
 #include <vector>
@@ -42,8 +43,8 @@ private:
                           const QColor &activeColor) const;
     QColor readColor(QTextStream &lineStream) const;
 
-    QFile *_levelFile;
-    QTextStream *_fStream;
+    QScopedPointer<QFile> _levelFile;
+    QScopedPointer<QTextStream> _fStream;
 };
 
 #endif // LEVELLOADER_H

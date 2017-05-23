@@ -1,13 +1,12 @@
 #include "include/levelloader.h"
-#include "include/mainwindow.h"
 #include <QMessageBox>
 #include <QFile>
 #include <QCoreApplication>
 
 
-LevelLoader::LevelLoader(const QString &fileName)
+LevelLoader::LevelLoader(const QString &fileName) :
+    _levelFile(new QFile(fileName))
 {
-    _levelFile = new QFile(fileName);
     if (_levelFile->open(QIODevice::ReadOnly) == false) {
         QMessageBox::critical(nullptr, "Error",
             "Loading level failed\nLoading default level...");
@@ -18,16 +17,13 @@ LevelLoader::LevelLoader(const QString &fileName)
             QCoreApplication::exit(EXIT_FAILURE);
         }
     }
-    _fStream = new QTextStream(_levelFile);
+    _fStream.reset(new QTextStream(_levelFile.data()));
 }
 
 LevelLoader::~LevelLoader()
 {
     // Close level file
     _levelFile->close();
-
-    delete _levelFile;
-    delete _fStream;
 }
 
 void LevelLoader::parse(Player &player,

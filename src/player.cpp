@@ -11,7 +11,7 @@ Player::Player(qreal x, qreal y) :
 
 void Player::setJump(bool b)
 {
-    _jump = b;
+    _jump = (b && !_inAir);
 }
 
 void Player::setLeft(bool b)
