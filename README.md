@@ -20,8 +20,10 @@ For now the only way to run the project is to import it in QtCreator and run it 
 | :---  | :--- |
 | ```Left``` , ```A``` | Move left |
 | ```Right``` , ```D``` | Move right |
-| ```Up``` , ```W``` | Jump |
-| ```Down``` , ```S``` | Stop |
+| ```Up``` , ```W``` | Climb ladder |
+| ```Down``` , ```S``` | Stop player movement |
+| ```Space``` | Jump |
+| ```Mouse left/right``` | Open color change spectrum |
 | ```P``` | Pause / Game Menu |
 | ```1``` | Select blue color as active |
 | ```2``` | Select green color as active |
@@ -29,7 +31,6 @@ For now the only way to run the project is to import it in QtCreator and run it 
 | ```4``` | Select red color as active |
 | ```5``` | Select orange color as active |
 | ```6``` | Select purple color as active |
-| ```7``` | Select pink color as active |
 
 ## :bug: Known bugs
 * ~~Collision is not perfect (yet), so sometimes you might get inside a block.~~ It was a feature... removed.
