@@ -28,6 +28,13 @@ void Key::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
         painter->drawEllipse(_sx[i], _sy[i], 1, 1);
 }
 
+void Key::collect()
+{
+    unlockDoor();
+    _door->update();
+    emit collected();
+}
+
 void Key::unlockDoor()
 {
     _door->unlock();
@@ -36,11 +43,6 @@ void Key::unlockDoor()
 void Key::lockDoor()
 {
     _door->lock();
-}
-
-Door* Key::door() const
-{
-    return _door;
 }
 
 void Key::updateSparklesPos()

@@ -102,12 +102,7 @@ void Player::movement()
         }
         // If the item is a key, collect it and unlock the binded door
         if (typeid(*item) == typeid(Key)) {
-            ((Key*)item)->unlockDoor();
-            // Redraw the door
-            ((Key*)item)->door()->update();
-            // Hide key from the scene
-            // TODO: delete Key item from the scene (maybe ?)
-            item->hide();
+            ((Key*)item)->collect();
             ignoredCollisions++;
             continue;
         }

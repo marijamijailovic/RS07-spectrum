@@ -23,14 +23,18 @@ public:
                const QStyleOptionGraphicsItem *option,
                QWidget *widget) override;
 
-    void unlockDoor();
-    void lockDoor();
-    Door* door() const;
+    void collect();
+
+signals:
+    void collected();
 
 private slots:
     void updateSparklesPos();
 
 private:
+    void unlockDoor();
+    void lockDoor();
+
     Door *_door;
     QScopedPointer<QTimer> _sparkTicker;
     const unsigned _sparkNum = 5;

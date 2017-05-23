@@ -42,10 +42,12 @@ public:
     void keyReleaseEvent(QKeyEvent *event) override;
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
+
 private slots:
     void update() const;
     void unlockColor(int id);
     void stopColorChangeAnimation();
+    void keyCollected();
 
 private:
     void connectSlots(std::vector<Entity*> entities);

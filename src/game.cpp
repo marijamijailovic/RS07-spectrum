@@ -243,15 +243,24 @@ void SpectrumGame::stopColorChangeAnimation()
         hideObjectsWithActiveColor();
 }
 
+void SpectrumGame::keyCollected()
+{
+    Key *sender = (Key*)QObject::sender();
+    removeItem(sender);
+    _level->removeStaticEntity((Entity*)sender);
+}
+
 void SpectrumGame::connectSlots(std::vector<Entity *> entities)
 {
+
     foreach (QGraphicsItem *item, entities) {
         if (typeid(*item) == typeid(ColorUnlocker)) {
             if (isUnlocked(((ColorUnlocker*)item)->color())) {
                 removeItem(item);
             } else
                 connect((ColorUnlocker*)item, SIGNAL(colorUnlocked(int)), this, SLOT(unlockColor(int)));
-        }
+        } else if (typeid(*item) == typeid(Key))
+            connect((Key*)item, SIGNAL(collected()), this, SLOT(keyCollected()));
     }
 }
 

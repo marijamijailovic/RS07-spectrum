@@ -1,4 +1,5 @@
 #include "include/level.h"
+#include <algorithm>
 
 
 Level::Level(const QString &fileName, Player &player, QColor *activeColor) :
@@ -40,4 +41,28 @@ void Level::applyGravity(qreal g)
 {
     for (unsigned i = 0; i < _dynamicEntities.size(); i++)
         _dynamicEntities[i]->applyGravity(g);
+}
+
+void Level::removeStaticEntity(Entity *item)
+{
+    _staticEntities.erase(
+        std::remove_if(
+            std::begin(_staticEntities), std::end(_staticEntities),
+            [item] (auto i) {
+                return i == item;
+            }),
+        std::end(_staticEntities)
+    );
+}
+
+void Level::removeDynamicEntity(DynamicEntity *item)
+{
+    _dynamicEntities.erase(
+        std::remove_if(
+            std::begin(_dynamicEntities), std::end(_dynamicEntities),
+            [item] (auto i) {
+                return i == item;
+            }),
+        std::end(_dynamicEntities)
+    );
 }

@@ -23,6 +23,9 @@ public:
 
     void applyGravity(qreal g);
 
+    void removeStaticEntity(Entity *item);
+    void removeDynamicEntity(DynamicEntity *item);
+
 private:
     std::vector<Entity *> _staticEntities;
     std::vector<DynamicEntity *> _dynamicEntities;
