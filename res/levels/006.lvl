@@ -1,13 +1,95 @@
-N/A
-
 # Player spawn coordinates
-p 350 0
+p 70 473
 
-s block 100 300 50 200
-s block 150 450 100 50
-s block 300 300 150 50
-s block 300 350 50 100
-s block 400 350 50 100
-s block 300 450 150 50
-s block 500 300 50 200
-s block 550 450 100 50
+
+#### Static entities ####
+
+#   Walls
+
+# Top
+s block 0 0 800 50
+# Bottom
+s block 0 550 800 50
+# Left side
+s block 0 50 50 500
+# Right side
+s block 750 50 50 500
+
+#   Walls
+# column 1
+c purple
+s wall 50 150 100 100
+c orange
+s wall 50 400 50 10
+# column 2
+c yellow
+d cube 180 80 70 70
+c red
+s wall 150 150 100 100
+c orange
+s wall 200 340 50 10
+c green
+s wall 150 350 100 100
+c red
+s wall 150 450 100 100
+# column 3
+c blue
+s wall 250 200 100 50
+c orange
+s wall 250 340 100 10
+c green
+s wall 250 350 100 100
+c red
+s wall 250 450 100 100
+# column 4
+c blue
+c orange
+s wall 350 340 100 10
+c green
+s wall 350 350 100 100
+c red
+s wall 350 450 100 100
+# column 5
+c orange
+s wall 450 50 100 100
+c yellow
+s wall 450 150 100 10
+c orange
+s wall 450 340 100 10
+c green
+s wall 450 350 100 100
+c red
+s wall 450 500  50  50
+# column 6
+c orange
+s wall 550 50 50 100
+s wall 550 150 50 100
+s wall 550 250 50 100
+c green
+s wall 550 350 50 100
+# column 7
+c blue
+s wall 600 50 150 100
+c red
+s wall 720 270 30 30
+c blue
+s wall 720 320 30 30
+c blue
+s wall 600 370 30 30
+c red
+s wall 600 420 30 30
+c blue
+s wall 720 450 30 30
+c red
+s wall 720 500 30 30
+
+#   Door
+c red
+s door 70 450 004
+s door 70 50 001
+c yellow
+s door 470 50 test
+
+#   Unlocker
+c green
+s unlocker 670 80
