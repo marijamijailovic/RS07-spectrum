@@ -14,12 +14,14 @@ class Key : public Entity
     Q_OBJECT
 
 public:
-    Key(qreal x, qreal y, Door *door, const QColor color = SpectrumColors::gray);
+    Key(qreal x, qreal y,
+        Door *door,
+        const QColor color = SpectrumColors::gray);
 
-    // Overrides from QGraphicsItem
-    QRectF boundingRect() const override;
-    QPainterPath shape() const override;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+    // Overrides from Entity
+    void paint(QPainter *painter,
+               const QStyleOptionGraphicsItem *option,
+               QWidget *widget) override;
 
     void unlockDoor();
     void lockDoor();
@@ -29,8 +31,6 @@ private slots:
     void updateSparklesPos();
 
 private:
-    const int _w = 40;
-    const int _h = 30;
     Door *_door;
     QScopedPointer<QTimer> _sparkTicker;
     const unsigned _sparkNum = 5;

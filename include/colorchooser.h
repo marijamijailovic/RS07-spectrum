@@ -3,6 +3,7 @@
 
 #include <QTimer>
 #include <QScopedPointer>
+#include <cmath>
 #include "include/entity.h"
 
 
@@ -11,17 +12,20 @@ class ColorChooser : public Entity
     Q_OBJECT
 
 public:
-    ColorChooser(qreal x, qreal y);
+    ColorChooser(qreal x, qreal y, const bool *unlockedColors);
 
-    // Overrides from QGraphicsItem
+    // Overrides from Entity
     QRectF boundingRect() const override;
     QPainterPath shape() const override;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+    void paint(QPainter *painter,
+               const QStyleOptionGraphicsItem *option,
+               QWidget *widget) override;
 
-    void relocate(qreal x, qreal y);
+    int determineColorID(QPointF &mouseReleasePos) const;
 
 private:
     qreal _r;
+    const bool *_unlockedColors;
 };
 
 #endif // COLORCHOOSER_H

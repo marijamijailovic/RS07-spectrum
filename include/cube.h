@@ -7,18 +7,16 @@
 class Cube : public DynamicEntity
 {
 public:
-    Cube(qreal x, qreal y, qreal size, const QColor color = Qt::gray);
+    Cube(qreal x, qreal y, qreal size,
+         const QColor color = SpectrumColors::gray);
 
-    // Overrides from QGraphicsItem
-    QRectF boundingRect() const override;
-    QPainterPath shape() const override;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+    // Overrides from Entity
+    void paint(QPainter *painter,
+               const QStyleOptionGraphicsItem *option,
+               QWidget *widget) override;
 
     // Overrides from DynamicEntity
     void move();
-
-private:
-    qreal _size;
 };
 
 #endif // CUBE_H

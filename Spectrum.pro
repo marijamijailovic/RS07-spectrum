@@ -39,7 +39,6 @@ SOURCES += \
     src/levelloader.cpp \
     src/wall.cpp \
     src/ladder.cpp \
-    src/background.cpp \
     src/colorchanger.cpp \
     src/colorunlocker.cpp \
     src/colorchooser.cpp
@@ -59,7 +58,6 @@ HEADERS  += \
     include/levelloader.h \
     include/wall.h \
     include/ladder.h \
-    include/background.h \
     include/colorchanger.h \
     include/colorunlocker.h \
     include/colorchooser.h

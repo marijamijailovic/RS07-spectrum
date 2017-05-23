@@ -2,6 +2,7 @@
 #include "include/mainwindow.h"
 #include <QGraphicsScene>
 
+#include <QTextStream>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),

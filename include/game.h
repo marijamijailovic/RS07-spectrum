@@ -6,12 +6,14 @@
 #include <QGraphicsScene>
 #include <QScopedPointer>
 #include <QTimer>
+#include <QGraphicsSceneMouseEvent>
 #include "include/player.h"
-#include "include/background.h"
 #include "include/level.h"
 #include "include/colors.h"
 #include "include/colorchanger.h"
 #include "include/colorchooser.h"
+
+#include <QTextStream>
 
 
 class SpectrumGame : public QGraphicsScene
@@ -34,12 +36,12 @@ public:
     QColor activeColor() const;
     void setActiveColor(QColor newActiveColor);
     bool isUnlocked(const QColor &color) const;
+    bool isUnlocked(int colorID) const;
 
     void keyPressEvent(QKeyEvent *event) override;
     void keyReleaseEvent(QKeyEvent *event) override;
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
-
 private slots:
     void update() const;
     void unlockColor(int id);
@@ -48,7 +50,7 @@ private slots:
 private:
     void connectSlots(std::vector<Entity*> entities);
     void changeActiveColor(QKeyEvent *event);
-    void animateColorChange();
+    void animateColorChange(QColor color);
     void hideObjectsWithActiveColor();
     void openSpectrum();
     void closeSpectrum();
@@ -56,10 +58,9 @@ private:
     bool _paused;
     bool _expandInProgress;
     QGraphicsView *_parent;
-    const qreal _gravCoeff = 0.978033;
+    const qreal _gravCoeff = 0.25;
     QColor _activeColor;
     QScopedPointer<Player> _player;
-    QScopedPointer<Background> _background;
     QScopedPointer<Level> _level;
     QScopedPointer<ColorChanger> _colorCircle;
     QScopedPointer<ColorChooser> _spectrum;

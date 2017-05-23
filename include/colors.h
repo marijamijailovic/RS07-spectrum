@@ -20,15 +20,16 @@ public:
 
     static const int COLOR_NUM = 6;
     static const int BLUE = 0;
-    static const int RED = 1;
-    static const int YELLOW = 2;
-    static const int GREEN = 3;
+    static const int PURPLE = 1;
+    static const int RED = 2;
+    static const int YELLOW = 3;
     static const int ORANGE = 4;
-    static const int PURPLE = 5;
+    static const int GREEN = 5;
     static const int GRAY = 6;
     static const int DEFAULT = BLUE;
 
     static QColor getColorFromName(const QString &colorName);
+    static QColor getColorFromID(int id);
     static int toEnum(const QColor &color);
 };
 

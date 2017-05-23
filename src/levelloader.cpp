@@ -69,7 +69,8 @@ void LevelLoader::parse(Player &player,
         case 'p':   // Player
             int x, y;
             lineStream >> x >> y;
-            player.setPosition(x, y);
+            dynamicEntities.push_back(&player);
+            player.setPos(x, y);
             break;
         default:
             break;
@@ -126,6 +127,7 @@ void LevelLoader::addDynamicEntity(std::vector<DynamicEntity *> &dynamicEntities
                                    const QColor &entityColor,
                                    const QColor &activeColor) const
 {
+    QTextStream out(stdout);
     int x, y, w, h;
     QString entityClass;
     lineStream >> entityClass;
@@ -135,8 +137,9 @@ void LevelLoader::addDynamicEntity(std::vector<DynamicEntity *> &dynamicEntities
         dynamicEntities.push_back(new Cube(x, y, w, entityColor));
     } else {
         lineStream >> x >> y >> w >> h;
+
         // TODO Add here other dynamic object types
     }
-    if (activeColor == entityColor)
+    if (entityClass == "cube"&&activeColor == entityColor)
         dynamicEntities.back()->hide();
 }

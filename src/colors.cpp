@@ -1,6 +1,5 @@
 #include "../include/colors.h"
 
-
 QColor SpectrumColors::red = QColor(238, 52, 55);
 QColor SpectrumColors::green = QColor(108, 210, 77);
 QColor SpectrumColors::blue = QColor(40, 123, 219);
@@ -33,6 +32,26 @@ QColor SpectrumColors::getColorFromName(const QString &colorName)
         return gray;
     } else if (colorName == "default") {
         return defaultActiveColor;
+    } else
+        return defaultActiveColor;
+}
+
+QColor SpectrumColors::getColorFromID(int id)
+{
+    if (id == RED) {
+        return red;
+    } else if (id == GREEN) {
+        return green;
+    } else if (id == BLUE) {
+        return blue;
+    } else if (id == YELLOW) {
+        return yellow;
+    } else if (id == PURPLE) {
+        return purple;
+    } else if (id == ORANGE) {
+        return orange;
+    } else if (id == GRAY) {
+        return gray;
     } else
         return defaultActiveColor;
 }
