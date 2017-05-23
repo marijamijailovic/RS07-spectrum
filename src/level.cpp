@@ -46,23 +46,17 @@ void Level::applyGravity(qreal g)
 void Level::removeStaticEntity(Entity *item)
 {
     _staticEntities.erase(
-        std::remove_if(
-            std::begin(_staticEntities), std::end(_staticEntities),
-            [item] (Entity* i) {
-                return i == item;
-            }),
-        std::end(_staticEntities)
+        std::remove(
+            std::begin(_staticEntities), std::end(_staticEntities), item),
+            std::end(_staticEntities)
     );
 }
 
 void Level::removeDynamicEntity(DynamicEntity *item)
 {
     _dynamicEntities.erase(
-        std::remove_if(
-            std::begin(_dynamicEntities), std::end(_dynamicEntities),
-            [item] (Entity* i) {
-                return i == item;
-            }),
-        std::end(_dynamicEntities)
+        std::remove(
+            std::begin(_dynamicEntities), std::end(_dynamicEntities), item),
+            std::end(_dynamicEntities)
     );
 }
