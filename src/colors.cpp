@@ -36,7 +36,7 @@ QColor SpectrumColors::getColorFromName(const QString &colorName)
         return defaultActiveColor;
 }
 
-QColor SpectrumColors::getColorId(int id)
+QColor SpectrumColors::getColorFromID(int id)
 {
     if (id == RED) {
         return red;

@@ -1,6 +1,7 @@
 #include "include/colorchooser.h"
 #include "include/colors.h"
 
+
 ColorChooser::ColorChooser(qreal x, qreal y, const bool *unlockedColors) :
     Entity(x, y, 200, 200, SpectrumColors::gray, false),
     _unlockedColors(unlockedColors)
@@ -33,7 +34,7 @@ void ColorChooser::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QW
 
     for (int i = 0; i < 6; i++) {
         if (_unlockedColors[i])
-            painter->setBrush(QBrush(SpectrumColors::getColorId(i)));
+            painter->setBrush(QBrush(SpectrumColors::getColorFromID(i)));
         else
             painter->setBrush(QBrush(SpectrumColors::gray));
         QPainterPath path(outer[i]);
@@ -43,4 +44,13 @@ void ColorChooser::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QW
         path.lineTo(outer[i]);
         painter->drawPath(path);
     }
+}
+
+int ColorChooser::determineColorID(QPointF &mouseReleasePos) const
+{
+    QPointF center(x(), y());
+    QPointF offset(x() + 150, y());
+    QLineF horizontal(center, offset);
+    QLineF slope(center, mouseReleasePos);
+    return 5 - (int)horizontal.angleTo(slope) / 60;
 }

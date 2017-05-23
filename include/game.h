@@ -6,6 +6,7 @@
 #include <QGraphicsScene>
 #include <QScopedPointer>
 #include <QTimer>
+#include <QGraphicsSceneMouseEvent>
 #include "include/player.h"
 #include "include/level.h"
 #include "include/colors.h"
@@ -35,6 +36,7 @@ public:
     QColor activeColor() const;
     void setActiveColor(QColor newActiveColor);
     bool isUnlocked(const QColor &color) const;
+    bool isUnlocked(int colorID) const;
 
     void keyPressEvent(QKeyEvent *event) override;
     void keyReleaseEvent(QKeyEvent *event) override;

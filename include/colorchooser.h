@@ -21,6 +21,8 @@ public:
                const QStyleOptionGraphicsItem *option,
                QWidget *widget) override;
 
+    int determineColorID(QPointF &mouseReleasePos) const;
+
 private:
     qreal _r;
     const bool *_unlockedColors;
