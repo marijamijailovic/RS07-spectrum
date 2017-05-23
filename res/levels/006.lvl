@@ -85,10 +85,10 @@ s wall 720 500 30 30
 
 #   Door
 c red
-s door 70 450 004
-s door 70 50 001
+s door 70 450 005 75 273
+s door 70 50 004 600 423
 c yellow
-s door 470 50 test
+s door 470 50 test 60 500
 
 #   Unlocker
 c green

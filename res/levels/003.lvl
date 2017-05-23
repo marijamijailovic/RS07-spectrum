@@ -27,7 +27,7 @@ s ladder 650 200 50 350
 
 #   Door
 c red
-s door 150 150 002
+s door 150 150 002 500 473
 
 c red
 s unlocker 300 500

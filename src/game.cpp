@@ -188,11 +188,12 @@ void SpectrumGame::changeActiveColor(QKeyEvent *event)
         }
 
     if (shouldChangeActiveColor) {
-        if (!_expandInProgress)
-            animateColorChange(newActiveColor);
-        update();
-    }
-
+            if (!_expandInProgress) {
+                _activeColor = newActiveColor;
+                animateColorChange(newActiveColor);
+            }
+            update();
+        }
 }
 
 void SpectrumGame::interact()
@@ -201,9 +202,17 @@ void SpectrumGame::interact()
         // Try to cast the colliding object to class Door
         // If the result is not nullptr, then go through the door if it's unlocked
         Door *door = qobject_cast<Door *>((Entity *)item);
+
         if (door != nullptr) {
-            if (!door->isLocked())
+            if (!door->isLocked()) {
+                // door will be destroyed when loadLevel is called, so data has to be saved
+                bool shouldChangeSpawn = door->changesDefaultSpawn();
+                int x = door->spawnAtX();
+                int y = door->spawnAtY();
                 loadLevel(door->nextLevel());
+                if (shouldChangeSpawn)
+                    _player->setPos(x, y);
+            }
             break;
         }
     }

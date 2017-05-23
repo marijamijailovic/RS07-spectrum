@@ -7,7 +7,8 @@ Door::Door(qreal x, qreal y, const QString &nextLevel, const QColor color, bool 
     _locked(locked),
     _drawBars(locked),
     _barShrinkTicker(new QTimer()),
-    _nextLevel(nextLevel)
+    _nextLevel(nextLevel),
+    _changesDefaultSpawn(false)
 {
     setZValue(-0.5);
     connect(&(*_barShrinkTicker), SIGNAL(timeout()), this, SLOT(shrinkBars()));
@@ -67,6 +68,36 @@ QString Door::nextLevel() const
 bool Door::isLocked() const
 {
     return _locked;
+}
+
+bool Door::changesDefaultSpawn() const
+{
+    return _changesDefaultSpawn;
+}
+
+void Door::setChangesDefaultSpawn(bool b)
+{
+    _changesDefaultSpawn = b;
+}
+
+int Door::spawnAtX() const
+{
+    return _spawnAtX;
+}
+
+int Door::spawnAtY() const
+{
+    return _spawnAtY;
+}
+
+void Door::setSpawnAtX(int x)
+{
+    _spawnAtX = x;
+}
+
+void Door::setSpawnAtY(int y)
+{
+    _spawnAtY = y;
 }
 
 void Door::shrinkBars()

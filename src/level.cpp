@@ -48,7 +48,7 @@ void Level::removeStaticEntity(Entity *item)
     _staticEntities.erase(
         std::remove_if(
             std::begin(_staticEntities), std::end(_staticEntities),
-            [item] (auto i) {
+            [item] (Entity* i) {
                 return i == item;
             }),
         std::end(_staticEntities)
@@ -60,7 +60,7 @@ void Level::removeDynamicEntity(DynamicEntity *item)
     _dynamicEntities.erase(
         std::remove_if(
             std::begin(_dynamicEntities), std::end(_dynamicEntities),
-            [item] (auto i) {
+            [item] (Entity* i) {
                 return i == item;
             }),
         std::end(_dynamicEntities)

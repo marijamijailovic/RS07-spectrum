@@ -27,6 +27,12 @@ public:
     void unlock();
     QString nextLevel() const;
     bool isLocked() const;
+    bool changesDefaultSpawn() const;
+    void setChangesDefaultSpawn(bool b);
+    int spawnAtX() const;
+    int spawnAtY() const;
+    void setSpawnAtX(int x);
+    void setSpawnAtY(int y);
 
 private slots:
     void shrinkBars();
@@ -37,6 +43,9 @@ private:
     bool _drawBars;
     QScopedPointer<QTimer> _barShrinkTicker;
     QString _nextLevel;
+    bool _changesDefaultSpawn;
+    int _spawnAtX = 200;
+    int _spawnAtY = 200;
 };
 
 #endif // DOOR_H

@@ -23,5 +23,5 @@ s wall 370 520 20 30
 
 #   Door
 c red
-s door 200 450 001
+s door 200 450 001 500 473
 s door 500 450 003
