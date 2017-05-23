@@ -18,15 +18,17 @@ s block 0 100 100 450
 s block 700 100 100 450
 
 # Platform
-s block 100 250 600 20
+s block 100 250 500 20
 
 # Ladder
-s ladder 400 250 30 300
+c red
+s ladder 650 200 50 350
+
 
 #   Door
 c red
 s door 150 150 002
 
 c red
-s unlocker 600 500
+s unlocker 300 500
 

@@ -15,6 +15,11 @@ Created by:
 ## :computer: Installation
 For now the only way to run the project is to import it in QtCreator and run it from there.
 
+## :page_facing_up: Description
+Spectrum is a 2D puzzle game.
+Each level is made of different elements, in a different color. You can choose one color as "active" and hide all objects which have that color.
+By progressing through the game you will unlock more and more colors, allowing you to use more colors.
+
 ## :video_game: Usage
 | **Key** | **Description** |
 | :---  | :--- |
