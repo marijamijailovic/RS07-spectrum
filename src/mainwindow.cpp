@@ -80,7 +80,7 @@ void MainWindow::newGame()
 void MainWindow::loadGame()
 {
     newGame();
-    QString file("test.sav");
+    QString file("test.sav11");
     _game->load(file);
 }
 

@@ -15,9 +15,11 @@ public:
     GameLoader(const GameLoader&) = delete;
     GameLoader& operator=(const GameLoader&) = delete;
 
+    bool isValid() const;
     void writeGameData();
 
 private:
+    bool _valid;
     QScopedPointer<QFile> _gameSaveFile;
     QScopedPointer<QTextStream> _fStream;
 };

@@ -80,7 +80,8 @@ void SpectrumGame::load(QString &fileName)
 {
     qDebug() << "Load: " << QDir::currentPath() + QDir::separator() + fileName;
     GameLoader loader(QDir::currentPath() + QDir::separator() + fileName);
-    loader.writeGameData();
+    if (loader.isValid())
+        loader.writeGameData();
 }
 
 void SpectrumGame::keyPressEvent(QKeyEvent *event)
