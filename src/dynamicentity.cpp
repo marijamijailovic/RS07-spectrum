@@ -55,10 +55,6 @@ void DynamicEntity::applyGravity(qreal g)
     applyForce(0, g);    
 }
 void DynamicEntity::move(int id){
-    QTextStream out(stdout);
-    //out<<_vx<<"  "<<_vy<<endl;
-    int vx = (int)_vx;
-    int vy = (int)_vy;
     if(_vy<0.2&&_vy>0)_vy=-_vy;
     int c1 = _vx>0?1:-1;
     int c2 = _vy>0?1:-1;
@@ -138,22 +134,4 @@ void DynamicEntity::move(int id){
     }
     double min = trych1<trych2?trych1:trych2;
     setCh(min);
-    /*
-    for(int i = 1; i <= vy; i++) {
-        moveBy(0, 1);
-
-        int ignoredCollisions = 0;
-        auto collidingObjects = collidingItems();
-        foreach (QGraphicsItem *item, collidingObjects)
-            if (!((Entity*)item)->collidable())
-                ignoredCollisions++;
-
-        if (collidingObjects.size() > ignoredCollisions) {
-            moveBy(0, -1);
-            _vy = 0;
-            //_y += i;
-            break;
-        }
-    }
-    */
 }

@@ -64,7 +64,6 @@ bool Player::go(){
     foreach (QGraphicsItem *item, collidingObjects) {
         if ( !((Entity*)item)->collidable()) {
             ignoredCollisions++;
-            out << " collision\n";
             continue;
         }
         if (typeid(*item) == typeid(Ladder)) {
@@ -112,21 +111,16 @@ void Player::jump(){
     }
 }
 
-void Player::movement()
-{
-        QTextStream out(stdout);
+void Player::movement(){
     if (_left)
         applyForce(-1200,0);
     if (_right)
         applyForce(1200,0);
-    double _x=0;
-    double _y=0;
     QList<QGraphicsItem *> collidingObjects = collidingItems();
     int ignoredCollisions = 0;
     foreach (QGraphicsItem *item, collidingObjects) {
         if ( !((Entity*)item)->collidable()) {
             ignoredCollisions++;
-            //out << "no collision\n";
             continue;
         }
         // If the item is a key, collect it and unlock the binded door
@@ -144,48 +138,8 @@ void Player::movement()
         }
         // TEST, REMOVE
 
-        QRectF a = mapToScene(boundingRect()).boundingRect();
-        QRectF b = item->boundingRect();
-
         if (typeid(*item) == typeid(Ladder)) {
-            //out<<"ladder";
             ignoredCollisions++;
-            /*int step = 4;
-            //out << "ladder\n";
-            // Player is not on the ladder if it's just on the top of it
-            if (a.bottom() >= b.top() + 1 && a.bottom() < b.bottom())
-                onLadder = true;
-            if (_up && a.bottom() >= b.top() + step - 1)
-                _y -= step;
-            if (_down && a.bottom() <= b.bottom())
-                _y += step;
-            continue;*/
         }
-
     }
-    // TODO II disable top collision if the player is onLadder
-    //purpose of canJump is wall jumping, currently disabled
-
-    //applyForce(-_vx*0.03,0);    // Air resistance
-
-    // If left/right key is pressed, move the player
-    /*if (_left)
-        _vx -= 1;
-    if (_right)
-        _vx += 1;
-*/
-    // TODO get frictionCoef from an entity that is under the player (advanced and not necessary)
-    qreal frictionCoef = 0.1;
-    /*if (_inAir == false)
-        applyForce(-_vx * frictionCoef, 0);
-*/
-    //TODO reset _vx = 0 when it becomes insignificant
-
-    //out << "vx: " << _vx << " , vy: " << _vy << "\n";
-
-    _y += _vy;
-    if (!(onLadder && collidingObjects.size() > 1))
-        _x += _vx;
-
-    //setPos(_x, _y);
 }
