@@ -73,7 +73,7 @@ void SpectrumGame::load(QString &fileName)
 {
     GameLoader loader(fileName);
     if (loader.isValid()) {
-        QString level = loader.writeGameData(_unlockedColors, _completedLevels);
+        QString level = loader.readGameData(_unlockedColors, _completedLevels);
         loadLevel(level);
     }
 }

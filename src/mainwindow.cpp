@@ -1,8 +1,8 @@
 #include "ui_mainwindow.h"
 #include "include/mainwindow.h"
-#include <QGraphicsScene>
+#include <QFileDialog>
+#include <QDir>
 
-#include <QTextStream>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -77,16 +77,16 @@ void MainWindow::newGame()
     _ui->gwDisplay->setFocus();
 }
 
-#include <QFileDialog>
-#include <QDir>
 void MainWindow::loadGame()
 {
-    newGame();
     QString fileName = QFileDialog::getOpenFileName(this,
                                                     tr("Choose a save file."),
                                                     QDir::currentPath(),
                                                     tr("Spectrum Save File (*.sav)"));
-    _game->load(fileName);
+    if (fileName != "") {
+        newGame();
+        _game->load(fileName);
+    }
 }
 
 void MainWindow::showLevelTree()

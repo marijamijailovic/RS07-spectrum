@@ -23,8 +23,7 @@ bool GameLoader::isValid() const
     return _valid;
 }
 
-#include <QDebug>
-QString GameLoader::writeGameData(bool unlockedColors[], std::vector<bool> &completedLevels)
+QString GameLoader::readGameData(bool unlockedColors[], std::vector<bool> &completedLevels)
 {
     // Read level ID
     QString level = _fStream->readLine().trimmed();
