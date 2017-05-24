@@ -58,17 +58,47 @@ qreal Player::centerY() const
 }
 bool Player::go(){
     movement();
+    bool ladder=false;
     int ignoredCollisions = 0;
     QList<QGraphicsItem *> collidingObjects = collidingItems();
     foreach (QGraphicsItem *item, collidingObjects) {
         if ( !((Entity*)item)->collidable()) {
             ignoredCollisions++;
-            //out << "no collision\n";
+            out << " collision\n";
             continue;
         }
+        if (typeid(*item) == typeid(Ladder)) {
+            ladder=true;
+        }
     }
+    if(!ladder)onLadder=false;
     if (collidingObjects.size() == ignoredCollisions){
         return true;
+    }
+    if(ladder){
+        if(!onLadder){
+            moveBy(0,-1);
+            onLadder=true;
+        }
+        int oldColl = (collidingObjects.size())-ignoredCollisions;
+        if(_up&&!_left&&!_right)moveBy(0,-1);
+        if(_down&&!_left&&!_right)moveBy(0, 1);
+        if(_left) moveBy(-1,0);
+        if(_right) moveBy(1,0);
+        QList<QGraphicsItem *> collidingObjects = collidingItems();
+        foreach (QGraphicsItem *item, collidingObjects) {
+            if ( !((Entity*)item)->collidable()) {
+                ignoredCollisions++;
+                continue;
+            }
+        }
+        if(oldColl >= (collidingObjects.size())-ignoredCollisions);
+        else {
+            if(_up&&!_left&&!_right)moveBy(0,1);
+            if(_down&&!_left&&!_right)moveBy(0,-1);
+            if(_left) moveBy(1,0);
+            if(_right) moveBy(-1,0);
+        }
     }
 
     return false;
@@ -77,7 +107,7 @@ void Player::jump(){
 
     QTextStream out(stdout);
     if(_jump&&!_inAir) {
-        _vy=-10;
+        _vy=-15;
         _jump=false;
     }
 }
@@ -93,7 +123,6 @@ void Player::movement()
     double _y=0;
     QList<QGraphicsItem *> collidingObjects = collidingItems();
     int ignoredCollisions = 0;
-    bool onLadder = false;
     foreach (QGraphicsItem *item, collidingObjects) {
         if ( !((Entity*)item)->collidable()) {
             ignoredCollisions++;
@@ -119,7 +148,7 @@ void Player::movement()
         QRectF b = item->boundingRect();
 
         if (typeid(*item) == typeid(Ladder)) {
-            out<<"ladder";
+            //out<<"ladder";
             ignoredCollisions++;
             /*int step = 4;
             //out << "ladder\n";

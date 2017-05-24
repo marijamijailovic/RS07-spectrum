@@ -35,14 +35,18 @@ double DynamicEntity::getCh() const
 {
     return _ch;
 }
+double DynamicEntity::getMass() const
+{
+    return _mass;
+}
 
 void DynamicEntity::applyForce(qreal ix, qreal iy)
 {
     _vx += (ix / _mass);
-    if (_vx > 6)
-        _vx = 6;
-    if (_vx < -6)
-        _vx =- 6;
+    if (_vx > 4)
+        _vx = 4;
+    if (_vx < -4)
+        _vx =- 4;
     _vy += (iy / _mass);
 }
 
@@ -85,14 +89,16 @@ void DynamicEntity::move(int id){
                 ((DynamicEntity*)item)->applyForce(_vx*_mass/3,0);
             }
         }
-        if(!id&&collidingObjects.size() == ignoredCollisions){
+        if(!id&&collidingObjects.size() == ignoredCollisions&&((Player*)this)->getPull()){
             moveBy(-2*c1,0);
+            auto collidingObjects = collidingItems();
             foreach (QGraphicsItem *item, collidingObjects){
                 if (!((Entity*)item)->collidable())
                     ignoredCollisions++;
                 if(typeid(*item) == typeid(Cube)){
-                    out<<"dynamic";
-                    ((DynamicEntity*)item)->applyForce(_vx*_mass/3,0);
+                    double force = 2*c1/(((DynamicEntity*)item)->getMass()+_mass);
+                    ((DynamicEntity*)item)->applyForce(force*((DynamicEntity*)item)->getMass()*10,0);
+                    applyForce(-force*_mass,0);
                     ((DynamicEntity*)item)->setCh(this->getCh());
                 }
             }

@@ -46,6 +46,7 @@ private:
     bool _right = false;
     bool _left = false;
     bool pull=false;
+    bool onLadder = false;
 };
 
 #endif // PLAYER_H

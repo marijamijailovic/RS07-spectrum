@@ -17,6 +17,7 @@ public:
     void setVy(qreal vy);
     void setCh(double c);
     double getCh() const;
+    double getMass() const;
 
     void applyForce(qreal ix, qreal iy);
     void applyGravity(qreal g);

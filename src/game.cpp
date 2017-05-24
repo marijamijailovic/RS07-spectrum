@@ -194,6 +194,10 @@ void SpectrumGame::changeActiveColor(QKeyEvent *event)
             }
             update();
         }
+    else
+        foreach (QGraphicsItem* item, items())
+            if (((Entity*)item)->color() == _activeColor)
+                item->show();
 }
 
 void SpectrumGame::interact()
