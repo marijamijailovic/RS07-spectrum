@@ -4,7 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui \
+            multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -41,7 +42,8 @@ SOURCES += \
     src/ladder.cpp \
     src/colorchanger.cpp \
     src/colorunlocker.cpp \
-    src/colorchooser.cpp
+    src/colorchooser.cpp \
+    src/soundplayer.cpp
 
 HEADERS  += \
     include/mainwindow.h \
@@ -60,7 +62,8 @@ HEADERS  += \
     include/ladder.h \
     include/colorchanger.h \
     include/colorunlocker.h \
-    include/colorchooser.h
+    include/colorchooser.h \
+    include/soundplayer.h
 
 FORMS    += \
     ui/mainwindow.ui

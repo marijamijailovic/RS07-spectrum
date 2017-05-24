@@ -1,5 +1,6 @@
 #include "include/game.h"
 
+
 SpectrumGame::SpectrumGame(QGraphicsView *parent) :
     _paused(false),
     _expandInProgress(false),
