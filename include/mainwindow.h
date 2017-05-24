@@ -25,6 +25,7 @@ private slots:
     void resumeGame();
     void newGame();
     void loadGame();
+    void saveGame();
     void closeApp();
     void showLevelTree();
     void hideLevelTree();

@@ -32,6 +32,7 @@ public:
     void pause();
     void resume();
     void load(QString &fileName);
+    void save(QString &fileName) const;
     void interact();
 
     QColor activeColor() const;

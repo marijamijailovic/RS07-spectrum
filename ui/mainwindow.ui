@@ -98,7 +98,7 @@ border: 1px solid white;</string>
     <property name="geometry">
      <rect>
       <x>390</x>
-      <y>280</y>
+      <y>340</y>
       <width>200</width>
       <height>50</height>
      </rect>
@@ -121,7 +121,7 @@ border: 1px solid white;</string>
     <property name="geometry">
      <rect>
       <x>390</x>
-      <y>160</y>
+      <y>220</y>
       <width>200</width>
       <height>50</height>
      </rect>
@@ -144,7 +144,7 @@ border: 1px solid white;</string>
     <property name="geometry">
      <rect>
       <x>390</x>
-      <y>220</y>
+      <y>280</y>
       <width>200</width>
       <height>50</height>
      </rect>
@@ -342,13 +342,37 @@ border: 1px solid white;</string>
      <string>Load Game</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="btnSaveGame">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>160</y>
+      <width>200</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: white;
+border: 1px solid white;</string>
+    </property>
+    <property name="text">
+     <string>Save Game</string>
+    </property>
+   </widget>
+   <zorder>frLevelTree</zorder>
    <zorder>gwDisplay</zorder>
    <zorder>btnResumeGame</zorder>
    <zorder>btnExit</zorder>
    <zorder>btnNewGame</zorder>
    <zorder>btnChooseLevel</zorder>
    <zorder>btnLoadGame</zorder>
-   <zorder>frLevelTree</zorder>
+   <zorder>btnSaveGame</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

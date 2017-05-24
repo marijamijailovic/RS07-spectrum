@@ -71,11 +71,18 @@ void SpectrumGame::resume()
 
 void SpectrumGame::load(QString &fileName)
 {
-    GameLoader loader(fileName);
+    GameLoader loader(fileName, 'r');
     if (loader.isValid()) {
         QString level = loader.readGameData(_unlockedColors, _completedLevels);
         loadLevel(level);
     }
+}
+
+void SpectrumGame::save(QString &fileName) const
+{
+    GameLoader saver(fileName, 'w');
+    if (saver.isValid())
+        saver.writeGameData(_level->id(), _unlockedColors, _completedLevels);
 }
 
 void SpectrumGame::keyPressEvent(QKeyEvent *event)

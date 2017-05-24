@@ -42,6 +42,7 @@ void MainWindow::connectSignalsToSlots()
     connect(_ui->btnResumeGame, SIGNAL(clicked()), this, SLOT(resumeGame()));
     connect(_ui->btnNewGame, SIGNAL(clicked()), this, SLOT(newGame()));
     connect(_ui->btnLoadGame, SIGNAL(clicked()), this, SLOT(loadGame()));
+    connect(_ui->btnSaveGame, SIGNAL(clicked()), this, SLOT(saveGame()));
     connect(_ui->btnExit, SIGNAL(clicked()), this, SLOT(closeApp()));
     connect(_ui->btnChooseLevel, SIGNAL(clicked()), this, SLOT(showLevelTree()));
     connect(_ui->pbHideLevelPanel, SIGNAL(clicked()), this, SLOT(hideLevelTree()));
@@ -87,6 +88,16 @@ void MainWindow::loadGame()
         newGame();
         _game->load(fileName);
     }
+}
+
+void MainWindow::saveGame()
+{
+    QString fileName = QFileDialog::getSaveFileName(this,
+                                                    tr("Choose a save file."),
+                                                    QDir::currentPath() + QDir::separator() + "save.sav",
+                                                    tr("Spectrum Save File (*.sav)"));
+    if (fileName != "")
+        _game->save(fileName);
 }
 
 void MainWindow::showLevelTree()
