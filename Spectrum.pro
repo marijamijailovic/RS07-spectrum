@@ -71,5 +71,6 @@ FORMS    += \
 RESOURCES += \
     res/levels/levels.qrc \
     res/sprites/sprites.qrc \
-    res/gui/gui.qrc
+    res/gui/gui.qrc \
+    res/sounds/sounds.qrc
 

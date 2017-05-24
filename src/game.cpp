@@ -53,7 +53,7 @@ void SpectrumGame::loadLevel(const QString id)
     connectSlots(_level->staticEntities());
 
     // Turn on sound
-    SoundPlayer::playFile("./res/sounds/theme.mp3");
+    SoundPlayer::playFile(":sounds/theme.mp3");
 }
 
 void SpectrumGame::pause()
