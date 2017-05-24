@@ -1,0 +1,40 @@
+N/A
+
+# Player spawn coordinates
+p 370 283
+
+
+#### Static entities ####
+
+
+#   Boundary
+# Top
+s block 0 0 800 50
+# Bottom
+s block 0 550 800 50
+# Left side
+s block 0 50 50 500
+# Right side
+s block 750 50 50 500
+
+s block 500 300 250 250
+
+#   Platform
+c red
+s wall 50 200 100 20
+c green
+s wall 150 200 200 20
+
+
+#   Door
+c yellow
+s door 170 450 010
+c green
+s door 620 200 012
+
+
+#### Dynamic entities ####
+c green
+d cube 75 130 70 70
+c red
+d cube 175 50 150 150
