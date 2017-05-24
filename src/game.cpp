@@ -1,5 +1,6 @@
 #include "include/game.h"
 
+#include "include/soundplayer.h"
 
 SpectrumGame::SpectrumGame(QGraphicsView *parent) :
     _paused(false),
@@ -50,6 +51,9 @@ void SpectrumGame::loadLevel(const QString id)
 
     // Connecting slots
     connectSlots(_level->staticEntities());
+
+    // Turn on sound
+    SoundPlayer::playFile("./res/sounds/theme.mp3");
 }
 
 void SpectrumGame::pause()

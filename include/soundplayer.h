@@ -1,18 +1,17 @@
 #ifndef SOUNDPLAYER_H
 #define SOUNDPLAYER_H
 
-#include <QScopedPointer>
 #include <QMediaPlayer>
 
-
-class SoundPlayer : public QMediaPlayer
+class SoundPlayer
 {
 public:
     static void playFile(const QString &path);
 
 private:
     SoundPlayer();
-    static QScopedPointer<QMediaPlayer> _player;
+
+    static QMediaPlayer *_musicPlayer;
 };
 
 #endif // SOUNDPLAYER_H

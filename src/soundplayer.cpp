@@ -1,7 +1,7 @@
 #include "include/soundplayer.h"
 
 
-QScopedPointer<QMediaPlayer> _player(QMediaPlayer());
+QMediaPlayer* SoundPlayer::_musicPlayer = new QMediaPlayer();
 
 
 SoundPlayer::SoundPlayer()
@@ -9,10 +9,8 @@ SoundPlayer::SoundPlayer()
 
 }
 
-
-void SoundPlayer::playFile(const QString &)
+void SoundPlayer::playFile(const QString &path)
 {
-    // TODO
+    _musicPlayer->setMedia(QUrl::fromLocalFile(path));
+    _musicPlayer->play();
 }
-
-
