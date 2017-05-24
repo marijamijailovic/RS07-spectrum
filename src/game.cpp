@@ -1,6 +1,5 @@
 #include "include/game.h"
 #include "include/gameloader.h"
-#include <QDir>
 
 
 SpectrumGame::SpectrumGame(QGraphicsView *parent) :
@@ -37,7 +36,6 @@ SpectrumGame::~SpectrumGame()
     _gameTicker->stop();
 }
 
-#include <QDebug>
 void SpectrumGame::loadLevel(const QString id)
 {
     // Load next level
@@ -48,10 +46,6 @@ void SpectrumGame::loadLevel(const QString id)
 
     if (_level->id() >= _completedLevels.size())
         _completedLevels.resize(_level->id() + 1, false);
-
-    for (auto i : _completedLevels)
-        qDebug() << i;
-    qDebug() << "---";
 
     // Stop player
     _player->setVx(0);
@@ -77,11 +71,9 @@ void SpectrumGame::resume()
 
 void SpectrumGame::load(QString &fileName)
 {
-    qDebug() << "Load: " << QDir::currentPath() + QDir::separator() + fileName;
-    GameLoader loader(QDir::currentPath() + QDir::separator() + fileName);
+    GameLoader loader(fileName);
     if (loader.isValid()) {
-        QString level = loader.writeGameData(_unlockedColors, _completedLevels);;
-        qDebug() << level;
+        QString level = loader.writeGameData(_unlockedColors, _completedLevels);
         loadLevel(level);
     }
 }
