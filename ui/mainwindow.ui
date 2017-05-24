@@ -75,7 +75,7 @@
     <property name="geometry">
      <rect>
       <x>390</x>
-      <y>100</y>
+      <y>40</y>
       <width>200</width>
       <height>50</height>
      </rect>
@@ -319,6 +319,36 @@ border: 1px solid white;</string>
      </property>
     </widget>
    </widget>
+   <widget class="QPushButton" name="btnLoadGame">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>100</y>
+      <width>200</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: white;
+border: 1px solid white;</string>
+    </property>
+    <property name="text">
+     <string>Load Game</string>
+    </property>
+   </widget>
+   <zorder>gwDisplay</zorder>
+   <zorder>btnResumeGame</zorder>
+   <zorder>btnExit</zorder>
+   <zorder>btnNewGame</zorder>
+   <zorder>btnChooseLevel</zorder>
+   <zorder>btnLoadGame</zorder>
+   <zorder>frLevelTree</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

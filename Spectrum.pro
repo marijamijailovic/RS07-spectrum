@@ -41,7 +41,8 @@ SOURCES += \
     src/ladder.cpp \
     src/colorchanger.cpp \
     src/colorunlocker.cpp \
-    src/colorchooser.cpp
+    src/colorchooser.cpp \
+    src/gameloader.cpp
 
 HEADERS  += \
     include/mainwindow.h \
@@ -60,7 +61,8 @@ HEADERS  += \
     include/ladder.h \
     include/colorchanger.h \
     include/colorunlocker.h \
-    include/colorchooser.h
+    include/colorchooser.h \
+    include/gameloader.h
 
 FORMS    += \
     ui/mainwindow.ui

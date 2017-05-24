@@ -41,6 +41,7 @@ void MainWindow::connectSignalsToSlots()
 {
     connect(_ui->btnResumeGame, SIGNAL(clicked()), this, SLOT(resumeGame()));
     connect(_ui->btnNewGame, SIGNAL(clicked()), this, SLOT(newGame()));
+    connect(_ui->btnLoadGame, SIGNAL(clicked()), this, SLOT(loadGame()));
     connect(_ui->btnExit, SIGNAL(clicked()), this, SLOT(closeApp()));
     connect(_ui->btnChooseLevel, SIGNAL(clicked()), this, SLOT(showLevelTree()));
     connect(_ui->pbHideLevelPanel, SIGNAL(clicked()), this, SLOT(hideLevelTree()));
@@ -74,6 +75,13 @@ void MainWindow::newGame()
 
     _ui->gwDisplay->show();
     _ui->gwDisplay->setFocus();
+}
+
+void MainWindow::loadGame()
+{
+    newGame();
+    QString file("test.sav");
+    _game->load(file);
 }
 
 void MainWindow::showLevelTree()

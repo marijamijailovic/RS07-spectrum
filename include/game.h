@@ -31,6 +31,7 @@ public:
 
     void pause();
     void resume();
+    void load(QString &fileName);
     void interact();
 
     QColor activeColor() const;
@@ -54,8 +55,6 @@ private:
     void changeActiveColor(QKeyEvent *event);
     void animateColorChange(QColor color);
     void hideObjectsWithActiveColor();
-    void openSpectrum();
-    void closeSpectrum();
 
     bool _paused;
     bool _expandInProgress;
@@ -70,6 +69,7 @@ private:
     QScopedPointer<QTimer> _gameTicker;
     QScopedPointer<QTimer> _colorCircleTicker;
     bool _unlockedColors[SpectrumColors::COLOR_NUM];
+    std::vector<bool> _completedLevels;
 };
 
 #endif // GAME_H

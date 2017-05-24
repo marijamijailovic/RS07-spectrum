@@ -2,10 +2,11 @@
 #include <algorithm>
 
 
-Level::Level(const QString &fileName, Player &player, QColor *activeColor) :
+Level::Level(const QString &id, Player &player, QColor *activeColor) :
     _player(player)
 {
-    LevelLoader l(fileName);
+    _id = id.toInt();
+    LevelLoader l(":levels/" + id + ".lvl");
     l.parse(_player, activeColor, _staticEntities, _dynamicEntities);
 }
 
@@ -35,6 +36,11 @@ std::vector<Entity *> Level::staticEntities() const
 std::vector<DynamicEntity *> Level::dynamicEntities() const
 {
     return _dynamicEntities;
+}
+
+unsigned Level::id() const
+{
+    return _id;
 }
 
 void Level::applyGravity(qreal g)

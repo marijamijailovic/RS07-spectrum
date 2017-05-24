@@ -1,4 +1,7 @@
 #include "include/game.h"
+#include "include/gameloader.h"
+#include <QDir>
+
 
 SpectrumGame::SpectrumGame(QGraphicsView *parent) :
     _paused(false),
@@ -35,13 +38,21 @@ SpectrumGame::~SpectrumGame()
     _gameTicker->stop();
 }
 
+#include <QDebug>
 void SpectrumGame::loadLevel(const QString id)
 {
     // Load next level
-    _level.reset(new Level(":levels/" + id + ".lvl", *_player, &_activeColor));
+    _level.reset(new Level(id, *_player, &_activeColor));
     _level->load(this);
     setBackgroundBrush(QBrush(_activeColor));
     _oldActiveColor = _activeColor;
+
+    if (_level->id() >= _completedLevels.size())
+        _completedLevels.resize(_level->id() + 1, false);
+
+    for (auto i : _completedLevels)
+        qDebug() << i;
+    qDebug() << "---";
 
     // Stop player
     _player->setVx(0);
@@ -63,6 +74,13 @@ void SpectrumGame::resume()
 {
     _gameTicker->start();
     _paused = false;
+}
+
+void SpectrumGame::load(QString &fileName)
+{
+    qDebug() << "Load: " << QDir::currentPath() + QDir::separator() + fileName;
+    GameLoader loader(QDir::currentPath() + QDir::separator() + fileName);
+    loader.writeGameData();
 }
 
 void SpectrumGame::keyPressEvent(QKeyEvent *event)
@@ -216,6 +234,7 @@ void SpectrumGame::interact()
                 loadLevel(door->nextLevel());
                 if (shouldChangeSpawn)
                     _player->setPos(x, y);
+                _completedLevels[_level->id()] = true;  // TODO
             }
             break;
         }

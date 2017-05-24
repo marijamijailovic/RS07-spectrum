@@ -11,7 +11,7 @@
 
 class Level {
 public:
-    Level(const QString &fileName, Player &player, QColor *activeColor);
+    Level(const QString &id, Player &player, QColor *activeColor);
     ~Level();
 
     Level(const Level&) = delete;
@@ -20,6 +20,7 @@ public:
     void load(QGraphicsScene *scene) const;
     std::vector<Entity *> staticEntities() const;
     std::vector<DynamicEntity *> dynamicEntities() const;
+    unsigned id() const;
 
     void applyGravity(qreal g);
 
@@ -30,6 +31,7 @@ private:
     std::vector<Entity *> _staticEntities;
     std::vector<DynamicEntity *> _dynamicEntities;
     Player &_player;
+    unsigned _id;
 };
 
 #endif // LEVEL_H
