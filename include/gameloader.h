@@ -16,7 +16,8 @@ public:
     GameLoader& operator=(const GameLoader&) = delete;
 
     bool isValid() const;
-    void writeGameData();
+    QString writeGameData(bool unlockedColors[],
+                          std::vector<bool> &completedLevels);
 
 private:
     bool _valid;

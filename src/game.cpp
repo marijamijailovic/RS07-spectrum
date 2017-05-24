@@ -12,8 +12,7 @@ SpectrumGame::SpectrumGame(QGraphicsView *parent) :
     _player(new Player(0, 0)),
     _spectrum(new ColorChooser(0, 0, _unlockedColors)),
     _gameTicker(new QTimer()),
-    _unlockedColors {true, false, true, false, false, true}
-    //_unlockedColors {true, true, true, true, true, true} // TODO remove before release
+    _unlockedColors {true, false, false, false, false, false}
 {
     // Adding color chooser to the scene
     addItem(&(*_spectrum));
@@ -80,8 +79,11 @@ void SpectrumGame::load(QString &fileName)
 {
     qDebug() << "Load: " << QDir::currentPath() + QDir::separator() + fileName;
     GameLoader loader(QDir::currentPath() + QDir::separator() + fileName);
-    if (loader.isValid())
-        loader.writeGameData();
+    if (loader.isValid()) {
+        QString level = loader.writeGameData(_unlockedColors, _completedLevels);;
+        qDebug() << level;
+        loadLevel(level);
+    }
 }
 
 void SpectrumGame::keyPressEvent(QKeyEvent *event)
