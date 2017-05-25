@@ -1,8 +1,8 @@
 #include "ui_mainwindow.h"
 #include "include/mainwindow.h"
-#include <QGraphicsScene>
+#include <QFileDialog>
+#include <QDir>
 
-#include <QTextStream>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -41,6 +41,8 @@ void MainWindow::connectSignalsToSlots()
 {
     connect(_ui->btnResumeGame, SIGNAL(clicked()), this, SLOT(resumeGame()));
     connect(_ui->btnNewGame, SIGNAL(clicked()), this, SLOT(newGame()));
+    connect(_ui->btnLoadGame, SIGNAL(clicked()), this, SLOT(loadGame()));
+    connect(_ui->btnSaveGame, SIGNAL(clicked()), this, SLOT(saveGame()));
     connect(_ui->btnExit, SIGNAL(clicked()), this, SLOT(closeApp()));
     connect(_ui->btnChooseLevel, SIGNAL(clicked()), this, SLOT(showLevelTree()));
     connect(_ui->pbHideLevelPanel, SIGNAL(clicked()), this, SLOT(hideLevelTree()));
@@ -74,6 +76,28 @@ void MainWindow::newGame()
 
     _ui->gwDisplay->show();
     _ui->gwDisplay->setFocus();
+}
+
+void MainWindow::loadGame()
+{
+    QString fileName = QFileDialog::getOpenFileName(this,
+                                                    tr("Choose a save file."),
+                                                    QDir::currentPath(),
+                                                    tr("Spectrum Save File (*.sav)"));
+    if (fileName != "") {
+        newGame();
+        _game->load(fileName);
+    }
+}
+
+void MainWindow::saveGame()
+{
+    QString fileName = QFileDialog::getSaveFileName(this,
+                                                    tr("Choose a save file."),
+                                                    QDir::currentPath() + QDir::separator() + "save.sav",
+                                                    tr("Spectrum Save File (*.sav)"));
+    if (fileName != "")
+        _game->save(fileName);
 }
 
 void MainWindow::showLevelTree()

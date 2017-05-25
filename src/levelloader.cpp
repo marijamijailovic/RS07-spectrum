@@ -8,14 +8,9 @@ LevelLoader::LevelLoader(const QString &fileName) :
     _levelFile(new QFile(fileName))
 {
     if (_levelFile->open(QIODevice::ReadOnly) == false) {
-        QMessageBox::critical(nullptr, "Error",
-            "Loading level failed\nLoading default level...");
-        QFile fDef(":levels/001.lvl");
-        if (fDef.open(QIODevice::ReadOnly) == false) {
-            QMessageBox::critical(nullptr, "Error",
-                "Loading level failed\nLoading default level...");
-            QCoreApplication::exit(EXIT_FAILURE);
-        }
+        QMessageBox::information(nullptr, "Error", "Loading level failed\nLoading default level...");
+        _levelFile.reset(new QFile(":levels/001.lvl"));
+        _levelFile->open(QIODevice::ReadOnly);
     }
     _fStream.reset(new QTextStream(_levelFile.data()));
 }

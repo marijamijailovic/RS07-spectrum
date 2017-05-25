@@ -1,4 +1,6 @@
 #include "include/game.h"
+#include "include/gameloader.h"
+
 
 SpectrumGame::SpectrumGame(QGraphicsView *parent) :
     _paused(false),
@@ -9,8 +11,7 @@ SpectrumGame::SpectrumGame(QGraphicsView *parent) :
     _player(new Player(0, 0)),
     _spectrum(new ColorChooser(0, 0, _unlockedColors)),
     _gameTicker(new QTimer()),
-    _unlockedColors {true, false, true, false, false, true}
-    //_unlockedColors {true, true, true, true, true, true} // TODO remove before release
+    _unlockedColors {true, false, false, false, false, false}
 {
     // Adding color chooser to the scene
     addItem(&(*_spectrum));
@@ -38,10 +39,13 @@ SpectrumGame::~SpectrumGame()
 void SpectrumGame::loadLevel(const QString id)
 {
     // Load next level
-    _level.reset(new Level(":levels/" + id + ".lvl", *_player, &_activeColor));
+    _level.reset(new Level(id, *_player, &_activeColor));
     _level->load(this);
     setBackgroundBrush(QBrush(_activeColor));
     _oldActiveColor = _activeColor;
+
+    if (_level->id() >= _completedLevels.size())
+        _completedLevels.resize(_level->id() + 1, false);
 
     // Stop player
     _player->setVx(0);
@@ -63,6 +67,22 @@ void SpectrumGame::resume()
 {
     _gameTicker->start();
     _paused = false;
+}
+
+void SpectrumGame::load(QString &fileName)
+{
+    GameLoader loader(fileName, 'r');
+    if (loader.isValid()) {
+        QString level = loader.readGameData(_unlockedColors, _completedLevels);
+        loadLevel(level);
+    }
+}
+
+void SpectrumGame::save(QString &fileName) const
+{
+    GameLoader saver(fileName, 'w');
+    if (saver.isValid())
+        saver.writeGameData(_level->id(), _unlockedColors, _completedLevels);
 }
 
 void SpectrumGame::keyPressEvent(QKeyEvent *event)
@@ -216,6 +236,7 @@ void SpectrumGame::interact()
                 loadLevel(door->nextLevel());
                 if (shouldChangeSpawn)
                     _player->setPos(x, y);
+                _completedLevels[_level->id()] = true;  // TODO
             }
             break;
         }
