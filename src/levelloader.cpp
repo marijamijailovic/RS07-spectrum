@@ -100,35 +100,35 @@ void LevelLoader::addStaticEntity(std::vector<Entity *> &staticEntities,
         lineStream >> w >> h;
         staticEntities.push_back(new Ladder(x, y, w, h, entityColor));
     } else if (entityClass == "door") {
-            QString nextLevel;
-            lineStream >> nextLevel;
-            Door *newDoor = new Door(x, y, nextLevel, entityColor);
-            staticEntities.push_back(newDoor);
-            if (! lineStream.atEnd()) {
-                QString nextToken;
-                lineStream >> nextToken;
-                // Next Tokex could be: new player spawn coordinates or key
-                // Also, after spawn could be key
-                if (nextToken != "key") {
-                    int playerX, playerY;
-                    playerX = nextToken.toInt();
-                    lineStream >> playerY;
-                    newDoor->setSpawnAtX(playerX);
-                    newDoor->setSpawnAtY(playerY);
-                    newDoor->setChangesDefaultSpawn(true);
-                } else {
-                    lineStream >> x >> y;
-                    staticEntities.push_back(new Key(x, y, newDoor, entityColor));
-                    newDoor->lock();
-                }
-                // If there is only a key next, bind the door and the key
-                if (! lineStream.atEnd() ) {
-                    lineStream >> entityClass >> x >> y;
-                    staticEntities.push_back(new Key(x, y, newDoor, entityColor));
-                    newDoor->lock();
-                }
-
+        QString nextLevel;
+        lineStream >> nextLevel;
+        Door *newDoor = new Door(x, y, nextLevel, entityColor);
+        staticEntities.push_back(newDoor);
+        if (! lineStream.atEnd()) {
+            QString nextToken;
+            lineStream >> nextToken;
+            // Next Tokex could be: new player spawn coordinates or key
+            // Also, after spawn could be key
+            if (nextToken != "key") {
+                int playerX, playerY;
+                playerX = nextToken.toInt();
+                lineStream >> playerY;
+                newDoor->setSpawnAtX(playerX);
+                newDoor->setSpawnAtY(playerY);
+                newDoor->setChangesDefaultSpawn(true);
+            } else {
+                lineStream >> x >> y;
+                staticEntities.push_back(new Key(x, y, newDoor, entityColor));
+                newDoor->lock();
             }
+            // If there is only a key next, bind the door and the key
+            if (! lineStream.atEnd() ) {
+                lineStream >> entityClass >> x >> y;
+                staticEntities.push_back(new Key(x, y, newDoor, entityColor));
+                newDoor->lock();
+            }
+
+        }
     } else if (entityClass == "unlocker") {
         staticEntities.push_back(new ColorUnlocker(x, y, entityColor));
     }

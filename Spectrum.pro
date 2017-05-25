@@ -70,3 +70,5 @@ RESOURCES += \
     res/sprites/sprites.qrc \
     res/gui/gui.qrc
 
+DISTFILES +=
+
