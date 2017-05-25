@@ -30,7 +30,7 @@ s ladder 500 100 60 200
 
 #   Door
 c green
-s door 370 260 007
+s door 370 260 007 370 473
 c yellow
 s door 170 400 009 key 620 150
 

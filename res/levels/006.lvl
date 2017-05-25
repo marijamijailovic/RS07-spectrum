@@ -86,7 +86,7 @@ s wall 720 500 30 30
 #   Door
 c red
 s door 70 450 005 75 273
-s door 70 50 004 600 423
+s door 70 50 007
 c yellow
 s door 470 50 test 60 500
 

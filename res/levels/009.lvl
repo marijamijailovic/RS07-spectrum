@@ -1,7 +1,7 @@
 N/A
 
 # Player spawn coordinates
-p 370 283
+p 170 473
 
 
 #### Static entities ####
@@ -35,7 +35,7 @@ s ladder 450 200 50 150
 
 #   Door
 c yellow
-s door 170 450 008
+s door 170 450 008 170 423
 c green
 s door 620 450 010
 

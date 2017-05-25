@@ -28,5 +28,5 @@ s wall 300 400 200 20
 
 #   Door
 c green
-s door 370 60 006
+s door 370 60 006 70 73
 s door 370 450 008
