@@ -1,3 +1,5 @@
+N/A
+
 # Player spawn coordinates
 p 70 473
 
@@ -18,14 +20,14 @@ s block 750 50 50 500
 #   Walls
 # column 1
 c purple
-s wall 50 150 100 100
+s wall 50 150 100 70
 c orange
 s wall 50 400 50 10
 # column 2
 c yellow
 d cube 180 80 70 70
 c red
-s wall 150 150 100 100
+s wall 150 150 100 70
 c orange
 s wall 200 340 50 10
 c green
@@ -34,7 +36,7 @@ c red
 s wall 150 450 100 100
 # column 3
 c blue
-s wall 250 200 100 50
+s wall 250 180 100 40
 c orange
 s wall 250 340 100 10
 c green
@@ -88,7 +90,7 @@ c red
 s door 70 450 005 75 273
 s door 70 50 007
 c yellow
-s door 470 50 test 60 500
+s door 470 50 013
 
 #   Unlocker
 c green
