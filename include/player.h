@@ -10,6 +10,7 @@
 #include "include/key.h"
 #include "include/ladder.h"
 #include "include/colorunlocker.h"
+#include "include/sprite.h"
 
 
 class Player : public DynamicEntity
@@ -47,6 +48,8 @@ private:
     bool _left = false;
     bool pull=false;
     bool onLadder = false;
+
+    Sprite _sprite;
 };
 
 #endif // PLAYER_H

@@ -42,7 +42,8 @@ SOURCES += \
     src/colorchanger.cpp \
     src/colorunlocker.cpp \
     src/colorchooser.cpp \
-    src/gameloader.cpp
+    src/gameloader.cpp \
+    src/sprite.cpp
 
 HEADERS  += \
     include/mainwindow.h \
@@ -62,7 +63,8 @@ HEADERS  += \
     include/colorchanger.h \
     include/colorunlocker.h \
     include/colorchooser.h \
-    include/gameloader.h
+    include/gameloader.h \
+    include/sprite.h
 
 FORMS    += \
     ui/mainwindow.ui

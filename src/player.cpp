@@ -44,7 +44,7 @@ bool Player::getPull()
 
 void Player::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    painter->drawPixmap(0, 0, _w, _h, QPixmap(":sprites/player.png"));
+    painter->drawPixmap(0, 0, _w, _h, _sprite.nextFrame());
 }
 
 qreal Player::centerX() const
