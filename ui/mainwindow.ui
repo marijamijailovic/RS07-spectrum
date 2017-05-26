@@ -365,7 +365,6 @@ border: 1px solid white;</string>
      <string>Save Game</string>
     </property>
    </widget>
-   <zorder>frLevelTree</zorder>
    <zorder>gwDisplay</zorder>
    <zorder>btnResumeGame</zorder>
    <zorder>btnExit</zorder>
@@ -373,6 +372,7 @@ border: 1px solid white;</string>
    <zorder>btnChooseLevel</zorder>
    <zorder>btnLoadGame</zorder>
    <zorder>btnSaveGame</zorder>
+   <zorder>frLevelTree</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

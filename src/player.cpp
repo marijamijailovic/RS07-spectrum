@@ -4,9 +4,14 @@
 #include <QTextStream>
 
 Player::Player(qreal x, qreal y) :
-    DynamicEntity::DynamicEntity(x, y, 60, 77, 1)
+    DynamicEntity::DynamicEntity(x, y, 60, 77, 1),
+    _sprite(":/sprites/0.png")
 {
     setZValue(1);
+    _sprite.addFrame(":/sprites/1.png");
+    _sprite.addFrame(":/sprites/2.png");
+    _sprite.addFrame(":/sprites/3.png");
+    _sprite.addFrame(":/sprites/4.png");
 }
 
 void Player::setJump(bool b)
