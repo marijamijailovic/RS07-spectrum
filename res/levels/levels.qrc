@@ -13,9 +13,7 @@
         <file>010.lvl</file>
         <file>011.lvl</file>
         <file>012.lvl</file>
-        <file>013.lvl</file>
-    </qresource>
-    <qresource prefix="/">
+        <file>014.lvl</file>
         <file>013.lvl</file>
     </qresource>
 </RCC>

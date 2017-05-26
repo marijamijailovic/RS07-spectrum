@@ -31,6 +31,8 @@ s wall 50 200 100 20
 #   Ladder
 c blue
 s ladder 450 200 50 150
+c green
+s ladder 520 250 50 250
 
 
 #   Door
