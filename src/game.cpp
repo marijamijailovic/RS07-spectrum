@@ -18,7 +18,7 @@ SpectrumGame::SpectrumGame(QGraphicsView *parent) :
     _spectrum->hide();
 
     // Loading new level
-    loadLevel("013");
+    loadLevel("014");
 
     // Adding player to the scene
     addItem(&(*_player));

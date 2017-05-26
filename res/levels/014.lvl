@@ -11,7 +11,7 @@ p 60 473
 # Bottom
 s block 0 550 800 50
 # Left side
-s block 0 350 20 200
+s block 0 0 20 550
 # Right side
 s block 780 350 20 200
 
@@ -27,3 +27,9 @@ c green
 s door 60 450 012 680 473
 c blue
 #s door 680 450 006
+
+c purple
+s door 50 50 013 620 173
+
+c green
+s wall 30 150 100 10

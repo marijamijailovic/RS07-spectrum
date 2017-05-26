@@ -26,8 +26,11 @@ s wall 500 250 200 30
 
 #   Purple unlocker
 c purple
-s unlocker 570 200
+s unlocker 530 200
 
 #   Door
 c yellow
 s door 160 450 006 470 73
+
+c purple
+s door 620 150 014 50 73
