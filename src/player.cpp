@@ -1,17 +1,16 @@
 #include "include/player.h"
 #include <QBrush>
-#include <QPixmap>
 #include <QTextStream>
 
 Player::Player(qreal x, qreal y) :
     DynamicEntity::DynamicEntity(x, y, 60, 77, 1),
-    _sprite(":/sprites/0.png")
+    _baseFrame(":/sprites/base.png")
 {
     setZValue(1);
-    _sprite.addFrame(":/sprites/1.png");
-    _sprite.addFrame(":/sprites/2.png");
-    _sprite.addFrame(":/sprites/3.png");
-    _sprite.addFrame(":/sprites/4.png");
+    _blinkSprite.addFrame(":/sprites/blink1.png");
+    _blinkSprite.addFrame(":/sprites/blink2.png");
+    _blinkSprite.addFrame(":/sprites/blink3.png");
+    _blinkSprite.addFrame(":/sprites/blink4.png");
 }
 
 void Player::setJump(bool b)
@@ -49,7 +48,9 @@ bool Player::getPull()
 
 void Player::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    painter->drawPixmap(0, 0, _w, _h, _sprite.nextFrame());
+    painter->drawPixmap(0, 0, _w, _h, _baseFrame);
+    if (_blinkSprite.animationActive())
+        painter->drawPixmap(0, 0, _w, _h, _blinkSprite.nextFrame());
 }
 
 qreal Player::centerX() const

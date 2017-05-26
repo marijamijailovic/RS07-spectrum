@@ -1,11 +1,17 @@
 #include "include/sprite.h"
 
-Sprite::Sprite(const QString& defaultFrame) :
-    _current(0)
+Sprite::Sprite() :
+    _current(0),
+    _animationActive(false),
+    _ind(true)
 {
-    addFrame(defaultFrame);
     connect(&_ticker, SIGNAL(timeout()), this, SLOT(change()));
     _ticker.start(2000);
+}
+
+bool Sprite::animationActive() const
+{
+    return _animationActive;
 }
 
 QPixmap Sprite::nextFrame() const
@@ -20,8 +26,10 @@ void Sprite::addFrame(const QString& frame)
 
 void Sprite::change()
 {
-    if (_current == 0)
+    if (_current == 0) {
+        _animationActive = true;
         _ticker.setInterval(90);
+    }
 
     if (_ind) {
         _current = (_current + 1) % _sprites.size();
@@ -33,6 +41,7 @@ void Sprite::change()
 
     if (_current == 0) {
         _ind = true;
+        _animationActive = false;
         _ticker.setInterval(5000);
     }
 }

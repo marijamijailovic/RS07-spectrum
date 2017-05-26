@@ -2,6 +2,7 @@
 #define BLOCK_H
 
 #include <QColor>
+#include <QPixmap>
 #include "include/colors.h"
 #include "include/entity.h"
 
@@ -15,6 +16,8 @@ public:
     void paint(QPainter *painter,
                const QStyleOptionGraphicsItem *option,
                QWidget *widget) override;
+private:
+    QPixmap _texture;
 };
 
 #endif // BLOCK_H

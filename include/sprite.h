@@ -5,14 +5,14 @@
 #include <QtGlobal>
 #include <QObject>
 #include <QTimer>
-#include <QScopedPointer>
 
 class Sprite : QObject
 {
     Q_OBJECT
 
 public:
-    Sprite(const QString& defaultFrame);
+    Sprite();
+    bool animationActive() const;
     QPixmap nextFrame() const;
     void addFrame(const QString& frame);
 
@@ -21,9 +21,10 @@ private slots:
 
 private:
     std::vector<QPixmap> _sprites;
+    unsigned _current;
+    bool _animationActive;
+    bool _ind;
     QTimer _ticker;
-    int _current;
-    bool _ind = true;
 };
 
 #endif // SPRITE_H

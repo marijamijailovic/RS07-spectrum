@@ -5,6 +5,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsRectItem>
 #include <QKeyEvent>
+#include <QPixmap>
 #include <typeinfo>
 #include "include/dynamicentity.h"
 #include "include/key.h"
@@ -49,7 +50,10 @@ private:
     bool pull=false;
     bool onLadder = false;
 
-    Sprite _sprite;
+    // For painting
+    QPixmap _baseFrame;
+    Sprite _blinkSprite;
+
 };
 
 #endif // PLAYER_H
