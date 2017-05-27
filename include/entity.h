@@ -28,6 +28,8 @@ public:
     virtual void hide();
     virtual void show();
 
+    qreal h() const;
+    qreal w() const;
     QColor color() const;
     void setColor(const QColor newColor);
     bool collidable() const;

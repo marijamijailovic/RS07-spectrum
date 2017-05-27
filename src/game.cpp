@@ -315,9 +315,9 @@ void SpectrumGame::hideObjectsWithActiveColor()
         if (((Entity*)item)->color() == _activeColor)
             ((Entity*)item)->hide();
 }
+
 void SpectrumGame::update() const
 {
-
     QTextStream out(stdout);
     //out<<_level->dynamicEntities().size();
         _player->jump();

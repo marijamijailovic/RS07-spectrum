@@ -64,27 +64,28 @@ QPainterPath Laser::shape() const
 
 void Laser::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    if (_hidden)
-        return;
-
     if (_direction == UP) {
         painter->fillRect(0, 0, _w, 10, SpectrumColors::black);
-        painter->fillRect(_laserPos, 0, LASER_WIDTH, -calculateLaserLength(), _color);
+        if (!_hidden)
+            painter->fillRect(_laserPos, 10, LASER_WIDTH, -calculateLaserLength(), _color);
         painter->fillRect(_laserPos - 5, -5, 15, 15, SpectrumColors::black);
         painter->fillRect(_laserPos - 5, 8, 15, 2, _color);
     } else if (_direction == DOWN) {
         painter->fillRect(0, 0, _w, 10, SpectrumColors::black);
-        painter->fillRect(_laserPos, 10, LASER_WIDTH, calculateLaserLength(), _color);
+        if (!_hidden)
+            painter->fillRect(_laserPos, 0, LASER_WIDTH, calculateLaserLength(), _color);
         painter->fillRect(_laserPos - 5, 0, 15, 15, SpectrumColors::black);
         painter->fillRect(_laserPos - 5, 0, 15, 2, _color);
     } else if (_direction == LEFT) {
         painter->fillRect(0, 0, 10, _h, SpectrumColors::black);
-        painter->fillRect(0, _laserPos, -calculateLaserLength(), LASER_WIDTH, _color);
+        if (!_hidden)
+            painter->fillRect(10, _laserPos, -calculateLaserLength(), LASER_WIDTH, _color);
         painter->fillRect(-5, _laserPos - 5, 15, 15, SpectrumColors::black);
         painter->fillRect(8, _laserPos - 5, 2, 15, _color);
     } else { // if (_direction == RIGHT)
         painter->fillRect(0, 0, 10, _h, SpectrumColors::black);
-        painter->fillRect(10, _laserPos, calculateLaserLength(), LASER_WIDTH, _color);
+        if (!_hidden)
+            painter->fillRect(0, _laserPos, calculateLaserLength(), LASER_WIDTH, _color);
         painter->fillRect(0, _laserPos - 5, 15, 15, SpectrumColors::black);
         painter->fillRect(0, _laserPos - 5, 2, 15, _color);
     }
@@ -102,32 +103,56 @@ void Laser::show()
 
 void Laser::move()
 {
-    qreal limit = _w > _h ? _w : _h;
+    qreal limit = (_w > _h) ? _w : _h;
     if (_laserPos + _step < 5 || _laserPos + _step > limit - 10)
         _step = -_step;
     _laserPos += _step;
 }
 
+#include <QDebug>
 qreal Laser::calculateLaserLength()
 {
-    return 100;
-    /*
     qreal closestItemDistance = MAX_LASER_LEN;
-    Entity *closestItem = NULL;
+    Entity *closestItem = nullptr;
     auto collidingObjects = collidingItems();
-    foreach (auto item, collidingObjects) {
-        auto it = (Entity*)item;
-        if (it->collidable()) {
-            qreal top = it->pos().y();
-            if (top < closestItemDistance) {
-                closestItemDistance = top - y();
+    if (_direction == UP) {
+        foreach (auto item, collidingObjects) {
+            auto it = (Entity*)item;
+            if (it->collidable() && y() - it->y() - it->h() < closestItemDistance) {
+                closestItemDistance = y() - it->y();
+                closestItem = it;
+            }
+        }
+    } else if (_direction == DOWN) {
+        foreach (auto item, collidingObjects) {
+            auto it = (Entity*)item;
+            if (it->collidable() && it->y() - y() < closestItemDistance) {
+                closestItemDistance = it->y() - y();
+                closestItem = it;
+            }
+        }
+    } else if (_direction == LEFT) {
+        foreach (auto item, collidingObjects) {
+            auto it = (Entity*)item;
+            if (it->collidable() && x() - it->x() - it->w() < closestItemDistance) {
+                closestItemDistance = x() - it->x();
+                qDebug() << x() - it->x();
+                closestItem = it;
+            }
+        }
+        qDebug() << closestItemDistance;
+    } else { // if (_direction == RIGHT)
+        foreach (auto item, collidingObjects) {
+            auto it = (Entity*)item;
+            if (it->collidable() && it->x() - x() < closestItemDistance) {
+                closestItemDistance = it->x() - x();
                 closestItem = it;
             }
         }
     }
 
-    if (!_hidden && closestItem != NULL && typeid(*closestItem) == typeid(Player))
+    if (!_hidden && closestItem != nullptr && typeid(*closestItem) == typeid(Player))
         emit playerHit();
 
-    return closestItemDistance;*/
+    return closestItemDistance;
 }

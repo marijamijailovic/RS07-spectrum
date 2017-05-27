@@ -37,6 +37,16 @@ void Entity::show()
     QGraphicsObject::show();
 }
 
+qreal Entity::h() const
+{
+    return _h;
+}
+
+qreal Entity::w() const
+{
+    return _w;
+}
+
 QColor Entity::color() const
 {
     return _color;
