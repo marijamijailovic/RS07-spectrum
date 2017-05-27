@@ -11,7 +11,8 @@ SpectrumGame::SpectrumGame(QGraphicsView *parent) :
     _player(new Player(0, 0)),
     _spectrum(new ColorChooser(0, 0, _unlockedColors)),
     _gameTicker(new QTimer()),
-    _unlockedColors {true, false, false, false, false, false}
+    _unlockedColors {true, true, true, true, true, true}
+    //_unlockedColors {true, false, false, false, false, false}
 {
     // Adding color chooser to the scene
     addItem(&(*_spectrum));
@@ -284,6 +285,13 @@ void SpectrumGame::keyCollected()
     _level->removeStaticEntity((Entity*)sender);
 }
 
+#include <QDebug>
+void SpectrumGame::playerDied()
+{
+    qDebug() << "player dieded";
+    //loadLevel(QString("%1").arg(_level->id(), 3, 10, QChar('0')));
+}
+
 void SpectrumGame::connectSlots(std::vector<Entity *> entities)
 {
 
@@ -293,8 +301,10 @@ void SpectrumGame::connectSlots(std::vector<Entity *> entities)
                 removeItem(item);
             } else
                 connect((ColorUnlocker*)item, SIGNAL(colorUnlocked(int)), this, SLOT(unlockColor(int)));
-        } else if (typeid(*item) == typeid(Key))
+        } else if (typeid(*item) == typeid(Key)) {
             connect((Key*)item, SIGNAL(collected()), this, SLOT(keyCollected()));
+        } else if (typeid(*item) == typeid(Laser))
+            connect((Laser*)item, SIGNAL(playerHit()), this, SLOT(playerDied()));
     }
 }
 

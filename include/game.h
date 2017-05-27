@@ -50,6 +50,7 @@ private slots:
     void unlockColor(int id);
     void stopColorChangeAnimation();
     void keyCollected();
+    void playerDied();
 
 private:
     void connectSlots(std::vector<Entity*> entities);

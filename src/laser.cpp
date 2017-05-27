@@ -1,10 +1,12 @@
 #include "include/laser.h"
+#include "include/player.h"
+#include <typeinfo>
 
 
 Laser::Laser(qreal x, qreal y,
              qreal dx,
              const QColor color) :
-    Entity(x, y, dx > 0 ? dx : 5, 5, color, true),
+    Entity(x, y, dx > 0 ? dx : 5, 5, color, false),
     _step(1),
     _laserPos(0)
 {
@@ -44,24 +46,24 @@ void Laser::move()
         _step = -_step;
 }
 
-#include <QDebug>
-qreal Laser::calculateLaserLength() const
+qreal Laser::calculateLaserLength()
 {
     qreal closestItemDistance = 1000;
+    Entity *closestItem = NULL;
     auto collidingObjects = collidingItems();
     foreach (auto item, collidingObjects) {
-        //if (typeid(*item) == typeid(Player))
-        //    emit playerHit();
         auto it = (Entity*)item;
         if (it->collidable()) {
-            // Determine if laser hits from above or below
             qreal top = it->pos().y();
-            qDebug() << "top: " << top;
-            qDebug() << "y  : " << y();
-            if (top < closestItemDistance)
+            if (top < closestItemDistance) {
                 closestItemDistance = top - y();
+                closestItem = it;
+            }
         }
     }
+
+    if (closestItem && typeid(*closestItem) == typeid(Player))
+        emit playerHit();
 
     return closestItemDistance;
 }

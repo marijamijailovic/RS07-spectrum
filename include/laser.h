@@ -22,11 +22,14 @@ public:
                const QStyleOptionGraphicsItem *option,
                QWidget *widget) override;
 
+signals:
+    void playerHit();
+
 private slots:
     void move();
 
 private:
-    qreal calculateLaserLength() const;
+    qreal calculateLaserLength();
 
     qreal _step;
     qreal _laserPos;
