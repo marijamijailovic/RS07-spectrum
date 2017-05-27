@@ -11,8 +11,11 @@ class Laser : public Entity
     Q_OBJECT
 
 public:
+    enum Direction { UP, DOWN, LEFT, RIGHT };
+
     Laser(qreal x, qreal y,
-          qreal dx = 0,
+          qreal dx = 0, qreal dy = 0,
+          Direction direction = DOWN,
           const QColor color = SpectrumColors::black);
 
     // Overrides from Entity

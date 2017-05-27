@@ -23,7 +23,7 @@ s wall 170 350 30 200
 
 #   Laser
 c red
-s laser 50 20 500 0
+s laser 50 20 500 0 up
 
 #   Door
 c green

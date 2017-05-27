@@ -4,7 +4,8 @@
 
 
 Laser::Laser(qreal x, qreal y,
-             qreal dx,
+             qreal dx, qreal dy,
+             Direction direction,
              const QColor color) :
     Entity(x, y, dx > 0 ? dx : LASER_WIDTH, 10, color, false),
     _hidden(false),

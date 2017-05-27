@@ -102,7 +102,7 @@ void LevelLoader::addStaticEntity(std::vector<Entity *> &staticEntities,
         if (! lineStream.atEnd()) {
             QString nextToken;
             lineStream >> nextToken;
-            // Next Tokex could be: new player spawn coordinates or key
+            // Next Token could be: new player spawn coordinates or key
             // Also, after spawn could be key
             if (nextToken != "key") {
                 int playerX, playerY;
@@ -122,13 +122,20 @@ void LevelLoader::addStaticEntity(std::vector<Entity *> &staticEntities,
                 staticEntities.push_back(new Key(x, y, newDoor, entityColor));
                 newDoor->lock();
             }
-
         }
     } else if (entityClass == "unlocker") {
         staticEntities.push_back(new ColorUnlocker(x, y, entityColor));
     } else if (entityClass == "laser") {
-        lineStream >> w;
-        staticEntities.push_back(new Laser(x, y, w, entityColor));
+        QString direction;
+        lineStream >> w >> h >> direction;
+        if (direction == "up")
+            staticEntities.push_back(new Laser(x, y, w, h, Laser::UP, entityColor));
+        else if (direction == "down")
+            staticEntities.push_back(new Laser(x, y, w, h, Laser::DOWN, entityColor));
+        else if (direction == "left")
+            staticEntities.push_back(new Laser(x, y, w, h, Laser::LEFT, entityColor));
+        else if (direction == "right")
+            staticEntities.push_back(new Laser(x, y, w, h, Laser::RIGHT, entityColor));
     }
 
     if (activeColor == entityColor)
@@ -140,7 +147,6 @@ void LevelLoader::addDynamicEntity(std::vector<DynamicEntity *> &dynamicEntities
                                    const QColor &entityColor,
                                    const QColor &activeColor) const
 {
-    QTextStream out(stdout);
     int x, y, w, h;
     QString entityClass;
     lineStream >> entityClass;
@@ -153,6 +159,7 @@ void LevelLoader::addDynamicEntity(std::vector<DynamicEntity *> &dynamicEntities
 
         // TODO Add here other dynamic object types
     }
-    if (entityClass == "cube"&&activeColor == entityColor)
+
+    if (entityClass == "cube" && activeColor == entityColor)
         dynamicEntities.back()->hide();
 }
