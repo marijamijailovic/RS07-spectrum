@@ -30,7 +30,11 @@ public:
     void setDown(bool b);
     bool getPull();
     void setPull(bool b);
+
+    void initializeBlinkSprite();
+    void initializeJumpSprite();
     Sprite& jumpSprite();
+
     // Overrides from Entity
     void paint(QPainter *painter,
                const QStyleOptionGraphicsItem *option,

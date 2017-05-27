@@ -7,7 +7,13 @@ Player::Player(qreal x, qreal y) :
     _armsAndLegs(":/sprites/jump/jump00.png")
 {
     setZValue(1);
-    // Blinking
+
+    initializeBlinkSprite();
+    initializeJumpSprite();
+}
+
+void Player::initializeBlinkSprite()
+{
     _blinkSprite.addFrame(":/sprites/blink1.png");
     _blinkSprite.addFrame(":/sprites/blink2.png");
     _blinkSprite.addFrame(":/sprites/blink3.png");
@@ -18,20 +24,23 @@ Player::Player(qreal x, qreal y) :
     connect(&_blinkTicker, SIGNAL(timeout()), this, SLOT(blinkAnimation()));
     _blinkTicker.setInterval(3000);
     _blinkTicker.start();
-    // Jumping
+}
+
+void Player::initializeJumpSprite()
+{
     _jumpSprite.addFrame(":/sprites/jump/jump01.png");
     _jumpSprite.addFrame(":/sprites/jump/jump02.png");
     _jumpSprite.addFrame(":/sprites/jump/jump03.png");
     _jumpSprite.addFrame(":/sprites/jump/jump04.png");
     _jumpSprite.addFrame(":/sprites/jump/jump05.png");
     _jumpSprite.addFrame(":/sprites/jump/jump06.png");
-    _jumpSprite.addFrame(":/sprites/jump/jump07.png");
+    //_jumpSprite.addFrame(":/sprites/jump/jump07.png");
     _jumpSprite.addFrame(":/sprites/jump/jump08.png");
-    _jumpSprite.addFrame(":/sprites/jump/jump09.png");
+    //_jumpSprite.addFrame(":/sprites/jump/jump09.png");
     _jumpSprite.addFrame(":/sprites/jump/jump10.png");
-    _jumpSprite.addFrame(":/sprites/jump/jump11.png");
+    //_jumpSprite.addFrame(":/sprites/jump/jump11.png");
     _jumpSprite.addFrame(":/sprites/jump/jump12.png");
-    _jumpSprite.setTickerInterval(70);
+    _jumpSprite.setTickerInterval(80);
 }
 
 void Player::blinkAnimation()
