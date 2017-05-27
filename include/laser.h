@@ -38,6 +38,7 @@ private:
 
     const qreal MAX_LASER_LEN = 800;
     const qreal LASER_WIDTH = 5;
+    Direction _direction;
     bool _hidden;
     qreal _step;
     qreal _laserPos;

@@ -23,7 +23,10 @@ s wall 170 350 30 200
 
 #   Laser
 c red
-s laser 50 20 500 0 up
+s laser 100 100 500 0 up
+s laser 100 200 500 0 down
+s laser 500 300 0 200 left
+s laser 520 300 0 200 right
 
 #   Door
 c green
