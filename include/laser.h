@@ -22,6 +22,8 @@ public:
                const QStyleOptionGraphicsItem *option,
                QWidget *widget) override;
 
+    void hide();
+
 signals:
     void playerHit();
 
@@ -31,6 +33,8 @@ private slots:
 private:
     qreal calculateLaserLength();
 
+    const qreal MAX_LASER_LEN = 800;
+    const qreal LASER_WIDTH = 5;
     qreal _step;
     qreal _laserPos;
     QScopedPointer<QTimer> _moveTicker;

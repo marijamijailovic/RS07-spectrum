@@ -6,11 +6,11 @@
 Laser::Laser(qreal x, qreal y,
              qreal dx,
              const QColor color) :
-    Entity(x, y, dx > 0 ? dx : 5, 5, color, false),
+    Entity(x, y, dx > 0 ? dx : LASER_WIDTH, 10, color, false),
     _step(1),
     _laserPos(0)
 {
-    if (dx != 5) {
+    if (dx != LASER_WIDTH) {
         _moveTicker.reset(new QTimer());
         connect(&(*_moveTicker), SIGNAL(timeout()), this, SLOT(move()));
         _moveTicker->start(50);
@@ -19,22 +19,23 @@ Laser::Laser(qreal x, qreal y,
 
 QRectF Laser::boundingRect() const
 {
-    return QRectF(_laserPos, 0, 5, 1000);
+    return QRectF(_laserPos, 0, LASER_WIDTH, MAX_LASER_LEN);
 }
 
 QPainterPath Laser::shape() const
 {
     QPainterPath path;
-    path.addRect(0, 0, _w, _h);
-    path.addRect(_laserPos, 0, 5, 1000);
+    path.addRect(0, 0, _w, 10);
+    path.addRect(_laserPos, 0, LASER_WIDTH, MAX_LASER_LEN);
     return path;
 }
 
 void Laser::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    painter->fillRect(0, 0, _w, _h, SpectrumColors::black);
-    painter->fillRect(_laserPos, 0, 5, calculateLaserLength(), _color);
-    painter->fillRect(_laserPos - 5, 0, 15, 15, SpectrumColors::black);
+    painter->fillRect(0, 0, _w, 10, SpectrumColors::black);
+    painter->fillRect(_laserPos, 0, LASER_WIDTH, calculateLaserLength(), _color);
+    painter->fillRect(_laserPos - LASER_WIDTH, 0, 15, 15, SpectrumColors::black);
+    painter->fillRect(_laserPos - LASER_WIDTH, 5, 15, 2, _color);
 }
 
 void Laser::move()
@@ -46,7 +47,7 @@ void Laser::move()
 
 qreal Laser::calculateLaserLength()
 {
-    qreal closestItemDistance = 1000;
+    qreal closestItemDistance = MAX_LASER_LEN;
     Entity *closestItem = NULL;
     auto collidingObjects = collidingItems();
     foreach (auto item, collidingObjects) {
