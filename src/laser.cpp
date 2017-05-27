@@ -32,18 +32,16 @@ QPainterPath Laser::shape() const
 
 void Laser::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    QPen pen(Qt::NoPen);
-    painter->setPen(pen);
-    painter->setBrush(QBrush(_color));
-    painter->drawRect(0, 0, _w, _h);
-    painter->drawRect(_laserPos, 0, 5, calculateLaserLength());
+    painter->fillRect(0, 0, _w, _h, SpectrumColors::black);
+    painter->fillRect(_laserPos, 0, 5, calculateLaserLength(), _color);
+    painter->fillRect(_laserPos - 5, 0, 15, 15, SpectrumColors::black);
 }
 
 void Laser::move()
 {
-    _laserPos += _step;
-    if (_laserPos == 0 || _laserPos == _w)
+    if (_laserPos < 0 || _laserPos + 10 > _w)
         _step = -_step;
+    _laserPos += _step;
 }
 
 qreal Laser::calculateLaserLength()
