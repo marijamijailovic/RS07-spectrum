@@ -133,7 +133,7 @@ void SpectrumGame::mousePressEvent(QGraphicsSceneMouseEvent *)
 {
     foreach (QGraphicsItem* item, items())
         if (((Entity*)item)->color() == _activeColor)
-            item->show();
+            ((Entity*)item)->show();
     _activeColor = SpectrumColors::gray;
     animateColorChange(_activeColor);
     _spectrum->show();
@@ -313,10 +313,7 @@ void SpectrumGame::hideObjectsWithActiveColor()
     // Hide objects from the scene that have the same color as activeColor
     foreach (QGraphicsItem* item, items())
         if (((Entity*)item)->color() == _activeColor)
-            if (typeid(*item) == typeid(Laser))
-                ((Laser*)item)->hide();
-            else
-                item->hide();
+            ((Entity*)item)->hide();
 }
 void SpectrumGame::update() const
 {
