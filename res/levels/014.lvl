@@ -21,6 +21,9 @@ c purple
 s wall 20 350 150 30
 s wall 170 350 30 200
 
+#   Laser
+c blue
+s laser 50 20 500 0
 
 #   Door
 c green

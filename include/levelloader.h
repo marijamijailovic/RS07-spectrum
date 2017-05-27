@@ -16,6 +16,7 @@
 #include "include/player.h"
 #include "include/colors.h"
 #include "include/colorunlocker.h"
+#include "include/laser.h"
 
 
 class LevelLoader
