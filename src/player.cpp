@@ -3,16 +3,35 @@
 
 Player::Player(qreal x, qreal y) :
     DynamicEntity::DynamicEntity(x, y, 60, 77, 1),
-    _baseFrame(":/sprites/base.png")
+    _body(":/sprites/base.png"),
+    _armsAndLegs(":/sprites/jump/jump00.png")
 {
     setZValue(1);
+    // Blinking
     _blinkSprite.addFrame(":/sprites/blink1.png");
     _blinkSprite.addFrame(":/sprites/blink2.png");
     _blinkSprite.addFrame(":/sprites/blink3.png");
     _blinkSprite.addFrame(":/sprites/blink4.png");
+    _blinkSprite.addFrame(":/sprites/blink3.png");
+    _blinkSprite.addFrame(":/sprites/blink2.png");
+    _blinkSprite.addFrame(":/sprites/blink1.png");
     connect(&_blinkTicker, SIGNAL(timeout()), this, SLOT(blinkAnimation()));
     _blinkTicker.setInterval(3000);
     _blinkTicker.start();
+    // Jumping
+    _jumpSprite.addFrame(":/sprites/jump/jump01.png");
+    _jumpSprite.addFrame(":/sprites/jump/jump02.png");
+    _jumpSprite.addFrame(":/sprites/jump/jump03.png");
+    _jumpSprite.addFrame(":/sprites/jump/jump04.png");
+    _jumpSprite.addFrame(":/sprites/jump/jump05.png");
+    _jumpSprite.addFrame(":/sprites/jump/jump06.png");
+    _jumpSprite.addFrame(":/sprites/jump/jump07.png");
+    _jumpSprite.addFrame(":/sprites/jump/jump08.png");
+    _jumpSprite.addFrame(":/sprites/jump/jump09.png");
+    _jumpSprite.addFrame(":/sprites/jump/jump10.png");
+    _jumpSprite.addFrame(":/sprites/jump/jump11.png");
+    _jumpSprite.addFrame(":/sprites/jump/jump12.png");
+    _jumpSprite.setTickerInterval(70);
 }
 
 void Player::blinkAnimation()
@@ -46,18 +65,29 @@ void Player::setDown(bool b)
 }
 void Player::setPull(bool b)
 {
-    pull=b;
+    pull = b;
 }
+
 bool Player::getPull()
 {
     return pull;
 }
 
+Sprite &Player::jumpSprite()
+{
+    return _jumpSprite;
+}
+
 void Player::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    painter->drawPixmap(0, 0, _w, _h, _baseFrame);
+    painter->drawPixmap(0, 0, _w, _h, _body);
     if (_blinkSprite.animationActive())
         painter->drawPixmap(0, 0, _w, _h, _blinkSprite.nextFrame());
+    if (_inAir)
+        painter->drawPixmap(0, 0, _w, _h, _jumpSprite.nextFrame());
+    else
+        painter->drawPixmap(0, 0, _w, _h, _armsAndLegs);
+
 }
 
 qreal Player::centerX() const

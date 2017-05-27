@@ -30,6 +30,7 @@ public:
     void setDown(bool b);
     bool getPull();
     void setPull(bool b);
+    Sprite& jumpSprite();
     // Overrides from Entity
     void paint(QPainter *painter,
                const QStyleOptionGraphicsItem *option,
@@ -58,9 +59,11 @@ private:
     bool onLadder = false;
 
     // For painting
-    QPixmap _baseFrame;
+    QPixmap _body;
+    QPixmap _armsAndLegs;
     Sprite _blinkSprite;
     QTimer _blinkTicker;
+    Sprite _jumpSprite;
 
 };
 

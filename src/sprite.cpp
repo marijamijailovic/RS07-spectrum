@@ -2,8 +2,7 @@
 
 Sprite::Sprite() :
     _current(0),
-    _inLoop(false),
-    _ind(true)
+    _inLoop(false)
 {
     connect(&_ticker, SIGNAL(timeout()), this, SLOT(change()));
     _ticker.setInterval(90);
@@ -55,17 +54,9 @@ void Sprite::change()
         _ticker.start();
     }
 
-    if (_ind) {
-        _current = (_current + 1) % _sprites.size();
-        if (_current == _sprites.size() - 1)
-            _ind = false;
-    }
-    else
-        _current = (_current - 1) % _sprites.size();
+    _current = (_current + 1) % _sprites.size();
 
-    if (_current == 0) {
-        _ind = true;
-        if (!_inLoop)
-            _ticker.stop();
+    if (_current == 0 && !_inLoop) {
+        _ticker.stop();
     }
 }

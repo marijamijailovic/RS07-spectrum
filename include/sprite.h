@@ -28,7 +28,6 @@ private:
     std::vector<QPixmap> _sprites;
     unsigned _current;
     bool _inLoop;
-    bool _ind;
     QTimer _ticker;
 };
 

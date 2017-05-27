@@ -94,8 +94,10 @@ void SpectrumGame::keyPressEvent(QKeyEvent *event)
         _player->setLeft(true);
     else if (event->key() == Qt::Key_Right || event->key() == Qt::Key_D)
         _player->setRight(true);
-    else if (event->key() == Qt::Key_Space)
+    else if (event->key() == Qt::Key_Space) {
         _player->setJump(true);
+        _player->jumpSprite().startAnimation();
+    }
     else if (event->key() == Qt::Key_Z)
         _player->setPull(true);
     else if (event->key() == Qt::Key_Down || event->key() == Qt::Key_S) {
