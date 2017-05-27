@@ -12,7 +12,7 @@ class Laser : public Entity
 
 public:
     Laser(qreal x, qreal y,
-          qreal dx = 5, qreal dy = 5,
+          qreal dx = 0,
           const QColor color = SpectrumColors::black);
 
     // Overrides from Entity
