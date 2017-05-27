@@ -2,16 +2,41 @@
 
 Sprite::Sprite() :
     _current(0),
-    _animationActive(false),
+    _inLoop(false),
     _ind(true)
 {
     connect(&_ticker, SIGNAL(timeout()), this, SLOT(change()));
-    _ticker.start(2000);
+    _ticker.setInterval(90);
+}
+
+void Sprite::startAnimation()
+{
+    _ticker.start();
 }
 
 bool Sprite::animationActive() const
 {
-    return _animationActive;
+    return _ticker.isActive();
+}
+
+bool Sprite::inLoop() const
+{
+    return _inLoop;
+}
+
+void Sprite::setLoop(bool b)
+{
+    _inLoop = b;
+}
+
+int Sprite::tickerInterval() const
+{
+    return _ticker.interval();
+}
+
+void Sprite::setTickerInterval(int ms)
+{
+    _ticker.setInterval(ms);
 }
 
 QPixmap Sprite::nextFrame() const
@@ -26,9 +51,8 @@ void Sprite::addFrame(const QString& frame)
 
 void Sprite::change()
 {
-    if (_current == 0) {
-        _animationActive = true;
-        _ticker.setInterval(90);
+    if (_current == 0 && !animationActive()) {
+        _ticker.start();
     }
 
     if (_ind) {
@@ -41,7 +65,7 @@ void Sprite::change()
 
     if (_current == 0) {
         _ind = true;
-        _animationActive = false;
-        _ticker.setInterval(5000);
+        if (!_inLoop)
+            _ticker.stop();
     }
 }

@@ -12,7 +12,12 @@ class Sprite : QObject
 
 public:
     Sprite();
+    void startAnimation();
     bool animationActive() const;
+    bool inLoop() const;
+    void setLoop(bool b);
+    int tickerInterval() const;
+    void setTickerInterval(int ms);
     QPixmap nextFrame() const;
     void addFrame(const QString& frame);
 
@@ -22,7 +27,7 @@ private slots:
 private:
     std::vector<QPixmap> _sprites;
     unsigned _current;
-    bool _animationActive;
+    bool _inLoop;
     bool _ind;
     QTimer _ticker;
 };

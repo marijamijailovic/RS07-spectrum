@@ -1,11 +1,13 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include <QObject>
 #include <QtGlobal>
 #include <QGraphicsScene>
 #include <QGraphicsRectItem>
 #include <QKeyEvent>
 #include <QPixmap>
+#include <QTimer>
 #include <typeinfo>
 #include "include/dynamicentity.h"
 #include "include/key.h"
@@ -16,6 +18,8 @@
 
 class Player : public DynamicEntity
 {
+    Q_OBJECT
+
 public:
     Player(qreal x, qreal y);
 
@@ -38,6 +42,9 @@ public:
     bool go();
     void jump();
 
+private slots:
+    void blinkAnimation();
+
 private:
     bool _jump = false;
     int _canJump = 2;
@@ -53,6 +60,7 @@ private:
     // For painting
     QPixmap _baseFrame;
     Sprite _blinkSprite;
+    QTimer _blinkTicker;
 
 };
 

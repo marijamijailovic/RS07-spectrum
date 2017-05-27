@@ -1,6 +1,5 @@
 #include "include/player.h"
 #include <QBrush>
-#include <QTextStream>
 
 Player::Player(qreal x, qreal y) :
     DynamicEntity::DynamicEntity(x, y, 60, 77, 1),
@@ -11,6 +10,14 @@ Player::Player(qreal x, qreal y) :
     _blinkSprite.addFrame(":/sprites/blink2.png");
     _blinkSprite.addFrame(":/sprites/blink3.png");
     _blinkSprite.addFrame(":/sprites/blink4.png");
+    connect(&_blinkTicker, SIGNAL(timeout()), this, SLOT(blinkAnimation()));
+    _blinkTicker.setInterval(3000);
+    _blinkTicker.start();
+}
+
+void Player::blinkAnimation()
+{
+    _blinkSprite.startAnimation();
 }
 
 void Player::setJump(bool b)
