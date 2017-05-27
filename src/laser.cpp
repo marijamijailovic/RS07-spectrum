@@ -7,6 +7,7 @@ Laser::Laser(qreal x, qreal y,
              qreal dx,
              const QColor color) :
     Entity(x, y, dx > 0 ? dx : LASER_WIDTH, 10, color, false),
+    _hidden(false),
     _step(1),
     _laserPos(0)
 {
@@ -33,9 +34,20 @@ QPainterPath Laser::shape() const
 void Laser::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
     painter->fillRect(0, 0, _w, 10, SpectrumColors::black);
-    painter->fillRect(_laserPos, 0, LASER_WIDTH, calculateLaserLength(), _color);
+    if (!_hidden)
+        painter->fillRect(_laserPos, 0, LASER_WIDTH, calculateLaserLength(), _color);
     painter->fillRect(_laserPos - LASER_WIDTH, 0, 15, 15, SpectrumColors::black);
     painter->fillRect(_laserPos - LASER_WIDTH, 5, 15, 2, _color);
+}
+
+void Laser::hide()
+{
+    _hidden = true;
+}
+
+void Laser::show()
+{
+    _hidden = false;
 }
 
 void Laser::move()
@@ -61,7 +73,7 @@ qreal Laser::calculateLaserLength()
         }
     }
 
-    if (closestItem && typeid(*closestItem) == typeid(Player))
+    if (!_hidden && closestItem != NULL && typeid(*closestItem) == typeid(Player))
         emit playerHit();
 
     return closestItemDistance;

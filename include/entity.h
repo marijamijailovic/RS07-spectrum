@@ -25,6 +25,9 @@ public:
                        const QStyleOptionGraphicsItem *option,
                        QWidget *widget) override;
 
+    virtual void hide();
+    virtual void show();
+
     QColor color() const;
     void setColor(const QColor newColor);
     bool collidable() const;

@@ -21,8 +21,8 @@ public:
     void paint(QPainter *painter,
                const QStyleOptionGraphicsItem *option,
                QWidget *widget) override;
-
-    void hide();
+    void hide() override;
+    void show() override;
 
 signals:
     void playerHit();
@@ -35,6 +35,7 @@ private:
 
     const qreal MAX_LASER_LEN = 800;
     const qreal LASER_WIDTH = 5;
+    bool _hidden;
     qreal _step;
     qreal _laserPos;
     QScopedPointer<QTimer> _moveTicker;

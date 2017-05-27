@@ -27,6 +27,16 @@ void Entity::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget 
     painter->drawRect(0, 0, _w, _h);
 }
 
+void Entity::hide()
+{
+    QGraphicsObject::hide();
+}
+
+void Entity::show()
+{
+    QGraphicsObject::show();
+}
+
 QColor Entity::color() const
 {
     return _color;

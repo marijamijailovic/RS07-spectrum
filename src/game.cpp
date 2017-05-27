@@ -297,9 +297,9 @@ void SpectrumGame::connectSlots(std::vector<Entity *> entities)
 
     foreach (QGraphicsItem *item, entities) {
         if (typeid(*item) == typeid(ColorUnlocker)) {
-            if (isUnlocked(((ColorUnlocker*)item)->color())) {
+            if (isUnlocked(((ColorUnlocker*)item)->color()))
                 removeItem(item);
-            } else
+            else
                 connect((ColorUnlocker*)item, SIGNAL(colorUnlocked(int)), this, SLOT(unlockColor(int)));
         } else if (typeid(*item) == typeid(Key)) {
             connect((Key*)item, SIGNAL(collected()), this, SLOT(keyCollected()));
@@ -313,7 +313,10 @@ void SpectrumGame::hideObjectsWithActiveColor()
     // Hide objects from the scene that have the same color as activeColor
     foreach (QGraphicsItem* item, items())
         if (((Entity*)item)->color() == _activeColor)
-            item->hide();
+            if (typeid(*item) == typeid(Laser))
+                ((Laser*)item)->hide();
+            else
+                item->hide();
 }
 void SpectrumGame::update() const
 {
