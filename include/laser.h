@@ -26,6 +26,10 @@ private slots:
     void move();
 
 private:
+    qreal calculateLaserLength() const;
+
+    qreal _step;
+    qreal _laserPos;
     QScopedPointer<QTimer> _moveTicker;
 };
 
