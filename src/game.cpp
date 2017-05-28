@@ -143,20 +143,23 @@ void SpectrumGame::mousePressEvent(QGraphicsSceneMouseEvent *)
 
 void SpectrumGame::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
 {
+    QPointF mouseReleasePos = e->lastScenePos();
+    int colorID = _spectrum->determineColorID(mouseReleasePos);
+    QColor chosenColor = SpectrumColors::getColorFromID(colorID);
+
     // If the player is inside of a collidable object, don't allow the change
     QList<QGraphicsItem *> collidingObjects = _player->collidingItems();
     bool shouldChangeActiveColor = true;
     foreach (QGraphicsItem* item, collidingObjects)
-        if (((Entity*)item)->collidable() && _oldActiveColor == ((Entity*)item)->color()) {
-            shouldChangeActiveColor = false;
-            break;
+        if (((Entity*)item)->collidable() && chosenColor != ((Entity*)item)->color()) {
+            if (typeid(Ladder) != typeid(*item)) {
+                shouldChangeActiveColor = false;
+                break;
+            }
         }
 
-    QPointF mouseReleasePos = e->lastScenePos();
-    int colorID = _spectrum->determineColorID(mouseReleasePos);
-
     if (shouldChangeActiveColor && isUnlocked(colorID)) {
-        _activeColor = SpectrumColors::getColorFromID(colorID);
+        _activeColor = chosenColor;
         _oldActiveColor = _activeColor;
     } else {
         _activeColor = _oldActiveColor;
