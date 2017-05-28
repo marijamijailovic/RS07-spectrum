@@ -6,6 +6,8 @@
 
 class Spike : public Entity
 {
+    Q_OBJECT
+
 public:
     Spike(qreal x, qreal y, qreal w, qreal h);
 
@@ -13,6 +15,12 @@ public:
     void paint(QPainter *painter,
                const QStyleOptionGraphicsItem *option,
                QWidget *widget) override;
+
+signals:
+    void playerHit();
+
+private:
+    bool collidesWithPlayer() const;
 };
 
 #endif // SPIKE_H
