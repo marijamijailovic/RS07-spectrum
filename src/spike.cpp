@@ -8,5 +8,10 @@ Spike::Spike(qreal x, qreal y, qreal w, qreal h) :
 
 void Spike::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    painter->drawRect(0, 0, _w, _h);
+    QPainterPath path(QPoint(_w, _h));
+    for (qreal dx = 0; dx <= _w; dx += 10) {
+        path.lineTo(QPoint(dx, _h));
+        path.lineTo(QPoint(dx + 5, 0));
+    }
+    painter->fillPath(path, SpectrumColors::black);
 }
