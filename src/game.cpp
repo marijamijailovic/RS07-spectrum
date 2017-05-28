@@ -303,8 +303,10 @@ void SpectrumGame::connectSlots(std::vector<Entity *> entities)
                 connect((ColorUnlocker*)item, SIGNAL(colorUnlocked(int)), this, SLOT(unlockColor(int)));
         } else if (typeid(*item) == typeid(Key)) {
             connect((Key*)item, SIGNAL(collected()), this, SLOT(keyCollected()));
-        } else if (typeid(*item) == typeid(Laser))
+        } else if (typeid(*item) == typeid(Laser)) {
             connect((Laser*)item, SIGNAL(playerHit()), this, SLOT(playerDied()));
+        } else if (typeid(*item) == typeid(Spike))
+            connect((Spike*)item, SIGNAL(playerHit()), this, SLOT(playerDied()));
     }
 }
 

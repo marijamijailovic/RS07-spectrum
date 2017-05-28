@@ -15,6 +15,10 @@ s block 0 0 20 550
 # Right side
 s block 780 350 20 200
 
+s block 400 500 100 50
+s spike 500 500 100 50
+s block 600 500 100 50
+
 
 #   Purple obsticle
 c purple

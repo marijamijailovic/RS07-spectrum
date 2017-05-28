@@ -44,7 +44,8 @@ SOURCES += \
     src/colorchooser.cpp \
     src/gameloader.cpp \
     src/sprite.cpp \
-    src/laser.cpp
+    src/laser.cpp \
+    src/spike.cpp
 
 HEADERS  += \
     include/mainwindow.h \
@@ -66,7 +67,8 @@ HEADERS  += \
     include/colorchooser.h \
     include/gameloader.h \
     include/sprite.h \
-    include/laser.h
+    include/laser.h \
+    include/spike.h
 
 FORMS    += \
     ui/mainwindow.ui

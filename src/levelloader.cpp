@@ -129,6 +129,9 @@ void LevelLoader::addStaticEntity(std::vector<Entity *> &staticEntities,
     } else if (entityClass == "laser") {
         lineStream >> w;
         staticEntities.push_back(new Laser(x, y, w, entityColor));
+    } else if (entityClass == "spike") {
+        lineStream >> w >> h;
+        staticEntities.push_back(new Spike(x, y, w, h));
     }
 
     if (activeColor == entityColor)
