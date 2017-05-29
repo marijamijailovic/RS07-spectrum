@@ -4,12 +4,14 @@
 Player::Player(qreal x, qreal y) :
     DynamicEntity::DynamicEntity(x, y, 60, 77, 1),
     _body(":/sprites/base.png"),
-    _armsAndLegs(":/sprites/jump/jump00.png")
+    _armsAndLegs(":/sprites/jump/jump00.png"),
+    _arms(":/sprites/arms_00.png")
 {
     setZValue(1);
 
     initializeBlinkSprite();
     initializeJumpSprite();
+    initializeWalkSprite();
 }
 
 void Player::initializeBlinkSprite()
@@ -41,6 +43,18 @@ void Player::initializeJumpSprite()
     //_jumpSprite.addFrame(":/sprites/jump/jump11.png");
     _jumpSprite.addFrame(":/sprites/jump/jump12.png");
     _jumpSprite.setTickerInterval(80);
+}
+
+void Player::initializeWalkSprite()
+{
+    _walkSprite.addFrame(":/sprites/walk/walk_00.png");
+    _walkSprite.addFrame(":/sprites/walk/walk_01.png");
+    _walkSprite.addFrame(":/sprites/walk/walk_02.png");
+    _walkSprite.addFrame(":/sprites/walk/walk_03.png");
+    _walkSprite.addFrame(":/sprites/walk/walk_04.png");
+    _walkSprite.addFrame(":/sprites/walk/walk_05.png");
+    _walkSprite.setTickerInterval(80);
+    _walkSprite.setLoop(true);
 }
 
 void Player::blinkAnimation()
@@ -87,6 +101,11 @@ Sprite &Player::jumpSprite()
     return _jumpSprite;
 }
 
+Sprite &Player::walkSprite()
+{
+    return _walkSprite;
+}
+
 void Player::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
     painter->drawPixmap(0, 0, _w, _h, _body);
@@ -94,9 +113,14 @@ void Player::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget 
         painter->drawPixmap(0, 0, _w, _h, _blinkSprite.nextFrame());
     if (_inAir)
         painter->drawPixmap(0, 0, _w, _h, _jumpSprite.nextFrame());
-    else
+    else if (_left || _right || abs(_vx) > 1) {
+        _walkSprite.startAnimation();
+        painter->drawPixmap(0, 0, _w, _h, _walkSprite.nextFrame());
+        painter->drawPixmap(0, 0, _w, _h, _arms);
+    } else {
+        _walkSprite.stopAnimation();
         painter->drawPixmap(0, 0, _w, _h, _armsAndLegs);
-
+    }
 }
 
 qreal Player::centerX() const

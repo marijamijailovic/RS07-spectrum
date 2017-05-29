@@ -13,6 +13,7 @@ class Sprite : QObject
 public:
     Sprite();
     void startAnimation();
+    void stopAnimation();
     bool animationActive() const;
     bool inLoop() const;
     void setLoop(bool b);

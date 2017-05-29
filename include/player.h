@@ -33,7 +33,9 @@ public:
 
     void initializeBlinkSprite();
     void initializeJumpSprite();
+    void initializeWalkSprite();
     Sprite& jumpSprite();
+    Sprite& walkSprite();
 
     // Overrides from Entity
     void paint(QPainter *painter,
@@ -65,6 +67,8 @@ private:
     // For painting
     QPixmap _body;
     QPixmap _armsAndLegs;
+    QPixmap _arms;
+    Sprite _walkSprite;
     Sprite _blinkSprite;
     QTimer _blinkTicker;
     Sprite _jumpSprite;

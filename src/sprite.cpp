@@ -10,7 +10,15 @@ Sprite::Sprite() :
 
 void Sprite::startAnimation()
 {
-    _ticker.start();
+    if (!_ticker.isActive())
+        _ticker.start();
+}
+
+void Sprite::stopAnimation()
+{
+    _current = 0;
+    if (_ticker.isActive())
+        _ticker.stop();
 }
 
 bool Sprite::animationActive() const
