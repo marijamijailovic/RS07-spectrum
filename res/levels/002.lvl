@@ -11,9 +11,9 @@ p 200 470
 # Bottom
 s block 0 550 800 50
 # Left side
-s block 0 450 20 100
+s block 0 0 20 550
 # Right side
-s block 780 450 20 100
+s block 780 0 20 550
 
 
 #   Obstacle

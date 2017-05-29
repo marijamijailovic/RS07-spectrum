@@ -11,9 +11,9 @@ p 60 470
 # Bottom
 s block 0 550 800 50
 # Left side
-s block 0 350 20 200
+s block 0 0 20 550
 # Right side
-s block 780 350 20 200
+s block 780 0 20 550
 
 #   Hill
 s block 150 480 500 70
