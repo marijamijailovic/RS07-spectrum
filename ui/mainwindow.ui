@@ -318,6 +318,142 @@ border: 1px solid white;</string>
       <string>006</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="pbLevel7">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>300</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white;
+border: 1px solid white;</string>
+     </property>
+     <property name="text">
+      <string>007</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pbLevel8">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>300</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white;
+border: 1px solid white;</string>
+     </property>
+     <property name="text">
+      <string>008</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pbLevel9">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>300</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white;
+border: 1px solid white;</string>
+     </property>
+     <property name="text">
+      <string>009</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pbLevel10">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>300</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white;
+border: 1px solid white;</string>
+     </property>
+     <property name="text">
+      <string>010</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pbLevel11">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>300</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white;
+border: 1px solid white;</string>
+     </property>
+     <property name="text">
+      <string>011</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pbLevel12">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>300</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white;
+border: 1px solid white;</string>
+     </property>
+     <property name="text">
+      <string>012</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pbLevel13">
+     <property name="geometry">
+      <rect>
+       <x>370</x>
+       <y>300</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white;
+border: 1px solid white;</string>
+     </property>
+     <property name="text">
+      <string>013</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pbLevel14">
+     <property name="geometry">
+      <rect>
+       <x>420</x>
+       <y>300</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white;
+border: 1px solid white;</string>
+     </property>
+     <property name="text">
+      <string>014</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QPushButton" name="btnLoadGame">
     <property name="geometry">

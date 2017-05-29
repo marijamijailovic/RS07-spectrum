@@ -52,6 +52,14 @@ void MainWindow::connectSignalsToSlots()
     connect(_ui->pbLevel4, SIGNAL(clicked()), this, SLOT(levelLoad()));
     connect(_ui->pbLevel5, SIGNAL(clicked()), this, SLOT(levelLoad()));
     connect(_ui->pbLevel6, SIGNAL(clicked()), this, SLOT(levelLoad()));
+    connect(_ui->pbLevel7, SIGNAL(clicked()), this, SLOT(levelLoad()));
+    connect(_ui->pbLevel8, SIGNAL(clicked()), this, SLOT(levelLoad()));
+    connect(_ui->pbLevel9, SIGNAL(clicked()), this, SLOT(levelLoad()));
+    connect(_ui->pbLevel10, SIGNAL(clicked()), this, SLOT(levelLoad()));
+    connect(_ui->pbLevel11, SIGNAL(clicked()), this, SLOT(levelLoad()));
+    connect(_ui->pbLevel12, SIGNAL(clicked()), this, SLOT(levelLoad()));
+    connect(_ui->pbLevel13, SIGNAL(clicked()), this, SLOT(levelLoad()));
+    connect(_ui->pbLevel14, SIGNAL(clicked()), this, SLOT(levelLoad()));
     connect(_ui->pbLevelDemo, SIGNAL(clicked()), this, SLOT(levelLoad()));
 }
 

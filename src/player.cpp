@@ -2,7 +2,7 @@
 #include <QBrush>
 
 Player::Player(qreal x, qreal y) :
-    DynamicEntity::DynamicEntity(x, y, 60, 77, 1),
+    DynamicEntity::DynamicEntity(x, y, 60, 80, 1),
     _body(":/sprites/base.png"),
     _armsAndLegs(":/sprites/jump/jump00.png"),
     _arms(":/sprites/arms_00.png")
