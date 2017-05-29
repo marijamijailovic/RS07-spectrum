@@ -6,5 +6,25 @@
         <file>blink2.png</file>
         <file>blink3.png</file>
         <file>blink4.png</file>
+        <file>jump/jump00.png</file>
+        <file>jump/jump01.png</file>
+        <file>jump/jump02.png</file>
+        <file>jump/jump03.png</file>
+        <file>jump/jump04.png</file>
+        <file>jump/jump05.png</file>
+        <file>jump/jump06.png</file>
+        <file>jump/jump07.png</file>
+        <file>jump/jump08.png</file>
+        <file>jump/jump09.png</file>
+        <file>jump/jump10.png</file>
+        <file>jump/jump11.png</file>
+        <file>jump/jump12.png</file>
+        <file>arms_00.png</file>
+        <file>walk/walk_00.png</file>
+        <file>walk/walk_01.png</file>
+        <file>walk/walk_02.png</file>
+        <file>walk/walk_03.png</file>
+        <file>walk/walk_04.png</file>
+        <file>walk/walk_05.png</file>
     </qresource>
 </RCC>

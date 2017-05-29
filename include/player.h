@@ -1,11 +1,13 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include <QObject>
 #include <QtGlobal>
 #include <QGraphicsScene>
 #include <QGraphicsRectItem>
 #include <QKeyEvent>
 #include <QPixmap>
+#include <QTimer>
 #include <typeinfo>
 #include "include/dynamicentity.h"
 #include "include/key.h"
@@ -16,6 +18,8 @@
 
 class Player : public DynamicEntity
 {
+    Q_OBJECT
+
 public:
     Player(qreal x, qreal y);
 
@@ -26,6 +30,13 @@ public:
     void setDown(bool b);
     bool getPull();
     void setPull(bool b);
+
+    void initializeBlinkSprite();
+    void initializeJumpSprite();
+    void initializeWalkSprite();
+    Sprite& jumpSprite();
+    Sprite& walkSprite();
+
     // Overrides from Entity
     void paint(QPainter *painter,
                const QStyleOptionGraphicsItem *option,
@@ -37,6 +48,9 @@ public:
     void movement();
     bool go();
     void jump();
+
+private slots:
+    void blinkAnimation();
 
 private:
     bool _jump = false;
@@ -51,8 +65,13 @@ private:
     bool onLadder = false;
 
     // For painting
-    QPixmap _baseFrame;
+    QPixmap _body;
+    QPixmap _armsAndLegs;
+    QPixmap _arms;
+    Sprite _walkSprite;
     Sprite _blinkSprite;
+    QTimer _blinkTicker;
+    Sprite _jumpSprite;
 
 };
 
